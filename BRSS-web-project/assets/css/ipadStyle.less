@@ -1,0 +1,486 @@
+.board-main {
+  width: 100vw;
+  height: 100vh;
+  background: #23254b;
+}
+.board-header {
+  width: 100vw;
+  height: 50px;
+  background: #2d3385;
+  position: relative;
+  padding-top: 12px;
+  box-sizing: border-box;
+  .header-time {
+    height: 27px;
+    line-height: 27px;
+    width: 335px;
+    text-align: center;
+    color: #ffffff;
+    background-image: url('../boardImage/timeline.png');
+    background-repeat:no-repeat;
+    margin-left: 1555px;
+    // margin-bottom: 12px;
+    font-size: 18px;
+    font-family: PingFang SC, PingFang SC-Bold;
+    color: #00dcff;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+  .board-title {
+    position: absolute;
+    width: 850px;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    display: flex;
+    .board-titleLeft {
+      width: 0;
+      height: 0;
+      border-top: 90px solid #2d3385;
+      border-left: 90px solid transparent;
+      position: relative;
+      .left-xie {
+        position: absolute;
+        top: -45px;
+        left: -100px;
+        width: 110px;
+        height: 1px;
+        transform:rotate(45deg);
+        // background-color: red;
+        -moz-box-shadow:0px 2px 5px rgba(0,0,0,0.4); -webkit-box-shadow:0px 2px 5px rgba(0,0,0,0.4); box-shadow:0px 2px 5px rgba(0,0,0,0.4);
+      }
+    }
+    .board-titleMiddle {
+      width: 670px;
+      height: 90px;
+      background-color: #2d3385;
+      background-image: url(../boardImage/line.png);
+      background-repeat: no-repeat;
+      background-position-y: 68px;
+      -moz-box-shadow:0px 2px 5px rgba(0,0,0,0.4); -webkit-box-shadow:0px 2px 5px rgba(0,0,0,0.4); box-shadow:0px 2px 5px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .logo-title {
+        display: flex;
+        p {
+            font-size: 35px;
+            font-family: PingFang SC, PingFang SC-Bold;
+            font-weight: 700;
+            text-align: left;
+            color: #00dcff;
+            letter-spacing: 11px;
+            margin-left: 20px;
+        }
+      }
+    }
+    .board-titleRight {
+      width: 0;
+      height: 0;
+      border-top: 90px solid #2d3385;
+      border-right: 90px solid transparent;
+      position: relative;
+      .right-xie {
+        position: absolute;
+        top: -45px;
+        left: -10px;
+        transform:rotate(-45deg);
+        width: 100px;
+        height: 1px;
+        -moz-box-shadow:0px 2px 5px rgba(0,0,0,0.4); -webkit-box-shadow:0px 2px 5px rgba(0,0,0,0.4); box-shadow:0px 2px 5px rgba(0,0,0,0.4);
+      }
+    }
+  }
+}
+.styleLine {
+  height: 26px;
+  margin: 16px 0 22px 0;
+  background-image: url(../boardImage/topline.png);
+  background-repeat: no-repeat;
+}
+.board-box {
+  padding: 0 27px;
+  box-sizing: border-box;
+  .roll-car {
+    width: 100%;
+    height: 513px;
+    background-image: url(../boardImage/roilcarline.png);
+    background-repeat: no-repeat;
+    padding: 31px 20px 23px 19px;
+    box-sizing: border-box;
+    .roll-car-plan {
+      height: 180px;
+      display: flex;
+    }
+    .car {
+      background-image: url(../boardImage/rolling.png);
+      background-repeat: no-repeat;
+      height: 169px;
+      margin-bottom: 5px;
+    }
+    .car-info-item {
+      color: #00dcff;
+      font-size: 11px;
+      width: 100px;
+      height: 106px;
+      display: inline-block;
+      background-image: url(../boardImage/changecar.png);
+      background-repeat: no-repeat;
+      padding-left: 5px;
+      padding-top: 30px;
+      box-sizing: border-box;
+    }
+  }
+  .board-info {
+    width: 100%;
+    .board-left {
+      display: flex;
+      // justify-content: space-between;
+      .best-classInfo {
+        .best-calssMain {
+          width: 561px;
+          height: 200px;
+          background-image: url(../boardImage/best-class.png);
+          background-repeat: no-repeat;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          .best-calssMain-item {
+            background-image: url(../boardImage/bot.png);
+            background-repeat: no-repeat;
+            width: 119px;
+            height: 76px;
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+            i {
+              font-size: 30px;
+              position: absolute;
+              -webkit-text-stroke: 1px #ffffff;
+              transform: translateX(-50%);
+              top: -15px;
+              color: #00dcff;
+            }
+            p {
+              position: absolute;
+              bottom: -20px;
+              transform: translateX(55%);
+            }
+          }
+        }
+      }
+      .pinch-rollInfo {
+        margin-left: 10px;
+        .pinch-rollMain {
+          width: 653px;
+          height: 200px;
+          background-image: url(../boardImage/pinch-roll.png);
+          background-repeat: no-repeat;
+          #app1, #app2, #app3, #app4, #app5, #app6, #app7 {
+            width: 150px;
+            height: 100px;
+          }
+          #app6 {
+            margin: 0 30px;
+          }
+          .pinch-rollMain-item {
+            display: flex;
+            justify-content: center;
+          }
+        }
+      }
+    }
+    .mo-bed {
+      width: 100%;
+      width: 1220px;
+      height: 200px;
+      margin-top: 10px;
+      background-image: url(../boardImage/moc.png);
+      background-repeat: no-repeat;
+      // .mo-bedMain {
+        // width: 1220px;
+        // height: 170px;
+        // background-image: url(../boardImage/图层11.png);
+        // background-repeat: no-repeat;
+        // padding: 10px;
+        // box-sizing: border-box;
+        // color: #ffffff;
+        // font-size: 12px;
+        // > div {
+        //   height: 100%;
+        // }
+        // .mo-bedItem {
+        //   // width: 200px;
+        //   .mo-title {
+        //     font-size: 15px;
+        //     height: 20px;
+        //     line-height: 20px;
+        //   }
+        //   .el-col-6 {
+        //     height: 18px;
+        //     line-height: 18px;
+        //   }
+        // }
+      // }
+    }
+    .roll-nos {
+      .roll-nosMain {
+        height: 410px;
+        width: 625px;
+        margin-left: 10px;
+        background-image: url(../boardImage/roll-nos1.png);
+        background-repeat: no-repeat;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .mo-item {
+        height: 124px;
+        width: 100%;
+        // width: 194px;
+        .moitem-title {
+          text-align: center;
+          font-size: 14px;
+          color: #ffffff;
+        }
+        .moitem-main {
+          width: 290px;
+          position: relative;
+          top: 20px;
+          .bed-img {
+            width: 290px;
+            position: absolute;
+          }
+          .mo-roll {
+            width: 83px;
+            top: 3px;
+            position: absolute;
+            left: 90px;
+          }
+          .mo-slide1 {
+            width: 48px;
+            position: absolute;
+          }
+          .mo-slide2 {
+            width: 65px;
+            position: absolute;
+            left: 193px;
+          }
+          .mo-part {
+            width: 39px;
+            left: 160px;
+            position: absolute;
+          }
+        }
+      }
+    }
+  }
+}
+
+.car-paramer-title {
+  color: #ffffff;
+}
+.car-info-item-paramer {
+  height: 20px;
+  line-height: 20px;
+}
+.car-paramer-title-color {
+  color: #ffffff;
+  opacity: 0.75;
+  width: 28px;
+  display: inline-block;
+}
+.car-info-item-margin1 {
+  margin-left: 315px;
+}
+.car-info-item-margin2 {
+  margin-left: 42px;
+}
+.car-info-item-margin3 {
+  margin-left: 220px;
+}
+.car-info-item-margin4 {
+  margin-left: 20px;
+}
+.car-info-item-margin5 {
+  margin-left: 10px;
+}
+.car-info-item-margin6 {
+  margin-left: 15px;
+}
+.car-info-item-margin7 {
+  margin-left: 15px;
+}
+.car-info-item-margin8 {
+  margin-left: 10px;
+}
+.car-info-item-margin9 {
+  margin-left: 15px;
+}
+
+.roll-car-plan-info {
+  color: #00dcff;
+  font-size: 19px;
+  width: 200px;
+  height: 100%;
+  margin-left: 40px;
+  // background-color: red;
+  overflow: hidden;
+}
+.roll-car-plan-info>:first-child{
+  margin-top: 0px;
+}
+.roll-car-plan-info-title {
+  color: #ffffff;
+  opacity: 0.75;
+  font-size: 9px;
+  height: 15px;
+  line-height: 15px;
+  margin-top: 10px;
+}
+
+.roll-carInfo-item1 {
+  width: 180px;
+  background-image: url(../boardImage/R1.png);
+  background-repeat: no-repeat;
+  margin-left: 10px;
+  color: #00dcff;
+  font-size: 11px;
+  padding-left: 8px;
+  padding-top: 3px;
+  box-sizing: border-box;
+}
+.roll-carInfo-item2 {
+  width: 180px;
+  background-image: url(../boardImage/R2.png);
+  background-repeat: no-repeat;
+  color: #00dcff;
+  font-size: 11px;
+  padding-left: 8px;
+  padding-top: 3px;
+  box-sizing: border-box;
+}
+.roll-carInfo-item3 {
+  width: 200px;
+  background-image: url(../boardImage/F1.png);
+  background-repeat: no-repeat;
+  color: #00dcff;
+  font-size: 11px;
+  padding-left: 8px;
+  padding-top: 3px;
+  box-sizing: border-box;
+}
+.roll-carInfo-item4 {
+  width: 174px;
+  background-image: url(../boardImage/F2.png);
+  background-repeat: no-repeat;
+  color: #00dcff;
+  font-size: 11px;
+  padding-left: 8px;
+  padding-top: 3px;
+  box-sizing: border-box;
+}
+.roll-carInfo-item5 {
+  width: 174px;
+  background-image: url(../boardImage/F3.png);
+  background-repeat: no-repeat;
+  color: #00dcff;
+  font-size: 11px;
+  padding-left: 8px;
+  padding-top: 3px;
+  box-sizing: border-box;
+}
+.roll-carInfo-item6 {
+  width: 193px;
+  background-image: url(../boardImage/he45.png);
+  background-repeat: no-repeat;
+  color: #00dcff;
+  font-size: 11px;
+  padding-left: 8px;
+  padding-top: 3px;
+  box-sizing: border-box;
+}
+.roll-carInfo-item7 {
+  width: 174px;
+  background-image: url(../boardImage/he56.png);
+  background-repeat: no-repeat;
+  color: #00dcff;
+  font-size: 11px;
+  padding-left: 3px;
+  padding-top: 3px;
+  box-sizing: border-box;
+}
+.roll-carInfo-item8 {
+  width: 174px;
+  background-image: url(../boardImage/he67.png);
+  background-repeat: no-repeat;
+  color: #00dcff;
+  font-size: 11px;
+  padding-left: 3px;
+  padding-top: 3px;
+  box-sizing: border-box;
+}
+.roll-carInfo-item9 {
+  width: 174px;
+  background-image: url(../boardImage/he7.png);
+  background-repeat: no-repeat;
+  color: #00dcff;
+  font-size: 11px;
+  padding-top: 3px;
+  box-sizing: border-box;
+}
+.roll-carInfo-value {
+  width: 65px;
+  display: inline-block;
+}
+
+.best-classTitle {
+  color: #00dcff;
+  padding-left: 30px;
+  box-sizing: border-box;
+  font-size: 19px;
+  height: 35px;
+  line-height: 35px;
+}
+
+
+// table_box 自定义表格数据
+.table_box table {
+  width: 100%;
+  font-size: 12px;
+}
+
+.table_box table thead {
+  background-color: #2D3385;
+  letter-spacing: 1px;
+}
+
+.table_box table tr td,  .table_box table tr th{
+  // padding: 3px 5px;
+  height: 23px;
+  line-height: 23px;
+  border: 1px solid rgba(255,255,255,0.4);
+  white-space: normal;
+  word-break: break-all;
+  text-align: center;
+  color: #eae8c5;
+}
+.table_box table tbody tr {
+  cursor: pointer;
+}
+.table_box table tbody tr td {
+  white-space: normal;
+  word-break: break-all;
+  border: 1px solid #eae8c5;
+  text-align: center;
+  color: #eae8c5;
+  height: 12px;
+  /*强制不换行*/
+  white-space: nowrap;
+}
+.table_box table tbody tr td a:hover {
+  color: #d3ca1b;
+}
+.head_1 {
+  color: #eae8c5 !important;
+  text-align: right;
+}

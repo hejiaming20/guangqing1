@@ -1,0 +1,198 @@
+{
+  "id": "2042345",
+  "name": "磨辊间",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "8851777",
+      "name": "暂无数据",
+      "font_class": "zanwushuju",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "11253571",
+      "name": "暂无数据 2",
+      "font_class": "zanwushuju1",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "12504739",
+      "name": "暂无数据",
+      "font_class": "zanwushuju2",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "14075811",
+      "name": "暂无数据",
+      "font_class": "zanwushuju3",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "188639",
+      "name": "标题",
+      "font_class": "biaoti",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "1046547",
+      "name": "标题",
+      "font_class": "biaoti1",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "7408108",
+      "name": "维护",
+      "font_class": "weihu",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "14294393",
+      "name": "报表",
+      "font_class": "baobiao",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "3242979",
+      "name": "四化之信息化",
+      "font_class": "sihuazhixinxihua",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "7746265",
+      "name": "推送",
+      "font_class": "tuisong",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "16243450",
+      "name": "信息化",
+      "font_class": "xinxihua",
+      "unicode": "ebc5",
+      "unicode_decimal": 60357
+    },
+    {
+      "icon_id": "7420374",
+      "name": "菱形",
+      "font_class": "lingxing11",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "15097199",
+      "name": "菱形",
+      "font_class": "xinicon_huaban1fuben33",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "1369179",
+      "name": "缩小",
+      "font_class": "suoxiao",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "2223947",
+      "name": "重做",
+      "font_class": "zhongzuo",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
+      "icon_id": "5199281",
+      "name": "放大",
+      "font_class": "fangda",
+      "unicode": "e6d5",
+      "unicode_decimal": 59093
+    },
+    {
+      "icon_id": "8589090",
+      "name": "撤销",
+      "font_class": "chexiao",
+      "unicode": "e875",
+      "unicode_decimal": 59509
+    },
+    {
+      "icon_id": "9188303",
+      "name": "实际尺寸",
+      "font_class": "shijichicun",
+      "unicode": "ea83",
+      "unicode_decimal": 60035
+    },
+    {
+      "icon_id": "11284848",
+      "name": "适应",
+      "font_class": "shiying",
+      "unicode": "e745",
+      "unicode_decimal": 59205
+    },
+    {
+      "icon_id": "13734003",
+      "name": "删 除",
+      "font_class": "shanchu",
+      "unicode": "e6f8",
+      "unicode_decimal": 59128
+    },
+    {
+      "icon_id": "14965723",
+      "name": "适应",
+      "font_class": "shiying1",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "2443797",
+      "name": "长方形",
+      "font_class": "LableRectangle",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "15463502",
+      "name": "菱形",
+      "font_class": "lingxing1",
+      "unicode": "ea15",
+      "unicode_decimal": 59925
+    },
+    {
+      "icon_id": "6232670",
+      "name": "椭圆",
+      "font_class": "tuoyuan",
+      "unicode": "e671",
+      "unicode_decimal": 58993
+    },
+    {
+      "icon_id": "9177149",
+      "name": "菱形",
+      "font_class": "lingxing",
+      "unicode": "e6b5",
+      "unicode_decimal": 59061
+    },
+    {
+      "icon_id": "13544057",
+      "name": "长方形",
+      "font_class": "changfangxing",
+      "unicode": "e7a6",
+      "unicode_decimal": 59302
+    },
+    {
+      "icon_id": "13718610",
+      "name": "圆形",
+      "font_class": "yuanxing",
+      "unicode": "e6d4",
+      "unicode_decimal": 59092
+    }
+  ]
+}
