@@ -94,9 +94,9 @@
             width="120px"
             align="center"
             label="辊号"/>
-          <el-table-column
+          <!-- <el-table-column
             prop="roll_type"
-            label="轧辊类型"/>
+            label="轧辊类型"/>-->
           <el-table-column
             width="160px"
             prop="grind_starttime"
@@ -106,7 +106,7 @@
             prop="grind_endtime"
             label="磨削结束时间"/>
           <el-table-column
-            prop="machine_no"
+            prop="machineno"
             width="70px"
             label="磨床号"/>
           <el-table-column
@@ -141,29 +141,6 @@
           <el-table-column
             prop="roundness"
             label="圆度"/>
-          <el-table-column
-            prop="crack"
-            width="60px"
-            label="裂纹"/>
-          <el-table-column
-            prop="hidden_flaws"
-            width="60px"
-            label="暗伤"/>
-          <el-table-column
-            prop="qualifiednum"
-            label="合格点数"/>
-          <el-table-column
-            prop="sclass"
-            width="60px"
-            label="班"/>
-          <el-table-column
-            prop="sgroup"
-            width="60px"
-            label="班组"/>
-          <!--  <el-table-column
-            prop="operat_user"
-            label="操作人"/>-->
-
           <!-- <el-table-column
             prop="curvetype"
             width="60px"
@@ -185,6 +162,28 @@
           <el-table-column
             prop="wheel_dia_end"
             label="砂轮结束直径"/>
+          <el-table-column
+            prop="crack"
+            width="60px"
+            label="裂纹"/>
+          <el-table-column
+            prop="hidden_flaws"
+            width="60px"
+            label="暗伤"/>
+          <el-table-column
+            prop="qualifiednum"
+            label="合格点数"/>
+          <el-table-column
+            prop="sclass"
+            width="60px"
+            label="班"/>
+          <el-table-column
+            prop="sgroup"
+            width="60px"
+            label="班组"/>
+          <el-table-column
+            prop="operator"
+            label="操作人"/>
 
 
             <!-- <el-table-column
