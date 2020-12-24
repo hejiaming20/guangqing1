@@ -91,7 +91,7 @@
           slot="TableBody">
           <el-table-column
             prop="roll_no"
-            width="90px"
+            width="120px"
             align="center"
             label="辊号"/>
           <el-table-column
@@ -122,10 +122,14 @@
               <span>{{ scope.row.before_diameter==0||scope.row.after_diameter==0?0: (scope.row.before_diameter-scope.row.after_diameter).toFixed(3) }}</span>
             </template>
           </el-table-column>
-          <el-table-column
+          <!--<el-table-column
             prop="deviation"
-            label="辊形偏差"/>
+            label="辊形偏差就是曲线误差"/>-->
           <el-table-column
+            prop="curvetolerance"
+            width="70px"
+            label="曲线误差"/>
+          <!-- <el-table-column
             prop="diametermax"
             label="最大直径"/>
           <el-table-column
@@ -133,7 +137,7 @@
             label="最小直径"/>
           <el-table-column
             prop="taper"
-            label="锥度"/>
+            label="锥度"/>-->
           <el-table-column
             prop="roundness"
             label="圆度"/>
@@ -156,9 +160,33 @@
             prop="sgroup"
             width="60px"
             label="班组"/>
-          <el-table-column
+          <!--  <el-table-column
             prop="operat_user"
-            label="操作人"/>
+            label="操作人"/>-->
+
+          <!-- <el-table-column
+            prop="curvetype"
+            width="60px"
+            label="曲线类型"/>-->
+          <el-table-column
+            prop="standno"
+            width="170px"
+            label="磨床名"/>
+          <el-table-column
+            prop="coaxality"
+            width="120px"
+            label="同心度"/>
+          <el-table-column
+            prop="wheelno"
+            label="砂轮编码"/>
+          <el-table-column
+            prop="wheel_dia_start"
+            label="砂轮开始直径"/>
+          <el-table-column
+            prop="wheel_dia_end"
+            label="砂轮结束直径"/>
+
+
             <!-- <el-table-column
           fixed="right"
           label="操作"
@@ -189,7 +217,10 @@
         <el-col
           :xl="12"
           :lg="24">
-          <div>
+          <div
+            id="app1"
+            class="left"/>
+            <!-- <div>
             <el-row :gutter="10">
               <el-col :span="8">
                 <div
@@ -245,7 +276,7 @@
                   class="right"/>
               </el-col>
             </el-row>
-          </div>
+          </div>-->
         </el-col>
       </el-row>
     </div>
@@ -269,7 +300,8 @@ export default {
         dend: ''
       },
       searchin: {
-        grinder: 1,
+        //grinder: 1,
+        roll_no: '',
         initial_date_time: ''
       },
       rules: {
@@ -391,7 +423,7 @@ export default {
       this.findAll()
     },
     findAll() {
-      post('rollGrinding/findByPage', {
+      post('rollGrindingBF/findByPage', {
         pageIndex: this.pageIndex,
         pageSize: this.pageSize,
         condition: this.searchInfo
@@ -403,12 +435,12 @@ export default {
     },
     async first_ech(data1) {
       var searchinss = {
-        grinder: 0,
+        roll_no: data1.data[0].roll_no,
         initial_date_time: ''
       }
       if (data1.data.length) {
         this.rowIndex = data1.data[0].indocno
-        searchinss.grinder = data1.data[0].machine_no
+        // searchinss.grinder = data1.data[0].machine_no
         searchinss.initial_date_time = data1.data[0].grind_starttime
 
         let res1 = await post('rollDataFiles/findecharts', {
@@ -436,7 +468,8 @@ export default {
     },
     async cellClick(val) {
       this.rowIndex = val.indocno
-      this.searchin.grinder = val.machine_no
+      //this.searchin.grinder = val.machine_no
+      this.searchin.roll_no = val.roll_no
       this.searchin.initial_date_time = val.grind_starttime
 
       let res1 = await post('rollDataFiles/findecharts', {
@@ -569,17 +602,7 @@ export default {
       var myChart = Echarts.init(document.getElementById('app'), 'light') //将配置注入到html中定义的容器
       myChart.clear()
       //图2 极坐标
-      var appid = [
-        'app1',
-        'app2',
-        'app3',
-        'app4',
-        'app5',
-        'app6',
-        'app7',
-        'app8',
-        'app9'
-      ]
+      var appid = ['app1']
       for (var i = 0; appid.length > i; i++) {
         var myChart = Echarts.init(document.getElementById(appid[i]), 'light') //将配置注入到html中定义的容器
         myChart.clear()
@@ -600,26 +623,31 @@ export default {
       var x_arry2 = []
       for (var i = 0; datas.length > i; i++) {
         if (datas[i].title == '磨前标准曲线图') {
+          //不需要
           Map1 = datas[i].Map.split(',')
-          Profile_1 = datas[i].Profile.split(',')
+          //  Profile_1 = datas[i].Profile.split(',')
         }
         if (datas[i].title == '磨前辊形曲线图') {
           Map2 = datas[i].Map.split(',')
-          Profile_2 = datas[i].Profile.split(',')
+          // Profile_2 = datas[i].Profile.split(',')
         }
         if (datas[i].title == '磨后标准曲线图') {
           Map3 = datas[i].Map.split(',')
-          Profile_1 = datas[i].Profile.split(',')
+          //Profile_1 = datas[i].Profile.split(',')
         }
         if (datas[i].title == '磨后辊形曲线图') {
           Map4 = datas[i].Map.split(',')
-          Profile_2 = datas[i].Profile.split(',')
+          // Profile_2 = datas[i].Profile.split(',')
+        }
+        if (datas[i].title == '位置') {
+          x_arry1 = datas[i].pos.split(',')
+          // Profile_2 = datas[i].Profile.split(',')
         }
       }
       var Profile_1_max = 0
       var Profile_2_max = 0
       var x_max = 0 //获取x轴最大值
-      if (Profile_1) {
+      /*  if (Profile_1) {
         Profile_1_max = Profile_1[2]
         var x1 = (Profile_1[2] - Profile_1[1]) / Profile_1[0]
         for (var i = 0; Profile_1[0] >= i; i++) {
@@ -632,30 +660,33 @@ export default {
         for (var i = 0; Profile_2[0] >= i; i++) {
           x_arry2.push(i * x2 + Number(Profile_2[1]))
         }
-      }
+      }*/
 
-      if (Profile_1_max < Profile_2_max) {
+      /* if (Profile_1_max < Profile_2_max) {
         x_max = Number(Profile_2_max)
       } else {
         x_max = Number(Profile_1_max)
-      }
+      }*/
       //修改
       var data_line1 = [] //磨前标准曲线图
       var data_line2 = [] //磨前辊形曲线图
       var data_line3 = [] //磨后标准曲线图
       var data_line4 = [] //磨后辊形曲线图
-
+      // console.log(Map3.length, Map2.length, Map4.length, x_arry1.length)
       for (var i = 0; Map3.length > i; i++) {
         //data_line1.push([x_arry1[i], Number(Map1[i])])
         data_line3.push([x_arry1[i], Number(Map3[i])])
       }
       for (var i = 0; Map4.length > i; i++) {
         // data_line2.push([x_arry2[i], Number(Map2[i])])
-        data_line4.push([x_arry2[i], Number(Map4[i])])
+        data_line4.push([x_arry1[i], Number(Map4[i])])
       }
       // 磨前辊型的数据
       for (var i = 0; Map2.length > i; i++) {
-        data_line2.push([x_arry2[i], Number(Map2[i])])
+        data_line2.push([x_arry1[i], Number(Map2[i])])
+      }
+      for (var i = 0; Map1.length > i; i++) {
+        data_line1.push([Number(x_arry1[i]), Number(Map1[i])])
       }
       var myChart = Echarts.init(document.getElementById('app'), 'light') //将配置注入到html中定义的容器
       var option = {
@@ -678,11 +709,10 @@ export default {
           },
           icon: 'circle',
           data: [
-            '磨前标准曲线图',
+            /* '磨前标准曲线图',*/
             '磨后标准曲线图',
             '磨前辊形曲线图',
-            '磨后辊形曲线图',
-            '磨前辊形曲线图'
+            '磨后辊形曲线图'
           ],
           top: 25
         },
@@ -722,9 +752,9 @@ export default {
               type: 'solid'
             }
           },
-          type: 'value',
-          min: 0,
-          max: x_max
+          type: 'value'
+          // min: 0,
+          // max: x_max
         },
 
         yAxis: {
@@ -747,8 +777,8 @@ export default {
               width: 1,
               type: 'solid'
             }
-          },
-          type: 'value'
+          }
+          // type: 'value'
         },
         series: [
           /* {
@@ -793,29 +823,19 @@ export default {
       var LowerArm1 = []
       var LowerArm2 = []
       var title = ['postion0', 'postion1', 'postion2']
-      var appid = [
-        'app1',
-        'app2',
-        'app3',
-        'app4',
-        'app5',
-        'app6',
-        'app7',
-        'app8',
-        'app9'
-      ]
+      var appid = ['app1']
       var names = [['上测量臂'], ['下测量臂'], ['both测量臂']]
       for (i = 0; datas.length > i; i++) {
         if (datas[i].title == '圆度曲线图') {
-          UpperArm0 = datas[i].UpperArm0.split(',')
-          UpperArm1 = datas[i].UpperArm1.split(',')
+          UpperArm0 = datas[i].roundness.split(',')
+          /* UpperArm1 = datas[i].UpperArm1.split(',')
           UpperArm2 = datas[i].UpperArm2.split(',')
           BothArms0 = datas[i].BothArms0.split(',')
           BothArms1 = datas[i].BothArms1.split(',')
           BothArms2 = datas[i].BothArms2.split(',')
           LowerArm0 = datas[i].LowerArm0.split(',')
           LowerArm1 = datas[i].LowerArm1.split(',')
-          LowerArm2 = datas[i].LowerArm2.split(',')
+          LowerArm2 = datas[i].LowerArm2.split(',')*/
         }
       }
 
@@ -831,7 +851,7 @@ export default {
       for (i = 0; UpperArm0.length > i; i++) {
         UpperArm0_1.push(Number(UpperArm0[i]) * 1000)
       }
-      for (i = 0; UpperArm1.length > i; i++) {
+      /*for (i = 0; UpperArm1.length > i; i++) {
         UpperArm1_1.push(Number(UpperArm1[i]) * 1000)
       }
       for (i = 0; UpperArm2.length > i; i++) {
@@ -854,9 +874,9 @@ export default {
       }
       for (i = 0; LowerArm2.length > i; i++) {
         LowerArm2_1.push(Number(LowerArm2[i]) * 1000)
-      }
-
+      }*/
       data_nine(UpperArm0_1, title[0], names[0], appid[0])
+      /*data_nine(UpperArm0_1, title[0], names[0], appid[0])
       data_nine(LowerArm0_1, title[0], names[1], appid[1])
       data_nine(BothArms0_1, title[0], names[2], appid[2])
       data_nine(UpperArm1_1, title[1], names[0], appid[3])
@@ -864,7 +884,7 @@ export default {
       data_nine(BothArms1_1, title[1], names[2], appid[5])
       data_nine(UpperArm2_1, title[2], names[0], appid[6])
       data_nine(LowerArm2_1, title[2], names[1], appid[7])
-      data_nine(BothArms2_1, title[2], names[2], appid[8])
+      data_nine(BothArms2_1, title[2], names[2], appid[8])*/
 
       function data_nine(data, title, name_s, app) {
         //极坐标圆度
@@ -890,7 +910,7 @@ export default {
           textStyle: {
             color: '#ffffff' //字体颜色
           },
-          title: {
+          /* title: {
             text: title + '\n 最大值:' + x_largess,
             x: '0%',
             y: '1%',
@@ -898,12 +918,12 @@ export default {
               color: '#ffffff', //字体颜色
               fontSize: 14
             }
-          },
+          },*/
 
           legend: { show: false },
           polar: {
             center: ['60%', '50%'], //位置
-            radius: ['5%', '70%'] //大小第一个内半径，第二个外半径
+            radius: ['5%', '80%'] //大小第一个内半径，第二个外半径
           },
           tooltip: {
             trigger: 'axis',
