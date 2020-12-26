@@ -146,6 +146,26 @@
           label="机架号"
           min-width="85px"
           align="center"/>
+
+
+        <el-table-column
+          prop="grind_endtime"
+          label="磨削结束时间"
+          min-width="155px"
+          align="center"/>
+        <el-table-column
+          label="磨削开始时间"
+          min-width="155px"
+          prop="grind_starttime"
+          align="center"/>
+
+
+
+
+
+
+
+
         <el-table-column
           prop="onlinetime"
           label="上机时间"

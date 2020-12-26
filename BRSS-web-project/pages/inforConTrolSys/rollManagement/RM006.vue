@@ -335,7 +335,7 @@ export default {
       })
         .then(() => {
           // console.log(data)
-          data.roll_state = 0
+          data.roll_state = 6
           post('rollInformation/update', { rollInformation: data }).then(
             res => {
               if (res) {

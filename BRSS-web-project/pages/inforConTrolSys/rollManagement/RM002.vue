@@ -145,7 +145,7 @@
           <template slot="TableBody">
             <el-table-column
               prop="roll_no"
-              width="90px"
+              width="120px"
               label="辊号"/>
             <el-table-column
               prop="roll_type"

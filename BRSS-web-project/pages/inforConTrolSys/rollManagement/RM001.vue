@@ -129,7 +129,7 @@
           <template slot="TableBody">
             <el-table-column
               prop="roll_no"
-              width="90px"
+              width="120px"
               label="辊号"/>
             <el-table-column
               prop="roll_type"
@@ -139,10 +139,10 @@
               prop="roll_state_value"
               width="80"
               label="库存状态"/>
-            <el-table-column
+            <!--  <el-table-column
               prop="roll_revolve_value"
               width="80"
-              label="周转状态"/>
+              label="周转状态"/>-->
             <el-table-column
               v-for="(item, index) in arr"
               :key="index"

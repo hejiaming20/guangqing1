@@ -567,7 +567,7 @@
       </span>
     </el-dialog>
     <!--dan击表格-->
-    <!-- <el-row :gutter="10">
+    <el-row :gutter="10">
       <el-col :span="12">
         <div class="main-title">承压件信息</div>
         <Table-easy
@@ -577,7 +577,7 @@
           :table-height="300"
           :table-data="tableData1"
           style="overflow-y: auto">
-          &lt;!&ndash; 页面 &ndash;&gt;
+          <!-- 页面 -->
           <template slot="TableBody">
             <el-table-column
               min-width="180px"
@@ -636,7 +636,7 @@
           :table-height="300"
           :table-data="tableData2"
           style="overflow: auto">
-          &lt;!&ndash; 页面 &ndash;&gt;
+          <!-- 页面 -->
           <template slot="TableBody">
             <el-table-column
               label="备件名称"
@@ -650,7 +650,7 @@
           </template>
         </Table-easy>
       </el-col>
-    </el-row>-->
+    </el-row>
   </div>
 </template>
 <script>
