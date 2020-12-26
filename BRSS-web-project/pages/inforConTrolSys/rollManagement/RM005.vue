@@ -647,47 +647,74 @@ export default {
           frame_no: this.fame_value
         }
       })*/
-
       this.$confirm('此操作将配对该文件, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       })
         .then(() => {
-          post('/rollPaired/insert', {
-            rollPaired: {
-              istate: null,
-              idel: null,
-              createtime: null,
-              createname: null,
-              createid: null,
-              moditime: null,
-              modiid: null,
-              modiname: null,
-              production_line: this.rollpairU.production_line, //后续添加----
-              production_line_id: this.rollpairU.production_line_id,
-              factory: this.rollpairU.factory,
-              material: this.rollpairU.material,
-              roll_typeid: this.rollpairU.roll_typeid,
-              roll_type: this.rollpairU.roll_type, //----后续添加
-
-              ilinkno_up: this.rollpairU.indocno,
-              roll_no_up: this.rollpairU.roll_no,
-              ilinkno_down: this.rollpairD.indocno,
-              roll_no_down: this.rollpairD.roll_no,
-              frame_noid: fame_value_ID,
-              frame_no: this.fame_value
-            }
+          //径差
+          post('/rackPairingRule/findByCondiction', {
+            condition: { frame_no: this.fame_value }
           }).then(res => {
-            if (res) {
-              this.$message({
+            var jingcha = abs(
+              this.rollpairU.currentdiameter - this.rollpairD.currentdiameter
+            )
+
+            if (jingcha <= res.data) {
+              /*this.$message({
                 type: 'success',
-                message: '配对成功!'
+                message: '报废成功!'
+              })*/
+              //厂家
+              if (this.rollpairU.factory == this.rollpairD.factory) {
+                post('/rollPaired/insert', {
+                  rollPaired: {
+                    istate: null,
+                    idel: null,
+                    createtime: null,
+                    createname: null,
+                    createid: null,
+                    moditime: null,
+                    modiid: null,
+                    modiname: null,
+                    production_line: this.rollpairU.production_line, //后续添加----
+                    production_line_id: this.rollpairU.production_line_id,
+                    factory: this.rollpairU.factory,
+                    material: this.rollpairU.material,
+                    roll_typeid: this.rollpairU.roll_typeid,
+                    roll_type: this.rollpairU.roll_type, //----后续添加
+
+                    ilinkno_up: this.rollpairU.indocno,
+                    roll_no_up: this.rollpairU.roll_no,
+                    ilinkno_down: this.rollpairD.indocno,
+                    roll_no_down: this.rollpairD.roll_no,
+                    frame_noid: fame_value_ID,
+                    frame_no: this.fame_value
+                  }
+                }).then(res => {
+                  if (res) {
+                    this.$message({
+                      type: 'success',
+                      message: '配对成功!'
+                    })
+                    this.findAll()
+                  }
+                })
+                this.findAll()
+              } else {
+                this.$message({
+                  type: 'danger',
+                  message: '厂家不同!'
+                })
+              }
+            } else {
+              this.$message({
+                type: 'danger',
+                message: '辊颈差过大!'
               })
-              this.findAll()
             }
           })
-          this.findAll()
         })
         .catch(() => {
           this.$message({

@@ -1201,7 +1201,9 @@ export default {
     open_add_1() {
       this.dialogVisible = true
       this.dialogTitle = '新增'
-      this.formLabelAlign = {}
+      this.formLabelAlign = {
+        grindingcount: 0
+      }
       this.formFlag = true
     },
 

@@ -122,7 +122,7 @@
               <span>{{ scope.row.before_diameter==0||scope.row.after_diameter==0?0: (scope.row.before_diameter-scope.row.after_diameter).toFixed(3) }}</span>
             </template>
           </el-table-column>
-          <!--<el-table-column
+          <!-- <el-table-column
             prop="deviation"
             label="辊形偏差就是曲线误差"/>-->
           <el-table-column
@@ -141,10 +141,11 @@
           <el-table-column
             prop="roundness"
             label="圆度"/>
-          <!-- <el-table-column
+          <!-- 辊形就是曲线类型-->
+          <el-table-column
             prop="curvetype"
-            width="60px"
-            label="曲线类型"/>-->
+            width="160px"
+            label="曲线类型（辊形）"/>
           <el-table-column
             prop="standno"
             width="170px"
