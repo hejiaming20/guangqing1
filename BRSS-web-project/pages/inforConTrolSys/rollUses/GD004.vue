@@ -213,7 +213,7 @@
           <div
             id="app"
             class="left"/>
-          <div style="color: #208d3a;position: absolute;left: 856px;top: 17px;float: left">
+          <div style="color: #208d3a;position: absolute;left: 617px;top: 17px;float: left">
             磨前辊形差为：{{ we_xs2 }}
           </div>
         </el-col>

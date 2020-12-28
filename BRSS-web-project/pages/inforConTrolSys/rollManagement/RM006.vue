@@ -73,9 +73,11 @@
       <template slot="TableBody">
         <el-table-column
           prop="roll_no"
+          width="140px"
           label="辊号"/>
         <el-table-column
           prop="roll_type"
+          width="100px"
           label="轧辊类型"/>
         <el-table-column
           prop="factory"
@@ -89,11 +91,28 @@
         <el-table-column
           prop="loomingposition"
           label="上机位置"/>
-        <el-table-column
+        <!-- <el-table-column
           prop="roll_diameter"
-          label="当前辊径"/>
+          label="当前辊径"/>-->
         <el-table-column
-          prop="scrap_diameter"
+          prop="firstuplinetime"
+          width="160px"
+          label="第一次上线时间"/>
+        <el-table-column
+          prop="lastlowlinetime"
+          width="160px"
+          label="最后一次下线时间"/>
+        <el-table-column
+          prop="grindingcount"
+          width="120px"
+          label="累计磨削次数"/>
+        <el-table-column
+          prop="rollkilometer"
+          width="120px"
+          label="累积轧制公里数"/>
+
+        <el-table-column
+          prop="currentdiameter"
           label="报废直径"/>
         <el-table-column
           prop="iaccident"
@@ -141,11 +160,13 @@
               label-width="80px">
               <el-form-item
                 label="辊号"
+                width="140px"
                 prop="roll_no">
                 <el-input v-model="searchInfo2.roll_no" />
               </el-form-item>
               <el-form-item
                 label="轧辊类型"
+                width="100px"
                 prop="roll_no">
                 <el-select
                   v-model="searchInfo2.roll_typeid"
@@ -191,9 +212,11 @@
       <template slot="TableBody">
         <el-table-column
           prop="roll_no"
+          width="130"
           label="辊号"/>
         <el-table-column
           prop="roll_type"
+          width="110"
           label="轧辊类型"/>
         <el-table-column
           prop="factory"
@@ -208,11 +231,31 @@
         <el-table-column
           prop="loomingposition"
           label="上机位置"/>
-        <el-table-column
+        <!--  <el-table-column
           prop="roll_diameter"
-          label="当前辊径"/>
-        <el-table-column
+          label="当前辊径"/>-->
+        <!-- <el-table-column
           prop="scrap_diameter"
+          label="报废直径"/>-->
+        <el-table-column
+          prop="firstuplinetime"
+          width="170px"
+          label="第一次上线时间"/>
+        <el-table-column
+          prop="lastlowlinetime"
+          width="170px"
+          label="最后一次下线时间"/>
+        <el-table-column
+          prop="grindingcount"
+          width="120px"
+          label="累计磨削次数"/>
+        <el-table-column
+          prop="rollkilometer"
+          width="120px"
+          label="累积轧制公里数"/>
+
+        <el-table-column
+          prop="currentdiameter"
           label="报废直径"/>
         <el-table-column
           prop="iaccident"

@@ -442,7 +442,7 @@
                 prop="inspectionresults">
                 <el-input v-model="formLabelAlign.inspectionresults" />
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="高速钢轧辊上线周期跟踪次数"
                 prop="uplinecount">
                 <el-input v-model="formLabelAlign.uplinecount" />
@@ -451,7 +451,7 @@
                 label="工作辊补油周期跟踪次数"
                 prop="workoilcount">
                 <el-input v-model="formLabelAlign.workoilcount" />
-              </el-form-item>
+              </el-form-item>-->
             </el-col>
             <el-col :span="6">
               <el-form-item
@@ -459,11 +459,11 @@
                 prop="rolltonnagetotle">
                 <el-input v-model="formLabelAlign.rolltonnagetotle" />
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="每毫米轧制吨位"
                 prop="rolltonnagemm">
                 <el-input v-model="formLabelAlign.rolltonnagemm" />
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="当前辊径"
                 prop="currentdiameter">
@@ -705,18 +705,18 @@ export default {
           width: '120px',
           checkFg: false
         },
-        {
+        /*{
           label: '每毫米轧制吨位',
           prop: 'rolltonnagemm',
           width: '120px',
           checkFg: false
-        },
-        {
+        },*/
+        /* {
           label: '剩余可用直径',
           prop: 'residualdiameter',
           width: '120px',
           checkFg: false
-        },
+        },*/
         {
           label: '辊形',
           prop: 'rollshape',

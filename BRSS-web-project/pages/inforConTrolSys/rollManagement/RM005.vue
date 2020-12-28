@@ -114,6 +114,9 @@
             prop="roll_type"
             label="轧辊类型"/>
           <el-table-column
+            prop="rollshape"
+            label="辊形"/>
+          <el-table-column
             prop="framerange"
             label="机架范围"/>
           <el-table-column
@@ -668,40 +671,49 @@ export default {
               })*/
               //厂家
               if (this.rollpairU.factory == this.rollpairD.factory) {
-                post('/rollPaired/insert', {
-                  rollPaired: {
-                    istate: null,
-                    idel: null,
-                    createtime: null,
-                    createname: null,
-                    createid: null,
-                    moditime: null,
-                    modiid: null,
-                    modiname: null,
-                    production_line: this.rollpairU.production_line, //后续添加----
-                    production_line_id: this.rollpairU.production_line_id,
-                    factory: this.rollpairU.factory,
-                    material: this.rollpairU.material,
-                    roll_typeid: this.rollpairU.roll_typeid,
-                    roll_type: this.rollpairU.roll_type, //----后续添加
+                if (this.rollpairU.rollshape == this.rollpairD.rollshape) {
+                  post('/rollPaired/insert', {
+                    rollPaired: {
+                      istate: null,
+                      idel: null,
+                      createtime: null,
+                      createname: null,
+                      createid: null,
+                      moditime: null,
+                      modiid: null,
+                      modiname: null,
+                      production_line: this.rollpairU.production_line, //后续添加----
+                      production_line_id: this.rollpairU.production_line_id,
+                      factory: this.rollpairU.factory,
+                      material: this.rollpairU.material,
+                      roll_typeid: this.rollpairU.roll_typeid,
+                      roll_type: this.rollpairU.roll_type, //----后续添加
 
-                    ilinkno_up: this.rollpairU.indocno,
-                    roll_no_up: this.rollpairU.roll_no,
-                    ilinkno_down: this.rollpairD.indocno,
-                    roll_no_down: this.rollpairD.roll_no,
-                    frame_noid: fame_value_ID,
-                    frame_no: this.fame_value
-                  }
-                }).then(res => {
-                  if (res) {
-                    this.$message({
-                      type: 'success',
-                      message: '配对成功!'
-                    })
-                    this.findAll()
-                  }
-                })
-                this.findAll()
+                      ilinkno_up: this.rollpairU.indocno,
+                      roll_no_up: this.rollpairU.roll_no,
+                      ilinkno_down: this.rollpairD.indocno,
+                      roll_no_down: this.rollpairD.roll_no,
+                      frame_noid: fame_value_ID,
+                      frame_no: this.fame_value
+                    }
+                  }).then(res => {
+                    if (res) {
+                      this.$message({
+                        type: 'success',
+                        message: '配对成功!'
+                      })
+                      this.findAll()
+                      this.find_data()
+                    }
+                  })
+                  this.findAll()
+                  this.find_data()
+                } else {
+                  this.$message({
+                    type: 'danger',
+                    message: '辊形不一样!'
+                  })
+                }
               } else {
                 this.$message({
                   type: 'danger',

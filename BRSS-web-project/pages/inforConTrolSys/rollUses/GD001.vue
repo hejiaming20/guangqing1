@@ -61,7 +61,7 @@
       <template slot="TableBody">
         <el-table-column
           prop="roll_no"
-          width="90px"
+          width="120px"
           label="辊号"/>
         <el-table-column
           prop="roll_type"
@@ -73,10 +73,10 @@
         <el-table-column
           prop="roll_position"
           label="上机位置"/>
-        <el-table-column
+        <!-- <el-table-column
           prop="rollshape"
           min-width="120px"
-          label="辊形"/>
+          label="辊形"/>-->
         <el-table-column
           prop="uplinecount"
           min-width="80px"
@@ -86,7 +86,7 @@
           width="120px"
           label="材质"
           align="center"/>
-        <el-table-column
+        <!-- <el-table-column
           width="90px"
           prop="ds_chock_no"
           label="DS侧座号"
@@ -95,7 +95,7 @@
           prop="os_chock_no"
           width="90px"
           label="OS侧座号"
-          align="center"/>
+          align="center"/>-->
         <el-table-column
           prop="onlinetime"
           min-width="150px"
