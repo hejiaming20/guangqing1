@@ -657,10 +657,10 @@ export default {
           post('/rackPairingRule/findByCondiction', {
             condition: { frame_no: this.fame_value }
           }).then(res => {
-            var jingcha = abs(
+            var jingcha = Math.abs(
               this.rollpairU.currentdiameter - this.rollpairD.currentdiameter
             )
-
+            debugger
             if (jingcha <= res.data) {
               /*this.$message({
                 type: 'success',

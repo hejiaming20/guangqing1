@@ -301,11 +301,11 @@
                     :value="item.value"/>
                 </el-select>
               </el-form-item>
-              <el-form-item
+              <!--<el-form-item
                 label="业务范围"
                 prop="business_scope">
                 <el-input v-model="formLabelAlign.business_scope" />
-              </el-form-item>
+              </el-form-item>-->
             </el-col>
             <el-col :span="6">
               <el-form-item
@@ -366,11 +366,11 @@
                 prop="order_year">
                 <el-input v-model="formLabelAlign.order_year" />
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="结算类型"
                 prop="settlement_type">
                 <el-input v-model="formLabelAlign.settlement_type" />
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="单价"
                 prop="price">
@@ -400,19 +400,19 @@
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item
+              <!--<el-form-item
                 label="账目情况（0或者1）"
                 prop="account">
                 <el-input v-model="formLabelAlign.account" />
-              </el-form-item>
-              <el-form-item
+              </el-form-item>-->
+              <!--<el-form-item
                 label="毫米单价"
                 prop="mmprice">
                 <el-input
                   v-model="formLabelAlign.mmprice"
                   placeholder="请输入数字"
                   onkeyup="value=value.replace(/[^\d^\.]/g,'')" />
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="出厂制品号"
                 prop="productno">
@@ -504,12 +504,12 @@ export default {
           checkFg: true,
           width: 80
         },
-        {
+        /* {
           label: '轧辊位置',
           prop: 'roll_position',
           checkFg: true,
           width: 80
-        },
+        },*/
         {
           label: '合同号',
           prop: 'contract_no',
@@ -522,36 +522,36 @@ export default {
           checkFg: true,
           width: 80
         },
-        {
+        /*{
           label: '结算类型',
           prop: 'settlement_type',
           checkFg: true,
           width: 80
-        },
+        },*/
         {
           label: '单价',
           prop: 'price',
           checkFg: true,
           width: 80
         },
-        {
+        /* {
           label: '工作层',
           prop: 'work_layer',
           checkFg: true,
           width: 80
-        },
-        {
+        },*/
+        /* {
           label: '账目情况',
           prop: 'account',
           checkFg: true,
           width: 80
-        },
-        {
+        },*/
+        /*{
           label: '毫米单价',
           prop: 'mmprice',
           checkFg: true,
           width: 80
-        },
+        },*/
         {
           label: '出厂制品号',
           prop: 'productno',
@@ -612,12 +612,12 @@ export default {
           checkFg: false,
           width: 80
         },
-        {
+        /*{
           label: '业务范围',
           prop: 'business_scope',
           checkFg: false,
           width: 80
-        },
+        },*/
         {
           label: '到货辊身硬度最大值',
           prop: 'arrivebodyhardnessmax',
@@ -642,12 +642,12 @@ export default {
           checkFg: false,
           width: 180
         },
-        {
+        /*{
           label: '检测报告',
           prop: 'checkorderid',
           checkFg: false,
           width: 80
-        },
+        },*/
         {
           label: '包装是否合格',
           prop: 'ifok',

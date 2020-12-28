@@ -163,7 +163,7 @@
           <el-table-column
             prop="wheel_dia_end"
             label="砂轮结束直径"/>
-          <el-table-column
+          <!-- <el-table-column
             prop="crack"
             width="60px"
             label="裂纹"/>
@@ -173,7 +173,7 @@
             label="暗伤"/>
           <el-table-column
             prop="qualifiednum"
-            label="合格点数"/>
+            label="合格点数"/>-->
           <el-table-column
             prop="sclass"
             width="60px"
@@ -213,6 +213,9 @@
           <div
             id="app"
             class="left"/>
+          <div style="color: #208d3a;position: absolute;left: 856px;top: 17px;float: left">
+            磨前辊形差为：{{ we_xs2 }}
+          </div>
         </el-col>
         <el-col
           :xl="12"
@@ -387,7 +390,8 @@ export default {
       pageSize: 10,
       dialogVisible: false,
       option: [],
-      rowIndex: null
+      rowIndex: null,
+      we_xs2: ''
     }
   },
   mounted() {
@@ -448,6 +452,7 @@ export default {
         })
 
         if (res1.data == null) {
+          this.we_xs2 = ''
           this.$message({
             message: '第一行查询数据为空',
             type: 'warning'
@@ -476,6 +481,7 @@ export default {
         condition: this.searchin
       })
       if (res1.data == null) {
+        this.we_xs2 = ''
         this.$message({
           message: val.roll_no + '  查询数据为空',
           type: 'warning',
@@ -667,6 +673,31 @@ export default {
       } else {
         x_max = Number(Profile_1_max)
       }*/
+      var our_data1 = []
+      this.we_xs2 = ''
+      function ReverseRankingDate(data) {
+        for (var i = 0; i < data.length - 1; i++) {
+          for (var j = 0; j < data.length - 1 - i; j++) {
+            //  console.log(Date.parse(data[j][0]))
+            if (Number(data[j]) > Number(data[j + 1])) {
+              var temp = data[j]
+              data[j] = data[j + 1]
+              data[j + 1] = temp
+            }
+          }
+        }
+        return data
+      }
+      our_data1 = ReverseRankingDate(Map2)
+      this.we_xs2 = (
+        Number(our_data1[our_data1.length - 1]) - Number(our_data1[0])
+      ).toFixed(4)
+      /* console.log(
+          typeof Map2[100],
+          Map2[100],
+          our_data1[0],
+          our_data1[our_data1.length - 1]
+        )*/
       //修改
       var data_line1 = [] //磨前标准曲线图
       var data_line2 = [] //磨前辊形曲线图
@@ -693,6 +724,11 @@ export default {
         textStyle: {
           color: '#ffffff' //字体颜色
         },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
         tooltip: {
           trigger: 'axis'
         }, //联动
@@ -705,7 +741,7 @@ export default {
         },
         legend: {
           textStyle: {
-            color: '#ffffff' //字体颜色
+            color: '#87858d' //字体颜色
           },
           icon: 'circle',
           data: [
@@ -792,18 +828,21 @@ export default {
             name: '磨后标准曲线图',
             data: data_line3,
             type: 'line',
+            color: '#8d0912',
             symbol: 'none'
           },
           {
             xAxisIndex: 0,
             name: '磨前辊形曲线图',
             data: data_line2,
+            color: '#d3ca1b',
             type: 'line',
             symbol: 'none'
           },
           {
             xAxisIndex: 0,
             name: '磨后辊形曲线图',
+            color: '#208d3a',
             data: data_line4,
             type: 'line',
             symbol: 'none'

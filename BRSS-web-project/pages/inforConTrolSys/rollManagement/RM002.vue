@@ -484,11 +484,11 @@
                 prop="roundness">
                 <el-input v-model="formLabelAlign.roundness" />
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="粗糙度"
                 prop="roughness">
                 <el-input v-model="formLabelAlign.roughness" />
-              </el-form-item>
+              </el-form-item>-->
             </el-col>
           </el-row>
         </el-form>
@@ -627,12 +627,12 @@ export default {
           width: '80px',
           checkFg: true
         },
-        {
+        /*{
           label: '轧辊位置',
           prop: 'roll_position',
           width: '80px',
           checkFg: true
-        },
+        },*/
         // {
         //   label: '轧辊状态',
         //   prop: 'roll_state',
@@ -657,6 +657,12 @@ export default {
           checkFg: false
         },
         {
+          label: '第一次上线时间',
+          prop: 'firstuplinetime',
+          width: '150px',
+          checkFg: false
+        },
+        {
           label: '最新一次上线时间',
           prop: 'lastuplinetime',
           width: '150px',
@@ -675,7 +681,8 @@ export default {
           checkFg: false
         },
         {
-          label: '平均磨削量',
+          /*平均磨削量修改为累计磨削量*/
+          label: '累计磨削量',
           prop: 'grindingavg',
           width: '100px',
           checkFg: false
@@ -722,12 +729,12 @@ export default {
           width: '80px',
           checkFg: false
         },
-        {
+        /*{
           label: '粗糙度',
           prop: 'roughness',
           width: '80px',
           checkFg: false
-        },
+        },*/
         {
           label: '辊身硬度',
           prop: 'bodyhardness',
@@ -751,8 +758,8 @@ export default {
           prop: 'inspectionresults',
           width: '80px',
           checkFg: false
-        },
-        {
+        }
+        /*{
           label: '高速钢轧辊上线周期跟踪次数',
           prop: 'uplinecount',
           width: '130px',
@@ -763,7 +770,7 @@ export default {
           prop: 'workoilcount',
           width: '130px',
           checkFg: false
-        }
+        }*/
       ],
       isIndeterminate: true,
       total: 0,

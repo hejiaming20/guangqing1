@@ -120,7 +120,7 @@
           prop="off_line_reason_value"
           show-overflow-tooltip
           label="下线原因"/>
-        <el-table-column
+      <!--  <el-table-column
           label="操作"
           min-width="217px"
           align="center">
@@ -138,7 +138,7 @@
               type="danger"
               @click="handleDelect(scope.row)">删除</el-button>
           </template>
-        </el-table-column>
+        </el-table-column>-->
       </template>
     </Table-easy>
 
