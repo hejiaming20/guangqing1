@@ -623,6 +623,7 @@ export default {
       var Map2 = []
       var Map3 = []
       var Map4 = []
+      var test_cha = []
       var Profile_1 = [] //由于无法保证数据有几条因此Profile_1在(磨前标准曲线图和磨后标准曲线图，横坐标相同）中都加入了，
       var Profile_2 = []
       var x_arry1 = [] //分配x轴
@@ -635,6 +636,8 @@ export default {
         }
         if (datas[i].title == '磨前辊形曲线图') {
           Map2 = datas[i].Map.split(',')
+          test_cha = datas[i].Map.split(',')
+          //console.log(Map2)
           // Profile_2 = datas[i].Profile.split(',')
         }
         if (datas[i].title == '磨后标准曲线图') {
@@ -688,7 +691,7 @@ export default {
         }
         return data
       }
-      our_data1 = ReverseRankingDate(Map2)
+      our_data1 = ReverseRankingDate(test_cha)
       this.we_xs2 = (
         Number(our_data1[our_data1.length - 1]) - Number(our_data1[0])
       ).toFixed(4)
