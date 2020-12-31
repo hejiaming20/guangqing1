@@ -513,15 +513,15 @@
                 class="upload-demo"
                 action="/productionAccidents/insert"
                 multiple>
-                <el-button
+                <!--<el-button
                   size="mini"
                   type="primary">上传事故报告</el-button>
-              </el-upload>
-              <!-- <el-button
+              </el-upload>-->
+                <!-- <el-button
                 size="mini"
                 type="primary"
                 @click="detail_111(scope.row)">上传事故报告</el-button> -->
-            </el-col>
+            </el-upload></el-col>
           </el-row>
         </el-form>
       </div>

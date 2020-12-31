@@ -255,7 +255,7 @@
                     v-for="item in option2"
                     :key="item.key"
                     :label="item.value"
-                    :value="item.key"/>
+                    :value="item.value"/>
                 </el-select>
               </el-form-item>
               <el-form-item
@@ -268,7 +268,7 @@
                     v-for="item in option3"
                     :key="item.key"
                     :label="item.value"
-                    :value="item.key"/>
+                    :value="item.value"/>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -481,12 +481,14 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           if (this.formFlag) {
+            console.log(this.formLabelAlign)
             post('/rollGrindingDouble/insert', {
               rollGrindingDouble: this.formLabelAlign
             }).then(res => {
               this.dialogVisible = false
               this.findAll()
               if (res) {
+                this.$refs[formName].resetFields()
                 this.$message({
                   type: 'success',
                   message: '添加成功'
@@ -500,6 +502,7 @@ export default {
               this.dialogVisible = false
               this.findAll()
               if (res) {
+                this.$refs[formName].resetFields()
                 this.$message({
                   type: 'success',
                   message: '编辑成功'
@@ -507,7 +510,6 @@ export default {
               }
             })
           }
-          this.$refs[formName].resetFields()
         } else {
           return false
         }

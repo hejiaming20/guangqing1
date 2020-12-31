@@ -358,6 +358,9 @@
               label="制造厂商"
               prop="factory"/>
             <el-table-column
+              label="机架"
+              prop="frame_no"/>
+            <el-table-column
               prop="roll_type"
               label="轧辊类型"/>
             <el-table-column
@@ -490,7 +493,8 @@ export default {
       if (
         row.columnIndex === 0 ||
         row.columnIndex === 1 ||
-        row.columnIndex === 2
+        row.columnIndex === 2 ||
+        row.columnIndex === 3
       ) {
         if (row.rowIndex % 2 === 0) {
           return {
