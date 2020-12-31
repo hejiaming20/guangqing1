@@ -196,11 +196,12 @@
           min-width="110px"
           align="center"
           label="轧制吨数"/>
+        <!--上一次磨后直径-->
         <el-table-column
           prop="lasttime_after_diameter"
           min-width="130px"
           align="center"
-          label="上一次磨后直径"/>
+          label="下一次磨前直径"/>
         <el-table-column
           prop="before_diameter"
           align="center"

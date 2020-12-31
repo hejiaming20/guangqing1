@@ -3,154 +3,12 @@
  * @Date: 2020-07-23 09:57:34
  * @LastEditTime: 2020-11-12 16:59:29
  * @LastEditors: Please set LastEditors
- * @Description: 辅材仓库管理页面
+ * @Description: 报废历史记录查询
  * @FilePath: \www_admin_masterd:\vue项目\BRSS-web-project\pages\warehouse\am.vue
 -->
 <template>
   <div>
-    <div class="c_table-title"><i class="iconfont icon-biaoti1"/> 申请报废轧辊</div>
-    <Table-easy
-      :table-data="tableData"
-      :page-size="pageSize"
-      :total="total"
-      :table-height="400"
-      class="layout-default-margin"
-      @color-table="color_table"
-      @handle-current-change="handleCurrentChange"
-      @handle-size-change="handleSizeChange">
-      <template slot="TableHead">
-        <el-row>
-          <el-col :span="20">
-            <el-form
-              ref="ruleForm"
-              :model="searchInfo1"
-              :inline="true"
-              label-width="80px">
-              <el-form-item
-                label="轧辊类型"
-                prop="roll_no">
-                <el-select
-                  v-model="searchInfo1.roll_typeid"
-                  placeholder="请选择">
-                  <el-option
-                    v-for="item in options"
-                    :key="item.key"
-                    :label="item.value"
-                    :value="item.key"/>
-                </el-select>
-              </el-form-item>
-              <el-form-item
-                label="机架范围"
-                prop="framerangeid">
-                <el-select
-                  v-model="searchInfo1.framerangeid"
-                  placeholder="请选择">
-                  <el-option
-                    v-for="item in option_fanwei"
-                    :key="item.key"
-                    :label="item.value"
-                    :value="item.key"/>
-                </el-select>
-              </el-form-item>
-            </el-form>
-          </el-col>
-          <el-col :span="4">
-            <div class="btn">
-              <el-button
-                size="mini"
-                type="primary"
-                @click="findAll()">查询
-              </el-button>
-              <el-button
-                size="mini"
-                type="primary"
-                @click="resetForm('ruleForm')">重置
-              </el-button>
-            </div>
-          </el-col>
-        </el-row>
-      </template>
-      <template slot="TableBody">
-        <el-table-column
-          prop="roll_no"
-          width="140px"
-          label="辊号"/>
-        <el-table-column
-          prop="roll_type"
-          width="100px"
-          label="轧辊类型"/>
-        <el-table-column
-          prop="factory"
-          label="制造厂商"/>
-        <el-table-column
-          label="轧辊材质"
-          prop="material"/>
-        <el-table-column
-          prop="frame_no"
-          label="机架号"/>
-        <!--<el-table-column
-          prop="loomingposition"
-          label="上机位置"/>-->
-        <!-- <el-table-column
-          prop="roll_diameter"
-          label="当前辊径"/>-->
-        <el-table-column
-          prop="firstuplinetime"
-          width="160px"
-          label="第一次上线时间"/>
-        <el-table-column
-          prop="lastlowlinetime"
-          width="160px"
-          label="最后一次下线时间"/>
-        <el-table-column
-          prop="grindingcount"
-          width="120px"
-          label="累计磨削次数"/>
-        <el-table-column
-          prop="rollkilometer"
-          width="120px"
-          label="累积轧制公里数"/>
-
-        <el-table-column
-          prop="currentdiameter"
-          label="报废直径"/>
-        <!-- <el-table-column
-          prop="iaccident"
-          min-width="100px"
-          label="事故辊标记"/>-->
-        <el-table-column
-          prop="scrapreason"
-          label="报废原因"/>
-        <el-table-column
-          prop="scrapreason"
-          label="处理结果"/>
-        <el-table-column
-          prop="operateuser"
-          label="操作人员"/>
-        <el-table-column
-          prop="operatetime"
-          label="操作时间"/>
-        <el-table-column
-          label="操作"
-          min-width="150"
-          align="center">
-          <template slot-scope="scope">
-            <el-button
-              size="mini"
-              type="primary"
-              @click="handleBf(scope.row)">报废
-            </el-button>
-            <el-button
-              size="mini"
-              type="primary"
-              @click="open_edit_1(scope.row)">填原因
-            </el-button>
-          </template>
-        </el-table-column>
-      </template>
-    </Table-easy>
-
-    <div class="c_table-title"><i class="iconfont icon-biaoti1"/> 已报废轧辊</div>
+    <div class="c_table-title"><i class="iconfont icon-biaoti1"/> 报废历史记录</div>
     <Table-easy
       :table-data="tableDatan_0"
       :page-size="pageSize1"
@@ -306,7 +164,7 @@
         <el-table-column
           prop="confirmationtime"
           label="确认时间"/>
-        <el-table-column
+          <!-- <el-table-column
           label="操作"
           min-width="150"
           align="center">
@@ -317,7 +175,7 @@
               @click="handleBf2(scope.row)">取消报废
             </el-button>
           </template>
-        </el-table-column>
+        </el-table-column>-->
       </template>
     </Table-easy>
 
@@ -403,7 +261,9 @@ export default {
         roll_state: -1
       },
       searchInfo2: {
-        roll_state: 6
+        roll_state: 6,
+        dbegin: '',
+        dend: ''
       },
       tableData: [],
       tableDatan_0: [],
@@ -421,7 +281,10 @@ export default {
     }
   },
   mounted() {
-    this.findAll()
+    this.searchInfo2.dbegin = moment()
+      .subtract(7, 'days')
+      .format('YYYY-MM-DD HH:mm:ss')
+    this.searchInfo2.dend = moment().format('YYYY-MM-DD HH:mm:ss')
     this.findAll_1()
     this.findOption()
     post('/dictionary/findMapV1', { dicno: 'framefw' }).then(res => {
@@ -448,35 +311,9 @@ export default {
       })
       this.dialogVisible = false
     },
-    findAll() {
-      console.log(this.searchInfo1.roll_state)
-      post(rollInformation, {
-        pageIndex: this.pageIndex,
-        pageSize: this.pageSize,
-        condition: this.searchInfo1
-      }).then(res => {
-        this.tableData = res.data
-        this.total = res.count
-        /* for (const item of res.data) {
-          if (item.roll_state === 0) {
-            this.tableDatan_0.push(item)
-          } else {
-            this.tableDatan.push(item)
-          }
-        }*/
-      })
-    },
     findAll_1() {
       console.log(this.searchInfo2.roll_state)
-      /* post(rollInformation, {
-        pageIndex: this.pageIndex1,
-        pageSize: this.pageSize1,
-        condition: this.searchInfo2
-      }).then(res => {
-        this.tableDatan_0 = res.data
-        this.total_1 = res.count
-      })*/
-      post(rollInformation, {
+      post('rollInformation/findHistoryByPage', {
         pageIndex: this.pageIndex1,
         pageSize: this.pageSize1,
         condition: this.searchInfo2
@@ -484,67 +321,6 @@ export default {
         this.tableDatan_0 = res.data
         this.total_1 = res.count
       })
-    },
-    //第1个表某行报废，放到第二个表格
-    handleBf(data) {
-      this.$confirm('要报废该行, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-        .then(() => {
-          // console.log(data)
-          data.roll_state = 6
-          post('rollInformation/update', { rollInformation: data }).then(
-            res => {
-              if (res) {
-                this.$message({
-                  type: 'success',
-                  message: '报废成功!'
-                })
-                this.findAll()
-                this.findAll_1()
-              }
-            }
-          )
-          // this.findAll1()
-        })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消报废'
-          })
-        })
-    },
-    //第二个表的某行取消报废，放到第一个表格
-    handleBf2(data) {
-      this.$confirm('该行报废将要移除, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-        .then(() => {
-          data.roll_state = -1
-          post('rollInformation/update', { rollInformation: data }).then(
-            res => {
-              if (res) {
-                this.$message({
-                  type: 'success',
-                  message: '报废成功!'
-                })
-                this.findAll()
-                this.findAll_1()
-              }
-            }
-          )
-          // this.findAll()
-        })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消移除报废'
-          })
-        })
     },
     //轧辊类型-下拉框数据
     findOption() {
@@ -566,16 +342,6 @@ export default {
           background: 'red'
         }
       }
-    },
-    //分页之对应页
-    handleCurrentChange(val) {
-      this.pageIndex = val
-      this.findAll()
-    },
-    //分页之一页多少条
-    handleSizeChange(val) {
-      this.pageSize = val
-      this.findAll()
     },
     //分页之对应页
     handleCurrentChange1(val) {

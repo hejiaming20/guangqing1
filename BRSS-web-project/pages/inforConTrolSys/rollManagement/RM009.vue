@@ -103,6 +103,9 @@
         <el-table-column
           prop="roll_state_value"
           label="库存状态"/>
+        <!--<el-table-column
+          prop="roll_state"
+          label="库存状态"/>-->
         <!-- <el-table-column
           show-overflow-tooltip
           prop="contract_no"
@@ -1419,7 +1422,7 @@ export default {
       if (this.formLabelAlign.indocno) {
         this.edit(forms)
       } else {
-        this.formLabelAlign.roll_state = 1
+        // this.formLabelAlign.roll_state = 1
         this.save(forms)
       }
     },

@@ -568,7 +568,7 @@
     </el-dialog>
     <!--dan击表格-->
     <el-row :gutter="10">
-      <el-col :span="12">
+      <!-- <el-col :span="12">
         <div class="main-title">承压件信息</div>
         <Table-easy
           :is-pagination-show="false"
@@ -577,7 +577,7 @@
           :table-height="300"
           :table-data="tableData1"
           style="overflow-y: auto">
-          <!-- 页面 -->
+          &lt;!&ndash; 页面 &ndash;&gt;
           <template slot="TableBody">
             <el-table-column
               min-width="180px"
@@ -626,7 +626,7 @@
               prop="lasttime" />
           </template>
         </Table-easy>
-      </el-col>
+      </el-col>-->
       <el-col :span="12">
         <div class="main-title">备件信息</div>
         <Table-easy

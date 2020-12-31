@@ -74,7 +74,7 @@
                   <!-- <el-button
                   size="mini"
                   type="primary"
-                  @click="new_add('ruleForm')">新增</el-button> -->
+                  @click="new_add('ruleForm')">新增</el-button>-->
               </div>
             </el-col>
           </el-row>
@@ -89,16 +89,16 @@
           <el-table-column
             label="机架范围"
             prop="framerange"/>
-          <el-table-column
+            <!--  <el-table-column
             prop="trackcount"
             label="跟踪次数"/>
           <el-table-column
             prop="checkcount"
             label="检测次数"/>
-          <!-- <el-table-column
+          &lt;!&ndash; <el-table-column
             prop="iblockade"
             min-width="100px"
-            label="封锁辊标记"/> -->
+            label="封锁辊标记"/> &ndash;&gt;
           <el-table-column
             prop="bearingchockno"
             min-width="110px"
@@ -114,31 +114,35 @@
             label="解锁时间"/>
           <el-table-column
             prop="operatename"
-            label="操作人员"/>
-          <el-table-column
+            label="操作人员"/>-->
+        <!--  <el-table-column
             label="操作"
             min-width="240px"
             align="center">
             <template slot-scope="scope">
-              <el-button
+              &lt;!&ndash; <el-button
                 size="mini"
                 type="primary"
                 @click="open_1(scope.row)">处理</el-button>
               <el-button
                 size="small"
                 type="warning"
-                @click="qulity(scope.row)">质量异议</el-button>
+                @click="qulity(scope.row)">质量异议</el-button>&ndash;&gt;
+              <el-button
+                size="mini"
+                type="success"
+                @click="handleBf(scope.row)">修改</el-button>
               <el-button
                 size="mini"
                 type="success"
                 @click="handleBf(scope.row)">报废</el-button>
             </template>
-          </el-table-column>
+          </el-table-column>-->
         </template>
       </Table-easy>
     </div>
-    <!--左右俩个表-->
-    <div>
+    <!--左右俩个表   磨削实绩上线实绩-->
+    <!--  <div>
       <el-row :gutter="10">
         <el-col :span="12">
           <div class="main-title">磨削实绩</div>
@@ -262,17 +266,17 @@
                 label="操作"
                 min-width="80"
                 align="center">
-              <!--<template slot-scope="scope">
+              &lt;!&ndash;<template slot-scope="scope">
                 <el-button
                   size="mini"
                   @click="handleEdit(scope.row)">轧制明细</el-button>
-              </template>-->
+              </template>&ndash;&gt;
               </el-table-column>
             </template>
           </Table-easy>
         </el-col>
       </el-row>
-    </div>
+    </div>-->
 
     <!--新增数据-->
     <el-dialog
@@ -331,7 +335,7 @@
                 prop="frame_no">
                 <el-input v-model="searchInfo_1.frame_no" />
               </el-form-item>
-              <el-form-item
+              <!--   <el-form-item
                 label="跟踪次数:"
                 label-width="100px"
                 prop="trackcount">
@@ -366,11 +370,11 @@
                 label-width="100px"
                 prop="locktime">
                 <el-input v-model="searchInfo_1.locktime" />
-              </el-form-item>
+              </el-form-item>-->
 
             </el-col>
             <el-col :span="12">
-              <el-form-item
+              <!--  <el-form-item
                 label="解锁时间:"
                 label-width="100px"
                 prop="unlocktime">
@@ -448,7 +452,7 @@
                 label-width="100px"
                 prop="istate">
                 <el-input v-model="searchInfo_1.istate" />
-              </el-form-item>
+              </el-form-item>-->
             </el-col>
           </el-row>
 
@@ -879,8 +883,17 @@ export default {
     },
     //查询接口
     findAll() {
-      this.searchInfo1.iblockade = 0
-      post('rollAccident/findByPage', {
+      // this.searchInfo1.iblockade = 0
+      /* post('rollAccident/findByPage', {
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize,
+        condition: this.searchInfo1
+      }).then(res => {
+        this.tableData = res.data
+        this.total = res.count
+      })*/
+      this.searchInfo1.roll_state = 7
+      post('rollInformation/findByPage', {
         pageIndex: this.pageIndex,
         pageSize: this.pageSize,
         condition: this.searchInfo1
@@ -939,8 +952,8 @@ export default {
     cellDblclick(val) {
       this.search_roll_no.roll_no = val.roll_no
 
-      this.findLeftTableData()
-      this.findRightTableData()
+      //  this.findLeftTableData()
+      // this.findRightTableData()
     },
 
     new_add() {
