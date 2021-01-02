@@ -455,13 +455,17 @@
                   size="small"
                   @click="send_message()">备辊请求
                 </el-button>-->
-                <el-button
+                <!--<el-button
                   v-show="button_show == '1'&&quanxian==11"
                   type="danger"
                   size="mini"
                   @click="chakan()">查看
+                </el-button>-->
+                <el-button
+                  type="danger"
+                  size="mini"
+                  @click="chakan()">查看
                 </el-button>
-
               </div>
             </div>
           </div>
@@ -1938,7 +1942,9 @@ export default {
       this.count_length5 = 0
       this.count_length6 = 0
       this.count_length7 = 0
-      post('/rollPrelist/findByPageNew', {}).then(res => {
+      post('/rollPrelist/findByPageNew', {
+        null: ''
+      }).then(res => {
         this.option_1 = res.data[0]
         this.option_2 = res.data[1]
         this.option_3 = res.data[2]
@@ -2181,7 +2187,7 @@ export default {
       }).then(res => {
         // this.tableData = res
         this.tableData = []
-        if (res) {
+        if (res[0]) {
           this.tableData.push(
             res[0],
             res[1],
