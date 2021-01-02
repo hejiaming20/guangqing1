@@ -226,8 +226,8 @@
           <el-form-item
             label="封锁原因:"
             prop="lockreason">
-            <el-input 
-              v-model="sendForm.lockreason" 
+            <el-input
+              v-model="sendForm.lockreason"
               type="textarea" />
           </el-form-item>
         </el-form>
@@ -245,7 +245,7 @@
           @click="handleReset('submitForm')">取 消</el-button>
       </span>
     </el-dialog>
-    
+
     <!--处理弹窗-->
     <el-dialog
       :visible.sync="dialogs"

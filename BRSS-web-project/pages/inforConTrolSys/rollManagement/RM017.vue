@@ -105,35 +105,38 @@
         </template>
         <template slot="TableBody">
           <el-table-column
-            prop="roll_no"
-            label="辊号"/>
+            prop="roll_no_up"
+            label="上辊号"/>
           <el-table-column
+            prop="roll_no_down"
+            label="下辊号"/>
+          <!-- <el-table-column
             label="制造厂商"
-            prop="factory"/>
+            prop="factory"/>-->
           <el-table-column
             prop="roll_type"
             label="轧辊类型"/>
-          <el-table-column
+          <!-- <el-table-column
             prop="rollshape"
             label="辊形"/>
           <el-table-column
             prop="framerange"
-            label="机架范围"/>
+            label="机架范围"/>-->
           <el-table-column
             label="轧辊材质"
             prop="material"/>
           <el-table-column
-            prop="roll_position"
-            label="上机位置"/>
-          <el-table-column
+            prop="operate_name"
+            label="状态"/>
+            <!--<el-table-column
             prop="currentdiameter"
-            label="当前辊径"/>
-          <!-- <el-table-column
+            label="当前辊径"/>-->
+            <!-- <el-table-column
             prop="roll_state_value"
             label="轧辊状态"/>-->
-          <el-table-column
+        <!--  <el-table-column
             prop="uplinecount"
-            label="上机次数"/>
+            label="上机次数"/>-->
             <!-- <el-table-column
             label="操作"
             min-width="150"
@@ -183,7 +186,7 @@ export default {
       cities: [],
       option_1: [
         { key: '配对', value: '配对' },
-        { key: '解封', value: '解封' }
+        { key: '拆解', value: '拆解' }
       ],
       option_2: [],
       option_3: [

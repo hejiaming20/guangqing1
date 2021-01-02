@@ -147,25 +147,6 @@
           min-width="85px"
           align="center"/>
 
-
-        <el-table-column
-          prop="grind_endtime"
-          label="磨削结束时间"
-          min-width="155px"
-          align="center"/>
-        <el-table-column
-          label="磨削开始时间"
-          min-width="155px"
-          prop="grind_starttime"
-          align="center"/>
-
-
-
-
-
-
-
-
         <el-table-column
           prop="onlinetime"
           label="上机时间"
@@ -176,6 +157,27 @@
           min-width="155px"
           prop="offlinetime"
           align="center"/>
+        <el-table-column
+          label="磨削开始时间"
+          min-width="155px"
+          prop="grind_starttime"
+          align="center"/>
+
+        <el-table-column
+          prop="grind_endtime"
+          label="磨削结束时间"
+          min-width="155px"
+          align="center"/>
+
+
+
+
+
+
+
+
+
+
         <el-table-column
           prop="off_line_reason"
           align="center"
@@ -221,7 +223,7 @@
           prop="count_weartimes"
           width="100px"
           align="center"
-          label="磨削次数"/>
+          label="累计磨削次数"/>
         <el-table-column
           prop="first_wear"
           width="100px"

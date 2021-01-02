@@ -545,7 +545,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <!-- <el-form-item
+              <el-form-item
                 label="周转状态"
                 prop="roll_revolve">
                 <el-select
@@ -558,7 +558,7 @@
                     :label="item.value"
                     :value="Number(item.key)"/>
                 </el-select>
-              </el-form-item>-->
+              </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item
