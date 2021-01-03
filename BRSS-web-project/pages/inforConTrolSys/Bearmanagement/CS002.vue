@@ -102,10 +102,10 @@
           prop="frame_no"
           align="center"
           label="机架号"/>
-        <el-table-column
+        <!-- <el-table-column
           prop="install_location"
           align="center"
-          label="安装位置"/>
+          label="安装位置"/>-->
         <el-table-column
           prop="up_location"
           align="center"
@@ -118,7 +118,7 @@
           prop="ds_no"
           align="center"
           label="DS侧座号"/>
-        <el-table-column
+      <!--  <el-table-column
           label="操作"
           min-width="250"
           align="center">
@@ -136,7 +136,7 @@
               type="danger"
               @click="handleDelectOut(scope.row)">删除</el-button>
           </template>
-        </el-table-column>
+        </el-table-column>-->
       </template>
     </Table-easy>
 

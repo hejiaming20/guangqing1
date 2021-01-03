@@ -80,7 +80,7 @@
                     :value="item.key"/>
                 </el-select>
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="产线"
                 prop="production_line_id">
                 <el-select
@@ -92,7 +92,7 @@
                     :label="item.value"
                     :value="item.key"/>
                 </el-select>
-              </el-form-item>
+              </el-form-item>-->
               <!-- <el-col :span="6">
                 <el-form-item
                   label="轴承座状态"
@@ -159,7 +159,7 @@
           align="center"
           min-width="100px"
           prop="bearing_type" />
-        <el-table-column
+        <!-- <el-table-column
           label="轴承承载区"
           align="center"
           min-width="100px"
@@ -168,7 +168,7 @@
           label="轴承座状态"
           align="center"
           min-width="120px"
-          prop="status" />
+          prop="status" />-->
         <el-table-column
           label="投用时间"
           align="center"
@@ -179,7 +179,7 @@
           align="center"
           min-width="120px"
           prop="scraptime" />
-        <el-table-column
+        <!-- <el-table-column
           label="剩余换区时间"
           align="center"
           min-width="120px"
@@ -188,7 +188,7 @@
           label="检测报告"
           align="center"
           min-width="120px"
-          prop="reports" />
+          prop="reports" />-->
         <el-table-column
           label="检测结果"
           align="center"
@@ -234,7 +234,7 @@
                 prop="roll_no">
                 <el-input v-model="formLabelAlign.roll_no" />
               </el-form-item>
-              <el-form-item
+              <!--<el-form-item
                 label="轧辊类型"
                 prop="roll_typeid">
                 <el-select
@@ -247,8 +247,8 @@
                     :label="item.value"
                     :value="item.key"/>
                 </el-select>
-              </el-form-item>
-              <el-form-item
+              </el-form-item>-->
+              <!--<el-form-item
                 label="产线"
                 prop="production_line_id">
                 <el-select
@@ -261,8 +261,8 @@
                     :label="item.value"
                     :value="item.key"/>
                 </el-select>
-              </el-form-item>
-              <el-form-item
+              </el-form-item>-->
+              <!-- <el-form-item
                 label="机架号"
                 prop="frame_noid">
                 <el-select
@@ -275,7 +275,7 @@
                     :label="item.value"
                     :value="item.key"/>
                 </el-select>
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="安装位置"
                 prop="install_location_id">
@@ -292,7 +292,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item
+              <!-- <el-form-item
                 label="轴承座状态"
                 prop="istatus">
                 <el-select
@@ -305,7 +305,7 @@
                     :label="item.value"
                     :value="item.key"/>
                 </el-select>
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="上机位置"
                 prop="up_location_id">
@@ -325,11 +325,11 @@
                 prop="bearing_type">
                 <el-input v-model="formLabelAlign.bearing_type" />
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="轴承承载区"
                 prop="workface">
                 <el-input v-model="formLabelAlign.workface" />
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="投用时间"
                 prop="usetime">
@@ -351,11 +351,11 @@
 
             </el-col>
             <el-col :span="8">
-              <el-form-item
+              <!-- <el-form-item
                 label="剩余换区时间"
                 prop="lasttime">
                 <el-input v-model="formLabelAlign.lasttime" />
-              </el-form-item>
+              </el-form-item>-->
               <!-- <el-form-item
                 label="检测报告"
                 prop="reports">
@@ -416,6 +416,7 @@
                 label="轧辊类型"
                 prop="roll_type">
                 <el-select
+                  :disabled="true"
                   v-model="formLabelAlign1.roll_type"
                   placeholder="请选择"
                   @change="roll_typeid_change1">
@@ -426,7 +427,7 @@
                     :value="item.value"/>
                 </el-select>
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="产线"
                 prop="production_line">
                 <el-select
@@ -439,11 +440,12 @@
                     :label="item.value"
                     :value="item.value"/>
                 </el-select>
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="机架号"
                 prop="frame_no">
                 <el-select
+                  :disabled="true"
                   v-model="formLabelAlign1.frame_no"
                   placeholder="请选择"
                   @change="frame_noid_change1">
@@ -489,12 +491,12 @@
                 prop="bearing_type">
                 <el-input v-model="formLabelAlign1.bearing_type" />
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="轴承承载区"
                 prop="workface">
                 <el-input v-model="formLabelAlign1.workface" />
-              </el-form-item>
-              <el-form-item
+              </el-form-item>-->
+              <!--   <el-form-item
                 label="轴承座状态"
                 prop="status">
                 <el-select
@@ -507,7 +509,7 @@
                     :label="item.value"
                     :value="item.value"/>
                 </el-select>
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="投用时间"
                 prop="usetime">
@@ -528,11 +530,11 @@
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item
+              <!-- <el-form-item
                 label="剩余换区时间"
                 prop="lasttime">
                 <el-input v-model="formLabelAlign1.lasttime" />
-              </el-form-item>
+              </el-form-item>-->
               <!--<el-form-item
                 label="检测报告"
                 prop="reports">
