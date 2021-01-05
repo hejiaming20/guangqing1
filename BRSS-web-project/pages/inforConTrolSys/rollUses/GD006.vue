@@ -625,6 +625,9 @@
               <el-table-column
                 prop="roll_position"
                 label="上机位置"/>
+              <!--  <el-table-column
+                prop="roll_position"
+                label="上机位置"/>-->
               <el-table-column
                 prop="currentdiameter"
                 label="当前辊径"/>

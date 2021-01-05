@@ -14,6 +14,7 @@
 
       :page-size="pageSize"
       :current-page="pageIndex"
+      :row-class-name="setRowColor"
       index-type="index"
       @row-click="dbcick"
       @handle-current-change="handleCurrentChange"
@@ -630,7 +631,84 @@
         </Table-easy>
       </el-col>-->
       <el-col :span="12">
-        <div class="main-title">备件信息</div>
+        <div class="main-title">轴承信息
+          <el-button
+            style="margin-left:80% "
+            size="mini"
+            type="danger"
+            @click="add_left()">添加</el-button>
+        </div>
+        <Table-easy
+          :is-pagination-show="false"
+          :table-foot="false"
+          :table-head="false"
+          :table-height="300"
+          :table-data="tableData1"
+          style="overflow: auto">
+          <!-- 页面 -->
+          <template slot="TableBody">
+            <el-table-column
+              label="轴承座号"
+              prop="chock_no" />
+            <el-table-column
+              label="轴承号"
+              prop="bearing_no" />
+            <el-table-column
+              label="轴承名称"
+              prop="bearing_name" />
+            <el-table-column
+              label="开始时间"
+              width="170"
+              prop="usetime" />
+            <el-table-column
+              label="单次累计时间"
+              prop="single_times" />
+            <el-table-column
+              label="间隔时间"
+              prop="interval_times" />
+            <el-table-column
+              label="提醒处理次数"
+              prop="reminder_times" />
+            <el-table-column
+              label="总累计时间"
+              prop="total_times" />
+            <el-table-column
+              label="报废提醒时间"
+              prop="discard_times" />
+            <el-table-column
+              label="操作"
+              min-width="300"
+              align="center">
+              <template slot-scope="scope">
+                <!-- <el-button
+                  size="mini"
+                  type="warning"
+                  @click.stop="handleEdit_left(scope.row)">修改</el-button>-->
+                <el-button
+                  size="mini"
+                  type="warning"
+                  @click.stop="baofei_left(scope.row)">报废</el-button>
+                <el-button
+                  size="mini"
+                  type="warning"
+                  @click.stop="kong_left(scope.row)">单次提醒置空</el-button>
+                  <!-- <el-button
+                  size="mini"
+                  type="danger"
+                  @click.stop="handleDelete(scope.row)">删除</el-button>-->
+              </template>
+            </el-table-column>
+          </template>
+        </Table-easy>
+      </el-col>
+      <el-col :span="12">
+        <div class="main-title">密封件信息
+          <el-button
+            style="margin-left:80% "
+            size="mini"
+            type="danger"
+            @click="add_right()">添加</el-button>
+        </div>
         <Table-easy
           :is-pagination-show="false"
           :table-foot="false"
@@ -641,18 +719,247 @@
           <!-- 页面 -->
           <template slot="TableBody">
             <el-table-column
-              label="备件名称"
-              prop="eq_name" />
+              label="轴承座号"
+              prop="chock_no" />
             <el-table-column
-              label="备件编号"
-              prop="eq_code" />
+              label="密封件号"
+              prop="bearing_no" />
             <el-table-column
-              label="出库时间"
-              prop="outtime" />
+              label="密封件名称"
+              prop="bearing_name" />
+            <el-table-column
+              width="170"
+              label="开始时间"
+              prop="usetime" />
+            <el-table-column
+              label="单次累计时间"
+              prop="single_times" />
+            <el-table-column
+              label="间隔时间"
+              prop="interval_times" />
+            <el-table-column
+              label="提醒处理次数"
+              prop="reminder_times" />
+            <el-table-column
+              label="总累计时间"
+              prop="total_times" />
+            <el-table-column
+              label="报废提醒时间"
+              prop="discard_times" />
+            <el-table-column
+              label="操作"
+              min-width="300"
+              align="center">
+              <template slot-scope="scope">
+                <!--<el-button
+                  size="mini"
+                  type="warning"
+                  @click.stop="handleEdit_right(scope.row)">修改</el-button>-->
+                <el-button
+                  size="mini"
+                  type="warning"
+                  @click.stop="baofei_right(scope.row)">报废</el-button>
+                <el-button
+                  size="mini"
+                  type="warning"
+                  @click.stop="kong_right(scope.row)">单次提醒置空</el-button>
+                  <!-- <el-button
+                size="mini"
+                type="danger"
+                @click.stop="handleDelete(scope.row)">删除</el-button>-->
+              </template>
+            </el-table-column>
           </template>
         </Table-easy>
       </el-col>
     </el-row>
+    <!-- 轴承添加修改 -->
+    <el-dialog
+      :visible.sync="dialogVisible_left"
+      :title="title_left"
+      class="layout-dialog"
+      width="80%">
+      <div class="layout-search">
+        <el-form
+          ref="addForm"
+          :model="formLabelAlign_left"
+          label-width="120px">
+          <el-row>
+            <el-col :span="8">
+              <el-form-item
+                label="轴承座号"
+                prop="chock_no">
+                <el-input v-model="formLabelAlign_left.chock_no" />
+              </el-form-item>
+              <el-form-item
+                label="轴承号"
+                prop="bearing_no">
+                <el-input v-model="formLabelAlign_left.bearing_no" />
+              </el-form-item>
+              <el-form-item
+                label="轴承名称"
+                prop="bearing_name">
+                <el-input v-model="formLabelAlign_left.bearing_name" />
+              </el-form-item>
+              <!-- <el-form-item
+                label="安装位置"
+                prop="install_location_id">
+                <el-select
+                  v-model="formLabelAlign_left.install_location_id"
+                  placeholder="请选择"
+                  @change="install_location_id_change">
+                  <el-option
+                    v-for="item in option4"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.key"/>
+                </el-select>
+              </el-form-item>-->
+            </el-col>
+            <el-col :span="8">
+              <!-- <el-form-item
+                label="上机位置"
+                prop="up_location">
+                <el-input v-model="formLabelAlign_left.up_location" />
+              </el-form-item>-->
+              <el-form-item
+                label="报废提醒时间/天"
+                prop="discard_times">
+                <el-input v-model="formLabelAlign_left.discard_times" />
+              </el-form-item>
+              <el-form-item
+                label="轴承类型"
+                prop="bearing_type">
+                <el-input v-model="formLabelAlign_left.bearing_type" />
+              </el-form-item>
+              <el-form-item
+                label="投用时间"
+                prop="usetime">
+                <el-date-picker
+                  v-model="formLabelAlign_left.usetime"
+                  value-format="yyyy-MM-dd HH:mm:ss"
+                  type="datetime"
+                  placeholder="投用时间"/>
+              </el-form-item>
+              <!-- <el-form-item
+                label="报废时间"
+                prop="scraptime">
+                <el-date-picker
+                  v-model="formLabelAlign_left.scraptime"
+                  value-format="yyyy-MM-dd HH:mm:ss"
+                  type="datetime"
+                  placeholder="报废时间"/>
+              </el-form-item>-->
+            </el-col>
+          </el-row>
+        </el-form>
+      </div>
+      <span
+        slot="footer"
+        class="dialog-footer">
+        <el-button
+          size="small"
+          type="primary"
+          @click="dialogVisible_left = false">取 消</el-button>
+        <el-button
+          size="small"
+          type="primary"
+          @click="handleSave_left">确 定</el-button>
+      </span>
+    </el-dialog>
+    <!-- 密封件添加修改 -->
+    <el-dialog
+      :visible.sync="dialogVisible_right"
+      :title="title_right"
+      class="layout-dialog"
+      width="80%">
+      <div class="layout-search">
+        <el-form
+          ref="addForm"
+          :model="formLabelAlign_right"
+          label-width="120px">
+          <el-row>
+            <el-col :span="8">
+              <el-form-item
+                label="轴承座号"
+                prop="chock_no">
+                <el-input v-model="formLabelAlign_right.chock_no" />
+              </el-form-item>
+              <el-form-item
+                label="密封件号"
+                prop="bearing_no">
+                <el-input v-model="formLabelAlign_right.bearing_no" />
+              </el-form-item>
+              <el-form-item
+                label="密封件名称"
+                prop="bearing_name">
+                <el-input v-model="formLabelAlign_right.bearing_name" />
+              </el-form-item>
+              <!-- <el-form-item
+                label="安装位置"
+                prop="install_location_id">
+                <el-select
+                  v-model="formLabelAlign_left.install_location_id"
+                  placeholder="请选择"
+                  @change="install_location_id_change">
+                  <el-option
+                    v-for="item in option4"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.key"/>
+                </el-select>
+              </el-form-item>-->
+            </el-col>
+            <el-col :span="8">
+              <!-- <el-form-item
+                label="上机位置"
+                prop="up_location">
+                <el-input v-model="formLabelAlign_left.up_location" />
+              </el-form-item>-->
+              <el-form-item
+                label="报废提醒时间/天"
+                prop="discard_times">
+                <el-input v-model="formLabelAlign_right.discard_times" />
+                <el-form-item
+                  label="密封件类型"
+                  prop="bearing_type">
+                  <el-input v-model="formLabelAlign_right.bearing_type" />
+                </el-form-item>
+                <el-form-item
+                  label="投用时间"
+                  prop="usetime">
+                  <el-date-picker
+                    v-model="formLabelAlign_right.usetime"
+                    value-format="yyyy-MM-dd HH:mm:ss"
+                    type="datetime"
+                    placeholder="投用时间"/>
+                </el-form-item>
+                <!-- <el-form-item
+                label="报废时间"
+                prop="scraptime">
+                <el-date-picker
+                  v-model="formLabelAlign_left.scraptime"
+                  value-format="yyyy-MM-dd HH:mm:ss"
+                  type="datetime"
+                  placeholder="报废时间"/>
+              </el-form-item>-->
+            </el-form-item></el-col>
+          </el-row>
+        </el-form>
+      </div>
+      <span
+        slot="footer"
+        class="dialog-footer">
+        <el-button
+          size="small"
+          type="primary"
+          @click="dialogVisible_right = false">取 消</el-button>
+        <el-button
+          size="small"
+          type="primary"
+          @click="handleSave_right">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -712,7 +1019,17 @@ export default {
       dialogVisible: false,
       dialogVisible1: false,
       disUpdateVisible: false,
-      disable: false
+      dialogVisible_left: false,
+      dialogVisible_right: false,
+      formLabelAlign_left: {},
+      formLabelAlign_right: {},
+      disable: false,
+      rowIndex: null,
+      title_left: '',
+      chioce_left: true,
+      title_right: '',
+      chioce_right: true,
+      chock_no_1: ''
     }
   },
   mounted() {
@@ -739,6 +1056,12 @@ export default {
     this.findAll()
   },
   methods: {
+    // 点击行信息，添加颜色标识
+    setRowColor({ row, rowIndex }) {
+      if (row.indocno == this.rowIndex) {
+        return 'setTable-row-class-name'
+      }
+    },
     istatus_change(vId) {
       let obj = {}
       obj = this.option3.find(item => {
@@ -892,6 +1215,204 @@ export default {
       this.dialogVisible = false
       this.findAll()
     },
+    //子项左边
+    add_left() {
+      this.formLabelAlign_left = {}
+      this.formLabelAlign_left.chock_no = this.chock_no_1
+      this.dialogVisible_left = true
+      this.chioce_left = true
+      this.title_left = '添加'
+    },
+    handleEdit_left(data) {
+      this.formLabelAlign_left = data
+      this.dialogVisible_left = true
+      this.chioce_left = false
+      this.title_left = '修改'
+    },
+    handleSave_left() {
+      this.dialogVisible_left = false
+      this.formLabelAlign_left.bearing_type = 1
+      if (this.chioce_left) {
+        post('baseBearing/insert', {
+          BaseBearing: this.formLabelAlign_left
+        }).then(res => {
+          // this.tableData1 = res
+          this.find_left()
+        })
+      } else {
+        post('baseBearing/update', {
+          BaseBearing: this.formLabelAlign_left
+        }).then(res => {
+          this.find_left()
+          // this.tableData1 = res
+        })
+      }
+    },
+    find_left() {
+      post('baseBearing/findByPage', {
+        pageIndex: 1,
+        pageSize: 20,
+        condition: {
+          chock_no: this.chock_no_1,
+          bearing_type: 1, //2为密封件1为轴承，
+          ifdiscard: 0
+        }
+      }).then(res => {
+        this.tableData1 = res.data
+        this.total = res.count
+      })
+    },
+    baofei_left(data) {
+      this.$confirm('此操作将报废该数据, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('/baseBearing/updateDiscardTime', {
+            indocno: data.indocno
+          }).then(res => {
+            if (res) {
+              this.$message({
+                type: 'success',
+                message: '报废成功!'
+              })
+              this.find_left()
+            }
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消报废'
+          })
+        })
+    },
+    kong_left(data) {
+      this.$confirm('此操作将置空单次提醒该数据, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('/baseBearing/updateSingleTimes', {
+            indocno: data.indocno
+          }).then(res => {
+            if (res) {
+              this.$message({
+                type: 'success',
+                message: '报废成功!'
+              })
+              this.find_left()
+            }
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消置空单次提醒'
+          })
+        })
+    },
+    //子项右边
+    add_right() {
+      this.formLabelAlign_right = {}
+      this.formLabelAlign_right.chock_no = this.chock_no_1
+      this.dialogVisible_right = true
+      this.chioce_right = true
+      this.title_right = '添加'
+    },
+    handleEdit_right(data) {
+      this.formLabelAlign_right = data
+      this.dialogVisible_right = true
+      this.chioce_right = false
+      this.title_right = '修改'
+    },
+    handleSave_right() {
+      this.dialogVisible_right = false
+      this.formLabelAlign_right.bearing_type = 2
+      if (this.chioce_right) {
+        post('baseBearing/insert', {
+          BaseBearing: this.formLabelAlign_right
+        }).then(res => {
+          // this.tableData1 = res
+          this.find_right()
+        })
+      } else {
+        post('baseBearing/update', {
+          BaseBearing: this.formLabelAlign_right
+        }).then(res => {
+          this.find_right()
+          // this.tableData1 = res
+        })
+      }
+    },
+    find_right() {
+      post('baseBearing/findByPage', {
+        pageIndex: 1,
+        pageSize: 20,
+        condition: {
+          chock_no: this.chock_no_1,
+          bearing_type: 2, //2为密封件1为轴承
+          ifdiscard: 0
+        }
+      }).then(res => {
+        this.tableData2 = res.data
+        this.total = res.count
+      })
+    },
+    baofei_right(data) {
+      this.$confirm('此操作将报废该数据, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('/baseBearing/updateDiscardTime', {
+            indocno: data.indocno
+          }).then(res => {
+            if (res) {
+              this.$message({
+                type: 'success',
+                message: '报废成功!'
+              })
+              this.find_right()
+            }
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消报废'
+          })
+        })
+    },
+    kong_right(data) {
+      this.$confirm('此操作将置空单次提醒该数据, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('/baseBearing/updateSingleTimes', {
+            indocno: data.indocno
+          }).then(res => {
+            if (res) {
+              this.$message({
+                type: 'success',
+                message: '报废成功!'
+              })
+              this.find_right()
+            }
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消置空单次提醒'
+          })
+        })
+    },
     // 修改数据按钮
     handleEdit(data) {
       this.formLabelAlign1 = data
@@ -942,21 +1463,26 @@ export default {
     /*dan击*/
     //主表关联查询子表承压件信息接口
     dbcick(val) {
+      this.chock_no_1 = val.chock_no
+      this.rowIndex = val.indocno //点击变色需要
       this.searchchock_no.chock_no = val.chock_no
       var searchchock_no1 = {
         main_code: val.chock_no
       }
+      this.find_left()
+      this.find_right()
       /*上线实绩表查询*/
-      post('/basePressureParts/findByChock', {
+      /* post('/basePressureParts/findByChock', {
         condition: this.searchchock_no
       }).then(res => {
         this.tableData1 = res
       })
-      post('/rollPartsDetail/findByChock', {
+      this.tableData2 = [{}]*/
+      /* post('/rollPartsDetail/findByChock', {
         condition: searchchock_no1
       }).then(res => {
         this.tableData2 = res.data
-      })
+      })*/
     },
     resetForm(formName) {
       this.searchquery = {}
