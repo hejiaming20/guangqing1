@@ -94,7 +94,7 @@
                             v-for="item in frameArray"
                             :key="item.key"
                             :label="item.value"
-                            :value="item.value"/>
+                            :value="Number(item.key)"/>
                         </el-select>
                         <!-- <el-input v-model="searchInfo.frame_no"/> -->
                       </el-form-item>

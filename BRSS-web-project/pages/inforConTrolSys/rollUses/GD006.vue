@@ -1632,7 +1632,7 @@ export default {
       setTimeout(() => {
         this.getPdf('pdfDom', this.htmlTitle)
         this.last_1 = false
-      }, 3500)
+      }, 4500)
     },
     //分页之对应页
     handleCurrentChange(val) {
