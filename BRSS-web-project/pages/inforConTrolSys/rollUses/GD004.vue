@@ -866,7 +866,7 @@ export default {
       var LowerArm2 = []
       var title = ['postion0', 'postion1', 'postion2']
       var appid = ['app1']
-      var names = [['上测量臂'], ['下测量臂'], ['both测量臂']]
+      var names = [['测量臂'], ['下测量臂'], ['both测量臂']]
       for (i = 0; datas.length > i; i++) {
         if (datas[i].title == '圆度曲线图') {
           UpperArm0 = datas[i].roundness.split(',')

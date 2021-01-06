@@ -380,7 +380,7 @@
                   onkeyup="value=value.replace(/[^\d^\.]/g,'')" />
               </el-form-item>
               <el-form-item
-                label="理论直径"
+                label="理论直径（mm）"
                 prop="theorydiameter">
                 <el-input
                   v-model="formLabelAlign.theorydiameter"
@@ -437,6 +437,11 @@
                 label="合同号"
                 prop="contract_no">
                 <el-input v-model="formLabelAlign.contract_no" />
+              </el-form-item>
+              <el-form-item
+                label="辊长（mm）"
+                prop="body_length">
+                <el-input v-model="formLabelAlign.body_length" />
               </el-form-item>
             </el-col>
           </el-row>
