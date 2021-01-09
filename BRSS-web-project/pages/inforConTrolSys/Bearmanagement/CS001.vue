@@ -34,7 +34,7 @@
                 prop="roll_no">
                 <el-input v-model="searchquery.roll_no" />
               </el-form-item>
-              <el-form-item
+              <!--   <el-form-item
                 label="轴承座状态"
                 label-width="90"
                 prop="istatus">
@@ -47,7 +47,7 @@
                     :label="item.value"
                     :value="item.key"/>
                 </el-select>
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="轴承座号"
                 label-width="80"
@@ -136,30 +136,35 @@
           min-width="100px"
           prop="roll_no" />
         <el-table-column
+          label="厂家"
+          align="center"
+          min-width="100px"
+          prop="factory_name" />
+        <!-- <el-table-column
           label="轧辊类型"
           align="center"
           min-width="100px"
-          prop="roll_type" />
+          prop="roll_type" />-->
         <el-table-column
           label="安装位置"
           align="center"
           min-width="100px"
           prop="install_location" />
-        <el-table-column
+        <!--<el-table-column
           label="机架号"
           align="center"
           min-width="80px"
-          prop="frame_no" />
+          prop="frame_no" />-->
         <el-table-column
           label="上机位置"
           align="center"
           min-width="90px"
           prop="up_location" />
-        <el-table-column
+        <!--  <el-table-column
           label="轴承类型"
           align="center"
           min-width="100px"
-          prop="bearing_type" />
+          prop="bearing_type" />-->
         <!-- <el-table-column
           label="轴承承载区"
           align="center"
@@ -171,15 +176,44 @@
           min-width="120px"
           prop="status" />-->
         <el-table-column
-          label="投用时间"
+          label="第一次投用时间"
           align="center"
           min-width="120px"
           prop="usetime" />
-        <el-table-column
+        <!-- <el-table-column
           label="报废时间"
           align="center"
           min-width="120px"
-          prop="scraptime" />
+          prop="scraptime" />-->
+
+
+
+
+
+        <el-table-column
+          label="单次累计时间"
+          prop="single_times" />
+        <el-table-column
+          label="间隔时间"
+          prop="interval_times" />
+        <el-table-column
+          label="提醒处理次数"
+          prop="reminder_times" />
+        <el-table-column
+          label="总累计时间"
+          prop="total_times" />
+        <el-table-column
+          label="报废提醒时间"
+          prop="discard_times" />
+        <el-table-column
+          label="报废时间"
+          prop="discard_time" />
+
+
+
+
+
+
         <!-- <el-table-column
           label="剩余换区时间"
           align="center"
@@ -190,20 +224,32 @@
           align="center"
           min-width="120px"
           prop="reports" />-->
-        <el-table-column
+        <!-- <el-table-column
           label="检测结果"
           align="center"
           min-width="120px"
-          prop="results" />
+          prop="results" />-->
         <el-table-column
           label="操作"
-          min-width="150"
+          min-width="390"
           align="center">
           <template slot-scope="scope">
             <el-button
               size="mini"
               type="warning"
               @click.stop="handleEdit(scope.row)">修改</el-button>
+            <el-button
+              size="mini"
+              type="warning"
+              @click.stop="baofei(scope.row)">报废</el-button>
+            <el-button
+              size="mini"
+              type="warning"
+              @click.stop="baofei_off(scope.row)">取消报废</el-button>
+            <el-button
+              size="mini"
+              type="warning"
+              @click.stop="kong(scope.row)">单次提醒置空</el-button>
             <el-button
               size="mini"
               type="danger"
@@ -230,11 +276,11 @@
                 prop="chock_no">
                 <el-input v-model="formLabelAlign.chock_no" />
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="辊号"
                 prop="roll_no">
                 <el-input v-model="formLabelAlign.roll_no" />
-              </el-form-item>
+              </el-form-item>-->
               <!--<el-form-item
                 label="轧辊类型"
                 prop="roll_typeid">
@@ -291,6 +337,20 @@
                     :value="item.key"/>
                 </el-select>
               </el-form-item>
+              <el-form-item
+                label="厂家"
+                prop="factory_name">
+                <el-select
+                  v-model="formLabelAlign.factory_name"
+                  placeholder="请选择"
+                  @change="istatus_change">
+                  <el-option
+                    v-for="item in option3"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.value"/>
+                </el-select>
+              </el-form-item>
             </el-col>
             <el-col :span="8">
               <!-- <el-form-item
@@ -321,18 +381,18 @@
                     :value="item.key"/>
                 </el-select>
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="轴承类型"
                 prop="bearing_type">
                 <el-input v-model="formLabelAlign.bearing_type" />
-              </el-form-item>
+              </el-form-item>-->
               <!-- <el-form-item
                 label="轴承承载区"
                 prop="workface">
                 <el-input v-model="formLabelAlign.workface" />
               </el-form-item>-->
               <el-form-item
-                label="投用时间"
+                label="第一次投用时间"
                 prop="usetime">
                 <el-date-picker
                   v-model="formLabelAlign.usetime"
@@ -352,20 +412,20 @@
 
             </el-col>
             <el-col :span="8">
-              <!-- <el-form-item
-                label="剩余换区时间"
-                prop="lasttime">
-                <el-input v-model="formLabelAlign.lasttime" />
-              </el-form-item>-->
-              <!-- <el-form-item
-                label="检测报告"
-                prop="reports">
-                <el-input v-model="formLabelAlign.reports" />
+              <el-form-item
+                label="间隔时间(d)"
+                prop="interval_times">
+                <el-input v-model="formLabelAlign.interval_times" />
               </el-form-item>
               <el-form-item
-                label="检测结果"
-                prop="results">
-                <el-input v-model="formLabelAlign.results" />
+                label="报废提醒时间(d)"
+                prop="discard_times">
+                <el-input v-model="formLabelAlign.discard_times" />
+              </el-form-item>
+              <!-- <el-form-item
+                label="轴承类型"
+                prop="bearing_type">
+                <el-input v-model="formLabelAlign_left.bearing_type" />
               </el-form-item>-->
               <el-form-item
                 label="备注"
@@ -411,9 +471,11 @@
               <el-form-item
                 label="辊号"
                 prop="roll_no">
-                <el-input v-model="formLabelAlign1.roll_no" />
+                <el-input
+                  :disabled="true"
+                  v-model="formLabelAlign1.roll_no" />
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="轧辊类型"
                 prop="roll_type">
                 <el-select
@@ -423,6 +485,20 @@
                   @change="roll_typeid_change1">
                   <el-option
                     v-for="item in option2"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.value"/>
+                </el-select>
+              </el-form-item>-->
+              <el-form-item
+                label="厂家"
+                prop="factory_name">
+                <el-select
+                  v-model="formLabelAlign1.factory_name"
+                  placeholder="请选择"
+                  @change="istatus_change1">
+                  <el-option
+                    v-for="item in option3"
                     :key="item.key"
                     :label="item.value"
                     :value="item.value"/>
@@ -442,7 +518,7 @@
                     :value="item.value"/>
                 </el-select>
               </el-form-item>-->
-              <el-form-item
+              <!--  <el-form-item
                 label="机架号"
                 prop="frame_no">
                 <el-select
@@ -456,7 +532,7 @@
                     :label="item.value"
                     :value="item.value"/>
                 </el-select>
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="安装位置"
                 prop="install_location">
@@ -487,11 +563,11 @@
                     :value="item.value"/>
                 </el-select>
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="轴承类型"
                 prop="bearing_type">
                 <el-input v-model="formLabelAlign1.bearing_type" />
-              </el-form-item>
+              </el-form-item>-->
               <!-- <el-form-item
                 label="轴承承载区"
                 prop="workface">
@@ -512,7 +588,7 @@
                 </el-select>
               </el-form-item>-->
               <el-form-item
-                label="投用时间"
+                label="第一次投用时间"
                 prop="usetime">
                 <el-date-picker
                   v-model="formLabelAlign1.usetime"
@@ -531,10 +607,30 @@
               </el-form-item>
             </el-col>
             <el-col :span="8">
+              <el-form-item
+                label="间隔时间(d)"
+                prop="interval_times">
+                <el-input v-model="formLabelAlign1.interval_times" />
+              </el-form-item>
+              <el-form-item
+                label="报废提醒时间(d)"
+                prop="discard_times">
+                <el-input v-model="formLabelAlign1.discard_times" />
+              </el-form-item>
               <!-- <el-form-item
-                label="剩余换区时间"
-                prop="lasttime">
-                <el-input v-model="formLabelAlign1.lasttime" />
+                label="是否报废"
+                prop="ifdiscard">
+                &lt;!&ndash; <el-input v-model="formLabelAlign1.ifdiscard" />&ndash;&gt;
+                <el-select
+                  v-model="formLabelAlign1.ifdiscard"
+                  placeholder="请选择"
+                  @change="if_or_change1">
+                  <el-option
+                    v-for="item in option"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.value"/>
+                </el-select>
               </el-form-item>-->
               <!--<el-form-item
                 label="检测报告"
@@ -636,7 +732,7 @@
             style="margin-left:80% "
             size="mini"
             type="danger"
-            @click="add_left()">添加</el-button>
+            @click="add_left()">轴承配对</el-button>
         </div>
         <Table-easy
           :is-pagination-show="false"
@@ -656,7 +752,7 @@
             <el-table-column
               label="轴承名称"
               prop="bearing_name" />
-            <el-table-column
+            <!-- <el-table-column
               label="开始时间"
               width="170"
               prop="usetime" />
@@ -674,7 +770,7 @@
               prop="total_times" />
             <el-table-column
               label="报废提醒时间"
-              prop="discard_times" />
+              prop="discard_times" />-->
             <el-table-column
               label="操作"
               min-width="300"
@@ -687,11 +783,11 @@
                 <el-button
                   size="mini"
                   type="warning"
-                  @click.stop="baofei_left(scope.row)">报废</el-button>
-                <el-button
+                  @click.stop="chaifen_left(scope.row)">拆分</el-button>
+                  <!-- <el-button
                   size="mini"
                   type="warning"
-                  @click.stop="kong_left(scope.row)">单次提醒置空</el-button>
+                  @click.stop="kong_left(scope.row)">单次提醒置空</el-button>-->
                   <!-- <el-button
                   size="mini"
                   type="danger"
@@ -704,10 +800,10 @@
       <el-col :span="12">
         <div class="main-title">密封件信息
           <el-button
-            style="margin-left:80% "
+            style="margin-left:70% "
             size="mini"
             type="danger"
-            @click="add_right()">添加</el-button>
+            @click="add_right()">密封件配对</el-button>
         </div>
         <Table-easy
           :is-pagination-show="false"
@@ -727,7 +823,7 @@
             <el-table-column
               label="密封件名称"
               prop="bearing_name" />
-            <el-table-column
+            <!--  <el-table-column
               width="170"
               label="开始时间"
               prop="usetime" />
@@ -745,7 +841,7 @@
               prop="total_times" />
             <el-table-column
               label="报废提醒时间"
-              prop="discard_times" />
+              prop="discard_times" />-->
             <el-table-column
               label="操作"
               min-width="300"
@@ -758,11 +854,11 @@
                 <el-button
                   size="mini"
                   type="warning"
-                  @click.stop="baofei_right(scope.row)">报废</el-button>
-                <el-button
+                  @click.stop="baofei_right(scope.row)">拆分</el-button>
+                  <!-- <el-button
                   size="mini"
                   type="warning"
-                  @click.stop="kong_right(scope.row)">单次提醒置空</el-button>
+                  @click.stop="kong_right(scope.row)">单次提醒置空</el-button>-->
                   <!-- <el-button
                 size="mini"
                 type="danger"
@@ -778,7 +874,7 @@
       :visible.sync="dialogVisible_left"
       :title="title_left"
       class="layout-dialog"
-      width="80%">
+      width="40%">
       <div class="layout-search">
         <el-form
           ref="addForm"
@@ -791,7 +887,7 @@
                 prop="chock_no">
                 <el-input v-model="formLabelAlign_left.chock_no" />
               </el-form-item>
-              <el-form-item
+              <!--  <el-form-item
                 label="轴承号"
                 prop="bearing_no">
                 <el-input v-model="formLabelAlign_left.bearing_no" />
@@ -800,21 +896,21 @@
                 label="轴承名称"
                 prop="bearing_name">
                 <el-input v-model="formLabelAlign_left.bearing_name" />
-              </el-form-item>
-              <!-- <el-form-item
-                label="安装位置"
-                prop="install_location_id">
+              </el-form-item>-->
+              <el-form-item
+                label="轴承选择"
+                prop="bearing_no">
                 <el-select
-                  v-model="formLabelAlign_left.install_location_id"
+                  v-model="formLabelAlign_left.bearing_no"
                   placeholder="请选择"
                   @change="install_location_id_change">
                   <el-option
-                    v-for="item in option4"
-                    :key="item.key"
-                    :label="item.value"
-                    :value="item.key"/>
+                    v-for="item in option20"
+                    :key="item.indocno"
+                    :label="item.bearing_no"
+                    :value="item.bearing_no"/>
                 </el-select>
-              </el-form-item>-->
+              </el-form-item>
             </el-col>
             <el-col :span="8">
               <!-- <el-form-item
@@ -822,7 +918,7 @@
                 prop="up_location">
                 <el-input v-model="formLabelAlign_left.up_location" />
               </el-form-item>-->
-              <el-form-item
+              <!--   <el-form-item
                 label="报废提醒时间/天"
                 prop="discard_times">
                 <el-input v-model="formLabelAlign_left.discard_times" />
@@ -840,7 +936,7 @@
                   value-format="yyyy-MM-dd HH:mm:ss"
                   type="datetime"
                   placeholder="投用时间"/>
-              </el-form-item>
+              </el-form-item>-->
               <!-- <el-form-item
                 label="报废时间"
                 prop="scraptime">
@@ -885,7 +981,7 @@
                 prop="chock_no">
                 <el-input v-model="formLabelAlign_right.chock_no" />
               </el-form-item>
-              <el-form-item
+            <!--  <el-form-item
                 label="密封件号"
                 prop="bearing_no">
                 <el-input v-model="formLabelAlign_right.bearing_no" />
@@ -894,56 +990,40 @@
                 label="密封件名称"
                 prop="bearing_name">
                 <el-input v-model="formLabelAlign_right.bearing_name" />
-              </el-form-item>
-              <!-- <el-form-item
-                label="安装位置"
-                prop="install_location_id">
-                <el-select
-                  v-model="formLabelAlign_left.install_location_id"
-                  placeholder="请选择"
-                  @change="install_location_id_change">
-                  <el-option
-                    v-for="item in option4"
-                    :key="item.key"
-                    :label="item.value"
-                    :value="item.key"/>
-                </el-select>
               </el-form-item>-->
             </el-col>
             <el-col :span="8">
-              <!-- <el-form-item
-                label="上机位置"
-                prop="up_location">
-                <el-input v-model="formLabelAlign_left.up_location" />
-              </el-form-item>-->
               <el-form-item
-                label="报废提醒时间/天"
-                prop="discard_times">
-                <el-input v-model="formLabelAlign_right.discard_times" />
-                <el-form-item
-                  label="密封件类型"
-                  prop="bearing_type">
-                  <el-input v-model="formLabelAlign_right.bearing_type" />
-                </el-form-item>
-                <el-form-item
-                  label="投用时间"
-                  prop="usetime">
-                  <el-date-picker
-                    v-model="formLabelAlign_right.usetime"
-                    value-format="yyyy-MM-dd HH:mm:ss"
-                    type="datetime"
-                    placeholder="投用时间"/>
-                </el-form-item>
-                <!-- <el-form-item
-                label="报废时间"
-                prop="scraptime">
-                <el-date-picker
-                  v-model="formLabelAlign_left.scraptime"
-                  value-format="yyyy-MM-dd HH:mm:ss"
-                  type="datetime"
-                  placeholder="报废时间"/>
-              </el-form-item>-->
-            </el-form-item></el-col>
+                label="密封件选择"
+                prop="bearing_no">
+                <el-select
+                  v-model="formLabelAlign_right.bearing_no"
+                  placeholder="请选择"
+                  @change="install_location_id_change2">
+                  <el-option
+                    v-for="item in option21"
+                    :key="item.indocno"
+                    :label="item.bearing_no"
+                    :value="item.bearing_no"/>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item
+                label="密封种类"
+                prop="seals_name">
+                <el-select
+                  v-model="formLabelAlign_right.seals_name"
+                  placeholder="请选择"
+                  @change="mifengzhong_change">
+                  <el-option
+                    v-for="item in option1"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.value"/>
+                </el-select>
+              </el-form-item>
+            </el-col>
           </el-row>
         </el-form>
       </div>
@@ -1016,6 +1096,8 @@ export default {
       option3: [],
       option4: [],
       option5: [],
+      option20: [],
+      option21: [],
       dialogVisible: false,
       dialogVisible1: false,
       disUpdateVisible: false,
@@ -1033,16 +1115,16 @@ export default {
     }
   },
   mounted() {
-    post('/dictionary/findMapV1', { dicno: 'frameteam' }).then(res => {
+    post('/dictionary/findMapV1', { dicno: 'if_or' }).then(res => {
       this.option = res.data //机架（直接使用）
     })
-    post('/dictionary/findMapV1', { dicno: 'proline' }).then(res => {
-      this.option1 = res.data //产线（直接使用）
+    post('/dictionary/findMapV1', { dicno: 'mifeng_all' }).then(res => {
+      this.option1 = res.data //密封件种类（直接使用）
     })
     post('/dictionary/findMapV1', { dicno: 'rolltype' }).then(res => {
       this.option2 = res.data //轧辊类型（直接使用）
     })
-    post('/dictionary/findMapV1', { dicno: 'chockstatus' }).then(res => {
+    post('/dictionary/findMapV1', { dicno: 'bearingPe' }).then(res => {
       this.option3 = res.data //轴承座状态（直接使用）
     })
 
@@ -1062,13 +1144,44 @@ export default {
         return 'setTable-row-class-name'
       }
     },
+    install_location_id_change(vId) {
+      let obj = {}
+      obj = this.option20.find(item => {
+        //这里的userList就是上面遍历的数据源
+        if (item.bearing_no == vId) {
+          this.formLabelAlign_left.bearing_no = item.bearing_no
+          this.formLabelAlign_left.indocno = item.indocno
+        }
+      })
+    },
+    install_location_id_change2(vId) {
+      let obj = {}
+      obj = this.option21.find(item => {
+        //这里的userList就是上面遍历的数据源
+        if (item.bearing_no == vId) {
+          this.formLabelAlign_right.bearing_no = item.bearing_no
+          this.formLabelAlign_right.indocno = item.indocno
+        }
+      })
+    },
+    mifengzhong_change(vId) {
+      let obj = {}
+      obj = this.option1.find(item => {
+        //这里的userList就是上面遍历的数据源
+        if (item.value == vId) {
+          this.formLabelAlign_right.seals_name = item.value
+          this.formLabelAlign_right.seals_type = item.key
+        }
+      })
+    },
+
     istatus_change(vId) {
       let obj = {}
       obj = this.option3.find(item => {
         //这里的userList就是上面遍历的数据源
-        if (item.key == vId) {
-          this.formLabelAlign.status = item.value
-          this.formLabelAlign.istatus = item.key
+        if (item.value == vId) {
+          this.formLabelAlign.factory_name = item.value
+          this.formLabelAlign.factory_id = item.key
         }
       })
     },
@@ -1083,16 +1196,6 @@ export default {
         }
       })
     },
-    production_line_id_change(vId) {
-      let obj = {}
-      obj = this.option1.find(item => {
-        //这里的userList就是上面遍历的数据源
-        if (item.key == vId) {
-          this.formLabelAlign.production_line = item.value
-          this.formLabelAlign.production_line_id = item.key
-        }
-      })
-    },
     roll_typeid_change(vId) {
       let obj = {}
       obj = this.option2.find(item => {
@@ -1100,17 +1203,6 @@ export default {
         if (item.key == vId) {
           this.formLabelAlign.roll_type = item.value
           this.formLabelAlign.roll_typeid = item.key
-        }
-      })
-    },
-
-    install_location_id_change(vId) {
-      let obj = {}
-      obj = this.option4.find(item => {
-        //这里的userList就是上面遍历的数据源
-        if (item.key == vId) {
-          this.formLabelAlign.install_location = item.value
-          this.formLabelAlign.install_location_id = item.key
         }
       })
     },
@@ -1131,13 +1223,13 @@ export default {
       obj = this.option3.find(item => {
         //这里的userList就是上面遍历的数据源
         if (item.value == vId) {
-          this.formLabelAlign1.status = item.value
-          this.formLabelAlign1.istatus = item.key
+          this.formLabelAlign1.factory_name = item.value
+          this.formLabelAlign1.factory_id = item.key
         }
       })
     },
 
-    frame_noid_change1(vId) {
+    if_or_change1(vId) {
       let obj = {}
       obj = this.option.find(item => {
         //这里的userList就是上面遍历的数据源
@@ -1215,8 +1307,98 @@ export default {
       this.dialogVisible = false
       this.findAll()
     },
+
+    baofei(data) {
+      this.$confirm('此操作将报废该数据, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('/baseChock/updateDiscardTime', {
+            indocno: data.indocno
+          }).then(res => {
+            if (res) {
+              this.$message({
+                type: 'success',
+                message: '报废成功!'
+              })
+              this.findAll()
+            }
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消报废'
+          })
+        })
+    },
+    baofei_off(data) {
+      this.$confirm('此操作将取消报废该数据, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('baseBearing/updateDiscardTimeCancel', {
+            indocno: data.indocno
+          }).then(res => {
+            if (res) {
+              this.$message({
+                type: 'success',
+                message: '取消报废成功!'
+              })
+              this.findAll()
+            }
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消报废'
+          })
+        })
+    },
+    kong(data) {
+      this.$confirm('此操作将置空单次提醒该数据, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('/baseChock/updateSingleTimes', {
+            indocno: data.indocno
+          }).then(res => {
+            if (res) {
+              this.$message({
+                type: 'success',
+                message: '置空成功!'
+              })
+              this.findAll()
+            }
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消置空单次提醒'
+          })
+        })
+    },
+
     //子项左边
     add_left() {
+      //测试 选择所有轴承
+      post('baseBearing/findListByBearingType', {
+        BaseBearing: {
+          chock_no: this.chock_no_1,
+          bearing_type: 1 //2为密封件1为轴承，
+        }
+      }).then(res => {
+        this.option20 = res.data
+      })
+
       this.formLabelAlign_left = {}
       this.formLabelAlign_left.chock_no = this.chock_no_1
       this.dialogVisible_left = true
@@ -1233,7 +1415,8 @@ export default {
       this.dialogVisible_left = false
       this.formLabelAlign_left.bearing_type = 1
       if (this.chioce_left) {
-        post('baseBearing/insert', {
+        //轴承拆分和组合
+        post('baseBearing/updateByChockNo', {
           BaseBearing: this.formLabelAlign_left
         }).then(res => {
           // this.tableData1 = res
@@ -1255,27 +1438,30 @@ export default {
         condition: {
           chock_no: this.chock_no_1,
           bearing_type: 1, //2为密封件1为轴承，
-          ifdiscard: 0
+          ifdiscard: 0 //是否报废 0为正常1为报废
         }
       }).then(res => {
         this.tableData1 = res.data
         this.total = res.count
       })
     },
-    baofei_left(data) {
-      this.$confirm('此操作将报废该数据, 是否继续?', '提示', {
+    chaifen_left(data) {
+      this.$confirm('此操作将拆分该数据, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       })
         .then(() => {
-          post('/baseBearing/updateDiscardTime', {
-            indocno: data.indocno
+          post('baseBearing/updateByChockNo', {
+            BaseBearing: {
+              indocno: data.indocno,
+              chock_no: ''
+            }
           }).then(res => {
             if (res) {
               this.$message({
                 type: 'success',
-                message: '报废成功!'
+                message: '拆分成功!'
               })
               this.find_left()
             }
@@ -1288,34 +1474,18 @@ export default {
           })
         })
     },
-    kong_left(data) {
-      this.$confirm('此操作将置空单次提醒该数据, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-        .then(() => {
-          post('/baseBearing/updateSingleTimes', {
-            indocno: data.indocno
-          }).then(res => {
-            if (res) {
-              this.$message({
-                type: 'success',
-                message: '报废成功!'
-              })
-              this.find_left()
-            }
-          })
-        })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消置空单次提醒'
-          })
-        })
-    },
     //子项右边
     add_right() {
+      //测试 选择所有密封件
+      post('baseBearing/findListByBearingType', {
+        BaseBearing: {
+          chock_no: this.chock_no_1,
+          bearing_type: 2 //2为密封件1为轴承，
+        }
+      }).then(res => {
+        this.option21 = res.data
+      })
+
       this.formLabelAlign_right = {}
       this.formLabelAlign_right.chock_no = this.chock_no_1
       this.dialogVisible_right = true
@@ -1332,7 +1502,7 @@ export default {
       this.dialogVisible_right = false
       this.formLabelAlign_right.bearing_type = 2
       if (this.chioce_right) {
-        post('baseBearing/insert', {
+        post('baseBearing/updateByChockNo', {
           BaseBearing: this.formLabelAlign_right
         }).then(res => {
           // this.tableData1 = res
@@ -1362,14 +1532,17 @@ export default {
       })
     },
     baofei_right(data) {
-      this.$confirm('此操作将报废该数据, 是否继续?', '提示', {
+      this.$confirm('此操作将拆分该数据, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       })
         .then(() => {
-          post('/baseBearing/updateDiscardTime', {
-            indocno: data.indocno
+          post('baseBearing/updateByChockNo', {
+            BaseBearing: {
+              indocno: data.indocno,
+              chock_no: ''
+            }
           }).then(res => {
             if (res) {
               this.$message({

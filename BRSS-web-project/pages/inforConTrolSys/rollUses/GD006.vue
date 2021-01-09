@@ -1,32 +1,14 @@
 <template>
   <div>
-    <!-- 轧制计划选择 -->
-    <div class="layout-block layout-search">
+    <!-- 全部辊选择 -->
+    <div
+      class="layout-block layout-search"
+      style="height: 40px">
       <el-form
         ref="ruleForm"
         :inline="true"
         :model="jihua"
         class="GD-plan-form">
-        <el-form-item
-          prop="plan">
-          <el-select
-            v-model="jihua.plan"
-            placeholder="轧制计划选择"
-            @change="planChange(jihua.plan)">
-            <el-option
-              v-for="item in option_100"
-              :key="item.key"
-              :label="item.value"
-              :value="item.value"/>
-          </el-select>
-        </el-form-item>
-        <el-form-item>
-          <el-button
-            type="success"
-            size="mini"
-            @click="plan_send()">备辊请求
-          </el-button>
-        </el-form-item>
         <el-form-item style="float: right;padding-right: 10px">
           <el-button
             type="primary"
@@ -35,30 +17,6 @@
           </el-button>
         </el-form-item>
       </el-form>
-    </div>
-    <div >
-      <el-row :gutter="5">
-        <el-col :span="12">
-          <div class="layout-search-header">规则1</div>
-          <div style="color:greenyellow;margin-top: 5px;margin-bottom: 5px; padding-top: 4px;padding-bottom: 4px ; padding-left: 25px;width: 100%;background-color: #253F80;font-size: 14px;height:40px;overflow-y: auto ">
-            <div
-              v-for="(rowVal, rowIndex) in zhans1"
-              :key="rowIndex"> {{ rowIndex+1+ '  备辊:'+rowVal.value+'的范围为:  '+rowVal.value1_2+'--'+rowVal.value1_1 }}
-            </div>
-            <div v-show="zhans1.length == 0">暂无数据</div>
-          </div>
-
-        </el-col>
-        <el-col :span="12">
-          <div class="layout-search-header">规则2</div>
-          <div style="color:greenyellow;margin-top: 5px;margin-bottom: 5px; padding-top: 4px; ;padding-bottom: 4px ; padding-left: 25px;width: 100%;background-color: #253F80;font-size: 14px;;height:40px;overflow-y: auto ">
-            <div
-              v-for="(rowVal, rowIndex) in zhans2"
-              :key="rowIndex"> {{ rowIndex+1+ '  备辊:  '+rowVal.value+'的范围为:  '+rowVal.value1_2+'--'+rowVal.value1_1 }}     </div>
-            <div v-show="zhans2.length == 0">暂无数据</div>
-          </div>
-        </el-col>
-      </el-row>
     </div>
     <div>
       <el-row :gutter="10">
@@ -88,11 +46,15 @@
                             v-for="(rowVal, rowIndex) in tableData"
                             :key="rowIndex">
                             <td>{{ rowVal.key }}</td>
-                            <!-- <td>{{ rowVal.roll_type }}</td>-->
                             <td
                               :class="rowIndex == clickrow ? 'dianji' : ''"
                               @click="huan_click(rowIndex, rowVal)"
-                            >{{ rowVal.value }}</td>
+                            >{{ rowVal.valueName }}</td>
+                            <!-- <td>{{ rowVal.roll_type }}</td>-->
+                            <!-- <td
+                              :class="rowIndex == clickrow ? 'dianji' : ''"
+                              @click="huan_click(rowIndex, rowVal)"
+                            >{{ rowVal.value }}</td>-->
                           </tr>
                         </tbody>
                     </table></div>
@@ -129,7 +91,7 @@
                                   <el-option
                                     v-for="item in option_1"
                                     :key="item.key"
-                                    :label="item.value"
+                                    :label="item.valueName"
                                     :value="item.value"/>
                                 </el-select>
                                 &nbsp;&nbsp;&nbsp;&nbsp;数量为: {{ count_length1 }}&nbsp;对
@@ -148,7 +110,7 @@
                                   <el-option
                                     v-for="item in option_2"
                                     :key="item.key"
-                                    :label="item.value"
+                                    :label="item.valueName"
                                     :value="item.value"/>
                                 </el-select>
                                 &nbsp;&nbsp;&nbsp;&nbsp;数量为: {{ count_length2 }}&nbsp;对
@@ -167,7 +129,7 @@
                                   <el-option
                                     v-for="item in option_3"
                                     :key="item.key"
-                                    :label="item.value"
+                                    :label="item.valueName"
                                     :value="item.value"/>
                                 </el-select>
                                 &nbsp;&nbsp;&nbsp;&nbsp;数量为: {{ count_length3 }}&nbsp;对
@@ -186,7 +148,7 @@
                                   <el-option
                                     v-for="item in option_4"
                                     :key="item.key"
-                                    :label="item.value"
+                                    :label="item.valueName"
                                     :value="item.value"/>
                                 </el-select>
                                 &nbsp;&nbsp;&nbsp;&nbsp;数量为: {{ count_length4 }}&nbsp;对
@@ -205,7 +167,7 @@
                                   <el-option
                                     v-for="item in option_5"
                                     :key="item.key"
-                                    :label="item.value"
+                                    :label="item.valueName"
                                     :value="item.value"/>
                                 </el-select>
                                 &nbsp;&nbsp;&nbsp;&nbsp;数量为: {{ count_length5 }}&nbsp;对
@@ -224,7 +186,7 @@
                                   <el-option
                                     v-for="item in option_6"
                                     :key="item.key"
-                                    :label="item.value"
+                                    :label="item.valueName"
                                     :value="item.value"/>
                                 </el-select>
                                 &nbsp;&nbsp;&nbsp;&nbsp;数量为: {{ count_length6 }}&nbsp;对
@@ -243,10 +205,29 @@
                                   <el-option
                                     v-for="item in option_7"
                                     :key="item.key"
-                                    :label="item.value"
+                                    :label="item.valueName"
                                     :value="item.value"/>
                                 </el-select>
                                 &nbsp;&nbsp;&nbsp;&nbsp;数量为: {{ count_length7 }}&nbsp;对
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>机架8</td>
+                            <td>
+                              <div class="layout-one-input1">
+                                <el-select
+                                  v-model="formatte.roll_8"
+                                  placeholder="请选择"
+                                  clearable
+                                  @change="rollTypeChange(formatte.roll_8,'F8',8)">
+                                  <el-option
+                                    v-for="item in option_8"
+                                    :key="item.key"
+                                    :label="item.valueName"
+                                    :value="item.value"/>
+                                </el-select>
+                                &nbsp;&nbsp;&nbsp;&nbsp;数量为: {{ count_length8 }}&nbsp;对
                               </div>
                             </td>
                           </tr>
@@ -1266,6 +1247,7 @@ export default {
       count_length5: 0,
       count_length6: 0,
       count_length7: 0,
+      count_length8: 0,
       option_1: [],
       option_2: [],
       option_3: [],
@@ -1273,6 +1255,7 @@ export default {
       option_5: [],
       option_6: [],
       option_7: [],
+      option_8: [],
       option_100: [],
       formatte: {},
       radio: '0',
@@ -1394,7 +1377,8 @@ export default {
     post('/rollPrelist/findpo ').then(res => {
       this.option_100 = res //轧制计划
     })
-    this.himit_give()
+    //this.himit_give()
+    this.java_select()
     this.find_elec()
   },
   methods: {
@@ -1725,7 +1709,8 @@ export default {
             res[3],
             res[4],
             res[5],
-            res[6]
+            res[6],
+            res[7]
           )
         }
         //班组
@@ -1788,6 +1773,7 @@ export default {
       this.option_5 = []
       this.option_6 = []
       this.option_7 = []
+      this.option_8 = []
       this.count_length1 = 0
       this.count_length2 = 0
       this.count_length3 = 0
@@ -1844,89 +1830,6 @@ export default {
         })
       })
     },
-    //轧制计划发送
-    plan_send() {
-      this.option_1 = []
-      this.option_2 = []
-      this.option_3 = []
-      this.option_4 = []
-      this.option_5 = []
-      this.option_6 = []
-      this.option_7 = []
-      this.zhans1 = []
-      this.zhans2 = []
-      this.count_length1 = 0
-      this.count_length2 = 0
-      this.count_length3 = 0
-      this.count_length4 = 0
-      this.count_length5 = 0
-      this.count_length6 = 0
-      this.count_length7 = 0
-      //发送python
-      pythonPOST('/python/RollChangingCarLoad/', {
-        pdiplanNo: this.jihua.plan
-      }).then(res => {
-        this.option_1 = res.data[2][0]
-        this.option_2 = res.data[2][1]
-        this.option_3 = res.data[2][2]
-        this.option_4 = res.data[2][3]
-        this.option_5 = res.data[2][4]
-        this.option_6 = res.data[2][5]
-        this.option_7 = res.data[2][6]
-        this.count_length1 = this.option_1.length
-        this.count_length2 = this.option_2.length
-        this.count_length3 = this.option_3.length
-        this.count_length4 = this.option_4.length
-        this.count_length5 = this.option_5.length
-        this.count_length6 = this.option_6.length
-        this.count_length7 = this.option_7.length
-        // this.find_select() //下拉框select 接口
-        //数据1
-        var t1 = res.data[0][0].length
-        for (let i = 0; t1 > i; i++) {
-          this.zhans1.push({
-            value: res.data[0][4][i],
-            value1_1: res.data[0][1][i][0],
-            value1_2: res.data[0][1][i][1]
-          })
-        }
-        //数据2
-        var t2 = res.data[1][0].length
-        for (let i = 0; t2 > i; i++) {
-          this.zhans2.push({
-            value: res.data[1][4][i],
-            value1_1: res.data[1][1][i][0],
-            value1_2: res.data[1][1][i][1]
-          })
-        }
-        console.log(this.zhans1, this.zhans2)
-        setTimeout(() => {
-          var send = [this.zhans1, this.zhans2]
-          //换辊取消清空发送推送消息
-          post('workFlow/pushnew', {
-            getUserid: 48,
-            getUser: '磨床主操PAD',
-            modular_no: 'gr',
-            smessage: '备辊小车有消息，请注意',
-            area_name: send
-          }).then(res => {})
-          //发送中间间
-          post('webservice/sendTagNew', {
-            tagList: [{ name: 'Tmp_PlanNo', value: this.jihua.plan }]
-          })
-        }, 3000)
-
-        // this.loading = true
-      })
-
-      /* if (this.quanxian == 30) {
-      } else {
-        this.$message({
-          type: 'success',
-          message: '只有2250轧机操作才有权限'
-        })
-      }*/
-    },
     //java_select备用查询
     java_select() {
       this.option_1 = []
@@ -1936,6 +1839,7 @@ export default {
       this.option_5 = []
       this.option_6 = []
       this.option_7 = []
+      this.option_8 = []
       this.zhans1 = []
       this.zhans2 = []
       this.count_length1 = 0
@@ -1945,6 +1849,7 @@ export default {
       this.count_length5 = 0
       this.count_length6 = 0
       this.count_length7 = 0
+      this.count_length8 = 0
       post('/rollPrelist/findByPageNew', {
         null: ''
       }).then(res => {
@@ -1955,6 +1860,7 @@ export default {
         this.option_5 = res.data[4]
         this.option_6 = res.data[5]
         this.option_7 = res.data[6]
+        this.option_8 = res.data[7]
         this.count_length1 = this.option_1.length
         this.count_length2 = this.option_2.length
         this.count_length3 = this.option_3.length
@@ -1962,6 +1868,7 @@ export default {
         this.count_length5 = this.option_5.length
         this.count_length6 = this.option_6.length
         this.count_length7 = this.option_7.length
+        this.count_length8 = this.option_8.length
       })
     },
     //轧制计划选择change事件
@@ -2045,13 +1952,22 @@ export default {
             frame_no: 'F7'
           }
           break
+        case 'F8':
+          this.all_data[7] = {
+            roll_no: vId,
+            idotype: 1, //待审核，黄色
+            sdotype: 0, //精轧
+            frame_noid: 15,
+            frame_no: 'F8'
+          }
+          break
       }
       console.log(this.all_data)
     },
     //弹窗需要发送信息
     chakan() {
       this.tableData_tan = []
-      this.repeat(0, 7)
+      this.repeat(0, 8)
       //班组
       post('/sysBz/findbz').then(res => {
         this.group1 = res.bc
@@ -2112,7 +2028,7 @@ export default {
     send_1() {
       this.tan = false
       //发送备辊信息
-      this.send_repeat(0, 7)
+      this.send_repeat(0, 8)
       //发送Java保存
       this.send_java(0, this.tableData_tan.length)
       setTimeout(() => {
@@ -2198,7 +2114,8 @@ export default {
             res[3],
             res[4],
             res[5],
-            res[6]
+            res[6],
+            res[7]
           )
         }
       })
@@ -2649,8 +2566,8 @@ export default {
 }
 .layout-one-input1 /deep/.el-input .el-input__inner {
   background-color: #1a367a;
-  min-width: 170px;
-  max-width: 180px;
+  min-width: 290px;
+  max-width: 310px;
   height: 28px;
   font-size: 14px;
   color: #eae8c5;

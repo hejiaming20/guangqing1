@@ -903,4 +903,7 @@ export default {
 .el-table .success-row {
   background: #1a367a !important;
 }
+.el-select-dropdown__wrap {
+  max-height: 380px;
+}
 </style>

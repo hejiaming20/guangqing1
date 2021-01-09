@@ -91,6 +91,10 @@
                 size="mini"
                 type="primary"
                 @click="resetForm('ruleForm')">重置</el-button>
+              <el-button
+                size="mini"
+                type="primary"
+                @click="add_right()">添加</el-button>
             </div>
           </el-col>
         </el-row>
@@ -111,20 +115,23 @@
           label="开始时间"
           prop="usetime" />
         <el-table-column
-          label="单次累计时间"
+          label="单次累计时间(d)"
           prop="single_times" />
         <el-table-column
-          label="间隔时间"
+          label="间隔时间(d)"
           prop="interval_times" />
         <el-table-column
           label="提醒处理次数"
           prop="reminder_times" />
         <el-table-column
-          label="总累计时间"
+          label="总累计时间(d)"
           prop="total_times" />
         <el-table-column
-          label="报废提醒时间"
+          label="报废提醒时间(d)"
           prop="discard_times" />
+        <el-table-column
+          label="报废时间"
+          prop="discard_time" />
         <el-table-column
           label="操作"
           min-width="300"
@@ -134,6 +141,18 @@
               size="mini"
               type="warning"
               @click.stop="handleEdit_right(scope.row)">修改</el-button>
+            <el-button
+              size="mini"
+              type="warning"
+              @click.stop="baofei_right(scope.row)">报废</el-button>
+            <el-button
+              size="mini"
+              type="warning"
+              @click.stop="baofei_right_off(scope.row)">取消报废</el-button>
+            <el-button
+              size="mini"
+              type="warning"
+              @click.stop="kong_right(scope.row)">单次提醒置空</el-button>
               <!-- <el-button
           size="mini"
           type="danger"
@@ -155,11 +174,11 @@
           label-width="120px">
           <el-row>
             <el-col :span="8">
-              <el-form-item
+              <!--<el-form-item
                 label="轴承座号"
                 prop="chock_no">
                 <el-input v-model="formLabelAlign_right.chock_no" />
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="密封件号"
                 prop="bearing_no">
@@ -170,20 +189,20 @@
                 prop="bearing_name">
                 <el-input v-model="formLabelAlign_right.bearing_name" />
               </el-form-item>
-              <!-- <el-form-item
-                label="安装位置"
+              <el-form-item
+                label="厂家"
                 prop="install_location_id">
                 <el-select
-                  v-model="formLabelAlign_left.install_location_id"
+                  v-model="formLabelAlign_right.factory_name"
                   placeholder="请选择"
-                  @change="install_location_id_change">
+                  @change="istatus_change">
                   <el-option
-                    v-for="item in option4"
+                    v-for="item in option3"
                     :key="item.key"
                     :label="item.value"
-                    :value="item.key"/>
+                    :value="item.value"/>
                 </el-select>
-              </el-form-item>-->
+              </el-form-item>
             </el-col>
             <el-col :span="8">
               <!-- <el-form-item
@@ -192,22 +211,22 @@
                 <el-input v-model="formLabelAlign_left.up_location" />
               </el-form-item>-->
               <el-form-item
-                label="间隔时间"
+                label="间隔时间(d)"
                 prop="interval_times">
                 <el-input v-model="formLabelAlign_right.interval_times" />
               </el-form-item>
               <el-form-item
-                label="报废提醒时间/天"
+                label="报废提醒时间(d)"
                 prop="discard_times">
                 <el-input v-model="formLabelAlign_right.discard_times" />
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 label="密封件类型"
                 prop="bearing_type">
                 <el-input v-model="formLabelAlign_right.bearing_type" />
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
-                label="投用时间"
+                label="第一次投用时间"
                 prop="usetime">
                 <el-date-picker
                   v-model="formLabelAlign_right.usetime"
@@ -323,8 +342,8 @@ export default {
     post('/dictionary/findMapV1', { dicno: 'rolltype' }).then(res => {
       this.option2 = res.data //轧辊类型（直接使用）
     })
-    post('/dictionary/findMapV1', { dicno: 'chockstatus' }).then(res => {
-      this.option3 = res.data //轴承座状态（直接使用）
+    post('/dictionary/findMapV1', { dicno: 'bearing_m' }).then(res => {
+      this.option3 = res.data //密封件厂家（直接使用）
     })
 
     post('/dictionary/findMapV1', { dicno: 'installlocation' }).then(res => {
@@ -341,9 +360,9 @@ export default {
       let obj = {}
       obj = this.option3.find(item => {
         //这里的userList就是上面遍历的数据源
-        if (item.key == vId) {
-          this.formLabelAlign.status = item.value
-          this.formLabelAlign.istatus = item.key
+        if (item.value == vId) {
+          this.formLabelAlign.factory_name = item.value
+          this.formLabelAlign.factory_id = item.key
         }
       })
     },
@@ -525,7 +544,12 @@ export default {
     },
     //子项右边
     add_right() {
-      this.formLabelAlign_right = {}
+      this.formLabelAlign_right = {
+        single_times: 0, //单次提醒时间
+        reminder_times: 0, //提醒处理次数
+        total_times: 0, //总累计时间
+        bearing_type: 2
+      }
       this.formLabelAlign_right.chock_no = this.chock_no_1
       this.dialogVisible_right = true
       this.chioce_right = true
@@ -555,6 +579,84 @@ export default {
           // this.tableData1 = res
         })
       }
+    },
+    baofei_right(data) {
+      this.$confirm('此操作将报废该数据, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('/baseBearing/updateDiscardTime', {
+            indocno: data.indocno
+          }).then(res => {
+            if (res) {
+              this.$message({
+                type: 'success',
+                message: '报废成功!'
+              })
+              this.findAll()
+            }
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消报废'
+          })
+        })
+    },
+    baofei_right_off(data) {
+      this.$confirm('此操作将取消报废该数据, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('baseChock/updateDiscardTimeCancel', {
+            indocno: data.indocno
+          }).then(res => {
+            if (res) {
+              this.$message({
+                type: 'success',
+                message: '取消报废成功!'
+              })
+              this.findAll()
+            }
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消'
+          })
+        })
+    },
+    kong_right(data) {
+      this.$confirm('此操作将置空单次提醒该数据, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('/baseBearing/updateSingleTimes', {
+            indocno: data.indocno
+          }).then(res => {
+            if (res) {
+              this.$message({
+                type: 'success',
+                message: '报废成功!'
+              })
+              this.findAll()
+            }
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消置空单次提醒'
+          })
+        })
     },
     find_right() {
       post('baseBearing/findByPage', {

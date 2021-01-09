@@ -1,9 +1,24 @@
 <template>
   <div>
+    <el-row :gutter="5">
+      <div style="color:greenyellow;margin-top: 5px;margin-bottom: 5px; padding-top: 4px;padding-bottom: 4px ; padding-left: 25px;width: 100%;background-color: #253F80;font-size: 14px;height:40px;overflow-y: auto ">
+        说明：径差=上辊-下辊 （此为轧辊配对辅助页面，为正说明上辊大，配对时配对径差小于该页面设置的径差就可以配对）
+      </div>
+
+      <!--<el-col :span="12">
+        <div class="layout-search-header">规则2</div>
+        <div style="color:greenyellow;margin-top: 5px;margin-bottom: 5px; padding-top: 4px; ;padding-bottom: 4px ; padding-left: 25px;width: 100%;background-color: #253F80;font-size: 14px;;height:40px;overflow-y: auto ">
+          <div
+            v-for="(rowVal, rowIndex) in zhans2"
+            :key="rowIndex"> {{ rowIndex+1+ '  备辊:  '+rowVal.value+'的范围为:  '+rowVal.value1_2+'&#45;&#45;'+rowVal.value1_1 }}     </div>
+          <div v-show="zhans2.length == 0">暂无数据</div>
+        </div>
+      </el-col>-->
+    </el-row>
     <Table-easy
       :table-data="tableData"
       :total="total"
-      :table-height="'calc(100vh - 210px)'"
+      :table-height="'calc(100vh - 410px)'"
       @handle-current-change="handleCurrentChange"
       @handle-size-change="handleSizeChange">
       <template slot="TableHead">
@@ -76,7 +91,7 @@
           label="机架"/>
         <el-table-column
           prop="rollerradius"
-          label="径差"/>
+          label="径差(mm)"/>
         <el-table-column
           prop="createtime"
           label="时间"/>
@@ -98,6 +113,11 @@
         </el-table-column>
       </template>
     </Table-easy>
+    <div>
+      上辊减去下辊为正说明上辊大
+
+
+    </div>
     <!-- 添加/编辑弹窗 -->
     <el-dialog
       :visible.sync="dialogVisible"
@@ -135,7 +155,7 @@
               </el-form-item>
 
               <el-form-item
-                label="径差"
+                label="径差(mm)"
                 prop="rollerradius">
                 <el-input v-model="formLabelAlign.rollerradius" />
               </el-form-item>
