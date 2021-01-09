@@ -145,7 +145,11 @@
               width="180px"
               label="OS侧"/>
             <el-table-column
-              label="OS侧操作"
+              prop="dbearing_chock"
+              width="180px"
+              label="DS侧"/>
+            <el-table-column
+              label="操作"
               min-width="150"
               align="center">
               <template slot-scope="scope">
@@ -159,11 +163,7 @@
                   @click.stop="chaifen1(scope.row)">拆分</el-button>
               </template>
             </el-table-column>
-            <el-table-column
-              prop="dbearing_chock"
-              width="180px"
-              label="DS侧"/>
-            <el-table-column
+            <!-- <el-table-column
               label="DS侧操作"
               min-width="150"
               align="center">
@@ -177,7 +177,7 @@
                   type="warning"
                   @click.stop="chaifen2(scope.row)">拆分</el-button>
               </template>
-            </el-table-column>
+            </el-table-column>-->
             <!--  <el-table-column
               prop="roll_revolve_value"
               width="80px"
@@ -215,7 +215,7 @@
             </el-col>
             <el-col :span="6">
               <el-form-item
-                label="轴承座选择"
+                label="OS轴承座选择"
                 prop="chock_no">
                 <el-select
                   v-model="formLabelAlign.chock_no"
@@ -223,6 +223,22 @@
                   @change="install_location_id_change">
                   <el-option
                     v-for="item in option20"
+                    :key="item.indocno"
+                    :label="item.chock_no"
+                    :value="item.chock_no"/>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item
+                label="DS轴承座选择"
+                prop="chock_no">
+                <el-select
+                  v-model="formLabelAlign.chock_no1"
+                  placeholder="请选择"
+                  @change="install_location_id_change1">
+                  <el-option
+                    v-for="item in option21"
                     :key="item.indocno"
                     :label="item.chock_no"
                     :value="item.chock_no"/>
@@ -448,7 +464,7 @@ export default {
     hebing1(data) {
       if (data.obearing_chock) {
         this.$message({
-          message: '有os轴承座',
+          message: '有轴承座号',
           type: 'success'
         })
       } else {
@@ -464,16 +480,34 @@ export default {
           this.option20 = res.data
         })
 
+        //测试 DS选择所有轴承座
+        post('baseChock/findListByBaseChock', {
+          BaseChock: {
+            roll_no: data.roll_no,
+            install_location_id: 2 //os为1  ds为2
+          }
+        }).then(res => {
+          this.option21 = res.data
+        })
+
         this.dialogVisible = true
       }
     },
     submit() {
       if (this.formLabelAlign) {
         // 提交合并
-        this.all_need.roll_no = this.hebing_rollno
+        this.all_need.roll_no = this.hebing_rollno //OS
+        this.all_need1.roll_no = this.hebing_rollno //DS
         post('baseChock/update', {
           BaseChock: this.all_need
         }).then(res => {
+          //DS
+          post('baseChock/update', {
+            BaseChock: this.all_need1
+          }).then(res => {
+            this.findAll()
+          })
+
           if (res.status == 2000) {
             this.$message({
               message: '合并成功',
@@ -501,6 +535,7 @@ export default {
           type: 'warning'
         })
           .then(() => {
+            //OS
             post('baseChock/findByChockNo', {
               BaseChock: {
                 chock_no: data.obearing_chock
@@ -512,13 +547,27 @@ export default {
               post('baseChock/update', {
                 BaseChock: all
               }).then(res => {
-                if (res) {
-                  this.$message({
-                    type: 'success',
-                    message: '拆分成功!'
+                //DS
+                post('baseChock/findByChockNo', {
+                  BaseChock: {
+                    chock_no: data.dbearing_chock
+                  }
+                }).then(res => {
+                  var all_1 = res
+                  all_1.roll_no = ''
+                  //拆分
+                  post('baseChock/update', {
+                    BaseChock: all_1
+                  }).then(res => {
+                    if (res) {
+                      this.$message({
+                        type: 'success',
+                        message: '拆分成功!'
+                      })
+                      this.findAll()
+                    }
                   })
-                  this.findAll()
-                }
+                })
               })
             })
           })
@@ -530,7 +579,7 @@ export default {
           })
       } else {
         this.$message({
-          message: 'os轴承座为空',
+          message: '轴承座为空',
           type: 'success'
         })
       }
