@@ -2063,29 +2063,42 @@ export default {
             rollPrelistHistory: this.all_data[num],
             mut: 0
           }).then(res => {
-            post('webservice/sendTagNew', {
-              tagList: [
-                {
-                  name: 'RC_CAR_ROLL_TYPE',
-                  value: this.all_data[num].roll_type
-                },
-                { name: 'RC_CAR_STANDNO', value: this.all_data[num].frame_no },
-                { name: 'ROLL_PUT_INTO_RC_CAR', value: '1' }
-              ]
-            }).then(res => {
-              console.log('11111', res)
-
-              setTimeout(() => {
+            setTimeout(() => {
+              console.log(this.all_data[num].roll_no)
+              // debugger
+              post('webservice/sendTagNew', {
+                tagList: [
+                  {
+                    name: 'SEND_ROLL_NO',
+                    value: this.all_data[num].roll_no
+                  },
+                  {
+                    name: 'RC_CAR_ROLL_TYPE',
+                    value: this.all_data[num].roll_type
+                  },
+                  {
+                    name: 'RC_CAR_STANDNO',
+                    value: this.all_data[num].frame_no
+                  },
+                  { name: 'ROLL_PUT_INTO_RC_CAR', value: '1' }
+                ]
+              }).then(res => {
+                console.log('11111', res)
+                if (++num < length) {
+                  this.send_repeat(num, length)
+                }
+                /* setTimeout(() => {
                 post('webservice/sendTagNew', {
                   tagList: [{ name: 'ROLL_PUT_INTO_RC_CAR', value: '0' }]
                 })
-              }, 400)
-            })
+              }, 400)*/
+              })
+            }, 400)
 
             var data = res.data
-            if (++num < length) {
+            /*  if (++num < length) {
               this.send_repeat(num, length)
-            }
+            }*/
             //  this.refresh()
           })
         } else {
