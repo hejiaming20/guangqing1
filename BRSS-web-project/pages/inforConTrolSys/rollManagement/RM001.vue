@@ -348,9 +348,9 @@
             <el-col :span="6">
               <el-form-item
                 label="机架范围"
-                prop="framerangeid">
+                prop="framerange">
                 <el-select
-                  v-model="formLabelAlign.framerangeid"
+                  v-model="formLabelAlign.framerange"
                   placeholder="请选择"
                   clearable
                   @change="handleFrameChange">
@@ -358,7 +358,7 @@
                     v-for="item in frameArray"
                     :key="item.key"
                     :label="item.value"
-                    :value="Number(item.key)"/>
+                    :value="item.value"/>
                 </el-select>
               </el-form-item>
               <el-form-item
@@ -1084,8 +1084,9 @@ export default {
     },
     handleFrameChange() {
       this.frameArray.forEach(item => {
-        if (item.key == this.formLabelAlign.framerangeid) {
+        if (item.value == this.formLabelAlign.framerangeid) {
           this.formLabelAlign.framerange = item.value
+          this.formLabelAlign.framerangeid = item.key
         }
       })
     },

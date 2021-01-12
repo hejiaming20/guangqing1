@@ -440,10 +440,10 @@
                           </el-button>-->
                         </td>
                       </tr>
-                      <!--R1粗轧工作辊-->
+                      <!-- F8精轧支撑辊-->
                       <tr>
                         <td>
-                          R1粗轧工作辊
+                          F8精轧支撑辊
                         </td>
                         <td>
                           <div class="layout-one-input">
@@ -488,10 +488,10 @@
                           </el-button>-->
                         </td>
                       </tr>
-                      <!--R2粗轧工作辊-->
+                      <!--R1粗轧工作辊-->
                       <tr>
                         <td>
-                          R2粗轧工作辊
+                          R1粗轧工作辊
                         </td>
                         <td>
                           <div class="layout-one-input">
@@ -584,17 +584,16 @@
                           </el-button>-->
                         </td>
                       </tr>
-                      <!--R2粗轧支撑辊-->
+                      <!--F1E精轧立辊-->
                       <tr>
                         <td>
-                          R2粗轧支撑辊
+                          FE精轧立辊
                         </td>
                         <td>
                           <div class="layout-one-input">
                             <el-select
                               v-model="formatte.roll_11"
                               placeholder="请选择"
-                              clearable
                               @change="rollTypeChange11(formatte.roll_11,'F4',4)">
                               <el-option
                                 v-for="item in option_11"
@@ -609,7 +608,6 @@
                             <el-select
                               v-model="formatte1.roll_11"
                               placeholder="请选择"
-                              clearable
                               @change="rollTypeChange11(formatte1.roll_11,'F3',3)">
                               <el-option
                                 v-for="item in aoption_11"
@@ -625,17 +623,17 @@
                             size="mini"
                             @click="chaxun11()">详情
                           </el-button>
-                          <!--<el-button
+                          <!-- <el-button
                             type="primary"
                             size="mini"
-                            @click="send_message11()">备辊请求
+                            @click="send_message12()">备辊请求
                           </el-button>-->
                         </td>
                       </tr>
-                      <!--F1E精轧立辊-->
+                      <!--E1粗轧立辊-->
                       <tr>
                         <td>
-                          F1E精轧立辊
+                          E1粗轧立辊
                         </td>
                         <td>
                           <div class="layout-one-input">
@@ -674,148 +672,11 @@
                           <!-- <el-button
                             type="primary"
                             size="mini"
-                            @click="send_message12()">备辊请求
-                          </el-button>-->
-                        </td>
-                      </tr>
-                      <!--R2粗轧工作辊-->
-                      <tr>
-                        <td>
-                          R1E粗轧立辊
-                        </td>
-                        <td>
-                          <div class="layout-one-input">
-                            <el-select
-                              v-model="formatte.roll_13"
-                              placeholder="请选择"
-                              @change="rollTypeChange13(formatte.roll_13,'F4',4)">
-                              <el-option
-                                v-for="item in option_13"
-                                :key="item.value1"
-                                :label="item.value1"
-                                :value="item.value1"/>
-                            </el-select>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="layout-one-input">
-                            <el-select
-                              v-model="formatte1.roll_13"
-                              placeholder="请选择"
-                              @change="rollTypeChange13(formatte1.roll_13,'F3',3)">
-                              <el-option
-                                v-for="item in aoption_13"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
-                            </el-select>
-                          </div>
-                        </td>
-                        <td>
-                          <el-button
-                            type="success"
-                            size="mini"
-                            @click="chaxun13()">详情
-                          </el-button>
-                          <!-- <el-button
-                            type="primary"
-                            size="mini"
                             @click="send_message13()">备辊请求
                           </el-button>-->
                         </td>
                       </tr>
-                      <!--R2E粗轧立辊-->
-                      <tr>
-                        <td>
-                          R2E粗轧立辊
-                        </td>
-                        <td>
-                          <div class="layout-one-input">
-                            <el-select
-                              v-model="formatte.roll_14"
-                              placeholder="请选择"
-                              @change="rollTypeChange14(formatte.roll_14,'F4',4)">
-                              <el-option
-                                v-for="item in option_14"
-                                :key="item.value1"
-                                :label="item.value1"
-                                :value="item.value1"/>
-                            </el-select>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="layout-one-input">
-                            <el-select
-                              v-model="formatte1.roll_14"
-                              placeholder="请选择"
-                              @change="rollTypeChange14(formatte1.roll_14,'F3',3)">
-                              <el-option
-                                v-for="item in aoption_14"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
-                            </el-select>
-                          </div>
-                        </td>
-                        <td>
-                          <el-button
-                            type="success"
-                            size="mini"
-                            @click="chaxun14()">详情
-                          </el-button>
-                        <!--  <el-button
-                            type="primary"
-                            size="mini"
-                            @click="send_message14()">备辊请求
-                          </el-button>-->
-                        </td>
-                      </tr>
-                      <!--R2粗轧工作辊-->
-                      <tr>
-                        <td>
-                          SSP锤头
-                        </td>
-                        <td>
-                          <div class="layout-one-input">
-                            <el-select
-                              v-model="formatte.roll_15"
-                              placeholder="请选择"
-                              @change="rollTypeChange15(formatte.roll_15,'F4',4)">
-                              <el-option
-                                v-for="item in option_15"
-                                :key="item.value1"
-                                :label="item.value1"
-                                :value="item.value1"/>
-                            </el-select>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="layout-one-input">
-                            <el-select
-                              v-model="formatte1.roll_15"
-                              placeholder="请选择"
-                              @change="rollTypeChange15(formatte1.roll_15,'F3',3)">
-                              <el-option
-                                v-for="item in aoption_15"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
-                            </el-select>
-                          </div>
-                        </td>
-                        <td>
-                          <el-button
-                            type="success"
-                            size="mini"
-                            @click="chaxun15()">详情
-                          </el-button>
-                          <!--<el-button
-                            type="primary"
-                            size="mini"
-                            @click="send_message15()">备辊请求
-                          </el-button>-->
-                        </td>
-                      </tr>
+
                     </tbody>
                   </table>
                 </div>
@@ -1998,14 +1859,11 @@ export default {
         '精轧支撑辊',
         '精轧支撑辊',
         '精轧支撑辊',
+        '精轧支撑辊',
         '粗轧工作辊',
-        '粗轧工作辊',
-        '粗轧支撑辊',
         '粗轧支撑辊',
         '精轧立辊',
-        '粗轧立辊',
-        '粗轧立辊',
-        '锤头'
+        '粗轧立辊'
       ],
       total: 0,
       radio1: '',
@@ -2127,17 +1985,17 @@ export default {
           idotype: 1
         },
         {
-          frame_noid: 8,
-          frame_no: 'R1粗轧工作辊',
-          roll_type: '粗轧工作辊',
+          frame_noid: 15,
+          frame_no: 'F8精轧支撑辊',
+          roll_type: '精轧支撑辊',
           roll_no: '', //组合辊号
           sdotype: 1,
           dotype: 1,
           idotype: 1
         },
         {
-          frame_noid: 9,
-          frame_no: 'R2粗轧工作辊',
+          frame_noid: 8,
+          frame_no: 'R1粗轧工作辊',
           roll_type: '粗轧工作辊',
           roll_no: '', //组合辊号
           sdotype: 1,
@@ -2155,16 +2013,7 @@ export default {
         },
         {
           frame_noid: 11,
-          frame_no: 'R2粗轧支撑辊',
-          roll_type: '粗轧支撑辊',
-          roll_no: '', //组合辊号
-          sdotype: 1,
-          dotype: 1,
-          idotype: 1
-        },
-        {
-          frame_noid: 12,
-          frame_no: 'F1E精轧立辊',
+          frame_no: 'FE精轧立辊',
           roll_type: '精轧立辊',
           roll_no: '', //组合辊号
           sdotype: 1,
@@ -2172,27 +2021,9 @@ export default {
           idotype: 1
         },
         {
-          frame_noid: 13,
-          frame_no: 'R1E粗轧立辊',
+          frame_noid: 12,
+          frame_no: 'E1粗轧立辊',
           roll_type: '粗轧立辊',
-          roll_no: '', //组合辊号
-          sdotype: 1,
-          dotype: 1,
-          idotype: 1
-        },
-        {
-          frame_noid: 14,
-          frame_no: 'R2E粗轧立辊',
-          roll_type: '粗轧立辊',
-          roll_no: '', //组合辊号
-          sdotype: 1,
-          dotype: 1,
-          idotype: 1
-        },
-        {
-          frame_noid: 15,
-          frame_no: 'SSP锤头',
-          roll_type: '锤头',
           roll_no: '', //组合辊号
           sdotype: 1,
           dotype: 1,
@@ -2254,7 +2085,7 @@ export default {
     // this.timer = setTimeout(this.get, 5000)
     // this.findAll()
     this.findcar()
-    this.beigunre() //备辊车刷新
+    // this.beigunre() //备辊车刷新
     this.find_select()
     this.find_elec()
     //选择框
@@ -2635,13 +2466,13 @@ export default {
             this.option_7.push(res.data[i])
           }
           if (
-            res.data[i].frame_no == 'R1工作辊' &&
+            res.data[i].frame_no == 'F8支撑辊' &&
             res.data[i].value1 != null
           ) {
             this.option_8.push(res.data[i])
           }
           if (
-            res.data[i].frame_no == 'R2工作辊' &&
+            res.data[i].frame_no == 'R1工作辊' &&
             res.data[i].value1 != null
           ) {
             this.option_9.push(res.data[i])
@@ -2653,22 +2484,13 @@ export default {
             this.option_10.push(res.data[i])
           }
           if (
-            res.data[i].frame_no == 'R2支撑辊' &&
+            res.data[i].frame_no == 'FE立辊辊' &&
             res.data[i].value1 != null
           ) {
             this.option_11.push(res.data[i])
           }
-          if (res.data[i].frame_no == 'F1E立辊' && res.data[i].value1 != null) {
+          if (res.data[i].frame_no == 'E1立辊' && res.data[i].value1 != null) {
             this.option_12.push(res.data[i])
-          }
-          if (res.data[i].frame_no == 'R1E立辊' && res.data[i].value1 != null) {
-            this.option_13.push(res.data[i])
-          }
-          if (res.data[i].frame_no == 'R2E立辊' && res.data[i].value1 != null) {
-            this.option_14.push(res.data[i])
-          }
-          if (res.data[i].frame_no == 'SSP锤头' && res.data[i].value1 != null) {
-            this.option_15.push(res.data[i])
           }
         }
         for (let i = 0; res.data.length > i; i++) {
@@ -2715,13 +2537,13 @@ export default {
             this.aoption_7.push(res.data[i])
           }
           if (
-            res.data[i].frame_no == 'R1工作辊' &&
+            res.data[i].frame_no == 'F8支撑辊' &&
             res.data[i].value2 != null
           ) {
             this.aoption_8.push(res.data[i])
           }
           if (
-            res.data[i].frame_no == 'R2工作辊' &&
+            res.data[i].frame_no == 'R1工作辊' &&
             res.data[i].value2 != null
           ) {
             this.aoption_9.push(res.data[i])
@@ -2732,23 +2554,11 @@ export default {
           ) {
             this.aoption_10.push(res.data[i])
           }
-          if (
-            res.data[i].frame_no == 'R2支撑辊' &&
-            res.data[i].value2 != null
-          ) {
+          if (res.data[i].frame_no == 'FE立辊' && res.data[i].value2 != null) {
             this.aoption_11.push(res.data[i])
           }
-          if (res.data[i].frame_no == 'F1E立辊' && res.data[i].value2 != null) {
+          if (res.data[i].frame_no == 'E1立辊' && res.data[i].value2 != null) {
             this.aoption_12.push(res.data[i])
-          }
-          if (res.data[i].frame_no == 'R1E立辊' && res.data[i].value2 != null) {
-            this.aoption_13.push(res.data[i])
-          }
-          if (res.data[i].frame_no == 'R2E立辊' && res.data[i].value2 != null) {
-            this.aoption_14.push(res.data[i])
-          }
-          if (res.data[i].frame_no == 'SSP锤头' && res.data[i].value2 != null) {
-            this.aoption_15.push(res.data[i])
           }
         }
         console.log(this.option_1, '你', this.option_2)
@@ -3201,7 +3011,7 @@ export default {
         this.group2 = res.bz
         this.time_senf = moment().format('YYYY-MM-DD HH:mm:ss')
       })
-      this.repeat(0, 15)
+      this.repeat(0, 12)
       setTimeout(() => {
         this.tan = true
       }, 1500)
@@ -3228,7 +3038,7 @@ export default {
     },
     send_1() {
       //发送备辊信息
-      this.send_repeat(0, 15)
+      this.send_repeat(0, 12)
       //发送Java保存
       this.send_java(0, this.tableData_tan.length)
       setTimeout(() => {
@@ -3254,29 +3064,31 @@ export default {
           rollPrelistHistory: this.arry_all[num],
           mut: 1
         }).then(res => {
-          post('webservice/sendTagNew', {
-            tagList: [
-              {
-                name: 'RC_CAR_ROLL_TYPE',
-                value: this.arry_all[num].roll_type
-              },
-              { name: 'RC_CAR_STANDNO', value: this.arry_all[num].frame_no },
-              { name: 'ROLL_PUT_INTO_RC_CAR', value: '1' }
-            ]
-          }).then(res => {
-            console.log('11111', res)
-
-            setTimeout(() => {
+          setTimeout(() => {
+            post('webservice/sendTagNew', {
+              tagList: [
+                {
+                  name: 'SEND_ROLL_NO',
+                  value: this.arry_all[num].roll_no
+                }
+              ]
+            }).then(res => {
+              console.log('11111', res)
+              if (++num < length) {
+                this.send_repeat(num, length)
+              }
+              /* setTimeout(() => {
               post('webservice/sendTagNew', {
                 tagList: [{ name: 'ROLL_PUT_INTO_RC_CAR', value: '0' }]
               })
-            }, 400)
-          })
+            }, 400)*/
+            })
+          }, 400)
 
           var data = res.data
-          if (++num < length) {
+          /*  if (++num < length) {
             this.send_repeat(num, length)
-          }
+          }*/
           //  this.refresh()
         })
       } else {
@@ -3304,7 +3116,7 @@ export default {
       this.searchInfoss = val
     },
     refresh() {
-      this.beigunre() //备辊查询
+      //this.beigunre() //备辊查询
       this.ming = '' //关闭大小
       // this.findAll()
       this.tableData1 = [] //最下面表两条数据
@@ -3312,11 +3124,11 @@ export default {
     //刷新获得备辊车信息
     beigunre() {
       this.tableDatas = []
-      this.resect(0, 15)
+      this.resect(0, 12)
       console.log(this.tableDatas)
     },
     //15个备辊表
-    resect(num, length) {
+    /*  resect(num, length) {
       post('/rollPrelistHistoryR/findNew', {
         condition: {
           frame_noid: num + 1,
@@ -3334,7 +3146,7 @@ export default {
         } else {
         }
       })
-    },
+    },*/
     //1查看详情
     findroll_1() {
       this.dialog_sure = true
@@ -3582,183 +3394,6 @@ export default {
       this.dialogVisible2 = false //换辊车关闭
       this.dialogVisible3 = false //换辊清页面空关闭
       this.aaa = '' //关闭颜色
-    },
-    message_public(message) {
-      ///备辊确认
-      message.dotype = 1
-      post('/rollPrelistHistory/insert', {
-        rollPrelistHistory: message,
-        mut: 1
-      }).then(res => {
-        //发给中间件
-        setTimeout(() => {
-          post('webservice/sendTagNew', {
-            tagList: [
-              {
-                name: 'RC_CAR_ROLL_TYPE',
-                value: this.roll_type_s[message.frame_noid - 1]
-              },
-              /* {
-                name: 'RC_CAR_STANDNO',
-                value: this.searchInfo1.frame_no.replace(/[^0-9&&^a-z]/gi, '')
-              }*/
-              {
-                name: 'RC_CAR_STANDNO',
-                value: message.frame_no
-              },
-              { name: 'ROLL_PUT_INTO_RC_CAR', value: '1' }
-            ]
-          }).then(res => {
-            console.log('11111', res)
-            post('webservice/sendTagNew', {
-              tagList: [{ name: 'ROLL_PUT_INTO_RC_CAR', value: '0' }]
-            })
-          })
-        }, 800)
-
-        this.findcar()
-        if (res.status == 2000) {
-          this.$message({
-            type: 'success',
-            message: '提交成功'
-          })
-        }
-      })
-    },
-    send_message1() {
-      var fasong = {}
-      fasong.frame_noid = 1
-      fasong.frame_no = 'F1精轧支撑辊'
-      fasong.roll_no = this.xuyao1 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message2() {
-      var fasong = {}
-      fasong.frame_noid = 2
-      fasong.frame_no = 'F2精轧支撑辊'
-      fasong.roll_no = this.xuyao2 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message3() {
-      var fasong = {}
-      fasong.frame_noid = 3
-      fasong.frame_no = 'F3精轧支撑辊'
-      fasong.roll_no = this.xuyao3 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message4() {
-      var fasong = {}
-      fasong.frame_noid = 4
-      fasong.frame_no = 'F4精轧支撑辊'
-      fasong.roll_no = this.xuyao4 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message5() {
-      var fasong = {}
-      fasong.frame_noid = 5
-      fasong.frame_no = 'F5精轧支撑辊'
-      fasong.roll_no = this.xuyao5 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message6() {
-      var fasong = {}
-      fasong.frame_noid = 6
-      fasong.frame_no = 'F6精轧支撑辊'
-      fasong.roll_no = this.xuyao6 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message7() {
-      var fasong = {}
-      fasong.frame_noid = 7
-      fasong.frame_no = 'F7精轧支撑辊'
-      fasong.roll_no = this.xuyao7 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message8() {
-      var fasong = {}
-      fasong.frame_noid = 8
-      fasong.frame_no = 'R1粗轧工作辊'
-      fasong.roll_no = this.xuyao8 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message9() {
-      var fasong = {}
-      fasong.frame_noid = 9
-      fasong.frame_no = 'R2粗轧工作辊'
-      fasong.roll_no = this.xuyao9 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message10() {
-      var fasong = {}
-      fasong.frame_noid = 10
-      fasong.frame_no = 'R1粗轧支撑辊'
-      fasong.roll_no = this.xuyao10 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message11() {
-      var fasong = {}
-      fasong.frame_noid = 11
-      fasong.frame_no = 'R2粗轧支撑辊'
-      fasong.roll_no = this.xuyao11 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message12() {
-      var fasong = {}
-      fasong.frame_noid = 12
-      fasong.frame_no = 'F1E精轧立辊'
-      fasong.roll_no = this.xuyao12 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message13() {
-      var fasong = {}
-      fasong.frame_noid = 13
-      fasong.frame_no = 'R1E粗轧立辊'
-      fasong.roll_no = this.xuyao13 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message14() {
-      var fasong = {}
-      fasong.frame_noid = 14
-      fasong.frame_no = 'R2E粗轧立辊'
-      fasong.roll_no = this.xuyao14 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
-    },
-    send_message15() {
-      var fasong = {}
-      fasong.frame_noid = 15
-      fasong.frame_no = 'SSP锤头'
-      fasong.roll_no = this.xuyao15 //组合辊号
-      fasong.sdotype = 1
-      fasong.idotype = 1
-      this.message_public(fasong)
     }
   }
 }
