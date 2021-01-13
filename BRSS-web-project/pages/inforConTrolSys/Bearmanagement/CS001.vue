@@ -994,22 +994,6 @@
             </el-col>
             <el-col :span="8">
               <el-form-item
-                label="密封件选择"
-                prop="bearing_no">
-                <el-select
-                  v-model="formLabelAlign_right.bearing_no"
-                  placeholder="请选择"
-                  @change="install_location_id_change2">
-                  <el-option
-                    v-for="item in option21"
-                    :key="item.indocno"
-                    :label="item.bearing_no"
-                    :value="item.bearing_no"/>
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
                 label="密封种类"
                 prop="seals_name">
                 <el-select
@@ -1021,6 +1005,22 @@
                     :key="item.key"
                     :label="item.value"
                     :value="item.value"/>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item
+                label="密封件选择"
+                prop="bearing_no">
+                <el-select
+                  v-model="formLabelAlign_right.bearing_no"
+                  placeholder="请选择"
+                  @change="install_location_id_change2">
+                  <el-option
+                    v-for="item in option21"
+                    :key="item.indocno"
+                    :label="item.bearing_no"
+                    :value="item.bearing_no"/>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -1171,6 +1171,17 @@ export default {
         if (item.value == vId) {
           this.formLabelAlign_right.seals_name = item.value
           this.formLabelAlign_right.seals_type = item.key
+          //密封件号查找
+          post('baseBearing/findListByBearingType', {
+            BaseBearing: {
+              chock_no: this.chock_no_1,
+              seals_type: item.key,
+              bearing_type: 2 //2为密封件1为轴承，
+            }
+          }).then(res => {
+            debugger
+            this.option21 = res.data
+          })
         }
       })
     },
@@ -1477,14 +1488,14 @@ export default {
     //子项右边
     add_right() {
       //测试 选择所有密封件
-      post('baseBearing/findListByBearingType', {
+      /*  post('baseBearing/findListByBearingType', {
         BaseBearing: {
           chock_no: this.chock_no_1,
           bearing_type: 2 //2为密封件1为轴承，
         }
       }).then(res => {
         this.option21 = res.data
-      })
+      })*/
 
       this.formLabelAlign_right = {}
       this.formLabelAlign_right.chock_no = this.chock_no_1

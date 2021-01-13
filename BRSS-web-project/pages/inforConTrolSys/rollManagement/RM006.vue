@@ -351,7 +351,7 @@
                   type="textarea"
                   placeholder="请输入内容"/>
               </el-form-item>
-              <el-form-item
+              <!--<el-form-item
                 label="处理结果"
                 label-width="110px">
                 <el-input
@@ -359,7 +359,7 @@
                   v-model="formLabelAlign.scrapreason"
                   type="textarea"
                   placeholder="请输入内容"/>
-              </el-form-item>
+              </el-form-item>-->
             </el-col>
           </el-row>
         </el-form>

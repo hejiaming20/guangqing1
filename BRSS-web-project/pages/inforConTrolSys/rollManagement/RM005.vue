@@ -361,8 +361,14 @@
               label="机架"
               prop="frame_no"/>
             <el-table-column
+              prop="neck_diameter"
+              label="径差"/>
+            <el-table-column
               prop="roll_type"
               label="轧辊类型"/>
+            <el-table-column
+              prop="rollshape"
+              label="辊形"/>
             <el-table-column
               prop="roll_no"
               label="辊号"/>
@@ -494,7 +500,8 @@ export default {
         row.columnIndex === 0 ||
         row.columnIndex === 1 ||
         row.columnIndex === 2 ||
-        row.columnIndex === 3
+        row.columnIndex === 3 ||
+        row.columnIndex === 4
       ) {
         if (row.rowIndex % 2 === 0) {
           return {

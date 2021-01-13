@@ -111,6 +111,9 @@
           label="密封件名称"
           prop="bearing_name" />
         <el-table-column
+          label="密封件种类"
+          prop="seals_name" />
+        <el-table-column
           width="170"
           label="开始时间"
           prop="usetime" />
@@ -161,7 +164,7 @@
         </el-table-column>
       </template>
     </Table-easy>
-    <!-- 轴承添加修改 -->
+    <!-- 密封件添加修改 -->
     <el-dialog
       :visible.sync="dialogVisible_right"
       :title="title_right"
@@ -198,6 +201,20 @@
                   @change="istatus_change">
                   <el-option
                     v-for="item in option3"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.value"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item
+                label="密封种类"
+                prop="seals_name">
+                <el-select
+                  v-model="formLabelAlign_right.seals_name"
+                  placeholder="请选择"
+                  @change="mifengzhong_change">
+                  <el-option
+                    v-for="item in option6"
                     :key="item.key"
                     :label="item.value"
                     :value="item.value"/>
@@ -316,6 +333,7 @@ export default {
       option3: [],
       option4: [],
       option5: [],
+      option6: [],
       dialogVisible: false,
       dialogVisible1: false,
       disUpdateVisible: false,
@@ -336,8 +354,8 @@ export default {
     post('/dictionary/findMapV1', { dicno: 'frameteam' }).then(res => {
       this.option = res.data //机架（直接使用）
     })
-    post('/dictionary/findMapV1', { dicno: 'proline' }).then(res => {
-      this.option1 = res.data //产线（直接使用）
+    post('/dictionary/findMapV1', { dicno: 'mifeng_all' }).then(res => {
+      this.option6 = res.data //密封件种类
     })
     post('/dictionary/findMapV1', { dicno: 'rolltype' }).then(res => {
       this.option2 = res.data //轧辊类型（直接使用）
@@ -356,6 +374,16 @@ export default {
     this.findAll()
   },
   methods: {
+    mifengzhong_change(vId) {
+      let obj = {}
+      obj = this.option6.find(item => {
+        //这里的userList就是上面遍历的数据源
+        if (item.value == vId) {
+          this.formLabelAlign_right.seals_name = item.value
+          this.formLabelAlign_right.seals_type = item.key
+        }
+      })
+    },
     istatus_change(vId) {
       let obj = {}
       obj = this.option3.find(item => {

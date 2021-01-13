@@ -527,7 +527,8 @@
                 <el-select
                   v-model="formLabelAlignChange.roll_state"
                   clearable
-                  placeholder="请选择轧辊状态">
+                  placeholder="请选择轧辊状态"
+                  @change="shigu_change">
                   <el-option
                     v-for="item in rollStateArray"
                     :key="item.key"
@@ -558,6 +559,16 @@
                     :label="item.value"
                     :value="Number(item.key)"/>
                 </el-select>
+              </el-form-item>
+              <el-form-item
+                v-show="show_1"
+                label="事故辊请填原因"
+                label-width="110px">
+                <el-input
+                  :rows="2"
+                  v-model="formLabelAlignChange.scrapreason"
+                  type="textarea"
+                  placeholder="请输入内容"/>
               </el-form-item>
             </el-col>
             <!-- <el-col :span="8">
@@ -786,7 +797,8 @@ export default {
       frameNoArray: [], // 机架号
       machineArray: [],
       rollstateArray: [],
-      flag: true
+      flag: true,
+      show_1: false
     }
   },
   mounted() {
@@ -835,6 +847,15 @@ export default {
     // this.echartOption()
   },
   methods: {
+    shigu_change(vId) {
+      let obj = {}
+      obj = this.rollStateArray.find(item => {
+        //这里的userList就是上面遍历的数据源
+        if (item.key == vId && item.key == 7) {
+          this.show_1 = true
+        }
+      })
+    },
     // 散点图
     echartOption() {
       var optionLeft = {
@@ -1278,6 +1299,7 @@ export default {
       this.dialogVisible = true
     },
     handleEditState(data) {
+      this.show_1 = false //事故辊显示和隐藏
       this.formLabelAlignChange = data
       console.log(this.formLabelAlignChange)
       this.dialogVisibleChange = true
