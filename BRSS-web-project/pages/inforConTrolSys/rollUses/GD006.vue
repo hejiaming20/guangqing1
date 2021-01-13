@@ -1352,7 +1352,8 @@ export default {
           fame: '',
           reaon: ''
         }
-      ]
+      ],
+      hitm_send_roll: ''
     }
   },
   created() {
@@ -1976,7 +1977,7 @@ export default {
       })
       setTimeout(() => {
         this.tan = true
-        console.log(this.tableData_tan)
+        console.log('AAA', this.tableData_tan)
         setTimeout(() => {
           this.mergeCell('test3', 0, 0, 0)
           this.mergeCell('test3', 0, 0, 6)
@@ -2027,6 +2028,8 @@ export default {
     //弹窗发送
     send_1() {
       this.tan = false
+      //发送中间件辊号
+      this.send_him()
       //发送备辊信息
       this.send_repeat(0, 8)
       //发送Java保存
@@ -2034,6 +2037,25 @@ export default {
       setTimeout(() => {
         this.findcar()
       }, 5700)
+    },
+    send_him() {
+      this.hitm_send_roll = ''
+      for (let i = 0; this.tableData_tan.length > i; i++) {
+        this.hitm_send_roll =
+          this.hitm_send_roll + this.tableData_tan[i].roll_no + '/'
+      }
+      console.log(this.hitm_send_roll, this.hitm_send_roll.length)
+      this.hitm_send_roll = this.hitm_send_roll.slice(
+        0,
+        this.hitm_send_roll.length - 1
+      )
+      console.log(this.hitm_send_roll, this.hitm_send_roll.length)
+      setTimeout(() => {
+        post('webservice/sendTagNew', {
+          tagList: [{ name: 'SEND_ROLL_NO', value: this.hitm_send_roll }]
+        })
+      }, 1000)
+      // test.splice(test.length - 1, 2)
     },
     send_java(val, length) {
       this.tableData_tan[val].group1 = this.group1 //班次
@@ -2063,42 +2085,39 @@ export default {
             rollPrelistHistory: this.all_data[num],
             mut: 0
           }).then(res => {
-            setTimeout(() => {
-              console.log(this.all_data[num].roll_no)
-              // debugger
-              post('webservice/sendTagNew', {
-                tagList: [
-                  {
-                    name: 'SEND_ROLL_NO',
-                    value: this.all_data[num].roll_no
-                  },
-                  {
-                    name: 'RC_CAR_ROLL_TYPE',
-                    value: this.all_data[num].roll_type
-                  },
-                  {
-                    name: 'RC_CAR_STANDNO',
-                    value: this.all_data[num].frame_no
-                  },
-                  { name: 'ROLL_PUT_INTO_RC_CAR', value: '1' }
-                ]
-              }).then(res => {
-                console.log('11111', res)
-                if (++num < length) {
-                  this.send_repeat(num, length)
-                }
-                /* setTimeout(() => {
+            //console.log(this.all_data[num].roll_no)
+            /*  post('webservice/sendTagNew', {
+              tagList: [
+                {
+                  name: 'SEND_ROLL_NO',
+                  value: this.all_data[num].roll_no
+                },
+                {
+                  name: 'RC_CAR_ROLL_TYPE',
+                  value: this.all_data[num].roll_type
+                },
+                {
+                  name: 'RC_CAR_STANDNO',
+                  value: this.all_data[num].frame_no
+                },
+                { name: 'ROLL_PUT_INTO_RC_CAR', value: '1' }
+              ]
+            }).then(res => {
+              console.log('11111', res)
+              if (++num < length) {
+                this.send_repeat(num, length)
+              }
+              /!* setTimeout(() => {
                 post('webservice/sendTagNew', {
                   tagList: [{ name: 'ROLL_PUT_INTO_RC_CAR', value: '0' }]
                 })
-              }, 400)*/
-              })
-            }, 400)
+              }, 400)*!/
+            })*/
 
             var data = res.data
-            /*  if (++num < length) {
+            if (++num < length) {
               this.send_repeat(num, length)
-            }*/
+            }
             //  this.refresh()
           })
         } else {

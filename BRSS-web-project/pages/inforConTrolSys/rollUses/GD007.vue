@@ -2060,7 +2060,8 @@ export default {
           fame: '',
           reaon: ''
         }
-      ]
+      ],
+      hitm_send_roll: ''
     }
   },
   created() {
@@ -3037,6 +3038,8 @@ export default {
       }
     },
     send_1() {
+      //发送中间件辊号
+      this.send_him()
       //发送备辊信息
       this.send_repeat(0, 12)
       //发送Java保存
@@ -3045,6 +3048,25 @@ export default {
         this.findcar()
       }, 4700)
       this.tan = false
+    },
+    send_him() {
+      this.hitm_send_roll = ''
+      for (let i = 0; this.tableData_tan.length > i; i++) {
+        this.hitm_send_roll =
+          this.hitm_send_roll + this.tableData_tan[i].roll_no + '/'
+      }
+      console.log(this.hitm_send_roll, this.hitm_send_roll.length)
+      this.hitm_send_roll = this.hitm_send_roll.slice(
+        0,
+        this.hitm_send_roll.length - 1
+      )
+      console.log(this.hitm_send_roll, this.hitm_send_roll.length)
+      setTimeout(() => {
+        post('webservice/sendTagNew', {
+          tagList: [{ name: 'SEND_ROLL_NO', value: this.hitm_send_roll }]
+        })
+      }, 1000)
+      // test.splice(test.length - 1, 2)
     },
     send_java(val, length) {
       this.tableData_tan[val].group1 = this.group1 //班次
@@ -3064,7 +3086,7 @@ export default {
           rollPrelistHistory: this.arry_all[num],
           mut: 1
         }).then(res => {
-          setTimeout(() => {
+          /* setTimeout(() => {
             post('webservice/sendTagNew', {
               tagList: [
                 {
@@ -3077,18 +3099,18 @@ export default {
               if (++num < length) {
                 this.send_repeat(num, length)
               }
-              /* setTimeout(() => {
+              /!* setTimeout(() => {
               post('webservice/sendTagNew', {
                 tagList: [{ name: 'ROLL_PUT_INTO_RC_CAR', value: '0' }]
               })
-            }, 400)*/
+            }, 400)*!/
             })
-          }, 400)
+          }, 400)*/
 
           var data = res.data
-          /*  if (++num < length) {
+          if (++num < length) {
             this.send_repeat(num, length)
-          }*/
+          }
           //  this.refresh()
         })
       } else {
@@ -3334,22 +3356,22 @@ export default {
         case 'F7精轧支撑辊':
           this.clickrow = 6
           break
-        case 'R1粗轧工作辊':
+        case 'F8精轧支撑辊':
           this.clickrow = 7
           break
-        case 'R2粗轧工作辊':
+        case 'R1粗轧工作辊':
           this.clickrow = 8
           break
         case 'R1粗轧支撑辊':
           this.clickrow = 9
           break
-        case 'R2粗轧支撑辊':
+        case 'FE精轧立辊':
           this.clickrow = 10
           break
-        case 'F1E精轧立辊':
+        case 'E1粗轧立辊':
           this.clickrow = 11
           break
-        case 'R1E粗轧立辊':
+        /* case 'R1E粗轧立辊':
           this.clickrow = 12
           break
         case 'R2E粗轧立辊':
@@ -3357,7 +3379,7 @@ export default {
           break
         case 'SSP锤头':
           this.clickrow = 14
-          break
+          break*/
       }
     },
     //2查看详情
