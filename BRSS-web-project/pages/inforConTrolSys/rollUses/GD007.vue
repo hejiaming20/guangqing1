@@ -1902,7 +1902,7 @@ export default {
         dotype: 2, //操作类型（确认备辊时是1，取消备辊时是2）
         reasonid: '', //原因id（下拉框，内容暂无）
         reason: '', //原因（下拉框，内容暂无）
-        ifcm: 300, //是否重磨不为1时会放入select中
+        ifcm: '0', //是否重磨不为1时会放入select中
         pretime: '' //备辊时间（自动带入当前时间）
       },
       xuyao1: '',
@@ -3063,7 +3063,10 @@ export default {
       console.log(this.hitm_send_roll, this.hitm_send_roll.length)
       setTimeout(() => {
         post('webservice/sendTagNew', {
-          tagList: [{ name: 'SEND_ROLL_NO', value: this.hitm_send_roll }]
+          tagList: [
+            { name: 'SEND_ROLL_NO', value: this.hitm_send_roll },
+            { name: 'ROLL_PUT_INTO_RC_CAR', value: '1' }
+          ]
         })
       }, 1000)
       // test.splice(test.length - 1, 2)

@@ -1258,7 +1258,6 @@ export default {
       option_8: [],
       option_100: [],
       formatte: {},
-      radio: '0',
       clickrow: 100,
       aaa: 100,
       bbb: '',
@@ -1311,6 +1310,7 @@ export default {
       sstableData: [],
       searchInfo1: {},
       searchInfo2: {
+        ifcm: '0'
         /*   //  frame_noid: 2, //机架号id
         frame_no: '', //机架号
         roll_no: '', //辊号
@@ -2052,7 +2052,10 @@ export default {
       console.log(this.hitm_send_roll, this.hitm_send_roll.length)
       setTimeout(() => {
         post('webservice/sendTagNew', {
-          tagList: [{ name: 'SEND_ROLL_NO', value: this.hitm_send_roll }]
+          tagList: [
+            { name: 'SEND_ROLL_NO', value: this.hitm_send_roll },
+            { name: 'ROLL_PUT_INTO_RC_CAR', value: '1' }
+          ]
         })
       }, 1000)
       // test.splice(test.length - 1, 2)

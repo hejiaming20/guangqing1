@@ -60,11 +60,11 @@ export default {
   },
   head() {
     return {
-      title: '登录--马钢智能制造',
+      title: '登录--广青磨辊间',
       meta: [
         {
           name: 'keywords',
-          content: '马钢智能制造'
+          content: '广青磨辊间'
         }
       ]
     }
