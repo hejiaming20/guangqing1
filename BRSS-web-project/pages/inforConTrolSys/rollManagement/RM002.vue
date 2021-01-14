@@ -63,10 +63,24 @@
                         </el-select>
                       </el-form-item>
                       <el-form-item
+                        label="周转状态"
+                        prop="roll_revolve">
+                        <el-select
+                          v-model="searchInfo.roll_revolve"
+                          clearable
+                          placeholder="请选择周转状态">
+                          <el-option
+                            v-for="item in rollRevolveArray"
+                            :key="item.key"
+                            :label="item.value"
+                            :value="item.key"/>
+                        </el-select>
+                      </el-form-item>
+                      <!-- <el-form-item
                         label="合同号"
                         prop="contract_no">
                         <el-input v-model="searchInfo.contract_no" />
-                      </el-form-item>
+                      </el-form-item>-->
                     </el-col>
                     <el-col :span="6">
                       <el-form-item

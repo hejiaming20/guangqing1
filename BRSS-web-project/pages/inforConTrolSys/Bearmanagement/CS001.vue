@@ -69,10 +69,11 @@
                 </el-select>
               </el-form-item>
               <el-form-item
-                label="机架号"
-                prop="frame_noid">
+                label="是否报废"
+                label-width="100"
+                prop="ifdiscard">
                 <el-select
-                  v-model="searchquery.frame_noid"
+                  v-model="searchquery.ifdiscard"
                   placeholder="请选择">
                   <el-option
                     v-for="item in option"
@@ -1292,21 +1293,21 @@ export default {
       })
     },
 
-    async findAll() {
-      // console.log(this.searchquery.frame_no)
-      let res = await post('/baseChock/findByPage', {
+    findAll() {
+      post('/baseChock/findByPage', {
         pageIndex: this.pageIndex,
         pageSize: this.pageSize,
         condition: this.searchquery
+      }).then(res => {
+        console.log('查询全部', res)
+        this.tableData = res.data
+        this.total = res.count
+        this.tableData1 = []
+        this.tableData2 = []
+        if (res.data[0]) {
+          this.dbcick(res.data[0])
+        }
       })
-      console.log('查询全部', res)
-      this.tableData = res.data
-      this.total = res.count
-      this.tableData1 = []
-      this.tableData2 = []
-      if (res.data[0]) {
-        this.dbcick(res.data[0])
-      }
     },
     //添加
     async handleSave() {
@@ -1352,7 +1353,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          post('baseBearing/updateDiscardTimeCancel', {
+          post('baseChock/updateDiscardTimeCancel', {
             indocno: data.indocno
           }).then(res => {
             if (res) {

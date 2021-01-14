@@ -35,13 +35,13 @@
                     <el-input v-model="searchInfo.roll_no" />
                   </el-form-item>
                 </el-col>
-                <el-col :span="6">
+                <!--<el-col :span="6">
                   <el-form-item
                     label="工作层"
                     prop="work_layer">
                     <el-input v-model="searchInfo.work_layer" />
                   </el-form-item>
-                </el-col>
+                </el-col>-->
                 <el-col :span="6">
                   <el-form-item
                     label="轧辊类型"

@@ -52,33 +52,12 @@
                     <el-col :span="8">
                       <el-form-item
                         label="轧辊类型"
-                        轧辊类型
                         prop="roll_typeid">
                         <el-select
                           v-model="searchInfo.roll_typeid"
                           placeholder="请选择">
                           <el-option
                             v-for="item in options"
-                            :key="item.key"
-                            :label="item.value"
-                            :value="item.key"/>
-                        </el-select>
-                      </el-form-item>
-                      <el-form-item
-                        label="合同号"
-                        prop="contract_no">
-                        <el-input v-model.trim="searchInfo.contract_no"/>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="8">
-                      <el-form-item
-                        label="轧辊材质"
-                        prop="material_id">
-                        <el-select
-                          v-model="searchInfo.material_id"
-                          placeholder="请选择">
-                          <el-option
-                            v-for="item in option_2"
                             :key="item.key"
                             :label="item.value"
                             :value="item.key"/>
@@ -98,6 +77,27 @@
                         </el-select>
                         <!-- <el-input v-model="searchInfo.frame_no"/> -->
                       </el-form-item>
+                      <!--<el-form-item
+                        label="合同号"
+                        prop="contract_no">
+                        <el-input v-model.trim="searchInfo.contract_no"/>
+                      </el-form-item>-->
+                    </el-col>
+                    <el-col :span="8">
+                      <el-form-item
+                        label="轧辊材质"
+                        prop="material_id">
+                        <el-select
+                          v-model="searchInfo.material_id"
+                          placeholder="请选择">
+                          <el-option
+                            v-for="item in option_2"
+                            :key="item.key"
+                            :label="item.value"
+                            :value="item.key"/>
+                        </el-select>
+                      </el-form-item>
+
                     </el-col>
 
                   </el-row>
