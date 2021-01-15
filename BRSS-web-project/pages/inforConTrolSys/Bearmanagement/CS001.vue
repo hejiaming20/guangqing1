@@ -10,11 +10,10 @@
   <div>
     <Table-easy
       :table-data="tableData"
-      :total="total"
-
+      :total ="total"
       :page-size="pageSize"
-      :current-page="pageIndex"
       :row-class-name="setRowColor"
+      :current-page="pageIndex"
       index-type="index"
       @row-click="dbcick"
       @handle-current-change="handleCurrentChange"
@@ -1061,7 +1060,7 @@ export default {
       tableData2: [], //弹窗表右
       total1: 0,
       pageIndex: 1,
-      pageSize: 10,
+      pageSize: 20,
       searchchock_no: {},
       searchquery: {
         // chock_no: '', //轴承座号
@@ -1301,7 +1300,9 @@ export default {
       }).then(res => {
         console.log('查询全部', res)
         this.tableData = res.data
+        debugger
         this.total = res.count
+        console.log(this.total)
         this.tableData1 = []
         this.tableData2 = []
         if (res.data[0]) {
@@ -1454,7 +1455,6 @@ export default {
         }
       }).then(res => {
         this.tableData1 = res.data
-        this.total = res.count
       })
     },
     chaifen_left(data) {
@@ -1540,7 +1540,6 @@ export default {
         }
       }).then(res => {
         this.tableData2 = res.data
-        this.total = res.count
       })
     },
     baofei_right(data) {

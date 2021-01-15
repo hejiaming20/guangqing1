@@ -141,6 +141,10 @@
               width="80px"
               label="机架号"/>
             <el-table-column
+              prop="roll_position"
+              width="80px"
+              label="轧辊位置"/>
+            <el-table-column
               prop="obearing_chock"
               width="180px"
               label="OS侧"/>

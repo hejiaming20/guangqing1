@@ -13,9 +13,9 @@
           ref="vueTree"
           :data="data"
           :props="defaultProps"
-          :default-expanded-keys="[2,666]"
+          :default-expanded-keys="[-2,485]"
           :accordion="false"
-          node-key="id"
+          node-key="indocno"
           highlight-current
           class="cs016tree"
           @node-click="handleNodeClick"/>
@@ -113,44 +113,37 @@
         </template>
         <template slot="TableBody">
           <el-table-column
-            prop="roll_no"
-            label="辊号"/>
+            prop="equipment_name"
+            label="配件名称"/>
           <el-table-column
-            prop="roll_type"
-            label="轧辊类型"/>
+            prop="equipment_pparentname"
+            label="设备名称"/>
           <el-table-column
-            prop="grind_starttime"
+            prop="equipment_parentname"
             show-overflow-tooltip
-            label="车削开始时间"/>
+            label="组件名称"/>
           <el-table-column
-            prop="grind_endtime"
+            prop="usetime"
             show-overflow-tooltip
-            label="车削结束时间"/>
+            label="开始时间"/>
           <el-table-column
-            prop="grindst"
-            label="车削量"/>
+            prop="interval_times"
+            label="提醒时间"/>
           <el-table-column
-            prop="machine_no"
-            label="车床号"/>
+            prop="total_times"
+            label="累计时间"/>
           <el-table-column
-            prop="before_diameter"
-            label="车前直径"/>
+            prop="discard_time"
+            label="更换时间"/>
           <el-table-column
-            prop="after_diameter"
-            label="车后直径"/>
+            prop="factory_name"
+            label="厂家名称"/>
           <el-table-column
-            prop="diametermax"
-            label="新辊直径"/>
+            prop="sgroup_name"
+            label="班组"/>
           <el-table-column
-            prop="diametermin"
-            label="报废直径"/>
-
-          <el-table-column
-            prop="sclass"
-            label="班"/>
-          <el-table-column
-            prop="sgroup"
-            label="组"/>
+            prop="sclass_name"
+            label="班次"/>
           <el-table-column
             label="操作"
             align="center">
@@ -181,11 +174,27 @@
             <el-row>
               <el-col :span="8">
                 <el-form-item
-                  label="辊号"
-                  prop="roll_no">
-                  <el-input v-model.trim="formLabelAlign.roll_no" />
+                  label="配件名称"
+                  prop="equipment_name">
+                  <el-input v-model.trim="formLabelAlign.equipment_name" />
                 </el-form-item>
                 <el-form-item
+                  label="设备名称"
+                  prop="equipment_pparentname">
+                  <el-input v-model.trim="formLabelAlign.equipment_pparentname" />
+                </el-form-item>
+                <el-form-item
+                  label="开始时间"
+                  prop="usetime">
+                  <el-date-picker
+                    v-model="formLabelAlign.usetime"
+                    value-format="yyyy-MM-dd HH:mm:ss"
+                    type="datetime"
+                    placeholder="开始时间"/>
+                </el-form-item>
+
+
+                <!--  <el-form-item
                   label="产线"
                   prop="production_line">
                   <el-select
@@ -212,16 +221,7 @@
                       :label="item.value"
                       :value="item.value"/>
                   </el-select>
-                </el-form-item>
-                <el-form-item
-                  label="车削开始时间"
-                  prop="grind_starttime">
-                  <el-date-picker
-                    v-model="formLabelAlign.grind_starttime"
-                    value-format="yyyy-MM-dd HH:mm:ss"
-                    type="datetime"
-                    placeholder="开始时间"/>
-                </el-form-item>
+                </el-form-item>-->
                 <el-form-item
                   label="车削结束时间"
                   prop="grind_endtime">
@@ -329,7 +329,7 @@ export default {
   },
   data() {
     return {
-      light_1: 666,
+      light_1: 485,
       searchInfo: {},
       formLabelAlign: {},
       tableData: [{}],
@@ -406,8 +406,8 @@ export default {
         }*/
       ],
       defaultProps: {
-        children: 'children',
-        label: 'label'
+        children: 'detail',
+        label: 'sname'
       },
       dialogTitle: '',
       typeoptions: [],
@@ -416,7 +416,11 @@ export default {
       option2: [],
       option3: [],
       materialArray: [],
-      factoryArray: []
+      factoryArray: [],
+      crea_sname_id: '',
+      crea_sname: '',
+      send_id: '',
+      send_sname: ''
     }
   },
   mounted() {
@@ -443,16 +447,84 @@ export default {
     post('/dictionary/findMapV1', { dicno: 'shift' }).then(res => {
       this.option3 = res.data //班组
     })
-    this.findAll()
-    this.$nextTick(() => {
-      this.$refs.vueTree.setCurrentKey(this.light_1)
-    })
+    //this.findAll()
+    this.findAll_1()
+    this.crea_sname_id = JSON.parse(localStorage.getItem('storeID'))
+    this.crea_sname = JSON.parse(localStorage.getItem('storename'))
+    console.log(this.crea_sname_id, this.crea_sname)
   },
   methods: {
-    handleNodeClick(data) {
-      debugger
-      console.log(data)
+    findAll_1() {
+      this.send_id = ''
+      this.send_sname = ''
+      post('baseEquipment/findAllDictionary', {
+        condition: {
+          dicno: 'equipment'
+        }
+      }).then(res => {
+        this.data = res.data
+        for (var i = 0; res.data.length > i; i++) {
+          if (res.data[i].detail) {
+            for (var m = 0; res.data[i].detail.length > m; m++) {
+              if (res.data[i].detail[m] && this.send_id == '') {
+                for (var n = 0; res.data[i].detail[m].detail.length > n; n++) {
+                  if (
+                    res.data[i].detail[m].detail[n] &&
+                    res.data[i].detail[m].detail[n].ilevel == 3
+                  ) {
+                    this.send_id = res.data[i].detail[m].detail[n].indocno
+                    this.send_sname = res.data[i].detail[m].detail[n].sname
+                    this.find_query()
+                    console.log('3')
+                    break
+                  }
+                }
+              } else if (this.send_id != '') {
+                console.log('2')
+                break
+              } else {
+                continue
+              }
+            }
+          } else if (this.send_id != '') {
+            console.log('1')
+            break
+          }
+        }
+        if (res.data) console.log(res.data)
+        this.$nextTick(() => {
+          this.$refs.vueTree.setCurrentKey(this.light_1)
+        })
+      })
     },
+    //点击左边
+    handleNodeClick(data) {
+      if (data.ilevel == 3) {
+        this.send_id = data.indocno
+        this.send_sname = data.sname
+        this.find_query()
+      } else {
+        this.send_id = ''
+        this.send_sname = ''
+        this.tableData = []
+        this.total = 0
+      }
+    },
+    find_query() {
+      post('baseEquipment/findByPage', {
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize,
+        condition: {
+          equipment_id: this.send_id,
+          sclass_name: this.send_sname
+        }
+      }).then(res => {
+        this.tableData = res.data
+        this.total = res.count
+        console.log(res.data)
+      })
+    },
+
     production_line_id_change(vId) {
       let obj = {}
       obj = this.option1.find(item => {
@@ -495,14 +567,16 @@ export default {
     //分页之对应页
     handleCurrentChange(val) {
       this.pageIndex = val
-      this.findAll()
+      this.find_query()
     },
     //分页之一页多少条
     handleSizeChange(val) {
       this.pageSize = val
-      this.findAll()
+      this.find_query()
     },
     async findAll() {
+      //this.searchInfo.equipment_id = this.send_id
+      // this.searchInfo.sclass_name = this.send_sname
       let res = await post('/rollGrindingDouble/findByPage', {
         pageIndex: this.pageIndex,
         pageSize: this.pageSize,
@@ -530,11 +604,11 @@ export default {
                   type: 'success',
                   message: '删除成功!'
                 })
-                this.findAll()
+                this.find_query()
               }
             }
           )
-          this.findAll()
+          this.find_query()
         })
         .catch(() => {
           this.$message({
@@ -562,15 +636,17 @@ export default {
     },
 
     async handleSave(formName) {
+      this.formLabelAlign.equipment_id = this.send_id
+      this.formLabelAlign.sclass_name = this.send_sname
       this.$refs[formName].validate(valid => {
         if (valid) {
           if (this.formFlag) {
             console.log(this.formLabelAlign)
-            post('/rollGrindingDouble/insert', {
-              rollGrindingDouble: this.formLabelAlign
+            post('baseEquipment/insert', {
+              BaseEquipment: this.formLabelAlign
             }).then(res => {
               this.dialogVisible = false
-              this.findAll()
+              this.find_query()
               if (res) {
                 this.$refs[formName].resetFields()
                 this.$message({
@@ -580,11 +656,11 @@ export default {
               }
             })
           } else {
-            post('/rollGrindingDouble/update', {
-              rollGrindingDouble: this.formLabelAlign
+            post('baseEquipment/update', {
+              BaseEquipment: this.formLabelAlign
             }).then(res => {
               this.dialogVisible = false
-              this.findAll()
+              this.find_query()
               if (res) {
                 this.$refs[formName].resetFields()
                 this.$message({

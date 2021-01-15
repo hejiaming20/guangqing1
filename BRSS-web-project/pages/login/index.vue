@@ -119,6 +119,9 @@ export default {
               //获取系统数据为rm004所用
               var limits = res.data.roles
               localStorage.setItem('storeID', JSON.stringify(limits))
+              //获取系统数据登录名
+              var sname = res.data.user.sname
+              localStorage.setItem('storename', JSON.stringify(sname))
               this.$message({
                 type: 'success',
                 message: '登录成功!'

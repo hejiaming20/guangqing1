@@ -78,7 +78,7 @@
                       v-model.trim="searchInfo.solving_process"/>
                   </el-form-item>
                 </el-col>
-                <el-col :span="6">
+                <!--<el-col :span="6">
                   <el-form-item
                     label="事故开始时间"
                     label-width="90"
@@ -105,7 +105,7 @@
                         placeholder="结束时间"/>
                     </div>
                   </el-form-item>
-                </el-col>
+                </el-col>-->
               </el-row>
               <!--   <el-row>
                 &lt;!&ndash;  <el-form-item
@@ -148,7 +148,7 @@
           label="事故开始时间"
           width="155px"
           align="center"/>
-        <el-table-column
+        <!--<el-table-column
           prop="accident_endtime"
           label="事故结束时间"
           width="155px"
@@ -156,7 +156,7 @@
           <template slot-scope="scope">
             <span>{{ scope.row.accident_endtime | formatTime }}</span>
           </template>
-        </el-table-column>
+        </el-table-column>-->
         <!-- <el-table-column
           prop="accident_type"
           label="事故分类"/> -->
@@ -421,17 +421,15 @@
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item
+              <!--<el-form-item
                 label="事故开始时间"
                 label-width="110px"
                 prop="dstart">
-                <div class="RM011-time">
-                  <el-date-picker
-                    v-model="searchInfo.dstart"
-                    value-format="yyyy-MM-dd HH:mm:ss"
-                    type="datetime"
-                    placeholder="开始时间"/>
-                </div>
+                <el-date-picker
+                  v-model="searchInfo1.dstart"
+                  value-format="yyyy-MM-dd HH:mm:ss"
+                  type="datetime"
+                  placeholder="开始时间"/>
               </el-form-item>
               <el-form-item
                 label="事故结束时间"
@@ -439,12 +437,12 @@
                 prop="dend">
                 <div class="RM011-time">
                   <el-date-picker
-                    v-model="searchInfo.dend"
+                    v-model="searchInfo1.dend"
                     value-format="yyyy-MM-dd HH:mm:ss"
                     type="datetime"
                     placeholder="结束时间"/>
                 </div>
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="事故联络人"
                 label-width="110px"
@@ -502,26 +500,6 @@
                 @click="resetluru">取 消</el-button>
                 <!--@click="resetForm('ruleForm')">取消</el-button>-->
             </el-col>
-            <el-col :span="8">
-              <el-upload
-                :on-preview="handlePreview"
-                :before-remove="beforeRemove"
-                :on-remove="handleRemove"
-                :limit="3"
-                :file-list="fileList"
-                :on-exceed="handleExceed"
-                class="upload-demo"
-                action="/productionAccidents/insert"
-                multiple>
-                <!--<el-button
-                  size="mini"
-                  type="primary">上传事故报告</el-button>
-              </el-upload>-->
-                <!-- <el-button
-                size="mini"
-                type="primary"
-                @click="detail_111(scope.row)">上传事故报告</el-button> -->
-            </el-upload></el-col>
           </el-row>
         </el-form>
       </div>
@@ -1023,67 +1001,6 @@ export default {
     // this.echartOption()
   },
   methods: {
-    findLeftEchart() {
-      post('/productionAccidents/echartsMs', {}).then(res => {
-        this.optionLeft.series[0].data[0] = res.data[0][1]
-        this.optionLeft.series[0].data[1] = res.data[0][2]
-        this.optionLeft.series[0].data[2] = res.data[0][3]
-        this.optionLeft.series[0].data[3] = res.data[0][4]
-        this.optionLeft.series[0].data[4] = res.data[0][5]
-        this.optionLeft.series[0].data[5] = res.data[0][6]
-
-        this.optionLeft.series[1].data[6] = res.data[1][1]
-        this.optionLeft.series[1].data[0] = res.data[1][1]
-        this.optionLeft.series[1].data[1] = res.data[1][2]
-        this.optionLeft.series[1].data[2] = res.data[1][3]
-        this.optionLeft.series[1].data[3] = res.data[1][4]
-        this.optionLeft.series[1].data[4] = res.data[1][5]
-        this.optionLeft.series[1].data[5] = res.data[1][6]
-
-        this.optionLeft.series[2].data[6] = res.data[2][1]
-        this.optionLeft.series[2].data[0] = res.data[2][1]
-        this.optionLeft.series[2].data[1] = res.data[2][2]
-        this.optionLeft.series[2].data[2] = res.data[2][3]
-        this.optionLeft.series[2].data[3] = res.data[2][4]
-        this.optionLeft.series[2].data[4] = res.data[2][5]
-        this.optionLeft.series[2].data[5] = res.data[2][6]
-
-        this.optionLeft.series[3].data[6] = res.data[3][1]
-        this.optionLeft.series[3].data[0] = res.data[3][1]
-        this.optionLeft.series[3].data[1] = res.data[3][2]
-        this.optionLeft.series[3].data[2] = res.data[3][3]
-        this.optionLeft.series[3].data[3] = res.data[3][4]
-        this.optionLeft.series[3].data[4] = res.data[3][5]
-        this.optionLeft.series[3].data[5] = res.data[3][6]
-        this.optionLeft.series[3].data[6] = res.data[3][1]
-        this.echartOption()
-      })
-    },
-    findRightEchart() {
-      post('/productionAccidents/echartsBing', {}).then(res => {
-        // console.log(res.data.班组[1])
-        this.optionRight.series[0].data[0].value = res.data.班组[1]
-        this.optionRight.series[0].data[1].value = res.data.班组[2]
-        this.optionRight.series[0].data[2].value = res.data.班组[3]
-        this.optionRight.series[0].data[3].value = res.data.班组[4]
-        // console.log(res.data.事故类型)
-        this.optionRight.series[1].data[0].value = res.data.事故类型[1]
-        this.optionRight.series[1].data[1].value = res.data.事故类型[2]
-        this.optionRight.series[1].data[2].value = res.data.事故类型[3]
-        this.optionRight.series[1].data[3].value = res.data.事故类型[4]
-        this.echartOption()
-      })
-    },
-    echartOption() {
-      var myChart = Echarts.init(document.getElementById('chartRight'), 'light') //将配置注入到html中定义的容器
-      var myChart1 = Echarts.init(document.getElementById('chartLeft'), 'light') //将配置注入到html中定义的容器
-      myChart.setOption(this.optionRight)
-      myChart1.setOption(this.optionLeft)
-      window.onresize = function() {
-        myChart.resize()
-        myChart1.resize()
-      }
-    },
     /**
      * description: 查询全部数据
      */
@@ -1116,22 +1033,6 @@ export default {
     //       })
     //     })
     // },
-    handleRemove(file, fileList) {
-      console.log(file, fileList)
-    },
-    handlePreview(file) {
-      console.log(file)
-    },
-    handleExceed(files, fileList) {
-      this.$message.warning(
-        `当前限制选择 3 个文件，本次选择了 ${
-          files.length
-        } 个文件，共选择了 ${files.length + fileList.length} 个文件`
-      )
-    },
-    beforeRemove(file, fileList) {
-      return this.$confirm(`确定移除 ${file.name}？`)
-    },
     handleEqTypeChange() {
       this.options.forEach(item => {
         if (item.key == this.searchInfo1.eq_typeid) {
@@ -1219,6 +1120,7 @@ export default {
       this.pageIndex = 1
     },
     detail_hand() {
+      debugger
       this.$refs.sendForm.validate(valid => {
         if (valid) {
           post('/productionAccidents/insert', {
