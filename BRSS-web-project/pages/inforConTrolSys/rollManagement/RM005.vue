@@ -349,6 +349,11 @@
                   type="warning"
                   @click="handleBf(scope.row)">拆解
                 </el-button>
+                <el-button
+                  size="mini"
+                  type="warning"
+                  @click="chioce_faname(scope.row)">机架更换
+                </el-button>
               </template>
             </el-table-column>
             <el-table-column
@@ -404,6 +409,51 @@
         </div>
       </template>
     </div>
+    <el-dialog
+      :visible.sync="dialogVisibleChange"
+      title="机组"
+      class="layout-dialog"
+      width="40%">
+      <div class="layout-search">
+        <el-form
+          ref="addForm"
+          :model="formLabelAlignChange"
+          label-position="top"
+          label-width="140px">
+          <el-row :gutter="10">
+            <el-col :span="8">
+              <el-form-item
+                label="机架选择"
+                prop="frame_no">
+                <el-select
+                  v-model="formLabelAlignChange.frame_no"
+                  placeholder="请选择"
+                  clearable
+                  @change="handlefameChange">
+                  <el-option
+                    v-for="item in jizu"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.value"/>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+      </div>
+      <span
+        slot="footer"
+        class="dialog-footer">
+        <el-button
+          size="small"
+          type="primary"
+          @click="dialogVisibleChange = false">取 消</el-button>
+        <el-button
+          size="small"
+          type="primary"
+          @click="submitChange">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -418,6 +468,8 @@ export default {
   },
   data() {
     return {
+      dialogVisibleChange: false,
+      formLabelAlignChange: {},
       options: [],
       jizu: [],
       kucun: [],
@@ -476,6 +528,35 @@ export default {
     )*/
   },
   methods: {
+    chioce_faname(data) {
+      this.formLabelAlignChange = data
+      this.formLabelAlignChange.roll_no_up = data.roll_no
+      console.log(this.formLabelAlignChange)
+      this.dialogVisibleChange = true
+    },
+
+    handlefameChange() {
+      this.jizu.forEach(item => {
+        if (item.value == this.formLabelAlignChange.frame_no) {
+          this.formLabelAlignChange.frame_no = item.value
+          this.formLabelAlignChange.frame_noid = item.key
+        }
+      })
+    },
+    submitChange() {
+      post('rollPaired/updateByRollNo', {
+        RollPaired: this.formLabelAlignChange
+      }).then(res => {
+        if (res) {
+          this.$message({
+            message: '修改机架成功',
+            type: 'success'
+          })
+          this.find_data()
+        }
+      })
+      this.dialogVisibleChange = false
+    },
     tableRowClassName({ row, rowIndex }) {
       if (
         rowIndex === 0 ||

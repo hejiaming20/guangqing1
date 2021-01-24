@@ -152,6 +152,10 @@
                     size="mini"
                     type="primary"
                     @click="resetForm('ruleForm')">重置</el-button>
+                  <el-button
+                    size="mini"
+                    type="primary"
+                    @click="open_add_1()">添加</el-button>
                 </div>
               </el-col>
             </el-row>
@@ -203,7 +207,7 @@
               label="最新一次下线时间"/>
             <el-table-column
               label="操作"
-              width="190"
+              width="250"
               align="center">
               <template slot-scope="scope">
                 <!-- <el-button
@@ -221,6 +225,11 @@
                   size="mini"
                   type="warning"
                   @click="handleEdit(scope.row)">修改
+                </el-button>
+                <el-button
+                  size="mini"
+                  type="danger"
+                  @click="handleDelect(scope.row)">删除
                 </el-button>
               </template>
             </el-table-column>
@@ -264,7 +273,7 @@
     <!-- 库存变动记录查看 -->
     <el-dialog
       :visible.sync="dialogVisible"
-      title="库存历史记录"
+      :title="dialogTitle"
       class="layout-dialog"
       width="60%">
       <div class="layout-search">
@@ -279,6 +288,35 @@
                 label="辊号"
                 prop="roll_no">
                 <el-input v-model="formLabelAlign.roll_no" />
+              </el-form-item>
+              <el-form-item
+                label="轧辊状态"
+                prop="roll_state">
+                <el-select
+                  v-model="formLabelAlign.roll_state"
+                  clearable
+                  placeholder="请选择轧辊状态"
+                  @change="shigu_change">
+                  <el-option
+                    v-for="item in rollStateArray"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="Number(item.key)"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item
+                label="周转状态"
+                prop="roll_revolve">
+                <el-select
+                  v-model="formLabelAlign.roll_revolve"
+                  clearable
+                  placeholder="请选择周转状态">
+                  <el-option
+                    v-for="item in rollRevolveArray"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="Number(item.key)"/>
+                </el-select>
               </el-form-item>
               <el-form-item
                 label="制造厂商"
@@ -331,6 +369,22 @@
                 </el-select>
               </el-form-item>
               <el-form-item
+                label="轧辊类型"
+                prop="roll_typeid">
+                <el-select
+                  v-model="formLabelAlign.roll_typeid"
+                  placeholder="请选择"
+                  clearable
+                  @change="handleRollTypeChange">
+                  <el-option
+                    v-for="item in options"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="Number(item.key)"
+                    clearable/>
+                </el-select>
+              </el-form-item>
+              <el-form-item
                 label="机架范围"
                 prop="framerangeid">
                 <el-select
@@ -373,6 +427,11 @@
                     :label="item.value"
                     :value="Number(item.key)"/>
                 </el-select>
+              </el-form-item>
+              <el-form-item
+                label="报废直径"
+                prop="scrap_diameter">
+                <el-input v-model="formLabelAlign.scrap_diameter" />
               </el-form-item>
             </el-col>
             <el-col :span="6">
@@ -429,6 +488,26 @@
                 prop="shoulderhardness">
                 <el-input v-model="formLabelAlign.shoulderhardness" />
               </el-form-item>
+              <el-form-item
+                label="到货责任人"
+                prop="arriveuser">
+                <el-input v-model="formLabelAlign.arriveuser" />
+              </el-form-item>
+              <el-form-item
+                label="到货辊身硬度最大值"
+                prop="arrivebodyhardnessmax">
+                <el-input v-model="formLabelAlign.arrivebodyhardnessmax" />
+              </el-form-item>
+              <el-form-item
+                label="到货辊身硬度最小值"
+                prop="arrivebodyhardnessmin">
+                <el-input v-model="formLabelAlign.arrivebodyhardnessmin" />
+              </el-form-item>
+              <el-form-item
+                label="到货辊径硬度最大值"
+                prop="arrivediameterhardnessmax">
+                <el-input v-model="formLabelAlign.arrivediameterhardnessmax" />
+              </el-form-item>
             </el-col>
             <el-col :span="6">
               <el-form-item
@@ -466,6 +545,54 @@
                 prop="workoilcount">
                 <el-input v-model="formLabelAlign.workoilcount" />
               </el-form-item>-->
+              <el-form-item
+                label="订货年"
+                prop="order_year">
+                <el-input v-model="formLabelAlign.order_year" />
+              </el-form-item>
+              <el-form-item
+                label="单价"
+                prop="price">
+                <el-input
+                  v-model="formLabelAlign.price"
+                  placeholder="请输入数字"
+                  onkeyup="value=value.replace(/[^\d^\.]/g,'')" />
+              </el-form-item>
+              <el-form-item
+                label="理论直径（mm）"
+                prop="theorydiameter">
+                <el-input
+                  v-model="formLabelAlign.theorydiameter"
+                  placeholder="请输入数字"
+                  onkeyup="value=value.replace(/[^\d^\.]/g,'')" />
+              </el-form-item>
+              <el-form-item
+                label="报废日期"
+                prop="scrapdate">
+                <!-- <el-input v-model="formLabelAlign.scrapdate" /> -->
+                <el-date-picker
+                  v-model="formLabelAlign.scrapdate"
+                  clearable
+                  value-format="yyyy-MM-dd"
+                  type="date"
+                  placeholder="选择日期"/>
+              </el-form-item>
+              <el-form-item
+                label="到货辊径硬度最小值"
+                prop="arrivediameterhardnessmin">
+                <el-input v-model="formLabelAlign.arrivediameterhardnessmin" />
+              </el-form-item>
+              <el-form-item
+                label="到货日期"
+                prop="arrivetime">
+                <!-- <el-input v-model="formLabelAlign.arrivetime" /> -->
+                <el-date-picker
+                  v-model="formLabelAlign.arrivetime"
+                  value-format="yyyy-MM-dd"
+                  clearable
+                  type="date"
+                  placeholder="选择日期"/>
+              </el-form-item>
             </el-col>
             <el-col :span="6">
               <el-form-item
@@ -497,6 +624,61 @@
                 label="圆度"
                 prop="roundness">
                 <el-input v-model="formLabelAlign.roundness" />
+              </el-form-item>
+              <el-form-item
+                label="出厂制品号"
+                prop="productno">
+                <el-input v-model="formLabelAlign.productno" />
+              </el-form-item>
+              <el-form-item
+                label="报废责任人"
+                prop="scrapuser">
+                <el-input v-model="formLabelAlign.scrapuser" />
+              </el-form-item>
+              <el-form-item
+                label="报废原因"
+                prop="scrapreason">
+                <el-input v-model="formLabelAlign.scrapreason" />
+              </el-form-item>
+              <el-form-item
+                label="合同号"
+                prop="contract_no">
+                <el-input v-model="formLabelAlign.contract_no" />
+              </el-form-item>
+              <el-form-item
+                label="辊长（mm）"
+                prop="body_length">
+                <el-input v-model="formLabelAlign.body_length" />
+              </el-form-item>
+              <el-form-item
+                label="料号"
+                prop="material_no">
+                <el-select
+                  v-model="formLabelAlign.material_no"
+                  clearable
+                  placeholder="请选择"
+                  @change="handleliaohaoChange">
+                  <el-option
+                    v-for="item in mate_liao"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.value"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item
+                label="规格"
+                prop="specifications_no">
+                <el-select
+                  v-model="formLabelAlign.specifications_no"
+                  clearable
+                  placeholder="请选择"
+                  @change="handleguigeChange">
+                  <el-option
+                    v-for="item in spec_gui"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.value"/>
+                </el-select>
               </el-form-item>
               <!-- <el-form-item
                 label="粗糙度"
@@ -633,6 +815,8 @@ export default {
   },
   data() {
     return {
+      formFlag: true, // true 添加 false 编辑
+      dialogTitle: '',
       formLabelAlignChange: {},
       searchInfo: {},
       tableData: [],
@@ -651,6 +835,127 @@ export default {
           prop: 'factory',
           width: '80px',
           checkFg: true
+        },
+        {
+          label: '机架号',
+          prop: 'frame_no',
+          checkFg: true,
+          width: 80
+        },
+        {
+          label: '合同号',
+          prop: 'contract_no',
+          checkFg: false,
+          width: '150px'
+        },
+        {
+          label: '订货年',
+          prop: 'order_year',
+          checkFg: false,
+          width: 80
+        },
+        {
+          label: '单价',
+          prop: 'price',
+          checkFg: false,
+          width: 80
+        },
+        {
+          label: '出厂制品号',
+          prop: 'productno',
+          checkFg: false,
+          width: 100
+        },
+        {
+          label: '到货日期',
+          prop: 'arrivetime',
+          checkFg: false,
+          width: '150px'
+        },
+        {
+          label: '到货责任人',
+          prop: 'arriveuser',
+          checkFg: false,
+          width: 120
+        },
+        {
+          label: '报废直径',
+          prop: 'scrap_diameter',
+          checkFg: false,
+          width: 80
+        },
+        {
+          label: '投用日期',
+          prop: 'fusetime',
+          checkFg: false,
+          width: '150px'
+        },
+        {
+          label: '报废日期',
+          prop: 'scrapdate',
+          checkFg: false,
+          width: '150px'
+        },
+        {
+          label: '报废原因',
+          prop: 'scrapreason',
+          checkFg: false,
+          width: '100px'
+        },
+        {
+          label: '报废责任人',
+          prop: 'scrapuser',
+          checkFg: false,
+          width: 80
+        },
+        {
+          label: '理论直径',
+          prop: 'theorydiameter',
+          checkFg: false,
+          width: 80
+        },
+        {
+          label: '剩余直径',
+          prop: 'scrapreason',
+          checkFg: false,
+          width: 80
+        },
+        {
+          label: '到货辊身硬度最大值',
+          prop: 'arrivebodyhardnessmax',
+          checkFg: false,
+          width: 180
+        },
+        {
+          label: '到货辊身硬度最小值',
+          prop: 'arrivebodyhardnessmin',
+          checkFg: false,
+          width: 180
+        },
+        {
+          label: '到货辊径硬度最大值',
+          prop: 'arrivediameterhardnessmax',
+          checkFg: false,
+          width: 180
+        },
+        {
+          label: '到货辊径硬度最小值',
+          prop: 'arrivediameterhardnessmin',
+          checkFg: false,
+          width: 180
+        },
+        {
+          label: '包装是否合格',
+          prop: 'ifok',
+          checkFg: false,
+          width: 80
+        },
+        {
+          label: '核对质保书是否合格',
+          prop: 'zb_ifok',
+          checkFg: false,
+          width: '150px'
+          /* <span >{{ scope.row.zb_ifok=="0" ? "不合格" :"合格" }}</span>*/
         },
         /*{
           label: '轧辊位置',
@@ -783,6 +1088,18 @@ export default {
           prop: 'inspectionresults',
           width: '80px',
           checkFg: false
+        },
+        {
+          label: '料号名称',
+          prop: 'material_no',
+          width: '80px',
+          checkFg: false
+        },
+        {
+          label: '规格名称',
+          prop: 'specifications_no',
+          width: '80px',
+          checkFg: false
         }
         /*{
           label: '高速钢轧辊上线周期跟踪次数',
@@ -812,7 +1129,9 @@ export default {
       machineArray: [],
       rollstateArray: [],
       flag: true,
-      show_1: false
+      show_1: false,
+      mate_liao: [],
+      spec_gui: []
     }
   },
   mounted() {
@@ -854,6 +1173,14 @@ export default {
     getDataConfig('rollstate').then(res => {
       this.rollstateArray = res
     })
+    //料号
+    getDataConfig('material_no').then(res => {
+      this.mate_liao = res
+      debugger
+    })
+    getDataConfig('specifications_no').then(res => {
+      this.spec_gui = res
+    })
 
     this.checkboxChange(this.tableColumns, '2')
 
@@ -861,6 +1188,22 @@ export default {
     // this.echartOption()
   },
   methods: {
+    handleliaohaoChange() {
+      this.mate_liao.forEach(item => {
+        if (item.value == this.formLabelAlign.material_no) {
+          this.formLabelAlign.material_no = item.value
+          this.formLabelAlign.material_noid = item.key
+        }
+      })
+    },
+    handleguigeChange() {
+      this.spec_gui.forEach(item => {
+        if (item.value == this.formLabelAlign.specifications_no) {
+          this.formLabelAlign.specifications_no = item.value
+          this.formLabelAlign.specifications_noid = item.key
+        }
+      })
+    },
     shigu_change(vId) {
       let obj = {}
       obj = this.rollStateArray.find(item => {
@@ -1222,6 +1565,13 @@ export default {
         myChart1.resize()
       }
     },
+    handleRollTypeChange() {
+      this.options.forEach(item => {
+        if (item.key == this.formLabelAlign.roll_typeid) {
+          this.formLabelAlign.roll_type = item.value
+        }
+      })
+    },
     handleFactoryChange() {
       this.option_1.forEach(item => {
         if (item.key == this.formLabelAlign.factory_id) {
@@ -1307,11 +1657,6 @@ export default {
       this.searchInfo = {}
       this.findAll()
     },
-    handleEdit(val) {
-      this.formLabelAlign = {}
-      this.formLabelAlign = JSON.parse(JSON.stringify(val))
-      this.dialogVisible = true
-    },
     handleEditState(data) {
       this.show_1 = false //事故辊显示和隐藏
       this.formLabelAlignChange = data
@@ -1342,8 +1687,70 @@ export default {
         this.options = res.data
       })
     },
-
-    submit() {
+    submitChange() {
+      if (this.formLabelAlignChange) {
+        post('rollInformation/update', {
+          rollInformation: this.formLabelAlignChange
+        }).then(res => {
+          if (res) {
+            this.$message({
+              message: '编辑成功',
+              type: 'success'
+            })
+            this.findAll()
+          }
+        })
+        this.dialogVisibleChange = false
+      } else {
+        alert('请按照要求输入')
+      }
+    },
+    //删除
+    handleDelect(data) {
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('rollInformation/deleteOne', { indocno: data.indocno }).then(
+            res => {
+              console.log('删除', res)
+              if (res) {
+                this.$message({
+                  type: 'success',
+                  message: '删除成功!'
+                })
+                this.findAll()
+              }
+            }
+          )
+          this.findAll()
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
+    },
+    //打开添加车床弹窗
+    open_add_1() {
+      this.dialogVisible = true
+      this.dialogTitle = '新增'
+      this.formLabelAlign = {
+        grindingcount: 0
+      }
+      this.formFlag = true
+    },
+    // 编辑弹窗
+    handleEdit(val) {
+      this.dialogVisible = true
+      this.dialogTitle = '编辑'
+      this.formLabelAlign = val
+      this.formFlag = false
+    },
+    /*  submit() {
       if (this.formLabelAlign) {
         // 编辑
         post('rollInformation/update', {
@@ -1366,25 +1773,48 @@ export default {
       } else {
         alert('请按照要求输入')
       }
-    },
-    submitChange() {
-      if (this.formLabelAlignChange) {
-        post('rollInformation/update', {
-          rollInformation: this.formLabelAlignChange
+    },*/
+    submit() {
+      if (this.formFlag) {
+        // 编辑
+        post('rollInformation/insert', {
+          rollInformation: this.formLabelAlign
         }).then(res => {
           if (res) {
             this.$message({
-              message: '编辑成功',
+              message: '添加成功',
               type: 'success'
             })
             this.findAll()
           }
         })
-        this.dialogVisibleChange = false
+        this.dialogVisible = false
       } else {
-        alert('请按照要求输入')
+        // 编辑
+        post('rollInformation/update', {
+          rollInformation: this.formLabelAlign
+        }).then(res => {
+          if (res.status == 2000) {
+            this.$message({
+              message: '编辑成功',
+              type: 'success'
+            })
+            this.findAll()
+          } else {
+            this.$message({
+              message: '编辑失败',
+              type: 'error'
+            })
+          }
+        })
+        this.dialogVisible = false
       }
     }
+    /* handleEdit(val) {
+      this.formLabelAlign = {}
+      this.formLabelAlign = JSON.parse(JSON.stringify(val))
+      this.dialogVisible = true
+    },*/
   }
 }
 </script>

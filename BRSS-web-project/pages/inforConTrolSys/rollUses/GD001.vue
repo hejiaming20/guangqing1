@@ -104,7 +104,7 @@
           align="center"/>
         <el-table-column
           prop="offlinetime"
-          width="150"
+          width="170px"
           label="下机时间"
           show-overflow-tooltip
           align="center"/>

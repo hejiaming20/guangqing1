@@ -146,6 +146,13 @@
           prop="iaccident"
           min-width="100px"
           label="事故辊标记"/>-->
+
+        <el-table-column
+          prop="material_no"
+          label="料号"/>
+        <el-table-column
+          prop="specifications_no"
+          label="规格"/>
         <el-table-column
           prop="scrapreason"
           label="报废原因"/>

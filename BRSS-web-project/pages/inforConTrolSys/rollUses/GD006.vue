@@ -2037,6 +2037,7 @@ export default {
       this.send_java(0, this.tableData_tan.length)
       setTimeout(() => {
         this.findcar()
+        this.java_select()
       }, 5700)
     },
     send_him() {
@@ -2383,7 +2384,7 @@ export default {
         setTimeout(() => {
           this.clickrow = 100
           this.findcar()
-          this.plan_rever()
+          this.java_select()
         }, 1000)
         this.tableDatan_0 = res.data
         this.total_1 = res.count
@@ -2391,74 +2392,6 @@ export default {
       this.dialogVisible2 = false //换辊车关闭
       this.dialogVisible3 = false //换辊清页面空关闭
       this.ming = '' //关闭大小
-    },
-
-    //取消换辊后刷新select选择表，
-    plan_rever() {
-      this.option_1 = []
-      this.option_2 = []
-      this.option_3 = []
-      this.option_4 = []
-      this.option_5 = []
-      this.option_6 = []
-      this.option_7 = []
-      this.zhans1 = []
-      this.zhans2 = []
-      this.count_length1 = 0
-      this.count_length2 = 0
-      this.count_length3 = 0
-      this.count_length4 = 0
-      this.count_length5 = 0
-      this.count_length6 = 0
-      this.count_length7 = 0
-      //发送python
-      pythonPOST('/python/RollChangingCarLoad/', {
-        pdiplanNo: this.jihua.plan
-      }).then(res => {
-        this.option_1 = res.data[2][0]
-        this.option_2 = res.data[2][1]
-        this.option_3 = res.data[2][2]
-        this.option_4 = res.data[2][3]
-        this.option_5 = res.data[2][4]
-        this.option_6 = res.data[2][5]
-        this.option_7 = res.data[2][6]
-        this.count_length1 = this.option_1.length
-        this.count_length2 = this.option_2.length
-        this.count_length3 = this.option_3.length
-        this.count_length4 = this.option_4.length
-        this.count_length5 = this.option_5.length
-        this.count_length6 = this.option_6.length
-        this.count_length7 = this.option_7.length
-
-        // this.find_select() //下拉框select 接口
-        //数据1
-        var t1 = res.data[0][0].length
-        for (let i = 0; t1 > i; i++) {
-          this.zhans1.push({
-            value: res.data[0][4][i],
-            value1_1: res.data[0][1][i][0],
-            value1_2: res.data[0][1][i][1]
-          })
-        }
-        //数据2
-        var t2 = res.data[1][0].length
-        for (let i = 0; t2 > i; i++) {
-          this.zhans2.push({
-            value: res.data[1][4][i],
-            value1_1: res.data[1][1][i][0],
-            value1_2: res.data[1][1][i][1]
-          })
-        }
-        // this.loading = true
-      })
-
-      /* if (this.quanxian == 30) {
-      } else {
-        this.$message({
-          type: 'success',
-          message: '只有2250轧机操作才有权限'
-        })
-      }*/
     }
   }
 }

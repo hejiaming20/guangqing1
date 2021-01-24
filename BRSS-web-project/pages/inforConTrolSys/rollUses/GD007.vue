@@ -2061,7 +2061,8 @@ export default {
           reaon: ''
         }
       ],
-      hitm_send_roll: ''
+      hitm_send_roll: '',
+      hitm_send_roll_1: ''
     }
   },
   created() {
@@ -2586,6 +2587,7 @@ export default {
       }
 
       this.arry_all[0].roll_no = nex
+      this.chaxun1()
       // this.xuyao1 = nex
     },
     rollTypeChange2(vId, val, num) {
@@ -2606,6 +2608,7 @@ export default {
         nex = 'null/' + this.formatte1.roll_2
       }
       this.arry_all[1].roll_no = nex
+      this.chaxun2()
       // this.xuyao2 = nex
     },
     rollTypeChange3(vId, val, num) {
@@ -3051,24 +3054,58 @@ export default {
     },
     send_him() {
       this.hitm_send_roll = ''
-      for (let i = 0; this.tableData_tan.length > i; i++) {
-        this.hitm_send_roll =
-          this.hitm_send_roll + this.tableData_tan[i].roll_no + '/'
+      this.hitm_send_roll_1 = ''
+      if (this.tableData_tan.length <= 12) {
+        for (let i = 0; this.tableData_tan.length > i; i++) {
+          this.hitm_send_roll =
+            this.hitm_send_roll + this.tableData_tan[i].roll_no + '/'
+        }
+        console.log(this.hitm_send_roll, this.hitm_send_roll.length)
+        this.hitm_send_roll = this.hitm_send_roll.slice(
+          0,
+          this.hitm_send_roll.length - 1
+        )
+        this.hitm_send_roll_1 = 'kong'
+      } else {
+        for (let i = 0; 12 > i; i++) {
+          this.hitm_send_roll =
+            this.hitm_send_roll + this.tableData_tan[i].roll_no + '/'
+        }
+        for (let i = 12; this.tableData_tan.length > i; i++) {
+          this.hitm_send_roll_1 =
+            this.hitm_send_roll_1 + this.tableData_tan[i].roll_no + '/'
+        }
+
+        console.log(
+          this.hitm_send_roll,
+          this.hitm_send_roll.length,
+          this.hitm_send_roll_1,
+          this.hitm_send_roll_1.length
+        )
+        this.hitm_send_roll = this.hitm_send_roll.slice(
+          0,
+          this.hitm_send_roll.length - 1
+        )
+        this.hitm_send_roll_1 = this.hitm_send_roll_1.slice(
+          0,
+          this.hitm_send_roll_1.length - 1
+        )
       }
-      console.log(this.hitm_send_roll, this.hitm_send_roll.length)
-      this.hitm_send_roll = this.hitm_send_roll.slice(
-        0,
-        this.hitm_send_roll.length - 1
+
+      console.log(
+        this.hitm_send_roll,
+        this.hitm_send_roll.length,
+        this.hitm_send_roll_1
       )
-      console.log(this.hitm_send_roll, this.hitm_send_roll.length)
       setTimeout(() => {
         post('webservice/sendTagNew', {
           tagList: [
             { name: 'SEND_ROLL_NO', value: this.hitm_send_roll },
+            { name: 'SEND_ROLL_NO_1', value: this.hitm_send_roll_1 },
             { name: 'ROLL_PUT_INTO_RC_CAR', value: '1' }
           ]
         })
-      }, 1000)
+      }, 5000)
       // test.splice(test.length - 1, 2)
     },
     send_java(val, length) {
