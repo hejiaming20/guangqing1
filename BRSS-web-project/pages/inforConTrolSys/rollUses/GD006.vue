@@ -75,7 +75,19 @@
                       <table>
                         <tbody >
                           <tr class="t1">
-                            <th>机架</th>
+                            <th>机架
+                              <el-tooltip
+                                content="刷新"
+                                effect="dark"
+                                placement="top"
+                                class="function-item">
+                                <i
+                                  :class=" pulse ? 'el-icon-refresh icon-rotate' : 'el-icon-refresh' "
+                                  @click="java_select()"
+                                />
+                              </el-tooltip>
+
+                            </th>
                             <th>辊号选择</th>
                           </tr>
 
@@ -805,12 +817,15 @@
           label-width="80px">
           <el-row>
             <el-col :span="8">
-              <el-form-item
-                prop="roll_no"
-                label="辊号">
-                <el-input
-                  v-model="searchInfo2.roll_no"/>
-              </el-form-item>
+              <div class="layout-one-input1">
+                <el-form-item
+                  prop="roll_no"
+                  label="辊号">
+                  <el-input
+                    v-model="searchInfo2.roll_no"/>
+                </el-form-item>
+              </div>
+
             </el-col>
             <el-col :span="8">
               <el-form-item
@@ -1213,6 +1228,7 @@ export default {
   components: { TableEasy },
   data() {
     return {
+      pulse: false,
       p1: '',
       p2: '',
       p3: '',
@@ -1834,6 +1850,10 @@ export default {
     },
     //java_select备用查询
     java_select() {
+      this.pulse = true
+      setTimeout(() => {
+        this.pulse = false
+      }, 1000)
       this.option_1 = []
       this.option_2 = []
       this.option_3 = []

@@ -102,7 +102,7 @@
                 <el-button
                   size="mini"
                   type="primary"
-                  @click="open_add_1()">添加(车床)</el-button>
+                  @click="open_add_1()">添加</el-button>
                   <!-- <el-button
                 size="mini"
                 type="primary"
@@ -474,6 +474,7 @@ export default {
                   ) {
                     this.send_id = res.data[i].detail[m].detail[n].indocno
                     this.send_sname = res.data[i].detail[m].detail[n].sname
+                    this.light_1 = res.data[i].detail[m].detail[n].indocno
                     this.find_query()
                     console.log('3')
                     break

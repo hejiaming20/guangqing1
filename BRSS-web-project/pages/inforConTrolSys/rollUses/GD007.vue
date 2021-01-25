@@ -128,6 +128,7 @@
                             <el-select
                               v-model="formatte.roll_1"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange1(formatte.option_1,'F1',1)">
                               <el-option
                                 v-for="item in option_1"
@@ -142,6 +143,7 @@
                             <el-select
                               v-model="formatte1.roll_1"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange1(formatte1.option_1,'F1',1)">
                               <el-option
                                 v-for="item in aoption_1"
@@ -174,6 +176,7 @@
                             <el-select
                               v-model="formatte.roll_2"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange2(formatte.roll_2,'F2',2)">
                               <el-option
                                 v-for="item in option_2"
@@ -188,6 +191,7 @@
                             <el-select
                               v-model="formatte1.roll_2"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange2(formatte1.roll_2,'F2',2)">
                               <el-option
                                 v-for="item in aoption_2"
@@ -220,6 +224,7 @@
                             <el-select
                               v-model="formatte.roll_3"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange3(formatte.roll_3,'F3',3)">
                               <el-option
                                 v-for="item in option_3"
@@ -234,6 +239,7 @@
                             <el-select
                               v-model="formatte1.roll_3"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange3(formatte1.roll_3,'F3',3)">
                               <el-option
                                 v-for="item in aoption_3"
@@ -266,6 +272,7 @@
                             <el-select
                               v-model="formatte.roll_4"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange4(formatte.roll_4,'F4',4)">
                               <el-option
                                 v-for="item in option_4"
@@ -280,6 +287,7 @@
                             <el-select
                               v-model="formatte1.roll_4"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange4(formatte1.roll_4,'F3',3)">
                               <el-option
                                 v-for="item in aoption_4"
@@ -312,6 +320,7 @@
                             <el-select
                               v-model="formatte.roll_5"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange5(formatte.roll_5,'F4',4)">
                               <el-option
                                 v-for="item in option_5"
@@ -326,6 +335,7 @@
                             <el-select
                               v-model="formatte1.roll_5"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange5(formatte1.roll_5,'F3',3)">
                               <el-option
                                 v-for="item in aoption_5"
@@ -358,6 +368,7 @@
                             <el-select
                               v-model="formatte.roll_6"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange6(formatte.roll_6,'F4',4)">
                               <el-option
                                 v-for="item in option_6"
@@ -372,6 +383,7 @@
                             <el-select
                               v-model="formatte1.roll_6"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange6(formatte1.roll_6,'F3',3)">
                               <el-option
                                 v-for="item in aoption_6"
@@ -404,6 +416,7 @@
                             <el-select
                               v-model="formatte.roll_7"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange7(formatte.roll_7,'F4',4)">
                               <el-option
                                 v-for="item in option_7"
@@ -418,6 +431,7 @@
                             <el-select
                               v-model="formatte1.roll_7"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange7(formatte1.roll_7,'F3',3)">
                               <el-option
                                 v-for="item in aoption_7"
@@ -594,6 +608,7 @@
                             <el-select
                               v-model="formatte.roll_11"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange11(formatte.roll_11,'F4',4)">
                               <el-option
                                 v-for="item in option_11"
@@ -608,6 +623,7 @@
                             <el-select
                               v-model="formatte1.roll_11"
                               placeholder="请选择"
+                              clearable
                               @change="rollTypeChange11(formatte1.roll_11,'F3',3)">
                               <el-option
                                 v-for="item in aoption_11"
@@ -2629,6 +2645,7 @@ export default {
         nex = 'null/' + this.formatte1.roll_3
       }
       this.arry_all[2].roll_no = nex
+      this.chaxun3()
       //this.xuyao3 = nex
     },
     rollTypeChange4(vId, val, num) {
@@ -2649,6 +2666,7 @@ export default {
         nex = 'null/' + this.formatte1.roll_4
       }
       this.arry_all[3].roll_no = nex
+      this.chaxun4()
       // this.xuyao4 = nex
     },
     rollTypeChange5(vId, val, num) {
@@ -2669,6 +2687,7 @@ export default {
         nex = 'null/' + this.formatte1.roll_5
       }
       this.arry_all[4].roll_no = nex
+      this.chaxun5()
       // this.xuyao5 = nex
     },
     rollTypeChange6(vId, val, num) {
@@ -2689,6 +2708,7 @@ export default {
         nex = 'null/' + this.formatte1.roll_6
       }
       this.arry_all[5].roll_no = nex
+      this.chaxun6()
       // this.xuyao6 = nex
     },
     rollTypeChange7(vId, val, num) {
@@ -2709,6 +2729,7 @@ export default {
         nex = 'null/' + this.formatte1.roll_7
       }
       this.arry_all[6].roll_no = nex
+      this.chaxun7()
       //this.xuyao7 = nex
     },
     rollTypeChange8(vId, val, num) {
@@ -2729,6 +2750,7 @@ export default {
         nex = 'null/' + this.formatte1.roll_8
       }
       this.arry_all[7].roll_no = nex
+      this.chaxun8()
       // this.xuyao8 = nex
     },
     rollTypeChange9(vId, val, num) {
@@ -2749,6 +2771,7 @@ export default {
         nex = 'null/' + this.formatte1.roll_9
       }
       this.arry_all[8].roll_no = nex
+      this.chaxun9()
       // this.xuyao9 = nex
     },
     rollTypeChange10(vId, val, num) {
@@ -2770,6 +2793,7 @@ export default {
       }
       this.arry_all[9].roll_no = nex
       this.xuyao10 = nex
+      this.chaxun10()
     },
     rollTypeChange11(vId, val, num) {
       var nex = ''
@@ -2789,6 +2813,7 @@ export default {
         nex = 'null/' + this.formatte1.roll_11
       }
       this.arry_all[10].roll_no = nex
+      this.chaxun11()
       // this.xuyao11 = nex
     },
     rollTypeChange12(vId, val, num) {
@@ -2809,6 +2834,7 @@ export default {
         nex = 'null/' + this.formatte1.roll12
       }
       this.arry_all[11].roll_no = nex
+      this.chaxun12()
       //this.xuyao12 = nex
     },
     rollTypeChange13(vId, val, num) {
@@ -2878,7 +2904,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[0].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun2() {
@@ -2887,7 +2915,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[1].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun3() {
@@ -2896,7 +2926,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[2].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun4() {
@@ -2905,7 +2937,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[3].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun5() {
@@ -2914,7 +2948,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[4].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun6() {
@@ -2923,7 +2959,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[5].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun7() {
@@ -2932,7 +2970,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[6].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun8() {
@@ -2941,7 +2981,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[7].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun9() {
@@ -2950,7 +2992,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[8].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun10() {
@@ -2959,7 +3003,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[9].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun11() {
@@ -2968,7 +3014,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[10].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun12() {
@@ -2977,7 +3025,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[11].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun13() {
@@ -2986,7 +3036,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[12].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun14() {
@@ -2995,7 +3047,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[13].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chaxun15() {
@@ -3004,7 +3058,9 @@ export default {
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[14].roll_no }
       }).then(res => {
-        this.tableData1 = res.data
+        if (res.data[0].roll_no) {
+          this.tableData1 = res.data
+        }
       })
     },
     chakan() {
