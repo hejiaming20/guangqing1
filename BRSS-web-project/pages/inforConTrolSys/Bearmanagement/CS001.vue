@@ -11,6 +11,7 @@
     <Table-easy
       :table-data="tableData"
       :total ="total"
+      :table-height="450"
       :page-size="pageSize"
       :row-class-name="setRowColor"
       :current-page="pageIndex"
@@ -138,7 +139,7 @@
         <el-table-column
           label="厂家"
           align="center"
-          min-width="100px"
+          min-width="70px"
           prop="factory_name" />
         <!-- <el-table-column
           label="轧辊类型"
@@ -148,7 +149,7 @@
         <el-table-column
           label="安装位置"
           align="center"
-          min-width="100px"
+          min-width="80px"
           prop="install_location" />
         <!--<el-table-column
           label="机架号"
@@ -178,7 +179,7 @@
         <el-table-column
           label="第一次投用时间"
           align="center"
-          min-width="120px"
+          min-width="150px"
           prop="usetime" />
         <!-- <el-table-column
           label="报废时间"

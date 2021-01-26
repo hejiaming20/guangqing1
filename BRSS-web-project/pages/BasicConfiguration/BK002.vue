@@ -67,12 +67,12 @@
             <el-table-column
               prop="sname"
               label="用户名"/>
-            <el-table-column
+            <!-- <el-table-column
               prop="company"
               label="产线"/>
             <el-table-column
               prop="up_location"
-              label="作业区"/>
+              label="作业区"/>-->
             <el-table-column
               label="操作"
               min-width="250"
@@ -145,7 +145,7 @@
                 :label="0">女</el-radio>
             </template>
           </el-form-item>
-          <el-form-item
+        <!--  <el-form-item
             prop="area"
             label="作业区">
             <el-select
@@ -172,7 +172,7 @@
                 :label="item.value"
                 :value="item.key"/>
             </el-select>
-          </el-form-item>
+          </el-form-item>-->
         </el-form>
       </div>
       <span
@@ -216,7 +216,7 @@
             prop="sname">
             <el-input v-model="customForm.sname" />
           </el-form-item>
-          <el-form-item
+          <!--<el-form-item
             prop="areaid"
             label="作业区">
             <el-select
@@ -243,7 +243,7 @@
                 :label="item.value"
                 :value="item.key"/>
             </el-select>
-          </el-form-item>
+          </el-form-item>-->
           <div v-show="changeDialog">
             <el-form-item
               label="角色">
