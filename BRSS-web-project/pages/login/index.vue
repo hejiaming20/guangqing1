@@ -25,12 +25,27 @@
           :rules="rules"
           :model="loginInfo"
           label-width="80px">
-          <el-form-item
+          <!--<el-form-item
             label="用户名"
             prop="account">
             <el-input
               v-model="loginInfo.account"
               placeholder="请输入用户名"/>
+          </el-form-item>-->
+          <el-form-item
+            label="用户名"
+            prop="account">
+            <el-select
+              v-model="loginInfo.account"
+              filterable
+              allow-create
+              placeholder="请输入用户名">
+              <el-option
+                v-for="item in option_fact"
+                :key="item.key"
+                :label="item.value"
+                :value="item.value"/>
+            </el-select>
           </el-form-item>
           <el-form-item
             label="密码"
@@ -52,7 +67,7 @@
 </template>
 <script>
 import TableEasy from '@/components/TasilyTableEasy'
-import { get, post } from '@/lib/Util'
+import { get, post, getDataConfig } from '@/lib/Util'
 export default {
   layout: 'logoLayout',
   components: {
@@ -81,7 +96,8 @@ export default {
       },
       loadText: '登录中',
       flag: true,
-      loading: true
+      loading: true,
+      option_fact: []
     }
   },
   beforeCreate() {
@@ -89,6 +105,9 @@ export default {
     this.loading = true
   },
   mounted() {
+    getDataConfig('accuont_ss').then(res => {
+      this.option_fact = res
+    })
     if (this.$route.query.account) {
       if (this.$route.query.account !== '') {
         this.flag = true

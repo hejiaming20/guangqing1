@@ -2988,11 +2988,21 @@ export default {
     },
     chaxun9() {
       this.tableData1 = []
+      //R1粗轧工作辊把top和bot矫正
       //下面表中两条详细信息
       post('/rollInformation/findByPre', {
         condition: { roll_no: this.arry_all[8].roll_no }
       }).then(res => {
-        if (res.data[0].roll_no) {
+        if (res.data.length == 2) {
+          if (res.data[0].roll_position == 'TOP') {
+            this.tableData1 = res.data
+          } else {
+            for (let i = 2; 0 < i; i--) {
+              this.tableData1.push(res.data[i - 1])
+              console.log(this.tableData1)
+            }
+          }
+        } else if (res.data[0].roll_no) {
           this.tableData1 = res.data
         }
       })
@@ -3078,18 +3088,52 @@ export default {
     },
     repeat(num, length) {
       if (this.arry_all[num].roll_no) {
-        //下面表中两条详细信息
-        post('/rollInformation/findByPre', {
-          condition: { roll_no: this.arry_all[num].roll_no }
-        }).then(res => {
-          for (let i = 0; res.data.length > i; i++) {
-            res.data[i].frame_no = this.arry_all[num].frame_no
-            this.tableData_tan.push(res.data[i])
-          }
-          if (++num < length) {
-            this.repeat(num, length)
-          }
-        })
+        //对R1粗轧工作辊top和bot矫正
+        if (num == 8) {
+          //下面表中两条详细信息
+          post('/rollInformation/findByPre', {
+            condition: { roll_no: this.arry_all[num].roll_no }
+          }).then(res => {
+            debugger
+            if (res.data.length == 2) {
+              if (res.data[0].roll_position == 'TOP') {
+                for (let i = 0; res.data.length > i; i++) {
+                  res.data[i].frame_no = this.arry_all[num].frame_no
+                  this.tableData_tan.push(res.data[i])
+                }
+              } else {
+                for (let i = 2; 0 < i; i--) {
+                  res.data[i - 1].frame_no = this.arry_all[num].frame_no
+                  this.tableData_tan.push(res.data[i - 1])
+                }
+              }
+              if (++num < length) {
+                this.repeat(num, length)
+              }
+            } else {
+              for (let i = 0; res.data.length > i; i++) {
+                res.data[i].frame_no = this.arry_all[num].frame_no
+                this.tableData_tan.push(res.data[i])
+              }
+              if (++num < length) {
+                this.repeat(num, length)
+              }
+            }
+          })
+        } else {
+          //下面表中两条详细信息
+          post('/rollInformation/findByPre', {
+            condition: { roll_no: this.arry_all[num].roll_no }
+          }).then(res => {
+            for (let i = 0; res.data.length > i; i++) {
+              res.data[i].frame_no = this.arry_all[num].frame_no
+              this.tableData_tan.push(res.data[i])
+            }
+            if (++num < length) {
+              this.repeat(num, length)
+            }
+          })
+        }
       } else {
         if (++num < length) {
           this.repeat(num, length)

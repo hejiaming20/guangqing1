@@ -12,7 +12,9 @@
       :table-data="tableData"
       :total="total"
       :page-size="pageSize"
+      :table-height="750"
       :current-page="pageIndex"
+      :cell-class-name="setCellStyle"
       index-type="index"
       @handle-current-change="handleCurrentChange"
       @handle-size-change="handleSizeChange">
@@ -86,7 +88,7 @@
               <el-button
                 size="mini"
                 type="primary"
-                @click="findAll()">查询</el-button>
+                @click="find_data()">查询</el-button>
               <el-button
                 size="mini"
                 type="primary"
@@ -374,6 +376,15 @@ export default {
     this.findAll()
   },
   methods: {
+    //单元格变红
+    setCellStyle({ row, column }) {
+      if (
+        row.single_times > row.interval_times &&
+        column.label == '单次累计时间(d)'
+      ) {
+        return 'setClassname'
+      }
+    },
     mifengzhong_change(vId) {
       let obj = {}
       obj = this.option6.find(item => {
@@ -510,7 +521,10 @@ export default {
         }
       })
     },
-
+    find_data() {
+      this.pageIndex = 1
+      this.findAll()
+    },
     async findAll() {
       this.searchquery.bearing_type = 2 //2为密封件1为轴承，
       // console.log(this.searchquery.frame_no)
@@ -765,5 +779,9 @@ export default {
   color: #eae8c5;
   padding: 3px 0;
   background-color: #253f80;
+}
+.setClassname {
+  color: #d3ca1b !important;
+  background-color: #8d0912 !important;
 }
 </style>

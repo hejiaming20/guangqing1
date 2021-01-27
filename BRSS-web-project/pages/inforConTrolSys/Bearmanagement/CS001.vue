@@ -14,6 +14,7 @@
       :table-height="450"
       :page-size="pageSize"
       :row-class-name="setRowColor"
+      :cell-class-name="setCellStyle"
       :current-page="pageIndex"
       index-type="index"
       @row-click="dbcick"
@@ -111,7 +112,7 @@
               <el-button
                 size="mini"
                 type="primary"
-                @click="findAll()">查询</el-button>
+                @click="find_data()">查询</el-button>
               <el-button
                 size="mini"
                 type="primary"
@@ -179,7 +180,7 @@
         <el-table-column
           label="第一次投用时间"
           align="center"
-          min-width="150px"
+          min-width="140px"
           prop="usetime" />
         <!-- <el-table-column
           label="报废时间"
@@ -192,7 +193,8 @@
 
 
         <el-table-column
-          label="单次累计时间"
+          width="80px"
+          label="单次累计时间(d)"
           prop="single_times" />
         <el-table-column
           label="间隔时间"
@@ -326,16 +328,16 @@
               </el-form-item>-->
               <el-form-item
                 label="安装位置"
-                prop="install_location_id">
+                prop="install_location">
                 <el-select
-                  v-model="formLabelAlign.install_location_id"
+                  v-model="formLabelAlign.install_location"
                   placeholder="请选择"
-                  @change="install_location_id_change">
+                  @change="install_location_id_change1_tian">
                   <el-option
                     v-for="item in option4"
                     :key="item.key"
                     :label="item.value"
-                    :value="item.key"/>
+                    :value="item.value"/>
                 </el-select>
               </el-form-item>
               <el-form-item
@@ -1139,6 +1141,15 @@ export default {
     this.findAll()
   },
   methods: {
+    //单元格变红
+    setCellStyle({ row, column }) {
+      if (
+        row.single_times > row.interval_times &&
+        column.label == '单次累计时间(d)'
+      ) {
+        return 'setClassname'
+      }
+    },
     // 点击行信息，添加颜色标识
     setRowColor({ row, rowIndex }) {
       if (row.indocno == this.rowIndex) {
@@ -1180,7 +1191,6 @@ export default {
               bearing_type: 2 //2为密封件1为轴承，
             }
           }).then(res => {
-            debugger
             this.option21 = res.data
           })
         }
@@ -1272,6 +1282,16 @@ export default {
         }
       })
     },
+    install_location_id_change1_tian(vId) {
+      let obj = {}
+      obj = this.option4.find(item => {
+        //这里的userList就是上面遍历的数据源
+        if (item.value == vId) {
+          this.formLabelAlign.install_location = item.value
+          this.formLabelAlign.install_location_id = item.key
+        }
+      })
+    },
     install_location_id_change1(vId) {
       let obj = {}
       obj = this.option4.find(item => {
@@ -1292,7 +1312,10 @@ export default {
         }
       })
     },
-
+    find_data() {
+      this.pageIndex = 1
+      this.findAll()
+    },
     findAll() {
       post('/baseChock/findByPage', {
         pageIndex: this.pageIndex,
@@ -1301,7 +1324,6 @@ export default {
       }).then(res => {
         console.log('查询全部', res)
         this.tableData = res.data
-        debugger
         this.total = res.count
         console.log(this.total)
         this.tableData1 = []
@@ -1685,5 +1707,9 @@ export default {
   color: #eae8c5;
   padding: 3px 0;
   background-color: #253f80;
+}
+.setClassname {
+  color: #d3ca1b !important;
+  background-color: #8d0912 !important;
 }
 </style>
