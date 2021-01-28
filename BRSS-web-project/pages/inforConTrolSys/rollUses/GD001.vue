@@ -117,6 +117,12 @@
           prop="rolltonnage"
           label="轧制吨数"/>
         <el-table-column
+          prop="roll_coil_num"
+          label="轧制块数"/>
+        <el-table-column
+          prop="rolling_time"
+          label="轧制时长(min)"/>
+        <el-table-column
           prop="off_line_reason_value"
           show-overflow-tooltip
           label="下线原因"/>

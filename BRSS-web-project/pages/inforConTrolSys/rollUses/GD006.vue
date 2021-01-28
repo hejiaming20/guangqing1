@@ -378,7 +378,7 @@
                       <!-- <th>粗糙度</th>-->
                       <th>OS座号</th>
                       <th>DS座号</th>
-                      <th>表面评级</th>
+                      <!-- <th>表面评级</th>-->
                       <th>HSS上机次数</th>
                     </tr>
 
@@ -394,7 +394,7 @@
                       <!--<td>{{ item.roughness }}</td>-->
                       <td>{{ item.obearing_chock }}</td>
                       <td>{{ item.dbearing_chock }}</td>
-                      <td>{{ item.oxide_evaluation }}</td>
+                      <!-- <td>{{ item.oxide_evaluation }}</td>-->
                       <td>{{ item.uplinecount }}</td>
 
                     </tr>
@@ -637,19 +637,19 @@
               <el-table-column
                 prop="dbearing_chock"
                 label="DS座号"/>
-              <el-table-column
+              <!--<el-table-column
                 prop="oxide_evaluation"
-                label="表面评级"/>
+                label="表面评级"/>-->
               <el-table-column
                 width="120px"
                 prop="uplinecount"
                 label="HSS上机次数"/>
-              <el-table-column
+            <!--  <el-table-column
                 prop="ini_crown_max"
                 label="最大凸度"/>
               <el-table-column
                 prop="ini_crown_min"
-                label="最小凸度"/>
+                label="最小凸度"/>-->
             </template>
           </Table-easy>
         </el-col>
@@ -882,10 +882,10 @@
                   <!-- <th>粗糙度</th>-->
                   <th>OS座号</th>
                   <th>DS座号</th>
-                  <th>表面评级</th>
+                  <!--  <th>表面评级</th>-->
                   <th>HSS上机次数</th>
-                  <th>最大凸度</th>
-                  <th>最小凸度</th>
+                  <!-- <th>最大凸度</th>
+                  <th>最小凸度</th>-->
                 </tr>
 
                 <tr
@@ -902,10 +902,10 @@
                   <!--<td>{{ item.roughness }}</td>-->
                   <td>{{ item.obearing_chock }}</td>
                   <td>{{ item.dbearing_chock }}</td>
-                  <td>{{ item.oxide_evaluation }}</td>
+                  <!--<td>{{ item.oxide_evaluation }}</td>-->
                   <td>{{ item.uplinecount }}</td>
-                  <td>{{ item.ini_crown_max }}</td>
-                  <td>{{ item.ini_crown_min }}</td>
+                  <!--<td>{{ item.ini_crown_max }}</td>
+                  <td>{{ item.ini_crown_min }}</td>-->
                 </tr>
               </tbody>
             </table>

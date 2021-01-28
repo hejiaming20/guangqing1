@@ -986,6 +986,13 @@ export default {
             maxInterval: '',
             splitNumber: '5',
             startAngle: 90,*/
+
+            axisTick: {
+              alignWithLabel: {
+                default: true
+              }
+            },
+
             splitArea: {
               show: true
             }

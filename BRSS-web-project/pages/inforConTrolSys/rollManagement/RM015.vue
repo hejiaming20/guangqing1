@@ -113,11 +113,6 @@
         </el-table-column>
       </template>
     </Table-easy>
-    <div>
-      上辊减去下辊为正说明上辊大
-
-
-    </div>
     <!-- 添加/编辑弹窗 -->
     <el-dialog
       :visible.sync="dialogVisible"
