@@ -120,7 +120,15 @@
           prop="roll_coil_num"
           label="轧制块数"/>
         <el-table-column
+          prop="crown"
+          label="凸度"/>
+        <el-table-column
+          show-overflow-tooltip
+          prop="rollinfo"
+          label="钢种"/>
+        <el-table-column
           prop="rolling_time"
+          width="110px"
           label="轧制时长(min)"/>
         <el-table-column
           prop="off_line_reason_value"
@@ -535,6 +543,19 @@ export default {
       })
       if (res.status == 2000) {
         this.tableData = res.data
+        for (let i = 0; this.tableData.length > i; i++) {
+          if (this.tableData[i].rollinfo) {
+            var leixing = ['钢种:', '宽度:', '块数:', '重量:']
+            var haha = ''
+            var add = this.tableData[i].rollinfo.split(',')
+            for (let n = 0; add.length > n; n++) {
+              var m = n % 4
+              haha = haha + leixing[m] + add[n] + '；'
+            }
+            haha = haha.slice(0, haha.length - 5)
+            this.tableData[i].rollinfo = haha
+          }
+        }
         this.total = res.count
       } else {
         this.tableData = []

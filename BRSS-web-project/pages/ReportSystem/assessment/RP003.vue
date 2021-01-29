@@ -1,4 +1,4 @@
-<!--各月轧辊辊颈报表-->
+<!--设备稼动率报表-->
 <template>
   <div>
     <Table-easy
@@ -23,64 +23,26 @@
               label-width="80px">
               <el-row>
                 <el-col :span="6">
-                  <!-- <el-form-item
-                    label="辊号"
-                    prop="roll_no">
-                    <el-input v-model="searchInfo.roll_no" />
-                  </el-form-item>-->
                   <el-form-item
-                    label="制造厂商"
-                    prop="factory_id">
+                    label="磨床号"
+                    prop="machine_no">
                     <el-select
-                      v-model="searchInfo.factory_id"
-                      placeholder="请选择">
-                      <el-option
-                        v-for="item in option_fact"
-                        :key="item.key"
-                        :label="item.value"
-                        :value="item.key"/>
-                    </el-select>
-                  </el-form-item>
-                  <el-form-item
-                    label="机架范围"
-                    prop="framerangeid">
-                    <el-select
-                      v-model="searchInfo.framerangeid"
-                      placeholder="请选择">
-                      <el-option
-                        v-for="item in frameFwArray"
-                        :key="item.key"
-                        :label="item.value"
-                        :value="item.key"/>
-                    </el-select>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="6">
-                  <el-form-item
-                    label="轧辊类型"
-                    prop="roll_typeid">
-                    <el-select
-                      v-model="searchInfo.roll_typeid"
+                      v-model="searchInfo.machine_no"
                       placeholder="请选择">
                       <el-option
                         v-for="item in options"
                         :key="item.key"
                         :label="item.value"
-                        :value="item.key"/>
+                        :value="item.value"/>
                     </el-select>
                   </el-form-item>
+                </el-col>
+
+                <el-col :span="6">
                   <el-form-item
-                    label="轧辊材质"
-                    prop="material_id">
-                    <el-select
-                      v-model="searchInfo.material_id"
-                      placeholder="请选择">
-                      <el-option
-                        v-for="item in option_2"
-                        :key="item.key"
-                        :label="item.value"
-                        :value="item.key"/>
-                    </el-select>
+                    label="操作人名称"
+                    prop="operator">
+                    <el-input v-model="searchInfo.operator" />
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
@@ -95,17 +57,17 @@
                       placeholder="开始时间"/>
                   </el-form-item>
                 </el-col>
-              <!--  <el-col :span="6">
-                  <el-form-item
-                    label="结束时间"
-                    prop="grind_endtime">
-                    <el-date-picker
-                      v-model="searchInfo.grind_endtime"
-                      value-format="yyyy-MM-dd HH:mm:ss"
-                      type="datetime"
-                      placeholder="选择结束时间"/>
-                  </el-form-item>
-                </el-col>-->
+                <!--  <el-col :span="6">
+                    <el-form-item
+                      label="结束时间"
+                      prop="grind_endtime">
+                      <el-date-picker
+                        v-model="searchInfo.grind_endtime"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        type="datetime"
+                        placeholder="选择结束时间"/>
+                    </el-form-item>
+                  </el-col>-->
               </el-row>
             </el-form>
           </el-col>
@@ -177,9 +139,6 @@ export default {
       tableData: [],
       total: 0,
       options: [],
-      frameFwArray: [],
-      option_fact: [],
-      option_2: [],
       searchInfo: {
         dbegin: '',
         roll_typeid: '',
@@ -197,8 +156,8 @@ export default {
   },
   created() {
     /*this.searchInfo.grind_starttime = moment()
-      .subtract(30, 'days')
-      .format('YYYY-MM-DD HH:mm:ss')*/
+        .subtract(30, 'days')
+        .format('YYYY-MM-DD HH:mm:ss')*/
     this.searchInfo.dbegin = moment().format('YYYY-MM-DD HH:mm:ss')
     this.moxueTime_1[0] = moment()
       .subtract(30, 'days')
@@ -249,21 +208,8 @@ export default {
       this.findAll()
     },
     findOptions() {
-      getDataConfig('roll_material').then(res => {
-        this.option_2 = res
-      })
-      getDataConfig('rolltype').then(res => {
-        this.options = res
-      })
-      getDataConfig('framefw').then(res => {
-        this.frameFwArray = res
-      })
-      getDataConfig('roll_factory').then(res => {
-        this.option_fact = res
-      })
       getDataConfig('machine').then(res => {
-        res.splice(6)
-        this.machineArray = res
+        this.options = res
       })
     },
     // 查询全部

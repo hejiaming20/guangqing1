@@ -1,4 +1,4 @@
-<!--各月轧辊辊颈报表-->
+<!--砂轮磨耗报表-->
 <template>
   <div>
     <Table-easy
@@ -7,7 +7,6 @@
       :page-size="pageSize"
       :current-page="pageIndex"
       :table-height="750"
-      :cell-class-name="setCellStyle"
       :is-pagination-show="false"
       :table-foot="true"
       index-type="index"
@@ -23,69 +22,38 @@
               label-width="80px">
               <el-row>
                 <el-col :span="6">
-                  <!-- <el-form-item
-                    label="辊号"
-                    prop="roll_no">
-                    <el-input v-model="searchInfo.roll_no" />
-                  </el-form-item>-->
                   <el-form-item
-                    label="制造厂商"
-                    prop="factory_id">
+                    label="砂轮厂商"
+                    prop="wheelname">
                     <el-select
-                      v-model="searchInfo.factory_id"
+                      v-model="searchInfo.wheelname"
                       placeholder="请选择">
                       <el-option
-                        v-for="item in option_fact"
+                        v-for="item in option_1"
                         :key="item.key"
                         :label="item.value"
-                        :value="item.key"/>
-                    </el-select>
-                  </el-form-item>
-                  <el-form-item
-                    label="机架范围"
-                    prop="framerangeid">
-                    <el-select
-                      v-model="searchInfo.framerangeid"
-                      placeholder="请选择">
-                      <el-option
-                        v-for="item in frameFwArray"
-                        :key="item.key"
-                        :label="item.value"
-                        :value="item.key"/>
+                        :value="item.value"/>
                     </el-select>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item
-                    label="轧辊类型"
-                    prop="roll_typeid">
+                    label="磨床号"
+                    prop="machine_no">
                     <el-select
-                      v-model="searchInfo.roll_typeid"
+                      v-model="searchInfo.machine_no"
                       placeholder="请选择">
                       <el-option
                         v-for="item in options"
                         :key="item.key"
                         :label="item.value"
-                        :value="item.key"/>
-                    </el-select>
-                  </el-form-item>
-                  <el-form-item
-                    label="轧辊材质"
-                    prop="material_id">
-                    <el-select
-                      v-model="searchInfo.material_id"
-                      placeholder="请选择">
-                      <el-option
-                        v-for="item in option_2"
-                        :key="item.key"
-                        :label="item.value"
-                        :value="item.key"/>
+                        :value="item.value"/>
                     </el-select>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item
-                    label="时间"
+                    label="开始时间"
                     prop="dbegin">
                     <el-date-picker
                       ref="userTime"
@@ -95,17 +63,17 @@
                       placeholder="开始时间"/>
                   </el-form-item>
                 </el-col>
-              <!--  <el-col :span="6">
+                <el-col :span="6">
                   <el-form-item
                     label="结束时间"
-                    prop="grind_endtime">
+                    prop="dend">
                     <el-date-picker
-                      v-model="searchInfo.grind_endtime"
+                      v-model="searchInfo.dend"
                       value-format="yyyy-MM-dd HH:mm:ss"
                       type="datetime"
                       placeholder="选择结束时间"/>
                   </el-form-item>
-                </el-col>-->
+                </el-col>
               </el-row>
             </el-form>
           </el-col>
@@ -130,27 +98,73 @@
       </template>
       <template slot="TableBody">
         <el-table-column
-          prop="roll_no"
+          prop="wheelname"
           width="150"
-          label="辊号"/>
+          label="砂轮厂家"/>
+        <el-table-column
+          prop="machineno"
+          label="磨床号"/>
+        <el-table-column
+          prop="BigDecimal sand_article"
+          label="砂轮粒度"/>
+        <el-table-column
+          prop="grind_starttime"
+          label="磨削开始时间"/>
         <el-table-column
           prop="roll_type"
-          label="轧辊类型"/>
+          label="站别"/>
         <el-table-column
-          prop="material"
-          label="轧辊材质"/>
+          prop="roll_no"
+          label="辊号"/>
         <el-table-column
-          prop="framerange"
-          label="机架范围"/>
+          prop="before_diameter"
+          label="磨前中部直径"/>
         <el-table-column
-          prop="factory"
-          label="轧辊厂家"/>
+          prop="after_diameter"
+          label="磨后直径"/>
         <el-table-column
-          prop="currentdiameter"
-          label="当前直径"/>
+          prop="wheel_dia_start"
+          label="砂轮开始直径"/>
         <el-table-column
-          prop="body_diameter"
-          label="结存"/>
+          prop="wheel_dia_end"
+          label="砂轮结束直径"/>
+        <el-table-column
+          prop="grinding_time"
+          label="磨削时长"/>
+        <el-table-column
+          prop="body_length"
+          label="辊长"/>
+        <el-table-column
+          prop="sand_thickness"
+          label="砂厚"/>
+        <el-table-column
+          prop="reduction_ratio"
+          label="砂辊径减少比"/>
+        <el-table-column
+          prop="rolldiameter_reduce"
+          label="辊径减少"/>
+        <el-table-column
+          prop="rollerbody_reduce"
+          label="辊体减少（cm3)"/>
+        <el-table-column
+          prop="sanddiameter_reduce"
+          label="砂径减少"/>
+        <el-table-column
+          prop="sandbody_reduce"
+          label="砂体减少(cm3)"/>
+        <el-table-column
+          prop="abrasion_than"
+          label="磨耗比(V/V)"/>
+        <el-table-column
+          prop="efficiency"
+          label="效率(mm/min)"/>
+
+
+
+
+
+
+
       </template>
     </Table-easy>
   </div>
@@ -177,28 +191,24 @@ export default {
       tableData: [],
       total: 0,
       options: [],
-      frameFwArray: [],
-      option_fact: [],
-      option_2: [],
+      option_1: [],
       searchInfo: {
         dbegin: '',
-        roll_typeid: '',
-        framerangeid: '',
-        factory_id: '',
-        material_id: ''
+        dend: '',
+        wheelname: '',
+        machine_no: ''
       },
       searchInfoEchartsLight: {
         machine_no: '',
         grind_starttime: '',
         grind_endtime: ''
-      },
-      machineArray: []
+      }
     }
   },
   created() {
-    /*this.searchInfo.grind_starttime = moment()
+    this.searchInfo.dend = moment()
       .subtract(30, 'days')
-      .format('YYYY-MM-DD HH:mm:ss')*/
+      .format('YYYY-MM-DD HH:mm:ss')
     this.searchInfo.dbegin = moment().format('YYYY-MM-DD HH:mm:ss')
     this.moxueTime_1[0] = moment()
       .subtract(30, 'days')
@@ -223,14 +233,12 @@ export default {
           location.origin +
           '/api/rollInformation/excelRollDiameter?dbegin=' +
           this.searchInfo.dbegin +
-          '&factory_id=' +
-          this.searchInfo.factory_id +
-          '&framerangeid=' +
-          this.searchInfo.framerangeid +
-          '&material_id=' +
-          this.searchInfo.material_id +
-          '&roll_typeid=' +
-          this.searchInfo.roll_typeid
+          '&dend=' +
+          this.searchInfo.dend +
+          '&machine_no=' +
+          this.searchInfo.machine_no +
+          '&wheelname=' +
+          this.searchInfo.wheelname
       }
       await exportMethod(data)
       // get(
@@ -249,38 +257,22 @@ export default {
       this.findAll()
     },
     findOptions() {
-      getDataConfig('roll_material').then(res => {
-        this.option_2 = res
-      })
-      getDataConfig('rolltype').then(res => {
+      getDataConfig('machine').then(res => {
         this.options = res
       })
-      getDataConfig('framefw').then(res => {
-        this.frameFwArray = res
-      })
-      getDataConfig('roll_factory').then(res => {
-        this.option_fact = res
-      })
-      getDataConfig('machine').then(res => {
-        res.splice(6)
-        this.machineArray = res
+      getDataConfig('bearing_s').then(res => {
+        this.option_1 = res
       })
     },
     // 查询全部
     //查询接口
     findAll() {
-      post('rollInformation/findRollDiameterByPage', {
+      post('rollGrindingBF/findWheelAbrasionByPage', {
         pageIndex: this.pageIndex,
         pageSize: this.pageSize,
         condition: this.searchInfo
       }).then(res => {
         this.tableData = res.data
-        console.log(res.data.length)
-        // this.tableData.push({ roll_no: '辊径合计', body_diameter: res.number })
-        this.tableData.splice(0, 0, {
-          roll_no: '合计',
-          body_diameter: res.number
-        })
         this.total = res.count
       })
     },
@@ -294,11 +286,6 @@ export default {
     handleCurrentChange(val) {
       this.pageIndex = val
       this.findAll()
-    },
-    setCellStyle({ row, column }) {
-      if (column.label == '磨削精度评级') {
-        return 'setClassname'
-      }
     },
     // 主表重置
     resetForm() {
