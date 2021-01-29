@@ -104,6 +104,9 @@ export default {
     this.flag = true
     this.loading = true
   },
+  created() {
+    this.enter_1()
+  },
   mounted() {
     getDataConfig('accuont_ss').then(res => {
       this.option_fact = res
@@ -129,6 +132,36 @@ export default {
     }
   },
   methods: {
+    enter_1() {
+      if (process.client) {
+        document.onkeydown = e => {
+          let _key = window.event.keyCode
+          if (_key === 13) {
+            post('doLoginAll', this.loginInfo).then(res => {
+              console.log('登录信息====', res)
+              if (res.status == 2000) {
+                //获取系统数据为rm004所用
+                var limits = res.data.roles
+                localStorage.setItem('storeID', JSON.stringify(limits))
+                //获取系统数据登录名
+                var sname = res.data.user.sname
+                localStorage.setItem('storename', JSON.stringify(sname))
+                this.$message({
+                  type: 'success',
+                  message: '登录成功!'
+                })
+                this.saveMsg(res.data)
+              } else {
+                this.$message({
+                  type: 'error',
+                  message: res.msg
+                })
+              }
+            })
+          }
+        }
+      }
+    },
     login(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {

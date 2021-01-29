@@ -47,7 +47,7 @@
                         v-for="item in options"
                         :key="item.key"
                         :label="item.value"
-                        :value="item.value"/>
+                        :value="item.key"/>
                     </el-select>
                   </el-form-item>
                 </el-col>
@@ -231,14 +231,10 @@ export default {
         url:
           // 'http://192.168.43.57:8778/api/rollStiffness/excel?dbegin=' +
           location.origin +
-          '/api/rollInformation/excelRollDiameter?dbegin=' +
+          '/api/rollGrindingBF/excelWheelAbrasion?dbegin=' +
           this.searchInfo.dbegin +
           '&dend=' +
-          this.searchInfo.dend +
-          '&machine_no=' +
-          this.searchInfo.machine_no +
-          '&wheelname=' +
-          this.searchInfo.wheelname
+          this.searchInfo.dend
       }
       await exportMethod(data)
       // get(

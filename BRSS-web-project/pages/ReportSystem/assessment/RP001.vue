@@ -209,12 +209,24 @@ export default {
       .subtract(30, 'days')
       .format('YYYY-MM-DD HH:mm:ss')
     this.moxueTime[1] = moment().format('YYYY-MM-DD HH:mm:ss')
+
+    this.enter_1()
   },
   mounted() {
     this.findOptions()
     this.findAll()
   },
   methods: {
+    enter_1() {
+      if (process.client) {
+        document.onkeydown = e => {
+          let _key = window.event.keyCode
+          if (_key === 13) {
+            this.findSearch()
+          }
+        }
+      }
+    },
     async hand_exe() {
       let data = {
         method: 'get',

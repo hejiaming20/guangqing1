@@ -1,4 +1,4 @@
-<!--设备稼动率报表-->
+<!--轧辊数量报表-->
 <template>
   <div>
     <Table-easy
@@ -92,37 +92,33 @@
       </template>
       <template slot="TableBody">
         <el-table-column
-          prop="machineno"
+          prop="allnum"
           width="150"
-          label="磨床号"/>
+          label="所有辊"/>
         <el-table-column
-          prop="grind_starttime"
-          label="磨削开始时间"/>
+          prop="newnum"
+          label="新辊"/>
         <el-table-column
-          prop="sclass"
-          label="班"/>
+          prop="scrapnum"
+          label="报废辊"/>
         <el-table-column
-          prop="sgroup"
-          label="班组"/>
+          prop="oldnum"
+          label="旧辊"/>
         <el-table-column
-          prop="operator"
-          label="操作人"/>
+          prop="framerange"
+          label="机架范围"/>
         <el-table-column
-          prop="fwnum"
-          label="1-4工作辊"/>
+          prop="material"
+          label="材质"/>
         <el-table-column
-          prop="gwnum"
-          label="5-8工作辊"/>
+          prop="roll_type"
+          label="轧辊类型"/>
         <el-table-column
-          prop="rnum"
-          label="支撑辊"/>
+          prop="specifications_no"
+          label="规格名称"/>
         <el-table-column
-          prop="rwnum"
-          label="粗轧支撑辊"/>
-        <el-table-column
-          prop="othernum"
-          label="其他辊"/>
-
+          prop="material_no"
+          label="料号名称"/>
       </template>
     </Table-easy>
   </div>
@@ -162,8 +158,8 @@ export default {
   },
   created() {
     /*this.searchInfo.grind_starttime = moment()
-        .subtract(30, 'days')
-        .format('YYYY-MM-DD HH:mm:ss')*/
+          .subtract(30, 'days')
+          .format('YYYY-MM-DD HH:mm:ss')*/
     this.searchInfo.dbegin = moment().format('YYYY-MM-DD HH:mm:ss')
     this.moxueTime_1[0] = moment()
       .subtract(30, 'days')
@@ -185,17 +181,7 @@ export default {
         method: 'get',
         url:
           // 'http://192.168.43.57:8778/api/rollStiffness/excel?dbegin=' +
-          location.origin +
-          '/api/rollInformation/excelRollDiameter?dbegin=' +
-          this.searchInfo.dbegin +
-          '&factory_id=' +
-          this.searchInfo.factory_id +
-          '&framerangeid=' +
-          this.searchInfo.framerangeid +
-          '&material_id=' +
-          this.searchInfo.material_id +
-          '&roll_typeid=' +
-          this.searchInfo.roll_typeid
+          location.origin + '/api/rollInformation/excelRollInformationNum'
       }
       await exportMethod(data)
       // get(
@@ -221,10 +207,9 @@ export default {
     // 查询全部
     //查询接口
     findAll() {
-      post('rollGrindingBF/findGrindingRateByPage', {
+      post('rollInformation/findRollInformationNum', {
         pageIndex: this.pageIndex,
-        pageSize: this.pageSize,
-        condition: this.searchInfo
+        pageSize: 100
       }).then(res => {
         this.tableData = res.data
         console.log(res.data.length)
