@@ -4,6 +4,7 @@
       <Table-easy
         :table-data="tableData"
         :total="total"
+        :table-height="450"
         :page-size="pageSize"
         :current-page="pageIndex"
         :row-class-name="setRowColor"
@@ -42,6 +43,28 @@
                       :value="item.key"/>
                   </el-select>
                 </el-form-item>
+                <el-form-item
+                  label="开始时间"
+                  label-width="97px"
+                  prop="dbegin">
+                  <el-date-picker
+                    v-model="searchInfo.dbegin"
+                    value-format="yyyy-MM-dd HH:mm:ss"
+                    type="datetime"
+                    placeholder="开始时间"
+                    @focus="resetKeyboard"/>
+                </el-form-item>
+                <el-form-item
+                  label="结束时间"
+                  label-width="97px"
+                  prop="dend">
+                  <el-date-picker
+                    v-model="searchInfo.dend"
+                    value-format="yyyy-MM-dd HH:mm:ss"
+                    type="datetime"
+                    placeholder="结束时间"
+                    @focus="resetKeyboard"/>
+                </el-form-item>
                 <div class="btn">
                   <div class="search-ipad">
                     <i
@@ -60,7 +83,7 @@
                     @click="resetForm('ruleForm')">重置</el-button>
                 </div>
               </div>
-              <div class="space-layout">
+              <!-- <div class="space-layout">
                 <el-form-item
                   label="磨削开始时间"
                   label-width="97px"
@@ -83,7 +106,7 @@
                     placeholder="结束时间"
                     @focus="resetKeyboard"/>
                 </el-form-item>
-              </div>
+              </div>-->
             </el-form>
           </div>
         </template>
@@ -111,10 +134,19 @@
             label="磨床号"/>
           <el-table-column
             prop="before_diameter"
-            label="磨前直径"/>
+            label="磨前直径">
+            <template slot-scope="scope">
+              <span>{{ scope.row.before_diameter.toFixed(3) }}</span>
+            </template>
+          </el-table-column>
           <el-table-column
             prop="after_diameter"
-            label="磨后直径"/>
+            label="磨后直径">
+            <template slot-scope="scope">
+              <span>{{ scope.row.after_diameter.toFixed(3) }}</span>
+            </template>
+          </el-table-column>
+
           <el-table-column
             prop=""
             label="磨削量">
@@ -125,10 +157,17 @@
           <!-- <el-table-column
             prop="deviation"
             label="辊形偏差就是曲线误差"/>-->
-          <el-table-column
+          <!-- <el-table-column
             prop="curvetolerance"
             width="70px"
-            label="曲线误差"/>
+            label="曲线误差"/>-->
+          <el-table-column
+            prop="curvetolerance"
+            label="曲线误差">
+            <template slot-scope="scope">
+              <span>{{ scope.row.curvetolerance.toFixed(3) }}</span>
+            </template>
+          </el-table-column>
           <!-- <el-table-column
             prop="diametermax"
             label="最大直径"/>
@@ -146,10 +185,10 @@
             prop="curvetype"
             width="160px"
             label="曲线类型（辊形）"/>
-          <el-table-column
+          <!-- <el-table-column
             prop="standno"
             width="170px"
-            label="磨床名"/>
+            label="磨床名"/>-->
           <el-table-column
             prop="coaxality"
             width="120px"
@@ -159,10 +198,22 @@
             label="砂轮编码"/>
           <el-table-column
             prop="wheel_dia_start"
-            label="砂轮开始直径"/>
+            label="砂轮开始直径">
+            <template slot-scope="scope">
+              <span>{{ scope.row.wheel_dia_start.toFixed(3) }}</span>
+            </template>
+          </el-table-column>
           <el-table-column
             prop="wheel_dia_end"
-            label="砂轮结束直径"/>
+            label="砂轮结束直径">
+            <template slot-scope="scope">
+              <span>{{ scope.row.wheel_dia_end.toFixed(3) }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="grinding_time"
+            width="60px"
+            label="磨削时长min"/>
           <!-- <el-table-column
             prop="crack"
             width="60px"
@@ -214,7 +265,7 @@
             id="app"
             class="left"/>
           <div style="color: #208d3a;position: absolute;left: 617px;top: 17px;float: left">
-            磨前辊形差为：{{ we_xs2 }}
+            轧辊磨耗：{{ we_xs2 }}
           </div>
         </el-col>
         <el-col
@@ -398,10 +449,10 @@ export default {
     post('/dictionary/findMapV1', { dicno: 'rolltype' }).then(res => {
       this.option = res.data //轧辊类型（直接使用）
     })
-    this.searchInfo.dbegin = moment()
+    /* this.searchInfo.dbegin = moment()
       .subtract(50, 'days')
       .format('YYYY-MM-DD HH:mm:ss')
-    this.searchInfo.dend = moment().format('YYYY-MM-DD HH:mm:ss')
+    this.searchInfo.dend = moment().format('YYYY-MM-DD HH:mm:ss')*/
     this.findAll()
   },
   methods: {

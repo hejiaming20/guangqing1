@@ -40,12 +40,12 @@
                     :value="item.key"/>
                 </el-select>
               </el-form-item>-->
-              <el-form-item
+              <!-- <el-form-item
                 label="轴承座号"
                 label-width="80"
                 prop="chock_no">
                 <el-input v-model="searchquery.chock_no" />
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="砂轮号"
                 label-width="80"
@@ -114,6 +114,9 @@
         <el-table-column
           label="厂家"
           prop="factory_name" />
+        <el-table-column
+          label="砂轮厚"
+          prop="sand_thickness" />
         <el-table-column
           label="操作"
           min-width="300"
@@ -188,6 +191,11 @@
                 prop="up_location">
                 <el-input v-model="formLabelAlign_left.up_location" />
               </el-form-item>-->
+              <el-form-item
+                label="砂厚"
+                prop="sand_thickness">
+                <el-input v-model="formLabelAlign_right.sand_thickness" />
+              </el-form-item>
               <el-form-item
                 label="投用时间"
                 prop="usetime">

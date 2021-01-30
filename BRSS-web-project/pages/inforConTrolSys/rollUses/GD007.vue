@@ -2501,10 +2501,7 @@ export default {
           ) {
             this.option_10.push(res.data[i])
           }
-          if (
-            res.data[i].frame_no == 'FE立辊辊' &&
-            res.data[i].value1 != null
-          ) {
+          if (res.data[i].frame_no == 'FE立辊' && res.data[i].value1 != null) {
             this.option_11.push(res.data[i])
           }
           if (res.data[i].frame_no == 'E1立辊' && res.data[i].value1 != null) {
