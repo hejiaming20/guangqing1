@@ -21,8 +21,8 @@
         </div>
         <div class="board-titleMiddle">
           <div class="logo-title">
-            <img 
-              :src="logoImg" 
+            <img
+              :src="logoImg"
               alt="logo">
             <p>马钢四钢轧智能磨辊间</p>
           </div>
@@ -237,8 +237,8 @@
       </div>
       <!-- 下一层模块 -->
       <div class="board-info">
-        <el-row 
-          type="flex" 
+        <el-row
+          type="flex"
           justify="space-between">
           <el-col>
             <div class="board-left">
@@ -275,19 +275,19 @@
               </div>
             </div>
             <!-- 轧辊库存数 -->
-            <div 
+            <div
               id="echartBottom"
               class="mo-bed">
               <!-- <div class="best-classTitle">
                 磨床信息
               </div> -->
               <!-- <div class="mo-bedMain">
-                <el-row 
-                  type="flex" 
+                <el-row
+                  type="flex"
                   align="middle">
-                  <el-col 
-                    v-for="item in 6" 
-                    :span="4" 
+                  <el-col
+                    v-for="item in 6"
+                    :span="4"
                     :key="item">
                     <div class="mo-bedItem">
                       <p class="mo-title">1#磨床</p>
@@ -323,32 +323,32 @@
                 磨床信息
               </div>
               <div class="roll-nosMain">
-                <el-row>
+                <!--<el-row>
                   <el-col :span="12">
                     <div class="mo-item">
                       <p class="moitem-title">1#磨床  {{ mobed1.roll_no }}</p>
                       <div class="moitem-main">
-                        <img 
+                        <img
                           :src="baseImg"
-                          class="bed-img" 
-                          alt="磨床1" 
+                          class="bed-img"
+                          alt="磨床1"
                           title="磨床1">
-                        <img 
-                          :src="roll" 
-                          alt="轧辊" 
+                        <img
+                          :src="roll"
+                          alt="轧辊"
                           class="mo-roll">
-                        <img 
-                          :src="slide1" 
+                        <img
+                          :src="slide1"
                           :style="'left:' + mobed1.left + 'px'"
                           class="mo-slide1"
                           alt="滑块1">
-                        <img 
-                          :src="slide2" 
+                        <img
+                          :src="slide2"
                           class="mo-slide2"
                           alt="滑块2">
-                        <img 
-                          :src="part" 
-                          alt="零件" 
+                        <img
+                          :src="part"
+                          alt="零件"
                           class="mo-part">
                       </div>
                     </div>
@@ -357,27 +357,27 @@
                     <div class="mo-item">
                       <p class="moitem-title">2#磨床  {{ mobed2.roll_no }}</p>
                       <div class="moitem-main">
-                        <img 
+                        <img
                           :src="baseImg"
-                          class="bed-img" 
-                          alt="磨床1" 
+                          class="bed-img"
+                          alt="磨床1"
                           title="磨床1">
-                        <img 
-                          :src="roll" 
-                          alt="轧辊" 
+                        <img
+                          :src="roll"
+                          alt="轧辊"
                           class="mo-roll">
-                        <img 
-                          :src="slide1" 
+                        <img
+                          :src="slide1"
                           :style="'left:' + mobed2.left + 'px'"
                           class="mo-slide1"
                           alt="滑块1">
-                        <img 
-                          :src="slide2" 
+                        <img
+                          :src="slide2"
                           class="mo-slide2"
                           alt="滑块2">
-                        <img 
-                          :src="part" 
-                          alt="零件" 
+                        <img
+                          :src="part"
+                          alt="零件"
                           class="mo-part">
                       </div>
                     </div>
@@ -386,27 +386,27 @@
                     <div class="mo-item">
                       <p class="moitem-title">3#磨床  {{ mobed3.roll_no }}</p>
                       <div class="moitem-main">
-                        <img 
+                        <img
                           :src="baseImg"
-                          class="bed-img" 
-                          alt="磨床1" 
+                          class="bed-img"
+                          alt="磨床1"
                           title="磨床1">
-                        <img 
-                          :src="roll" 
-                          alt="轧辊" 
+                        <img
+                          :src="roll"
+                          alt="轧辊"
                           class="mo-roll">
-                        <img 
-                          :src="slide1" 
+                        <img
+                          :src="slide1"
                           :style="'left:' + mobed3.left + 'px'"
                           class="mo-slide1"
                           alt="滑块1">
-                        <img 
-                          :src="slide2" 
+                        <img
+                          :src="slide2"
                           class="mo-slide2"
                           alt="滑块2">
-                        <img 
-                          :src="part" 
-                          alt="零件" 
+                        <img
+                          :src="part"
+                          alt="零件"
                           class="mo-part">
                       </div>
                     </div>
@@ -415,27 +415,27 @@
                     <div class="mo-item">
                       <p class="moitem-title">4#磨床  {{ mobed4.roll_no }}</p>
                       <div class="moitem-main">
-                        <img 
+                        <img
                           :src="baseImg"
-                          class="bed-img" 
-                          alt="磨床1" 
+                          class="bed-img"
+                          alt="磨床1"
                           title="磨床1">
-                        <img 
-                          :src="roll" 
-                          alt="轧辊" 
+                        <img
+                          :src="roll"
+                          alt="轧辊"
                           class="mo-roll">
-                        <img 
-                          :src="slide1" 
+                        <img
+                          :src="slide1"
                           :style="'left:' + mobed4.left + 'px'"
                           class="mo-slide1"
                           alt="滑块1">
-                        <img 
-                          :src="slide2" 
+                        <img
+                          :src="slide2"
                           class="mo-slide2"
                           alt="滑块2">
-                        <img 
-                          :src="part" 
-                          alt="零件" 
+                        <img
+                          :src="part"
+                          alt="零件"
                           class="mo-part">
                       </div>
                     </div>
@@ -444,27 +444,27 @@
                     <div class="mo-item">
                       <p class="moitem-title">5#磨床  {{ mobed5.roll_no }}</p>
                       <div class="moitem-main">
-                        <img 
+                        <img
                           :src="baseImg"
-                          class="bed-img" 
-                          alt="磨床1" 
+                          class="bed-img"
+                          alt="磨床1"
                           title="磨床1">
-                        <img 
-                          :src="roll" 
-                          alt="轧辊" 
+                        <img
+                          :src="roll"
+                          alt="轧辊"
                           class="mo-roll">
-                        <img 
-                          :src="slide1" 
+                        <img
+                          :src="slide1"
                           :style="'left:' + mobed5.left + 'px'"
                           class="mo-slide1"
                           alt="滑块1">
-                        <img 
-                          :src="slide2" 
+                        <img
+                          :src="slide2"
                           class="mo-slide2"
                           alt="滑块2">
-                        <img 
-                          :src="part" 
-                          alt="零件" 
+                        <img
+                          :src="part"
+                          alt="零件"
                           class="mo-part">
                       </div>
                     </div>
@@ -473,32 +473,33 @@
                     <div class="mo-item">
                       <p class="moitem-title">6#磨床  {{ mobed6.roll_no }}</p>
                       <div class="moitem-main">
-                        <img 
+                        <img
                           :src="baseImg"
-                          class="bed-img" 
-                          alt="磨床1" 
+                          class="bed-img"
+                          alt="磨床1"
                           title="磨床1">
-                        <img 
-                          :src="roll" 
-                          alt="轧辊" 
+                        <img
+                          :src="roll"
+                          alt="轧辊"
                           class="mo-roll">
-                        <img 
-                          :src="slide1" 
+                        <img
+                          :src="slide1"
                           :style="'left:' + mobed6.left + 'px'"
                           class="mo-slide1"
                           alt="滑块1">
-                        <img 
-                          :src="slide2" 
+                        <img
+                          :src="slide2"
                           class="mo-slide2"
                           alt="滑块2">
-                        <img 
-                          :src="part" 
-                          alt="零件" 
+                        <img
+                          :src="part"
+                          alt="零件"
                           class="mo-part">
                       </div>
                     </div>
                   </el-col>
-                </el-row>
+                </el-row>-->
+                1
               </div>
             </div>
           </el-col>

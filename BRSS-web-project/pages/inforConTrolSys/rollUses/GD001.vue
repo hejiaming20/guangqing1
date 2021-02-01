@@ -131,6 +131,9 @@
           width="110px"
           label="轧制时长(min)"/>
         <el-table-column
+          prop="updiam"
+          label="上机直径"/>
+        <el-table-column
           prop="off_line_reason_value"
           show-overflow-tooltip
           label="下线原因"/>
