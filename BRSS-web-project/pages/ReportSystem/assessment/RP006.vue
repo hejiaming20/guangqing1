@@ -1,4 +1,4 @@
-<!--每月成本核算-->
+<!--整台磨床累计使用时间-->
 <template>
   <div>
     <Table-easy
@@ -7,7 +7,6 @@
       :page-size="pageSize"
       :current-page="pageIndex"
       :table-height="750"
-      :cell-class-name="setCellStyle"
       :is-pagination-show="false"
       :table-foot="true"
       index-type="index"
@@ -23,75 +22,14 @@
               label-width="80px">
               <el-row>
                 <el-col :span="6">
-                  <!-- <el-form-item
-                    label="辊号"
-                    prop="roll_no">
-                    <el-input v-model="searchInfo.roll_no" />
-                  </el-form-item>-->
                   <el-form-item
-                    label="料号"
-                    prop="material_noid">
+                    label="磨床号"
+                    prop="machine_no">
                     <el-select
-                      v-model="searchInfo.material_noid"
-                      placeholder="请选择">
-                      <el-option
-                        v-for="item in option_fact"
-                        :key="item.key"
-                        :label="item.value"
-                        :value="item.key"/>
-                    </el-select>
-                  </el-form-item>
-                  <el-form-item
-                    label="机架范围"
-                    prop="framerangeid">
-                    <el-select
-                      v-model="searchInfo.framerangeid"
-                      placeholder="请选择">
-                      <el-option
-                        v-for="item in frameFwArray"
-                        :key="item.key"
-                        :label="item.value"
-                        :value="item.key"/>
-                    </el-select>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="6">
-                  <el-form-item
-                    label="轧辊类型"
-                    prop="roll_typeid">
-                    <el-select
-                      v-model="searchInfo.roll_typeid"
+                      v-model="searchInfo.machine_no"
                       placeholder="请选择">
                       <el-option
                         v-for="item in options"
-                        :key="item.key"
-                        :label="item.value"
-                        :value="item.key"/>
-                    </el-select>
-                  </el-form-item>
-                  <el-form-item
-                    label="轧辊材质"
-                    prop="material_id">
-                    <el-select
-                      v-model="searchInfo.material_id"
-                      placeholder="请选择">
-                      <el-option
-                        v-for="item in option_2"
-                        :key="item.key"
-                        :label="item.value"
-                        :value="item.key"/>
-                    </el-select>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="6">
-                  <el-form-item
-                    label="规格"
-                    prop="specifications_noid">
-                    <el-select
-                      v-model="searchInfo.specifications_noid"
-                      placeholder="请选择">
-                      <el-option
-                        v-for="item in option_gui"
                         :key="item.key"
                         :label="item.value"
                         :value="item.key"/>
@@ -109,6 +47,8 @@
                       type="datetime"
                       placeholder="开始时间"/>
                   </el-form-item>
+                </el-col>
+                <el-col :span="6">
                   <el-form-item
                     label="结束时间"
                     prop="dend">
@@ -143,47 +83,14 @@
       </template>
       <template slot="TableBody">
         <el-table-column
-          prop="material_no"
-          width="150"
-          label="料号"/>
+          prop="grinding_timetotalnum"
+          label="磨削时长合计"/>
         <el-table-column
-          prop="specifications_no"
-          label="规格"/>
+          prop="machineno"
+          label="磨床号"/>
         <el-table-column
-          prop="roll_type"
-          label="轧辊类型"/>
-        <el-table-column
-          prop="material"
-          label="轧辊材质"/>
-        <el-table-column
-          prop="framerange"
-          label="机架范围"/>
-        <el-table-column
-          prop="usetime"
-          label="开始时间"/>
-        <el-table-column
-          prop="unit_price"
-          label="单价"/>
-        <el-table-column
-          prop="working_layer"
-          label="工作层"/>
-
-        <el-table-column
-          prop="mmnumber"
-          label="毫米数"/>
-        <el-table-column
-          prop="weight"
-          label="重量"/>
-        <el-table-column
-          prop="money"
-          label="金额"/>
-          <!-- <el-table-column
-          prop="consumption"
-          label="吨钢消耗"/>
-        <el-table-column
-          prop="cost"
-          label="吨钢成本"/>-->
-
+          prop="totalnum"
+          label="总数"/>
 
       </template>
     </Table-easy>
@@ -211,18 +118,12 @@ export default {
       tableData: [],
       total: 0,
       options: [],
-      frameFwArray: [],
-      option_fact: [],
-      option_gui: [],
-      option_2: [],
+      option_1: [],
       searchInfo: {
         dbegin: '',
         dend: '',
-        roll_typeid: '',
-        framerangeid: '',
-        specifications_noid: '',
-        material_id: '',
-        material_noid: ''
+        wheelname: '',
+        machine_no: ''
       },
       searchInfoEchartsLight: {
         machine_no: '',
@@ -245,40 +146,22 @@ export default {
       .subtract(30, 'days')
       .format('YYYY-MM-DD HH:mm:ss')
     this.moxueTime[1] = moment().format('YYYY-MM-DD HH:mm:ss')
-
-    this.enter_1()
   },
   mounted() {
     this.findOptions()
     this.findAll()
   },
   methods: {
-    enter_1() {
-      if (process.client) {
-        document.onkeydown = e => {
-          let _key = window.event.keyCode
-          if (_key === 13) {
-            this.findSearch()
-          }
-        }
-      }
-    },
     async hand_exe() {
       let data = {
         method: 'get',
         url:
           // 'http://192.168.43.57:8778/api/rollStiffness/excel?dbegin=' +
           location.origin +
-          '/api/rollInformation/excelRollDiameter?dbegin=' +
+          '/api/rollGrindingBF/excelWheelAbrasion?dbegin=' +
           this.searchInfo.dbegin +
-          '&factory_id=' +
-          this.searchInfo.factory_id +
-          '&framerangeid=' +
-          this.searchInfo.framerangeid +
-          '&material_id=' +
-          this.searchInfo.material_id +
-          '&roll_typeid=' +
-          this.searchInfo.roll_typeid
+          '&dend=' +
+          this.searchInfo.dend
       }
       await exportMethod(data)
       // get(
@@ -297,39 +180,22 @@ export default {
       this.findAll()
     },
     findOptions() {
-      getDataConfig('roll_material').then(res => {
-        this.option_2 = res
-      })
-      getDataConfig('rolltype').then(res => {
+      getDataConfig('machine').then(res => {
         this.options = res
       })
-      getDataConfig('framefw').then(res => {
-        this.frameFwArray = res
-      })
-      getDataConfig('material_no').then(res => {
-        this.option_fact = res
-      })
-      getDataConfig('specifications_no').then(res => {
-        this.option_gui = res
+      getDataConfig('bearing_s').then(res => {
+        this.option_1 = res
       })
     },
     // 查询全部
     //查询接口
     findAll() {
-      post('baseCostAccountingMain/findBaseCostAccounting', {
+      post('rollGrindingBF/findGrindingBFForTotalnum', {
         pageIndex: this.pageIndex,
         pageSize: this.pageSize,
         condition: this.searchInfo
       }).then(res => {
         this.tableData = res.data
-        this.tableData.splice(0, 0, {
-          material_no: '吨钢消耗（kg）',
-          specifications_no: res.bean.consumption,
-          // specifications_no: 100,
-          roll_type: '吨钢成本',
-          material: res.bean.cost
-          //material: 200
-        })
         this.total = res.count
       })
     },
@@ -343,11 +209,6 @@ export default {
     handleCurrentChange(val) {
       this.pageIndex = val
       this.findAll()
-    },
-    setCellStyle({ row, column }) {
-      if (column.label == '磨削精度评级') {
-        return 'setClassname'
-      }
     },
     // 主表重置
     resetForm() {

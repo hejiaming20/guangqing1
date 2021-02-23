@@ -104,7 +104,7 @@
           prop="machineno"
           label="磨床号"/>
         <el-table-column
-          prop="BigDecimal sand_article"
+          prop="sand_article"
           label="砂轮粒度"/>
         <el-table-column
           prop="grind_starttime"

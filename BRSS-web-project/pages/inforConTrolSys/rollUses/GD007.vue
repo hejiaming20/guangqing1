@@ -113,8 +113,8 @@
                           </el-tooltip>
                         </th>
                         <!--  <th>轧辊类型</th>-->
-                        <th>TOP</th>
-                        <th>BOT</th>
+                        <th>TOP/OS</th>
+                        <th>BOT/DS</th>
                         <th>操作</th>
 
                       </tr>

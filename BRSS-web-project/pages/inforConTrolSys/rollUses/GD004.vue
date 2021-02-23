@@ -264,6 +264,9 @@
           <div
             id="app"
             class="left"/>
+          <div style="color: #208d3a;position: absolute;left: 109px;top: 17px;float: left">
+            辊号：{{ roll_need }}
+          </div>
           <div style="color: #208d3a;position: absolute;left: 617px;top: 17px;float: left">
             轧辊磨耗：{{ we_xs2 }}
           </div>
@@ -442,7 +445,8 @@ export default {
       dialogVisible: false,
       option: [],
       rowIndex: null,
-      we_xs2: ''
+      we_xs2: '',
+      roll_need: ''
     }
   },
   mounted() {
@@ -489,6 +493,7 @@ export default {
       })
     },
     async first_ech(data1) {
+      this.roll_need = data1.data[0].roll_no
       var searchinss = {
         roll_no: data1.data[0].roll_no,
         initial_date_time: ''
@@ -504,6 +509,7 @@ export default {
 
         if (res1.data == null) {
           this.we_xs2 = ''
+          //this.roll_need = ''
           this.$message({
             message: '第一行查询数据为空',
             type: 'warning'
@@ -523,6 +529,7 @@ export default {
       }
     },
     async cellClick(val) {
+      this.roll_need = val.roll_no
       this.rowIndex = val.indocno
       //this.searchin.grinder = val.machine_no
       this.searchin.roll_no = val.roll_no
