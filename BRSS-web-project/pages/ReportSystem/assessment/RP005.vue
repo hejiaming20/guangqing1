@@ -269,16 +269,20 @@ export default {
         url:
           // 'http://192.168.43.57:8778/api/rollStiffness/excel?dbegin=' +
           location.origin +
-          '/api/rollInformation/excelRollDiameter?dbegin=' +
+          '/api/baseCostAccountingMain/excelBaseCostAccounting?dbegin=' +
           this.searchInfo.dbegin +
-          '&factory_id=' +
-          this.searchInfo.factory_id +
-          '&framerangeid=' +
-          this.searchInfo.framerangeid +
+          '&dend=' +
+          this.searchInfo.dend +
+          '&material_noid=' +
+          this.searchInfo.material_noid +
+          '&specifications_noid=' +
+          this.searchInfo.specifications_noid +
+          '&roll_typeid=' +
+          this.searchInfo.roll_typeid +
           '&material_id=' +
           this.searchInfo.material_id +
-          '&roll_typeid=' +
-          this.searchInfo.roll_typeid
+          '&framerangeid=' +
+          this.searchInfo.framerangeid
       }
       await exportMethod(data)
       // get(

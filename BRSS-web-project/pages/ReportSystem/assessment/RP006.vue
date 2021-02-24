@@ -158,10 +158,12 @@ export default {
         url:
           // 'http://192.168.43.57:8778/api/rollStiffness/excel?dbegin=' +
           location.origin +
-          '/api/rollGrindingBF/excelWheelAbrasion?dbegin=' +
+          '/api/rollGrindingBF/excelGrindingBFForTotalnum?dbegin=' +
           this.searchInfo.dbegin +
           '&dend=' +
-          this.searchInfo.dend
+          this.searchInfo.dend +
+          '&machine_no=' +
+          this.searchInfo.machine_no
       }
       await exportMethod(data)
       // get(

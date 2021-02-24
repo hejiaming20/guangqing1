@@ -236,7 +236,11 @@ export default {
           '/api/rollGrindingBF/excelWheelAbrasion?dbegin=' +
           this.searchInfo.dbegin +
           '&dend=' +
-          this.searchInfo.dend
+          this.searchInfo.dend +
+          '&machine_no=' +
+          this.searchInfo.machine_no +
+          '&wheelname=' +
+          this.searchInfo.wheelname
       }
       await exportMethod(data)
       // get(

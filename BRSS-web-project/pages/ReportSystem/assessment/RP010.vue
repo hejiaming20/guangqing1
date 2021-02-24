@@ -1,4 +1,4 @@
-<!--设备稼动率报表-->
+<!--12-13-14-可选时间段单支轧辊（从新辊到报废）公里数及轧制量统计-->
 <template>
   <div>
     <Table-easy
@@ -20,29 +20,26 @@
               ref="ruleForm"
               :model="searchInfo"
               class="search-info"
-              label-width="90px">
+              label-width="80px">
               <el-row>
                 <el-col :span="6">
                   <el-form-item
-                    label="磨床号"
-                    prop="machine_no">
+                    label="辊号"
+                    prop="roll_no">
+                    <el-input v-model="searchInfo.roll_no" />
+                  </el-form-item>
+                  <el-form-item
+                    label="制造厂商"
+                    prop="factory_id">
                     <el-select
-                      v-model="searchInfo.machine_no"
+                      v-model="searchInfo.factory_id"
                       placeholder="请选择">
                       <el-option
-                        v-for="item in options"
+                        v-for="item in option_fact"
                         :key="item.key"
                         :label="item.value"
-                        :value="Number(item.key)"/>
+                        :value="item.key"/>
                     </el-select>
-                  </el-form-item>
-                </el-col>
-
-                <el-col :span="6">
-                  <el-form-item
-                    label="操作人名称"
-                    prop="operator">
-                    <el-input v-model="searchInfo.operator" />
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
@@ -56,8 +53,6 @@
                       type="datetime"
                       placeholder="开始时间"/>
                   </el-form-item>
-                </el-col>
-                <el-col :span="6">
                   <el-form-item
                     label="结束时间"
                     prop="dend">
@@ -68,6 +63,32 @@
                       placeholder="选择结束时间"/>
                   </el-form-item>
                 </el-col>
+                <el-col :span="6">
+                  <el-form-item
+                    label="机架范围"
+                    prop="frame_noid">
+                    <el-select
+                      v-model="searchInfo.frame_noid"
+                      placeholder="请选择">
+                      <el-option
+                        v-for="item in frameFwArray"
+                        :key="item.key"
+                        :label="item.value"
+                        :value="item.key"/>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <!--  <el-col :span="6">
+                    <el-form-item
+                      label="结束时间"
+                      prop="grind_endtime">
+                      <el-date-picker
+                        v-model="searchInfo.grind_endtime"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        type="datetime"
+                        placeholder="选择结束时间"/>
+                    </el-form-item>
+                  </el-col>-->
               </el-row>
             </el-form>
           </el-col>
@@ -92,37 +113,27 @@
       </template>
       <template slot="TableBody">
         <el-table-column
-          prop="machineno"
+          prop="roll_no"
           width="150"
-          label="磨床号"/>
+          label="辊号"/>
         <el-table-column
-          prop="grind_starttime"
-          label="磨削开始时间"/>
+          prop="frame_no"
+          label="机架名称"/>
         <el-table-column
-          prop="sclass"
-          label="班"/>
+          prop="factory"
+          label="轧辊厂家"/>
         <el-table-column
-          prop="sgroup"
-          label="班组"/>
+          prop="mmnumber"
+          label="毫米数"/>
         <el-table-column
-          prop="operator"
-          label="操作人"/>
+          prop="weight"
+          label="重量"/>
         <el-table-column
-          prop="fwnum"
-          label="1-4工作辊"/>
+          prop="rollkilometer"
+          label="轧制公里数"/>
         <el-table-column
-          prop="gwnum"
-          label="5-8工作辊"/>
-        <el-table-column
-          prop="rnum"
-          label="支撑辊"/>
-        <el-table-column
-          prop="rwnum"
-          label="粗轧支撑辊"/>
-        <el-table-column
-          prop="othernum"
-          label="其他辊"/>
-
+          prop="rolltonnage"
+          label="轧制吨数"/>
       </template>
     </Table-easy>
   </div>
@@ -149,11 +160,15 @@ export default {
       tableData: [],
       total: 0,
       options: [],
+      frameFwArray: [],
+      option_fact: [],
+      option_2: [],
       searchInfo: {
         dbegin: '',
-        dend: '',
-        machine_no: '',
-        operator: ''
+        roll_typeid: '',
+        framerangeid: '',
+        factory_id: '',
+        material_id: ''
       },
       searchInfoEchartsLight: {
         machine_no: '',
@@ -177,26 +192,40 @@ export default {
       .subtract(30, 'days')
       .format('YYYY-MM-DD HH:mm:ss')
     this.moxueTime[1] = moment().format('YYYY-MM-DD HH:mm:ss')
+
+    this.enter_1()
   },
   mounted() {
     this.findOptions()
     this.findAll()
   },
   methods: {
+    enter_1() {
+      if (process.client) {
+        document.onkeydown = e => {
+          let _key = window.event.keyCode
+          if (_key === 13) {
+            this.findSearch()
+          }
+        }
+      }
+    },
     async hand_exe() {
       let data = {
         method: 'get',
         url:
           // 'http://192.168.43.57:8778/api/rollStiffness/excel?dbegin=' +
           location.origin +
-          '/api/rollGrindingBF/excelGrindingRate?dbegin=' +
+          '/api/baseCostAccountingMain/excelBaseCostAccountingByReport?dbegin=' +
           this.searchInfo.dbegin +
           '&dend=' +
           this.searchInfo.dend +
-          '&machine_no=' +
-          this.searchInfo.machine_no +
-          '&operator=' +
-          this.searchInfo.operator
+          '&roll_no=' +
+          this.searchInfo.roll_no +
+          '&factory_id=' +
+          this.searchInfo.factory_id +
+          '&frame_noid=' +
+          this.searchInfo.frame_noid
       }
       await exportMethod(data)
       // get(
@@ -215,25 +244,31 @@ export default {
       this.findAll()
     },
     findOptions() {
-      getDataConfig('machine').then(res => {
+      getDataConfig('roll_material').then(res => {
+        this.option_2 = res
+      })
+      getDataConfig('rolltype').then(res => {
         this.options = res
+      })
+      getDataConfig('frameteam').then(res => {
+        this.frameFwArray = res
+      })
+      getDataConfig('roll_factory').then(res => {
+        this.option_fact = res
+      })
+      getDataConfig('machine').then(res => {
+        res.splice(6)
+        this.machineArray = res
       })
     },
     // 查询全部
     //查询接口
     findAll() {
-      post('rollGrindingBF/findGrindingRateByPage', {
-        pageIndex: this.pageIndex,
-        pageSize: this.pageSize,
+      post('baseCostAccountingMain/findBaseCostAccountingByReport', {
         condition: this.searchInfo
       }).then(res => {
         this.tableData = res.data
         console.log(res.data.length)
-        // this.tableData.push({ roll_no: '辊径合计', body_diameter: res.number })
-        this.tableData.splice(0, 0, {
-          roll_no: '合计',
-          body_diameter: res.number
-        })
         this.total = res.count
       })
     },

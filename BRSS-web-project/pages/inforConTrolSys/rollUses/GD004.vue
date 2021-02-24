@@ -13,7 +13,7 @@
         @handle-current-change="handleCurrentChange"
         @handle-size-change="handleSizeChange">
         <template slot="TableHead">
-          <div :style="searchFlag ? 'height: auto;' : 'height: 35px;overflow: hidden' ">
+          <div :style="searchFlag ? 'height: auto;' : 'height: auto;overflow: hidden' ">
             <el-form
               ref="ruleForm"
               :inline="true"
@@ -449,6 +449,9 @@ export default {
       roll_need: ''
     }
   },
+  created() {
+    this.enter_1()
+  },
   mounted() {
     post('/dictionary/findMapV1', { dicno: 'rolltype' }).then(res => {
       this.option = res.data //轧辊类型（直接使用）
@@ -460,6 +463,17 @@ export default {
     this.findAll()
   },
   methods: {
+    //回车键
+    enter_1() {
+      if (process.client) {
+        document.onkeydown = e => {
+          let _key = window.event.keyCode
+          if (_key === 13) {
+            this.findSearch()
+          }
+        }
+      }
+    },
     // 点击行信息，添加颜色标识
     setRowColor({ row, rowIndex }) {
       if (row.indocno == this.rowIndex) {

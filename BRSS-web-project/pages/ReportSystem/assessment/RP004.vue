@@ -16,7 +16,7 @@
       <template slot="TableHead">
         <el-row :gutter="10">
           <el-col :span="20">
-            <el-form
+            <!-- <el-form
               ref="ruleForm"
               :model="searchInfo"
               class="search-info"
@@ -57,7 +57,7 @@
                       placeholder="开始时间"/>
                   </el-form-item>
                 </el-col>
-                <!--  <el-col :span="6">
+                &lt;!&ndash;  <el-col :span="6">
                     <el-form-item
                       label="结束时间"
                       prop="grind_endtime">
@@ -67,11 +67,11 @@
                         type="datetime"
                         placeholder="选择结束时间"/>
                     </el-form-item>
-                  </el-col>-->
+                  </el-col>&ndash;&gt;
               </el-row>
-            </el-form>
+            </el-form>-->
           </el-col>
-          <el-col :span="4">
+          <el-col :span="20">
             <div class="btn">
               <el-button
                 size="mini"

@@ -1,4 +1,4 @@
-<!--安全库存-->
+<!--成本核算定制接口-->
 <template>
   <div>
     <Table-easy
@@ -9,6 +9,7 @@
       :current-page="pageIndex"
       :is-pagination-show="false"
       :row-class-name="setRowColor"
+      :table-foot="false"
       index-type="index"
       @cell-click="cellClick"
       @handle-current-change="handleCurrentChange"
@@ -21,6 +22,33 @@
               :model="searchInfo"
               :inline="true"
               label-width="100px">
+              <el-form-item
+                label="料号"
+                prop="material_noid">
+                <el-select
+                  v-model="searchInfo.material_noid"
+                  clearable
+                  placeholder="料号">
+                  <el-option
+                    v-for="item in option_fact"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="Number(item.key)"/>
+                </el-select>
+              </el-form-item>
+              <el-form-item
+                label="规格"
+                prop="specifications_noid">
+                <el-select
+                  v-model="searchInfo.specifications_noid"
+                  placeholder="请选择">
+                  <el-option
+                    v-for="item in option_gui"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.key"/>
+                </el-select>
+              </el-form-item>
               <el-form-item
                 label="轧辊材质"
                 prop="material_id">
@@ -92,14 +120,20 @@
                 type="primary"
                 @click="open_add_1()">添加</el-button>
                 <!-- <el-button
-              size="mini"
-              type="primary"
-              @click="open_add_1(true)">添加(磨床)</el-button>-->
+            size="mini"
+            type="primary"
+            @click="open_add_1(true)">添加(磨床)</el-button>-->
             </div>
           </el-col>
         </el-row>
       </template>
       <template slot="TableBody">
+        <el-table-column
+          prop="material_no"
+          label="料号"/>
+        <el-table-column
+          prop="specifications_no"
+          label="规格名称"/>
         <el-table-column
           prop="roll_type"
           label="轧辊类型"/>
@@ -109,15 +143,7 @@
         <el-table-column
           prop="framerange"
           label="机架范围"/>
-        <el-table-column
-          prop="safe_inventory"
-          label="安全库存"/>
-        <el-table-column
-          prop="purchasing_cycle"
-          label="采购周期"/>
-        <el-table-column
-          prop="d_inventory"
-          label="结存"/>
+
         <el-table-column
           label="操作"
           align="center">
@@ -149,9 +175,18 @@
           <el-row>
             <el-col :span="8">
               <el-form-item
-                label="安全库存"
-                prop="safe_inventory">
-                <el-input v-model.trim="formLabelAlign.safe_inventory" />
+                label="料号"
+                prop="material_no">
+                <el-select
+                  v-model="formLabelAlign.material_no"
+                  placeholder="请选择"
+                  @change="handlematerial_noChange">
+                  <el-option
+                    v-for="item in option_fact"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.value"/>
+                </el-select>
               </el-form-item>
               <el-form-item
                 label="轧辊类型"
@@ -170,9 +205,18 @@
             </el-col>
             <el-col :span="8">
               <el-form-item
-                label="采购周期"
-                prop="purchasing_cycle">
-                <el-input v-model.trim="formLabelAlign.purchasing_cycle" />
+                label="规格"
+                prop="specifications_no">
+                <el-select
+                  v-model="formLabelAlign.specifications_no"
+                  placeholder="请选择"
+                  @change="handleguiChange">
+                  <el-option
+                    v-for="item in option_gui"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.value"/>
+                </el-select>
               </el-form-item>
               <el-form-item
                 label="轧辊材质"
@@ -191,11 +235,6 @@
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item
-                label="结存"
-                prop="d_inventory">
-                <el-input v-model.trim="formLabelAlign.d_inventory" />
-              </el-form-item>
               <el-form-item
                 label="机架范围"
                 prop="framerangeid">
@@ -228,6 +267,15 @@
           @click="handleSave('addForm')">确 定</el-button>
       </span>
     </el-dialog>
+    <div
+      class="main-title"
+      style="background-color: #253f80;margin-top: 5px;">子表
+      <el-button
+        style="margin-left:5% "
+        size="mini"
+        type="danger"
+        @click="add_left()">子表添加</el-button>
+    </div>
     <Table-easy
       :table-data="tableData_1"
       :total="total"
@@ -237,29 +285,87 @@
       :is-pagination-show="false"
       :table-head="false"
       :table-foot="false"
-      style="margin-top: 10px"
+      style="margin-top: 5px"
       index-type="index">
       <template slot="TableBody">
         <el-table-column
-          prop="roll_type"
-          label="轧辊类型"/>
+          prop="parent_id"
+          label="父id"/>
         <el-table-column
-          prop="material"
-          label="材质"/>
+          prop="usetime"
+          label="开始时间"/>
         <el-table-column
-          prop="framerange"
-          label="机架范围"/>
+          prop="unit_price"
+          label="单价"/>
         <el-table-column
-          prop="safe_inventory"
-          label="安全库存"/>
+          prop="working_layer"
+          label="工作层"/>
         <el-table-column
-          prop="purchasing_cycle"
-          label="采购周期"/>
-        <el-table-column
-          prop="d_inventory"
-          label="结存"/>
+          label="操作"
+          align="center">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              type="warning"
+              @click="handleEdit1(scope.row,true)">修改</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelect1(scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
       </template>
     </Table-easy>
+    <!-- 添加/编辑弹窗2 -->
+    <el-dialog
+      :visible.sync="dialogVisible1"
+      :title="dialogTitle1"
+      class="layout-dialog"
+      width="60%">
+      <div class="layout-search">
+        <el-form
+          ref="addForm"
+          :rules="rules"
+          :model="formLabelAlign1"
+          label-width="120px">
+          <el-row>
+            <el-col :span="8">
+              <el-form-item
+                label="单价"
+                prop="unit_price">
+                <el-input v-model.trim="formLabelAlign1.unit_price" />
+              </el-form-item>
+              <el-form-item
+                label="工作层"
+                prop="working_layer">
+                <el-input v-model.trim="formLabelAlign1.working_layer" />
+              </el-form-item>
+              <el-form-item
+                label="开始时间"
+                prop="usetime">
+                <el-date-picker
+                  v-model="formLabelAlign1.usetime"
+                  value-format="yyyy-MM-dd HH:mm:ss"
+                  type="datetime"
+                  placeholder="开始时间"/>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+      </div>
+      <span
+        slot="footer"
+        class="dialog-footer">
+        <el-button
+          size="mini"
+          type="primary"
+          @click="resetDialogForm('addForm')">取 消</el-button>
+        <el-button
+          size="mini"
+          type="primary"
+          @click="handleSave1('addForm')">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -301,18 +407,24 @@ export default {
       typeoptions: [],
       kcoptions: [],
       formLabelAlign: {},
+      formLabelAlign1: {},
       tableData: [{}],
       total: 0,
       dialogVisible: false,
+      dialogVisible1: false,
       formFlag: true, // true 添加 false 编辑
+      formFlag1: true, // true 添加 false 编辑
       pageIndex: 1,
       pageSize: 100,
       dialogTitle: '',
+      dialogTitle1: '',
       materialArray: [],
       factoryArray: [],
       frameFwArray: [],
       rowIndex: null,
-      tableData_1: []
+      tableData_1: [],
+      option_fact: [],
+      option_gui: []
     }
   },
   mounted() {
@@ -334,14 +446,30 @@ export default {
     post('/dictionary/findMapV1', { dicno: 'roll_factory' }).then(res => {
       this.factoryArray = res.data //制造厂商
     })
+    getDataConfig('material_no').then(res => {
+      this.option_fact = res //料号
+    })
+    getDataConfig('specifications_no').then(res => {
+      this.option_gui = res
+    })
   },
   methods: {
+    async findAll_1() {
+      let res = await post('baseCostAccountingChild/findByPage', {
+        pageIndex: 1,
+        pageSize: 100,
+        parent_id: this.rowIndex
+      })
+      this.tableData_1 = res.data
+      this.total = res.count
+    },
     cellClick(val) {
       this.rowIndex = val.indocno
 
-      post('/baseRollSafetyReminder/findBaseRollSafetyReminder', {
+      post('baseCostAccountingChild/findByPage', {
         pageIndex: 1,
         pageSize: 100,
+        parent_id: val.indocno,
         condition: val
       }).then(res => {
         this.tableData_1 = res.data
@@ -367,13 +495,13 @@ export default {
         }
       })
     },
-    production_line_id_change(vId) {
+    handlematerial_noChange(vId) {
       let obj = {}
-      obj = this.option1.find(item => {
+      obj = this.option_fact.find(item => {
         //这里的userList就是上面遍历的数据源
         if (item.value == vId) {
-          this.formLabelAlign.production_line = item.value
-          this.formLabelAlign.production_line_id = item.key
+          this.formLabelAlign.material_no = item.value
+          this.formLabelAlign.material_noid = item.key
         }
       })
     },
@@ -385,10 +513,10 @@ export default {
       })
     },
 
-    handleinventory_stateChange() {
-      this.kcoptions.forEach(item => {
-        if (item.value == this.formLabelAlign.inventory_state) {
-          this.formLabelAlign.inventory_stateid = item.key
+    handleguiChange() {
+      this.option_gui.forEach(item => {
+        if (item.value == this.formLabelAlign.specifications_no) {
+          this.formLabelAlign.specifications_noid = item.key
         }
       })
     },
@@ -410,13 +538,16 @@ export default {
       this.findAll()
     },
     async findAll() {
-      let res = await post('baseRollSafetyReminder/findByPage', {
-        pageIndex: this.pageIndex,
-        pageSize: this.pageSize,
+      let res = await post('baseCostAccountingMain/findByPage', {
+        pageIndex: 1,
+        pageSize: 100,
         condition: this.searchInfo
       })
       this.tableData = res.data
       this.total = res.count
+      if (res.data[0]) {
+        this.cellClick(res.data[0])
+      }
     },
     /**
      * description: 删除一行数据
@@ -428,7 +559,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          post('baseRollSafetyReminder/deleteOne', {
+          post('baseCostAccountingMain/deleteOne', {
             indocno: data.indocno
           }).then(res => {
             console.log('删除', res)
@@ -459,7 +590,7 @@ export default {
       this.formFlag = false
     },
 
-    //打开添加车床弹窗
+    //打开添加弹窗
     open_add_1() {
       this.dialogVisible = true
       this.dialogTitle = '新增'
@@ -472,8 +603,8 @@ export default {
         if (valid) {
           if (this.formFlag) {
             console.log(this.formLabelAlign)
-            post('/baseRollSafetyReminder/insert', {
-              BaseRollSafetyReminder: this.formLabelAlign
+            post('baseCostAccountingMain/insert ', {
+              BaseCostAccountingMain: this.formLabelAlign
             }).then(res => {
               this.dialogVisible = false
               this.findAll()
@@ -486,8 +617,8 @@ export default {
               }
             })
           } else {
-            post('/baseRollSafetyReminder/update', {
-              BaseRollSafetyReminder: this.formLabelAlign
+            post('baseCostAccountingMain/update', {
+              BaseCostAccountingMain: this.formLabelAlign
             }).then(res => {
               this.dialogVisible = false
               this.findAll()
@@ -518,54 +649,85 @@ export default {
       this.searchInfo = {}
       this.findAll()
     },
-    /**
-     * description: 添加数据函数
-     */
-    save(formName) {
+    add_left() {
+      this.dialogVisible1 = true
+      this.dialogTitle1 = '添加'
+      this.formLabelAlign1 = {}
+      this.formLabelAlign1.parent_id = this.rowIndex
+      // this.formLabelAlign = Object.assign({}, data)
+      this.formFlag1 = true
+    },
+    handleEdit1(data) {
+      this.dialogVisible1 = true
+      this.dialogTitle1 = '编辑'
+      this.formLabelAlign1 = Object.assign({}, data)
+      this.formFlag1 = false
+    },
+    async handleSave1(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          post('rollInformation/insert', {
-            rollInformation: this.formLabelAlign
-          }).then(res => {
-            if (res) {
-              this.$message({
-                type: 'success',
-                message: '保存成功!'
-              })
-              this.$refs[formName].resetFields()
-              this.findAll()
-            }
-          })
-          this.dialogVisible = false
+          if (this.formFlag1) {
+            console.log(this.formLabelAlign1)
+            post('baseCostAccountingChild/insert ', {
+              BaseCostAccountingChild: this.formLabelAlign1
+            }).then(res => {
+              this.dialogVisible1 = false
+              this.findAll_1()
+              if (res) {
+                this.$refs[formName].resetFields()
+                this.$message({
+                  type: 'success',
+                  message: '添加成功'
+                })
+              }
+            })
+          } else {
+            post('baseCostAccountingChild/update', {
+              BaseCostAccountingChild: this.formLabelAlign1
+            }).then(res => {
+              this.dialogVisible1 = false
+              this.findAll_1()
+              if (res) {
+                this.$refs[formName].resetFields()
+                this.$message({
+                  type: 'success',
+                  message: '编辑成功'
+                })
+              }
+            })
+          }
         } else {
-          alert('请按照要求输入')
+          return false
         }
       })
     },
-    /**
-     * description: 编辑数据函数
-     */
-    edit(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          // 编辑
-          post('rollInformation/update', {
-            rollInformation: this.formLabelAlign
+    handleDelect1(data) {
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('baseCostAccountingChild/deleteOne', {
+            indocno: data.indocno
           }).then(res => {
+            console.log('删除', res)
             if (res) {
               this.$message({
                 type: 'success',
-                message: '修改成功!'
+                message: '删除成功!'
               })
-              this.$refs[formName].resetFields()
-              this.findAll()
+              this.findAll_1()
             }
           })
-          this.dialogVisible = false
-        } else {
-          alert('请按照要求输入')
-        }
-      })
+          this.findAll_1()
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
     }
   }
 }

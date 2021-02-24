@@ -392,7 +392,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           // 编辑
-          post('sysBz/findByIndocno', {
+          post('sysBz/update', {
             SysBz: this.formLabelAlign
           }).then(res => {
             if (res) {
