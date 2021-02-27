@@ -65,7 +65,7 @@
                 </el-col>
                 <el-col :span="6">
                   <el-form-item
-                    label="机架范围"
+                    label="机架"
                     prop="frame_noid">
                     <el-select
                       v-model="searchInfo.frame_noid"

@@ -172,7 +172,7 @@
             <!-- 添加-->
             <el-table-column
               prop="material"
-              width="120"
+              width="160"
               label="轧辊材质"/>
             <el-table-column
               prop="frame_no"

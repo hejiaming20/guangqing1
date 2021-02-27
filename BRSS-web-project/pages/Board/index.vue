@@ -23,8 +23,13 @@
           <div class="logo-title">
             <img
               :src="logoImg"
+              style="width: 50px;height: 50px"
               alt="logo">
-            <p>马钢四钢轧智能磨辊间</p>
+            <p>广东广青磨辊间</p>
+            <img
+              :src="logoImg1"
+              style="width: 50px;height: 50px"
+              alt="logo">
           </div>
         </div>
         <div class="board-titleRight">
@@ -36,8 +41,8 @@
     <!-- 内容模块 -->
     <div class="board-box">
       <!-- 换辊车区域 -->
-      <div class="roll-car">
-        <!-- 轧辊信息 -->
+      <!-- <div class="roll-car">
+        &lt;!&ndash; 轧辊信息 &ndash;&gt;
         <div class="roll-car-plan">
           <div class="roll-car-plan-info">
             <p class="roll-car-plan-info-title">钢卷号</p>
@@ -176,7 +181,7 @@
             </div>
           </div>
         </div>
-        <!-- 换辊小车 -->
+        &lt;!&ndash; 换辊小车 &ndash;&gt;
         <div class="car"/>
         <div class="car-info">
           <div class="car-info-item car-info-item-margin1">
@@ -234,15 +239,15 @@
             <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span>{{ car.F7.bear_no }}</span></p>
           </div>
         </div>
-      </div>
+      </div>-->
       <!-- 下一层模块 -->
       <div class="board-info">
-        <el-row
+        <!--  <el-row
           type="flex"
           justify="space-between">
           <el-col>
             <div class="board-left">
-              <!-- 最佳班组 -->
+              &lt;!&ndash; 最佳班组 &ndash;&gt;
               <div class="best-classInfo">
                 <div class="best-classTitle">
                   最佳班组 / {{ mochuangDate }}
@@ -254,7 +259,7 @@
                   <div class="best-calssMain-item"><i>{{ mochuang6.name }}</i><p>6#磨床</p></div>
                 </div>
               </div>
-              <!-- 备辊信息 -->
+              &lt;!&ndash; 备辊信息 &ndash;&gt;
               <div class="pinch-rollInfo">
                 <div class="best-classTitle">
                   备辊信息
@@ -274,14 +279,14 @@
                 </div>
               </div>
             </div>
-            <!-- 轧辊库存数 -->
+            &lt;!&ndash; 轧辊库存数 &ndash;&gt;
             <div
               id="echartBottom"
               class="mo-bed">
-              <!-- <div class="best-classTitle">
+              &lt;!&ndash; <div class="best-classTitle">
                 磨床信息
-              </div> -->
-              <!-- <div class="mo-bedMain">
+              </div> &ndash;&gt;
+              &lt;!&ndash; <div class="mo-bedMain">
                 <el-row
                   type="flex"
                   align="middle">
@@ -313,17 +318,17 @@
                     </div>
                   </el-col>
                 </el-row>
-              </div> -->
+              </div> &ndash;&gt;
             </div>
           </el-col>
           <el-col>
-            <!-- 磨床信息 -->
+            &lt;!&ndash; 磨床信息 &ndash;&gt;
             <div class="roll-nos">
               <div class="best-classTitle">
                 磨床信息
               </div>
               <div class="roll-nosMain">
-                <!--<el-row>
+                &lt;!&ndash;<el-row>
                   <el-col :span="12">
                     <div class="mo-item">
                       <p class="moitem-title">1#磨床  {{ mobed1.roll_no }}</p>
@@ -498,12 +503,428 @@
                       </div>
                     </div>
                   </el-col>
-                </el-row>-->
+                </el-row>&ndash;&gt;
                 1
               </div>
             </div>
           </el-col>
+        </el-row>-->
+        <!--测试div-->
+        <!-- <div class="roll-nos_1">
+          <div class="best-classTitle">
+            测试信息
+          </div>
+          <div class="roll-nosMain_1">
+            &lt;!&ndash;<el-row>
+              <el-col :span="12">
+                <div class="mo-item">
+                  <p class="moitem-title">1#磨床  {{ mobed1.roll_no }}</p>
+                  <div class="moitem-main">
+                    <img
+                      :src="baseImg"
+                      class="bed-img"
+                      alt="磨床1"
+                      title="磨床1">
+                    <img
+                      :src="roll"
+                      alt="轧辊"
+                      class="mo-roll">
+                    <img
+                      :src="slide1"
+                      :style="'left:' + mobed1.left + 'px'"
+                      class="mo-slide1"
+                      alt="滑块1">
+                    <img
+                      :src="slide2"
+                      class="mo-slide2"
+                      alt="滑块2">
+                    <img
+                      :src="part"
+                      alt="零件"
+                      class="mo-part">
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="mo-item">
+                  <p class="moitem-title">2#磨床  {{ mobed2.roll_no }}</p>
+                  <div class="moitem-main">
+                    <img
+                      :src="baseImg"
+                      class="bed-img"
+                      alt="磨床1"
+                      title="磨床1">
+                    <img
+                      :src="roll"
+                      alt="轧辊"
+                      class="mo-roll">
+                    <img
+                      :src="slide1"
+                      :style="'left:' + mobed2.left + 'px'"
+                      class="mo-slide1"
+                      alt="滑块1">
+                    <img
+                      :src="slide2"
+                      class="mo-slide2"
+                      alt="滑块2">
+                    <img
+                      :src="part"
+                      alt="零件"
+                      class="mo-part">
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="mo-item">
+                  <p class="moitem-title">3#磨床  {{ mobed3.roll_no }}</p>
+                  <div class="moitem-main">
+                    <img
+                      :src="baseImg"
+                      class="bed-img"
+                      alt="磨床1"
+                      title="磨床1">
+                    <img
+                      :src="roll"
+                      alt="轧辊"
+                      class="mo-roll">
+                    <img
+                      :src="slide1"
+                      :style="'left:' + mobed3.left + 'px'"
+                      class="mo-slide1"
+                      alt="滑块1">
+                    <img
+                      :src="slide2"
+                      class="mo-slide2"
+                      alt="滑块2">
+                    <img
+                      :src="part"
+                      alt="零件"
+                      class="mo-part">
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="mo-item">
+                  <p class="moitem-title">4#磨床  {{ mobed4.roll_no }}</p>
+                  <div class="moitem-main">
+                    <img
+                      :src="baseImg"
+                      class="bed-img"
+                      alt="磨床1"
+                      title="磨床1">
+                    <img
+                      :src="roll"
+                      alt="轧辊"
+                      class="mo-roll">
+                    <img
+                      :src="slide1"
+                      :style="'left:' + mobed4.left + 'px'"
+                      class="mo-slide1"
+                      alt="滑块1">
+                    <img
+                      :src="slide2"
+                      class="mo-slide2"
+                      alt="滑块2">
+                    <img
+                      :src="part"
+                      alt="零件"
+                      class="mo-part">
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="mo-item">
+                  <p class="moitem-title">5#磨床  {{ mobed5.roll_no }}</p>
+                  <div class="moitem-main">
+                    <img
+                      :src="baseImg"
+                      class="bed-img"
+                      alt="磨床1"
+                      title="磨床1">
+                    <img
+                      :src="roll"
+                      alt="轧辊"
+                      class="mo-roll">
+                    <img
+                      :src="slide1"
+                      :style="'left:' + mobed5.left + 'px'"
+                      class="mo-slide1"
+                      alt="滑块1">
+                    <img
+                      :src="slide2"
+                      class="mo-slide2"
+                      alt="滑块2">
+                    <img
+                      :src="part"
+                      alt="零件"
+                      class="mo-part">
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="mo-item">
+                  <p class="moitem-title">6#磨床  {{ mobed6.roll_no }}</p>
+                  <div class="moitem-main">
+                    <img
+                      :src="baseImg"
+                      class="bed-img"
+                      alt="磨床1"
+                      title="磨床1">
+                    <img
+                      :src="roll"
+                      alt="轧辊"
+                      class="mo-roll">
+                    <img
+                      :src="slide1"
+                      :style="'left:' + mobed6.left + 'px'"
+                      class="mo-slide1"
+                      alt="滑块1">
+                    <img
+                      :src="slide2"
+                      class="mo-slide2"
+                      alt="滑块2">
+                    <img
+                      :src="part"
+                      alt="零件"
+                      class="mo-part">
+                  </div>
+                </div>
+              </el-col>
+            </el-row>&ndash;&gt;
+            1
+          </div>
+        </div>-->
+        <el-row>
+          <el-col :span="14">
+            <div class="best-classTitle">
+              班组绩效
+            </div>
+            <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 0px">
+              <div style="width: 100%;height: 240px;border: 1px solid ;padding-top: 10px">
+                <div
+                  id="app3"
+                  style="height: 220px;width: 20%;float: left;background: #1a367a"/>
+                <div
+                  id="app4"
+                  style="height: 220px;width: 20%;float: left;background: #252541"/>
+                <div
+                  id="app5"
+                  style="height: 220px;width: 20%;float: left;background: #1a367a"/>
+                <div
+                  id="app6"
+                  style="height: 220px;width: 20%;float: left;background: #252541"/>
+                <div
+                  id="app7"
+                  style="height: 220px;width: 20%;float: left;background: #1a367a"/>
+              </div>
+              <div style="width: 100%;height: 140px;border: 1px solid ;padding-top: 10px">
+                <div
+                  id="app3_1"
+                  style="height: 140px;width: 20%;float: left;background: #1a367a"/>
+                <div
+                  id="app4_1"
+                  style="height: 140px;width: 20%;float: left;background: #252541"/>
+                <div
+                  id="app5_1"
+                  style="height: 140px;width: 20%;float: left;background: #1a367a"/>
+                <div
+                  id="app6_1"
+                  style="height: 140px;width: 20%;float: left;background: #252541"/>
+                <div
+                  id="app7_1"
+                  style="height: 140px;width: 20%;float: left;background: #1a367a"/>
+              </div>
+              <!-- <div
+                class="body_box">
+                &lt;!&ndash; <div style="color: white;margin-left: 20px;padding-bottom: 5px">  班次：{{ group1 }}   班组：{{ group2 }}   </div>&ndash;&gt;
+                <div
+                  class="table_box"
+                  style="height: 140px;overflow:hidden">
+                  <table >
+                    <tbody >
+                      <tr class="t1">
+                        <th>序号</th>
+                        <th>班</th>
+                        <th>总数</th>
+                        <th>磨削时长合计</th>
+                        <th>辊径减少</th>
+                        <th>砂径减少</th>
+                        <th>平均磨削时长</th>
+                      </tr>
+                      <tr
+                        v-for="(item,index ) in tableData_4"
+                        :key="index">
+                        <td>{{ index+1 }}</td>
+                        <td>{{ item.sclass }}</td>
+                        <td>{{ item.totalnum }}</td>
+                        <td>{{ item.grinding_timetotalnum }}</td>
+                        <td>{{ item.rolldiameter_reduce }}</td>
+                        <td>{{ item.sanddiameter_reduce }}</td>
+                        <td>{{ item.grinding_timeavgnum }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>-->
+            </div>
+          </el-col>
+          <!--  原来为损耗毫米数
+          <el-col :span="10">
+            <div class="best-classTitle">
+              查看
+            </div>
+            <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
+              <div
+                id="app2"
+                style="height: 380px;width: 100%;float: left;background: #1a367a"/>
+            </div>
+          </el-col>-->
+          <el-col :span="10">
+            <div class="best-classTitle">
+              结存
+            </div>
+            <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
+              <div
+                id="app1_1"
+                style="height: 380px;width: 100%;float: left"/>
+            </div>
+          </el-col>
+
         </el-row>
+        <el-row>
+          <el-col :span="9">
+            <div class="best-classTitle">
+              损耗
+            </div>
+            <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
+              <div
+                class="body_box">
+                <!-- <div style="color: white;margin-left: 20px;padding-bottom: 5px">  班次：{{ group1 }}   班组：{{ group2 }}   </div>-->
+                <div
+                  class="table_box"
+                  style="height: 380px;overflow:hidden">
+                  <table >
+                    <tbody >
+                      <tr class="t1">
+                        <th>序号</th>
+                        <th>开始时间</th>
+                        <th>轧辊类型</th>
+                        <th>轧辊材质</th>
+                        <th>机架范围</th>
+                        <th>单价</th>
+                        <th>工作层</th>
+                        <th>毫米数</th>
+                        <!-- <th>粗糙度</th>-->
+                        <th>重量</th>
+                        <th>金额</th>
+                      </tr>
+                      <tr
+                        v-for="(item,index ) in tableData_1"
+                        :key="index">
+                        <td>{{ index+1 }}</td>
+                        <td>{{ item.usetime }}</td>
+                        <td>{{ item.roll_type }}</td>
+                        <td>{{ item.material }}</td>
+                        <td>{{ item.framerange }}</td>
+                        <td>{{ item.unit_price }}</td>
+                        <td>{{ item.working_layer }}</td>
+                        <td>{{ item.mmnumber }}</td>
+                        <!--<td>{{ item.roughness }}</td>-->
+                        <td>{{ item.weight }}</td>
+                        <td>{{ item.money }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </el-col>
+          <!-- <el-col :span="7">
+            <div class="best-classTitle">
+              异常
+            </div>
+            <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px;margin-left: 5px">
+              <div
+                class="body_box">
+                &lt;!&ndash; <div style="color: white;margin-left: 20px;padding-bottom: 5px">  班次：{{ group1 }}   班组：{{ group2 }}   </div>&ndash;&gt;
+                <div
+                  class="table_box"
+                  style="height: 380px;overflow:hidden">
+                  <table >
+                    <tbody >
+                      <tr class="t1">
+                        <th>序号</th>
+                        <th>轧辊类型</th>
+                        <th>轧辊材质</th>
+                        <th>机架范围</th>
+                        <th>当前直径</th>
+                        <th>结存</th>
+                      </tr>
+                      <div> <p style="text-align: center;color: white">暂无数据</p></div>
+                      <tr
+                        v-for="(item,index ) in tableData_2"
+                        :key="index">
+                        <td>{{ index+1 }}</td>
+                        <td>{{ item.roll_type }}</td>
+                        <td>{{ item.material }}</td>
+                        <td>{{ item.framerange }}</td>
+                        <td>{{ item.currentdiameter }}</td>
+                        <td>{{ item.body_diameter }}</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </el-col>-->
+          <el-col :span="15">
+            <div class="best-classTitle">
+              毫米数
+            </div>
+            <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
+              <el-col :span="24">
+                <div
+                  id="app2"
+                  style="width:100%;height: 380px;"/>
+              </el-col>
+              <!-- <el-col :span="11">
+                <div
+                  class="body_box">
+                  &lt;!&ndash; <div style="color: white;margin-left: 20px;padding-bottom: 5px">  班次：{{ group1 }}   班组：{{ group2 }}   </div>&ndash;&gt;
+                  <div
+                    class="table_box"
+                    style="height: 380px;overflow:hidden">
+                    <table >
+                      <tbody >
+                        <tr class="t1">
+                          <th>序号</th>
+                          <th>轧辊类型</th>
+                          <th>轧辊材质</th>
+                          <th>机架范围</th>
+                          <th>当前直径</th>
+                          <th>结存</th>
+                        </tr>
+                        <tr
+                          v-for="(item,index ) in tableData_3"
+                          :key="index">
+                          <td>{{ index+1 }}</td>
+                          <td>{{ item.roll_type }}</td>
+                          <td>{{ item.material }}</td>
+                          <td>{{ item.framerange }}</td>
+                          <td>{{ item.currentdiameter }}</td>
+                          <td>{{ item.body_diameter }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </el-col>-->
+            </div>
+          </el-col>
+        </el-row>
+
       </div>
     </div>
   </div>
@@ -524,11 +945,11 @@ export default {
   },
   head() {
     return {
-      title: '马钢四钢轧智能磨辊间',
+      title: '广东广青磨辊间',
       meta: [
         {
           name: 'keywords',
-          content: '马钢智能制造'
+          content: '磨辊间'
         }
       ]
     }
@@ -556,7 +977,9 @@ export default {
         { roll_no: 'R锤头' },
         { roll_no: '花纹辊' }
       ],
-      logoImg: require('../../assets/boardImage/logo.png'),
+      /*  logoImg: require('../../assets/boardImage/logo.png'),*/
+      logoImg: require('../../assets/img/GQMTv2.1.png'),
+      logoImg1: require('../../assets/img/nercar_v1.png'),
       nowTime: {
         time: '00:00:00',
         day: '1997年01月01日',
@@ -1067,11 +1490,17 @@ export default {
       },
       speed: 2, // sudu
       mwidth: 0,
-      flag: true
+      flag: true,
+      tableData_1: [],
+      tableData_2: [{}],
+      tableData_3: [],
+      tableData_4: [],
+      tableData_5: []
     }
   },
   created() {
-    this.findRollStock()
+    //this.findRollStock()
+    this.play()
   },
   mounted() {
     const timer = setInterval(() => {
@@ -1100,7 +1529,7 @@ export default {
         this.mobed6.flag = !this.mobed6.flag
         this.mobed6.mwidth = 0
       }
-      this.findmo1()
+      //this.findmo1()
       this.setmoleft()
     }, 2000)
     this.$once('hook:beforeDestroy', () => {
@@ -1108,7 +1537,7 @@ export default {
     })
 
     this.findOnLineRollF1() // F1
-    this.getTime()
+    //this.getTime()
     this.findOnLineRollF2() // F2
     this.findOnLineRollF3() // F3
     this.findOnLineRollF4() // F4
@@ -1135,8 +1564,944 @@ export default {
     this.findmo4()
     this.findmo5()
     this.findmo6()
+    this.vagetable()
   },
   methods: {
+    echart_go_1(datas) {
+      console.log(datas, typeof datas)
+      var need_x1 = []
+      var need_y1 = []
+      for (var i = 0; datas.length > i; i++) {
+        need_x1.push(datas[i].x)
+        need_y1.push(datas[i].y1.toFixed(1))
+      }
+      console.log(need_x1, need_y1)
+      //debugger
+
+      var myChart2 = Echarts.init(document.getElementById('app2'), 'default') //将配置注入到html中定义的容器
+      var option2 = {
+        textStyle: {
+          color: '#eae8c5' //字体颜色
+        },
+        // title: {
+        //   textStyle: {
+        //     color: '#eae8c5' //字体颜色
+        //   },
+        //   text: '在线评价各子项评分趋势\n ',
+        //   // subtext: '纯属虚构',
+        //   left: 'center'
+        // },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+          }
+        },
+        grid: {
+          top: '20px'
+        },
+        legend: {
+          // orient: 'vertical', //注意
+          // pagemode: true, //注意,自定义的字段，开启图例分页模式，只有orient: 'vertical'时才有效
+          type: 'scroll', //翻页
+          pageIconColor: '#208d3a', //翻页下一页的三角按钮颜色
+          pageIconInactiveColor: '#8d0912', //翻页（即翻页到头时）
+          top: 25,
+          bottom: 30,
+          textStyle: {
+            color: '#eae8c5' //字体颜色
+          },
+          data: [
+            '刚度保持率',
+            '调平值',
+            '两侧刚度偏差',
+            '两侧位置偏差',
+            'OS位置偏差',
+            'DS位置偏差',
+            '轧制力偏差',
+            'OS辊缝偏差',
+            'DS辊缝偏差'
+          ]
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        yAxis: {
+          axisLine: {
+            lineStyle: {
+              color: '#eae8c5' //坐标线颜色
+            }
+          },
+          //设置网格线颜色
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: '#6b6464',
+              width: 1,
+              type: 'solid'
+            }
+          },
+          type: 'value'
+        },
+        xAxis: {
+          data: need_x1,
+          axisLabel: {
+            rotate: 90,
+            interval: 0, //横轴信息全部显示,
+            textStyle: {
+              color: '#999',
+              fontSize: 12
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#eae8c5' //坐标线颜色
+            }
+          },
+          //设置网格线颜色
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: '#6b6464',
+              width: 1,
+              type: 'solid'
+            }
+          },
+          type: 'category'
+          // data: xdaata
+          //data: [1, 2, 3, 4, 5]
+        },
+        series: [
+          {
+            // name: '刚度保持率',
+            type: 'bar',
+            // stack: '总量',
+            showBackground: true,
+            // barWidth: 60,
+            barMaxwidth: 60,
+            label: {
+              show: true,
+              position: 'inside'
+            },
+            // data: ydata1
+            data: need_y1
+          }
+        ]
+      }
+      var option = {
+        //backgroundColor: '#031245',
+        textStyle: {
+          color: '#c0c3cd',
+          fontSize: 14
+        },
+        toolbox: {
+          show: false,
+          feature: {
+            saveAsImage: {
+              backgroundColor: '#031245'
+            },
+            restore: {}
+          },
+          iconStyle: {
+            borderColor: '#c0c3cd'
+          }
+        },
+        legend: {
+          top: 10,
+          itemWidth: 8,
+          itemHeight: 8,
+          icon: 'circle',
+          left: 'center',
+          padding: 0,
+          textStyle: {
+            color: '#c0c3cd',
+            fontSize: 14,
+            padding: [2, 0, 0, 0]
+          }
+        },
+        color: [
+          '#63caff',
+          '#49beff',
+          '#03387a',
+          '#03387a',
+          '#03387a',
+          '#6c93ee',
+          '#a9abff',
+          '#f7a23f',
+          '#27bae7',
+          '#ff6d9d',
+          '#cb79ff',
+          '#f95b5a',
+          '#ccaf27',
+          '#38b99c',
+          '#93d0ff',
+          '#bd74e0',
+          '#fd77da',
+          '#dea700'
+        ],
+        grid: {
+          containLabel: true,
+          left: 20,
+          right: 20,
+          bottom: 10,
+          top: 40
+        },
+        xAxis: {
+          nameTextStyle: {
+            color: '#c0c3cd',
+            padding: [0, 0, -10, 0],
+            fontSize: 14
+          },
+          axisLabel: {
+            rotate: 90,
+            interval: 0, //横轴信息全部显示,
+            color: '#c0c3cd',
+            fontSize: 14,
+            interval: 0
+          },
+          axisTick: {
+            lineStyle: {
+              color: '#384267',
+              width: 1
+            },
+            show: true
+          },
+          splitLine: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#384267',
+              width: 1,
+              type: 'dashed'
+            },
+            show: true
+          },
+          /*data: [
+            '0点~2点',
+            '3点~5点',
+            '6点~8点',
+            '0点~2点',
+            '3点~5点',
+            '6点~8点',
+            '0点~2点',
+            '3点~5点'
+          ],*/
+          data: need_x1,
+          type: 'category'
+        },
+        yAxis: {
+          nameTextStyle: {
+            color: '#c0c3cd',
+            padding: [0, 0, -10, 0],
+            fontSize: 14
+          },
+          axisLabel: {
+            color: '#c0c3cd',
+            fontSize: 14
+          },
+          axisTick: {
+            lineStyle: {
+              color: '#384267',
+              width: 1
+            },
+            show: true
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: '#384267',
+              type: 'dashed'
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#384267',
+              width: 1,
+              type: 'dashed'
+            },
+            show: true
+          },
+          name: ''
+        },
+        series: [
+          {
+            //data: [200, 85, 112, 275, 305, 415, 741, 405],
+            data: need_y1,
+            type: 'bar',
+            barMaxWidth: 'auto',
+            barWidth: 30,
+            itemStyle: {
+              color: {
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                type: 'linear',
+                global: false,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: '#0b9eff'
+                  },
+                  {
+                    offset: 1,
+                    color: '#63caff'
+                  }
+                ]
+              }
+            },
+            label: {
+              show: true,
+              position: 'top',
+              distance: 10,
+              color: '#fff'
+            }
+          },
+          {
+            data: [1, 1, 1, 1, 1, 1, 1, 1],
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbol: 'diamond',
+            symbolOffset: [0, '50%'],
+            symbolSize: [30, 15]
+          },
+          {
+            // data: [200, 85, 112, 275, 305, 415, 741, 405],
+            data: need_y1,
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbolPosition: 'end',
+            symbol: 'diamond',
+            symbolOffset: [0, '-50%'],
+            symbolSize: [30, 12],
+            zlevel: 2
+          },
+          {
+            // data: [741, 741, 741, 741, 741, 741, 741, 741],
+            data: [300, 300, 300, 300, 300, 300, 300, 300],
+            type: 'bar',
+            barMaxWidth: 'auto',
+            barWidth: 30,
+            barGap: '-100%',
+            zlevel: -1
+          },
+          {
+            data: [1, 1, 1, 1, 1, 1, 1, 1],
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbol: 'diamond',
+            symbolOffset: [0, '50%'],
+            symbolSize: [30, 15],
+            zlevel: -2
+          },
+          {
+            //data: [741, 741, 741, 741, 741, 741, 741, 741],
+            data: [300, 300, 300, 300, 300, 300, 300, 300],
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbolPosition: 'end',
+            symbol: 'diamond',
+            symbolOffset: [0, '-50%'],
+            symbolSize: [30, 12],
+            zlevel: -1
+          }
+        ],
+        tooltip: {
+          trigger: 'axis',
+          show: false
+        }
+      }
+      myChart2.setOption(option)
+    },
+    echart_go_b(datas) {
+      //结存
+      console.log(datas, typeof datas)
+      var need_x1 = []
+      var need_y1 = []
+      var need_y2 = []
+      for (var i = 0; datas.length > i; i++) {
+        need_x1.push(datas[i].x)
+        need_y1.push(datas[i].y1.toFixed(1))
+        need_y2.push(datas[i].y2.toFixed(1))
+      }
+      var myChart1 = Echarts.init(document.getElementById('app1_1'), 'default') //将配置注入到html中定义的容器
+      var option1 = {
+        //backgroundColor: '#031245',
+        textStyle: {
+          color: '#c0c3cd',
+          fontSize: 14
+        },
+        toolbox: {
+          show: false,
+          feature: {
+            saveAsImage: {
+              backgroundColor: '#031245'
+            },
+            restore: {}
+          },
+          iconStyle: {
+            borderColor: '#c0c3cd'
+          }
+        },
+        legend: {
+          top: 10,
+          itemWidth: 8,
+          itemHeight: 8,
+          icon: 'circle',
+          left: 'center',
+          padding: 0,
+          textStyle: {
+            color: '#c0c3cd',
+            fontSize: 14,
+            padding: [2, 0, 0, 0]
+          }
+        },
+        color: [
+          '#63caff',
+          '#49beff',
+          '#03387a',
+          '#03387a',
+          '#03387a',
+          '#6c93ee',
+          '#a9abff',
+          '#f7a23f',
+          '#27bae7',
+          '#ff6d9d',
+          '#cb79ff',
+          '#f95b5a',
+          '#ccaf27',
+          '#38b99c',
+          '#93d0ff',
+          '#bd74e0',
+          '#fd77da',
+          '#dea700'
+        ],
+        grid: {
+          containLabel: true,
+          left: 20,
+          right: 20,
+          bottom: 10,
+          top: 40
+        },
+        xAxis: {
+          nameTextStyle: {
+            color: '#c0c3cd',
+            padding: [0, 0, -10, 0],
+            fontSize: 14
+          },
+          axisLabel: {
+            rotate: 90,
+            interval: 0, //横轴信息全部显示,
+            color: '#c0c3cd',
+            fontSize: 14,
+            interval: 0
+          },
+          axisTick: {
+            lineStyle: {
+              color: '#384267',
+              width: 1
+            },
+            show: true
+          },
+          splitLine: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#384267',
+              width: 1,
+              type: 'dashed'
+            },
+            show: true
+          },
+          /*data: [
+            '0点~2点',
+            '3点~5点',
+            '6点~8点',
+            '0点~2点',
+            '3点~5点',
+            '6点~8点',
+            '0点~2点',
+            '3点~5点'
+          ],*/
+          data: need_x1,
+          type: 'category'
+        },
+        yAxis: {
+          nameTextStyle: {
+            color: '#c0c3cd',
+            padding: [0, 0, -10, 0],
+            fontSize: 14
+          },
+          axisLabel: {
+            color: '#c0c3cd',
+            fontSize: 14
+          },
+          axisTick: {
+            lineStyle: {
+              color: '#384267',
+              width: 1
+            },
+            show: true
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: '#384267',
+              type: 'dashed'
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#384267',
+              width: 1,
+              type: 'dashed'
+            },
+            show: true
+          },
+          name: ''
+        },
+        series: [
+          {
+            //data: [200, 85, 112, 275, 305, 415, 741, 405],
+            data: need_y2,
+            type: 'bar',
+            barMaxWidth: 'auto',
+            barWidth: 30,
+            itemStyle: {
+              color: {
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                type: 'linear',
+                global: false,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: '#0b9eff'
+                  },
+                  {
+                    offset: 1,
+                    color: '#63caff'
+                  }
+                ]
+              }
+            },
+            label: {
+              show: true,
+              position: 'top',
+              distance: 10,
+              color: '#fff'
+            }
+          },
+          {
+            data: [1, 1, 1, 1, 1, 1, 1, 1],
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbol: 'diamond',
+            symbolOffset: [0, '50%'],
+            symbolSize: [30, 15]
+          },
+          {
+            // data: [200, 85, 112, 275, 305, 415, 741, 405],
+            data: need_y2,
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbolPosition: 'end',
+            symbol: 'diamond',
+            symbolOffset: [0, '-50%'],
+            symbolSize: [30, 12],
+            zlevel: 2
+          },
+          {
+            // data: [741, 741, 741, 741, 741, 741, 741, 741],
+            data: [300, 300, 300, 300, 300, 300, 300, 1000],
+            type: 'bar',
+            barMaxWidth: 'auto',
+            barWidth: 30,
+            barGap: '-100%',
+            zlevel: -1
+          },
+          {
+            data: [1, 1, 1, 1, 1, 1, 1, 1],
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbol: 'diamond',
+            symbolOffset: [0, '50%'],
+            symbolSize: [30, 15],
+            zlevel: -2
+          },
+          {
+            //data: [741, 741, 741, 741, 741, 741, 741, 741],
+            data: [300, 300, 300, 300, 300, 300, 300, 1000],
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbolPosition: 'end',
+            symbol: 'diamond',
+            symbolOffset: [0, '-50%'],
+            symbolSize: [30, 12],
+            zlevel: -1
+          }
+        ],
+        tooltip: {
+          trigger: 'axis',
+          show: false
+        }
+      }
+      myChart1.setOption(option1)
+    },
+    echart_go_a(datas) {
+      var need_x1 = []
+      var need_y1 = [] //总数
+      var need_y2 = [] //磨削时长
+      var need_y3 = [] //辊颈减少
+      var need_y4 = [] // 砂轮减少
+      var need_y5 = [] //平均磨削时长
+      for (var i = 0; datas.length > i; i++) {
+        need_x1.push(datas[i].x)
+        need_y1.push(datas[i].y1)
+        need_y2.push(datas[i].y2)
+        need_y3.push(datas[i].y3)
+        need_y4.push(datas[i].y4)
+        need_y5.push(datas[i].y5)
+      }
+      var y_name = ['个数', 'h', 'mm', 'mm', 'h']
+      var need_s = [need_y1, need_y2, need_y3, need_y4, need_y5]
+      var app = ['app3', 'app4', 'app5', 'app6', 'app7']
+      var title_1 = ['总数', '磨削时长', '辊径减少', '砂轮减少', '平均磨削时长']
+      var app1 = ['app3_1', 'app4_1', 'app5_1', 'app6_1', 'app7_1']
+      for (var i = 0; 5 > i; i++) {
+        var myChart1 = Echarts.init(document.getElementById(app[i]), 'default') //将配置注入到html中定义的容器
+        var option2 = {
+          //backgroundColor: '#38445E',
+          title: {
+            left: '48%',
+            text: title_1[i],
+            textStyle: {
+              color: '#d3ca1b', //字体颜色
+              fontSize: 12
+            }
+          },
+          grid: {
+            left: '28%',
+            top: '10%',
+            bottom: '22%',
+            right: '8%'
+          },
+          xAxis: {
+            data: need_x1,
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#8d4038',
+                width: 1 //这里是为了突出显示加上的
+              }
+            },
+            axisLabel: {
+              // rotate: 90,
+              interval: 0, //横轴信息全部显示,
+              textStyle: {
+                color: '#999',
+                fontSize: 12
+              }
+            }
+          },
+          yAxis: [
+            {
+              name: y_name[i],
+              //坐标标签位置
+              nameTextStyle: {
+                padding: [0, 0, -20, 20]
+              },
+              splitNumber: 2,
+              axisTick: {
+                show: false
+              },
+              axisLine: {
+                lineStyle: {
+                  color: '#8d4038',
+                  width: 1 //这里是为了突出显示加上的
+                }
+              },
+              axisLabel: {
+                textStyle: {
+                  color: '#999'
+                }
+              },
+              splitArea: {
+                areaStyle: {
+                  color: 'rgba(255,255,255,.5)'
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: 'rgba(255, 129, 109, 0.1)',
+                  width: 0.5,
+                  type: 'dashed'
+                }
+              }
+            }
+          ],
+          series: [
+            {
+              name: 'hill',
+              type: 'pictorialBar',
+              barCategoryGap: '0%',
+              symbol:
+                'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
+              label: {
+                show: true,
+                position: 'center',
+                distance: 15,
+                color: '#DB5E6A',
+                fontWeight: 'bolder',
+                fontSize: 10
+              },
+              itemStyle: {
+                normal: {
+                  color: {
+                    type: 'linear',
+                    x: 0,
+                    y: 0,
+                    x2: 0,
+                    y2: 1,
+                    colorStops: [
+                      {
+                        offset: 0,
+                        color: 'rgba(232, 94, 106, .8)' //  0%  处的颜色
+                      },
+                      {
+                        offset: 1,
+                        color: 'rgba(232, 94, 106, .1)' //  100%  处的颜色
+                      }
+                    ],
+                    global: false //  缺省为  false
+                  }
+                },
+                emphasis: {
+                  opacity: 1
+                }
+              },
+              //data: [123, 60, 25, 18, 12, 9, 2, 1],
+              data: need_s[i],
+              z: 10
+            }
+          ]
+        }
+        myChart1.setOption(option2)
+      }
+
+      for (var n = 0; 5 > n; n++) {
+        var myChart = Echarts.init(document.getElementById(app1[n]), 'default') //将配置注入到html中定义的容器
+        //柱状图
+        console.log(need_s[n][0])
+        var scaleData = [
+          {
+            name: need_x1[0],
+            value: need_s[n][0]
+          },
+          {
+            name: need_x1[1],
+            value: need_s[n][1]
+          },
+          {
+            name: need_x1[2],
+            value: need_s[n][2]
+          }
+        ]
+        var rich = {
+          white: {
+            color: '#fff',
+            align: 'center',
+            fontWeight: 'bold',
+            fontSize: 8,
+            padding: [3, 0]
+          }
+        }
+        var placeHolderStyle = {
+          normal: {
+            label: {
+              show: false
+            },
+            labelLine: {
+              show: false
+            },
+            color: 'rgba(0, 0, 0, 0)',
+            borderColor: 'rgba(0, 0, 0, 0)',
+            borderWidth: 0
+          }
+        }
+        var data = []
+        var color1 = [
+          'rgb(255, 153, 153)',
+          'rgb(255, 176, 63)',
+          'rgb(61, 186, 45)',
+          'rgb(43, 166, 254)',
+          'rgb(255,222,0)',
+          'rgb(255,0,0)'
+        ]
+        for (var i = 0; i < scaleData.length; i++) {
+          data.push(
+            {
+              value: scaleData[i].value,
+              name: scaleData[i].name,
+              itemStyle: {
+                normal: {
+                  borderWidth: 4,
+                  shadowBlur: 30,
+                  borderColor: color1[i],
+                  shadowColor: color1[i],
+                  color: color1[i],
+                  opacity: 0.75
+                }
+              }
+            },
+            {
+              value: 2,
+              name: '',
+              itemStyle: placeHolderStyle
+            }
+          )
+        }
+        var seriesObj = [
+          {
+            name: '',
+            type: 'pie',
+            clockWise: false,
+            radius: [30, 60],
+            center: ['50%', '49%'],
+            hoverAnimation: false,
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true,
+                  position: 'inner',
+                  fontWeight: 'bold',
+                  formatter: function(params) {
+                    var percent = 0
+                    var total = 0
+                    for (var i = 0; i < scaleData.length; i++) {
+                      total += scaleData[i].value
+                    }
+                    percent = ((params.value / total) * 100).toFixed(0)
+                    if (params.name !== '') {
+                      return params.name + '\n{white|' + '占比' + percent + '%}'
+                    } else {
+                      return ''
+                    }
+                  },
+                  rich: rich
+                },
+                labelLine: {
+                  show: false
+                }
+              }
+            },
+            data: data
+          }
+        ]
+        var option = {
+          title: {
+            text: title_1[n],
+            //subtext: '纯属虚构',
+            textStyle: {
+              fontSize: 10,
+              color: '#d3ca1b'
+            },
+            left: 'left'
+          },
+          //backgroundColor: '#04243E',
+          tooltip: {
+            show: false
+          },
+          legend: {
+            show: false
+          },
+          textStyle: {
+            fontSize: 10
+          },
+          toolbox: {
+            show: false
+          },
+          series: seriesObj
+        }
+        myChart.setOption(option)
+      }
+    },
+    vagetable() {
+      //表
+      post('baseCostAccountingMain/findBaseCostAccountingABigScreen', {
+        condition: {}
+      }).then(res => {
+        this.tableData_1 = res.data
+        this.echart_go_1(res.map)
+        this.change()
+      })
+      //2
+      post('rollInformation/findRollDiameterABigScreenByPage', {
+        condition: { ifabnormal: 1 } //异常
+      }).then(res => {
+        this.tableData_2 = res.data
+        //this.tableData_2.push({}, {})
+      })
+      post('rollInformation/findRollDiameterABigScreenByPage', {
+        condition: { ifabnormal: 0 } //正常
+      }).then(res => {
+        this.tableData_3 = res.data
+        this.echart_go_b(res.map)
+      })
+      //3
+      post('rollGrindingBF/findGrindingRateABigScreenByPage', {
+        condition: {}
+      }).then(res => {
+        this.tableData_4 = res.data
+        this.echart_go_a(res.map)
+      })
+      //4
+      post('rollOnoffLine/findRollinfoMesByPage', {
+        pageIndex: 1,
+        pageSize: 100,
+        condition: {}
+      }).then(res => {
+        this.tableData_5 = res.data
+      })
+    },
+    change() {
+      if (this.tableData_1.length > 10) {
+        this.tableData_1.push(
+          this.tableData_1[0],
+          this.tableData_1[1],
+          this.tableData_1[2],
+          this.tableData_1[3],
+          this.tableData_1[4],
+          this.tableData_1[5],
+          this.tableData_1[6],
+          this.tableData_1[7],
+          this.tableData_1[8],
+          this.tableData_1[9]
+        )
+        this.tableData_1.splice(0, 10)
+      }
+    },
+    play() {
+      // setInterval(this.change(), 2000) //每两秒执行一次插入删除操作
+      const timer = setInterval(() => {
+        this.change()
+      }, 5000)
+      // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
+      this.$once('hook:beforeDestroy', () => {
+        clearInterval(timer)
+      })
+    },
     // 工作/支撑辊定时器
     getTime() {
       const timer = setInterval(() => {
@@ -1789,7 +3154,7 @@ export default {
     async findRollBei() {
       let res = await post('rollInformation/findSizeByType', {})
       if (res.status == 2000) {
-        this.echart_go_2(res.data)
+        this.echart_go_3(res.data)
       }
     },
     getNowTime() {
@@ -2032,4 +3397,64 @@ export default {
 </script>
 
 <style>
+.body_box {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  /* margin: 15px;*/
+  background-color: #252541;
+  /* padding: 20px 20px 10px 20px; */
+  /* border-radius: 8px; */
+}
+
+.body_box .table_box table {
+  width: 100%;
+  height: 20px;
+  font-size: 14px;
+}
+
+.body_box .table_box table thead {
+  background-color: #1a367a;
+  letter-spacing: 1px;
+}
+
+.body_box .table_box table thead tr {
+  height: 10px;
+}
+
+.body_box .table_box table tr th {
+  padding: 3px 5px;
+  /*  white-space: normal;*/
+  word-break: break-all;
+  text-align: center;
+  color: #eae8c5;
+  height: 10px;
+  background: #208d3a;
+  white-space: nowrap;
+}
+
+.body_box .table_box table tbody tr {
+  cursor: pointer;
+}
+
+/*.body_box .table_box table tbody tr:hover {
+    background-color: #1a367a !important;
+  }*/
+
+.body_box .table_box table tbody tr:nth-child(2n) {
+  background-color: #252541;
+}
+
+.body_box .table_box table tbody tr td {
+  padding: 3px 5px;
+  white-space: normal;
+  word-break: break-all;
+  border: 1px solid gray;
+  text-align: center;
+  color: #d3ca1b;
+  height: 35px;
+  /*强制不换行*/
+  white-space: nowrap;
+}
+.body_box .table_box table tbody tr td a:hover {
+  color: #d3ca1b;
+}
 </style>

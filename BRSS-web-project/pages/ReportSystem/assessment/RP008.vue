@@ -1,4 +1,4 @@
-<!--安全库存-->
+<!--安全库存配置-->
 <template>
   <div>
     <Table-easy
@@ -8,9 +8,7 @@
       :page-size="pageSize"
       :current-page="pageIndex"
       :is-pagination-show="false"
-      :row-class-name="setRowColor"
       index-type="index"
-      @cell-click="cellClick"
       @handle-current-change="handleCurrentChange"
       @handle-size-change="handleSizeChange">
       <template slot="TableHead">
@@ -117,7 +115,7 @@
           label="采购周期"/>
         <el-table-column
           prop="d_inventory"
-          label="结存"/>
+          label="季度消耗"/>
         <el-table-column
           label="操作"
           align="center">
@@ -192,7 +190,7 @@
             </el-col>
             <el-col :span="8">
               <el-form-item
-                label="结存"
+                label="季度消耗"
                 prop="d_inventory">
                 <el-input v-model.trim="formLabelAlign.d_inventory" />
               </el-form-item>
@@ -228,38 +226,6 @@
           @click="handleSave('addForm')">确 定</el-button>
       </span>
     </el-dialog>
-    <Table-easy
-      :table-data="tableData_1"
-      :total="total"
-      :table-height="300"
-      :page-size="pageSize"
-      :current-page="pageIndex"
-      :is-pagination-show="false"
-      :table-head="false"
-      :table-foot="false"
-      style="margin-top: 10px"
-      index-type="index">
-      <template slot="TableBody">
-        <el-table-column
-          prop="roll_type"
-          label="轧辊类型"/>
-        <el-table-column
-          prop="material"
-          label="材质"/>
-        <el-table-column
-          prop="framerange"
-          label="机架范围"/>
-        <el-table-column
-          prop="safe_inventory"
-          label="安全库存"/>
-        <el-table-column
-          prop="purchasing_cycle"
-          label="采购周期"/>
-        <el-table-column
-          prop="d_inventory"
-          label="结存"/>
-      </template>
-    </Table-easy>
   </div>
 </template>
 
@@ -336,23 +302,6 @@ export default {
     })
   },
   methods: {
-    cellClick(val) {
-      this.rowIndex = val.indocno
-
-      post('/baseRollSafetyReminder/findBaseRollSafetyReminder', {
-        pageIndex: 1,
-        pageSize: 100,
-        condition: val
-      }).then(res => {
-        this.tableData_1 = res.data
-      })
-    },
-    // 点击行信息，添加颜色标识
-    setRowColor({ row, rowIndex }) {
-      if (row.indocno == this.rowIndex) {
-        return 'setTable-row-class-name'
-      }
-    },
     handleFrameScopeChange() {
       this.frameFwArray.forEach(item => {
         if (item.key == this.formLabelAlign.framerangeid) {
