@@ -25,7 +25,7 @@
               :src="logoImg"
               style="width: 50px;height: 50px"
               alt="logo">
-            <p>广东广青磨辊间</p>
+            <p>广青压延轧辊车间</p>
             <img
               :src="logoImg1"
               style="width: 50px;height: 50px"
@@ -40,660 +40,8 @@
     <div class="styleLine"/>
     <!-- 内容模块 -->
     <div class="board-box">
-      <!-- 换辊车区域 -->
-      <!-- <div class="roll-car">
-        &lt;!&ndash; 轧辊信息 &ndash;&gt;
-        <div class="roll-car-plan">
-          <div class="roll-car-plan-info">
-            <p class="roll-car-plan-info-title">钢卷号</p>
-            <p>0000000000</p>
-            <p class="roll-car-plan-info-title">计划号</p>
-            <p>0000000000</p>
-            <p class="roll-car-plan-info-title">钢种</p>
-            <p>0000000000</p>
-            <p class="roll-car-plan-info-title">规格</p>
-            <p>0000000000</p>
-          </div>
-          <div class="roll-carInfo-item1">
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">R1支撑辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ R1.zhi1.roll_no }}</span><span>{{ R1.zhi2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ R1.zhi1.bodyDia }}</span><span>{{ R1.zhi2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ R1.zhi1.bear_no }}</span><span>{{ R1.zhi2.bear_no }}</span></p>
-            </div>
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">R1工作辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ R1.work1.roll_no }}</span><span>{{ R1.work2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ R1.work1.bodyDia }}</span><span>{{ R1.work2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ R1.work1.bear_no }}</span><span>{{ R1.work2.bear_no }}</span></p>
-            </div>
-          </div>
-          <div class="roll-carInfo-item2">
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">R2支撑辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ R2.zhi1.roll_no }}</span><span>{{ R2.zhi2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ R2.zhi1.bodyDia }}</span><span>{{ R2.zhi2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ R2.zhi1.bear_no }}</span><span>{{ R2.zhi2.bear_no }}</span></p>
-            </div>
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">R2工作辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ R2.work1.roll_no }}</span><span>{{ R2.work2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ R2.work1.bodyDia }}</span><span>{{ R2.work2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ R2.work1.bear_no }}</span><span>{{ R2.work2.bear_no }}</span></p>
-            </div>
-          </div>
-          <div class="roll-carInfo-item3">
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F1支撑辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ Fwork13.roll_no }}</span><span>{{ Fwork14.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ Fwork13.roll_no }}</span><span>{{ Fwork14.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ Fwork13.roll_no }}</span><span>{{ Fwork14.roll_no }}</span></p>
-            </div>
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F1工作辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ Fwork11.roll_no }}</span><span>{{ Fwork12.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ Fwork11.bodyDia }}</span><span>{{ Fwork12.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ Fwork11.bear_no }}</span><span>{{ Fwork12.bear_no }}</span></p>
-            </div>
-          </div>
-          <div class="roll-carInfo-item4">
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F2支撑辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ F2.zhi1.roll_no }}</span><span>{{ F2.zhi2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ F2.zhi1.bodyDia }}</span><span>{{ F2.zhi2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ F2.zhi1.bear_no }}</span><span>{{ F2.zhi2.bear_no }}</span></p>
-            </div>
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F2工作辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ F2.work1.roll_no }}</span><span>{{ F2.work2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ F2.work1.bodyDia }}</span><span>{{ F2.work2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ F2.work1.bear_no }}</span><span>{{ F2.work2.bear_no }}</span></p>
-            </div>
-          </div>
-          <div class="roll-carInfo-item5">
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F3支撑辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ F3.zhi1.roll_no }}</span><span>{{ F3.zhi2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ F3.zhi1.bodyDia }}</span><span>{{ F3.zhi2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ F3.zhi1.bear_no }}</span><span>{{ F3.zhi2.bear_no }}</span></p>
-            </div>
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F3工作辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ F3.work1.roll_no }}</span><span>{{ F3.work2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ F3.work1.bodyDia }}</span><span>{{ F3.work2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ F3.work1.bear_no }}</span><span>{{ F3.work2.bear_no }}</span></p>
-            </div>
-          </div>
-          <div class="roll-carInfo-item6">
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F4支撑辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ F4.zhi1.roll_no }}</span><span>{{ F4.zhi2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ F4.zhi1.bodyDia }}</span><span>{{ F4.zhi2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ F4.zhi1.bear_no }}</span><span>{{ F4.zhi2.bear_no }}</span></p>
-            </div>
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F4工作辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ F4.work1.roll_no }}</span><span>{{ F4.work2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ F4.work1.bodyDia }}</span><span>{{ F4.work2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ F4.work1.bear_no }}</span><span>{{ F4.work2.bear_no }}</span></p>
-            </div>
-          </div>
-          <div class="roll-carInfo-item7">
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F5支撑辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ F5.zhi1.roll_no }}</span><span>{{ F5.zhi2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ F5.zhi1.bodyDia }}</span><span>{{ F5.zhi2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ F5.zhi1.bear_no }}</span><span>{{ F5.zhi2.bear_no }}</span></p>
-            </div>
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F5工作辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ F5.work1.roll_no }}</span><span>{{ F5.work2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ F5.work1.bodyDia }}</span><span>{{ F5.work2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ F5.work1.bear_no }}</span><span>{{ F5.work2.bear_no }}</span></p>
-            </div>
-          </div>
-          <div class="roll-carInfo-item8">
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F6支撑辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ F6.zhi1.roll_no }}</span><span>{{ F6.zhi2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ F6.zhi1.bodyDia }}</span><span>{{ F6.zhi2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ F6.zhi1.bear_no }}</span><span>{{ F6.zhi2.bear_no }}</span></p>
-            </div>
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F6工作辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ F6.work1.roll_no }}</span><span>{{ F6.work2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ F6.work1.bodyDia }}</span><span>{{ F6.work2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ F6.work1.bear_no }}</span><span>{{ F6.work2.bear_no }}</span></p>
-            </div>
-          </div>
-          <div class="roll-carInfo-item9">
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F7支撑辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ F7.zhi1.roll_no }}</span><span>{{ F7.zhi2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ F7.zhi1.bodyDia }}</span><span>{{ F7.zhi2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ F7.zhi1.bear_no }}</span><span>{{ F7.zhi2.bear_no }}</span></p>
-            </div>
-            <div>
-              <p class="car-info-item-paramer car-paramer-title">F7工作辊</p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span class="roll-carInfo-value">{{ F7.work1.roll_no }}</span><span>{{ F7.work2.roll_no }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span class="roll-carInfo-value">{{ F7.work1.bodyDia }}</span><span>{{ F7.work2.bodyDia }}</span></p>
-              <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span class="roll-carInfo-value">{{ F7.work1.bear_no }}</span><span>{{ F7.work2.bear_no }}</span></p>
-            </div>
-          </div>
-        </div>
-        &lt;!&ndash; 换辊小车 &ndash;&gt;
-        <div class="car"/>
-        <div class="car-info">
-          <div class="car-info-item car-info-item-margin1">
-            <p class="car-info-item-paramer car-paramer-title">R1换辊车</p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span>{{ car.R1.roll_no }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span>{{ car.R1.bodyDia }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span>{{ car.R1.bear_no }}</span></p>
-          </div>
-          <div class="car-info-item car-info-item-margin2">
-            <p class="car-info-item-paramer car-paramer-title">R2换辊车</p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span>{{ car.R2.roll_no }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span>{{ car.R2.bodyDia }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span>{{ car.R2.bear_no }}</span></p>
-          </div>
-          <div class="car-info-item car-info-item-margin3">
-            <p class="car-info-item-paramer car-paramer-title">F1换辊车</p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span>{{ car.F1.roll_no }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span>{{ car.F1.bodyDia }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span>{{ car.F1.bear_no }}</span></p>
-          </div>
-          <div class="car-info-item car-info-item-margin4">
-            <p class="car-info-item-paramer car-paramer-title">F2换辊车</p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span>{{ car.F2.roll_no }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span>{{ car.F2.bodyDia }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span>{{ car.F2.bear_no }}</span></p>
-          </div>
-          <div class="car-info-item car-info-item-margin5">
-            <p class="car-info-item-paramer car-paramer-title">F3换辊车</p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span>{{ car.F3.roll_no }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span>{{ car.F3.bodyDia }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span>{{ car.F3.bear_no }}</span></p>
-          </div>
-          <div class="car-info-item car-info-item-margin6">
-            <p class="car-info-item-paramer car-paramer-title">F4换辊车</p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span>{{ car.F4.roll_no }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span>{{ car.F4.bodyDia }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span>{{ car.F4.bear_no }}</span></p>
-          </div>
-          <div class="car-info-item car-info-item-margin7">
-            <p class="car-info-item-paramer car-paramer-title">F5换辊车</p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span>{{ car.F5.roll_no }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span>{{ car.F5.bodyDia }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span>{{ car.F5.bear_no }}</span></p>
-          </div>
-          <div class="car-info-item car-info-item-margin8">
-            <p class="car-info-item-paramer car-paramer-title">F6换辊车</p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span>{{ car.F6.roll_no }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span>{{ car.F6.bodyDia }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span>{{ car.F6.bear_no }}</span></p>
-          </div>
-          <div class="car-info-item car-info-item-margin9">
-            <p class="car-info-item-paramer car-paramer-title">F7换辊车</p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊号</span><span>{{ car.F7.roll_no }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">辊径</span><span>{{ car.F7.bodyDia }}</span></p>
-            <p class="car-info-item-paramer"><span class="car-paramer-title-color">座号</span><span>{{ car.F7.bear_no }}</span></p>
-          </div>
-        </div>
-      </div>-->
       <!-- 下一层模块 -->
       <div class="board-info">
-        <!--  <el-row
-          type="flex"
-          justify="space-between">
-          <el-col>
-            <div class="board-left">
-              &lt;!&ndash; 最佳班组 &ndash;&gt;
-              <div class="best-classInfo">
-                <div class="best-classTitle">
-                  最佳班组 / {{ mochuangDate }}
-                </div>
-                <div class="best-calssMain">
-                  <div class="best-calssMain-item"><i>{{ mochuang3.name }}</i><p>3#磨床</p></div>
-                  <div class="best-calssMain-item"><i>{{ mochuang4.name }}</i><p>4#磨床</p></div>
-                  <div class="best-calssMain-item"><i>{{ mochuang5.name }}</i><p>5#磨床</p></div>
-                  <div class="best-calssMain-item"><i>{{ mochuang6.name }}</i><p>6#磨床</p></div>
-                </div>
-              </div>
-              &lt;!&ndash; 备辊信息 &ndash;&gt;
-              <div class="pinch-rollInfo">
-                <div class="best-classTitle">
-                  备辊信息
-                </div>
-                <div class="pinch-rollMain">
-                  <el-row>
-                    <el-col :span="6"><div id="app1"/></el-col>
-                    <el-col :span="6"><div id="app2"/></el-col>
-                    <el-col :span="6"><div id="app3"/></el-col>
-                    <el-col :span="6"><div id="app4"/></el-col>
-                  </el-row>
-                  <div class="pinch-rollMain-item">
-                    <div id="app5"/>
-                    <div id="app6"/>
-                    <div id="app7"/>
-                  </div>
-                </div>
-              </div>
-            </div>
-            &lt;!&ndash; 轧辊库存数 &ndash;&gt;
-            <div
-              id="echartBottom"
-              class="mo-bed">
-              &lt;!&ndash; <div class="best-classTitle">
-                磨床信息
-              </div> &ndash;&gt;
-              &lt;!&ndash; <div class="mo-bedMain">
-                <el-row
-                  type="flex"
-                  align="middle">
-                  <el-col
-                    v-for="item in 6"
-                    :span="4"
-                    :key="item">
-                    <div class="mo-bedItem">
-                      <p class="mo-title">1#磨床</p>
-                      <el-row>
-                        <el-col :span="6"><span>主轴电机</span></el-col>
-                        <el-col :span="6"><span>电流  0</span></el-col>
-                        <el-col :span="6"><span>扭矩  0</span></el-col>
-                        <el-col :span="6"><span>转速  0</span></el-col>
-                      </el-row>
-                      <el-row>
-                        <el-col :span="6"><span>Z轴  0</span></el-col>
-                        <el-col :span="6"><span>X轴  0</span></el-col>
-                        <el-col :span="6"><span>U轴  0</span></el-col>
-                        <el-col :span="6"><span>C轴  00</span></el-col>
-                        <el-col :span="6"><span>E轴  0</span></el-col>
-                        <el-col :span="6"><span>Q轴  0</span></el-col>
-                        <el-col :span="6"><span>V轴  0</span></el-col>
-                        <el-col :span="6"><span>Y轴  0</span></el-col>
-                        <el-col :span="6"><span>A轴  0</span></el-col>
-                        <el-col :span="6"><span>R轴  0</span></el-col>
-                        <el-col :span="6"><span>A1轴  0</span></el-col>
-                      </el-row>
-                    </div>
-                  </el-col>
-                </el-row>
-              </div> &ndash;&gt;
-            </div>
-          </el-col>
-          <el-col>
-            &lt;!&ndash; 磨床信息 &ndash;&gt;
-            <div class="roll-nos">
-              <div class="best-classTitle">
-                磨床信息
-              </div>
-              <div class="roll-nosMain">
-                &lt;!&ndash;<el-row>
-                  <el-col :span="12">
-                    <div class="mo-item">
-                      <p class="moitem-title">1#磨床  {{ mobed1.roll_no }}</p>
-                      <div class="moitem-main">
-                        <img
-                          :src="baseImg"
-                          class="bed-img"
-                          alt="磨床1"
-                          title="磨床1">
-                        <img
-                          :src="roll"
-                          alt="轧辊"
-                          class="mo-roll">
-                        <img
-                          :src="slide1"
-                          :style="'left:' + mobed1.left + 'px'"
-                          class="mo-slide1"
-                          alt="滑块1">
-                        <img
-                          :src="slide2"
-                          class="mo-slide2"
-                          alt="滑块2">
-                        <img
-                          :src="part"
-                          alt="零件"
-                          class="mo-part">
-                      </div>
-                    </div>
-                  </el-col>
-                  <el-col :span="12">
-                    <div class="mo-item">
-                      <p class="moitem-title">2#磨床  {{ mobed2.roll_no }}</p>
-                      <div class="moitem-main">
-                        <img
-                          :src="baseImg"
-                          class="bed-img"
-                          alt="磨床1"
-                          title="磨床1">
-                        <img
-                          :src="roll"
-                          alt="轧辊"
-                          class="mo-roll">
-                        <img
-                          :src="slide1"
-                          :style="'left:' + mobed2.left + 'px'"
-                          class="mo-slide1"
-                          alt="滑块1">
-                        <img
-                          :src="slide2"
-                          class="mo-slide2"
-                          alt="滑块2">
-                        <img
-                          :src="part"
-                          alt="零件"
-                          class="mo-part">
-                      </div>
-                    </div>
-                  </el-col>
-                  <el-col :span="12">
-                    <div class="mo-item">
-                      <p class="moitem-title">3#磨床  {{ mobed3.roll_no }}</p>
-                      <div class="moitem-main">
-                        <img
-                          :src="baseImg"
-                          class="bed-img"
-                          alt="磨床1"
-                          title="磨床1">
-                        <img
-                          :src="roll"
-                          alt="轧辊"
-                          class="mo-roll">
-                        <img
-                          :src="slide1"
-                          :style="'left:' + mobed3.left + 'px'"
-                          class="mo-slide1"
-                          alt="滑块1">
-                        <img
-                          :src="slide2"
-                          class="mo-slide2"
-                          alt="滑块2">
-                        <img
-                          :src="part"
-                          alt="零件"
-                          class="mo-part">
-                      </div>
-                    </div>
-                  </el-col>
-                  <el-col :span="12">
-                    <div class="mo-item">
-                      <p class="moitem-title">4#磨床  {{ mobed4.roll_no }}</p>
-                      <div class="moitem-main">
-                        <img
-                          :src="baseImg"
-                          class="bed-img"
-                          alt="磨床1"
-                          title="磨床1">
-                        <img
-                          :src="roll"
-                          alt="轧辊"
-                          class="mo-roll">
-                        <img
-                          :src="slide1"
-                          :style="'left:' + mobed4.left + 'px'"
-                          class="mo-slide1"
-                          alt="滑块1">
-                        <img
-                          :src="slide2"
-                          class="mo-slide2"
-                          alt="滑块2">
-                        <img
-                          :src="part"
-                          alt="零件"
-                          class="mo-part">
-                      </div>
-                    </div>
-                  </el-col>
-                  <el-col :span="12">
-                    <div class="mo-item">
-                      <p class="moitem-title">5#磨床  {{ mobed5.roll_no }}</p>
-                      <div class="moitem-main">
-                        <img
-                          :src="baseImg"
-                          class="bed-img"
-                          alt="磨床1"
-                          title="磨床1">
-                        <img
-                          :src="roll"
-                          alt="轧辊"
-                          class="mo-roll">
-                        <img
-                          :src="slide1"
-                          :style="'left:' + mobed5.left + 'px'"
-                          class="mo-slide1"
-                          alt="滑块1">
-                        <img
-                          :src="slide2"
-                          class="mo-slide2"
-                          alt="滑块2">
-                        <img
-                          :src="part"
-                          alt="零件"
-                          class="mo-part">
-                      </div>
-                    </div>
-                  </el-col>
-                  <el-col :span="12">
-                    <div class="mo-item">
-                      <p class="moitem-title">6#磨床  {{ mobed6.roll_no }}</p>
-                      <div class="moitem-main">
-                        <img
-                          :src="baseImg"
-                          class="bed-img"
-                          alt="磨床1"
-                          title="磨床1">
-                        <img
-                          :src="roll"
-                          alt="轧辊"
-                          class="mo-roll">
-                        <img
-                          :src="slide1"
-                          :style="'left:' + mobed6.left + 'px'"
-                          class="mo-slide1"
-                          alt="滑块1">
-                        <img
-                          :src="slide2"
-                          class="mo-slide2"
-                          alt="滑块2">
-                        <img
-                          :src="part"
-                          alt="零件"
-                          class="mo-part">
-                      </div>
-                    </div>
-                  </el-col>
-                </el-row>&ndash;&gt;
-                1
-              </div>
-            </div>
-          </el-col>
-        </el-row>-->
-        <!--测试div-->
-        <!-- <div class="roll-nos_1">
-          <div class="best-classTitle">
-            测试信息
-          </div>
-          <div class="roll-nosMain_1">
-            &lt;!&ndash;<el-row>
-              <el-col :span="12">
-                <div class="mo-item">
-                  <p class="moitem-title">1#磨床  {{ mobed1.roll_no }}</p>
-                  <div class="moitem-main">
-                    <img
-                      :src="baseImg"
-                      class="bed-img"
-                      alt="磨床1"
-                      title="磨床1">
-                    <img
-                      :src="roll"
-                      alt="轧辊"
-                      class="mo-roll">
-                    <img
-                      :src="slide1"
-                      :style="'left:' + mobed1.left + 'px'"
-                      class="mo-slide1"
-                      alt="滑块1">
-                    <img
-                      :src="slide2"
-                      class="mo-slide2"
-                      alt="滑块2">
-                    <img
-                      :src="part"
-                      alt="零件"
-                      class="mo-part">
-                  </div>
-                </div>
-              </el-col>
-              <el-col :span="12">
-                <div class="mo-item">
-                  <p class="moitem-title">2#磨床  {{ mobed2.roll_no }}</p>
-                  <div class="moitem-main">
-                    <img
-                      :src="baseImg"
-                      class="bed-img"
-                      alt="磨床1"
-                      title="磨床1">
-                    <img
-                      :src="roll"
-                      alt="轧辊"
-                      class="mo-roll">
-                    <img
-                      :src="slide1"
-                      :style="'left:' + mobed2.left + 'px'"
-                      class="mo-slide1"
-                      alt="滑块1">
-                    <img
-                      :src="slide2"
-                      class="mo-slide2"
-                      alt="滑块2">
-                    <img
-                      :src="part"
-                      alt="零件"
-                      class="mo-part">
-                  </div>
-                </div>
-              </el-col>
-              <el-col :span="12">
-                <div class="mo-item">
-                  <p class="moitem-title">3#磨床  {{ mobed3.roll_no }}</p>
-                  <div class="moitem-main">
-                    <img
-                      :src="baseImg"
-                      class="bed-img"
-                      alt="磨床1"
-                      title="磨床1">
-                    <img
-                      :src="roll"
-                      alt="轧辊"
-                      class="mo-roll">
-                    <img
-                      :src="slide1"
-                      :style="'left:' + mobed3.left + 'px'"
-                      class="mo-slide1"
-                      alt="滑块1">
-                    <img
-                      :src="slide2"
-                      class="mo-slide2"
-                      alt="滑块2">
-                    <img
-                      :src="part"
-                      alt="零件"
-                      class="mo-part">
-                  </div>
-                </div>
-              </el-col>
-              <el-col :span="12">
-                <div class="mo-item">
-                  <p class="moitem-title">4#磨床  {{ mobed4.roll_no }}</p>
-                  <div class="moitem-main">
-                    <img
-                      :src="baseImg"
-                      class="bed-img"
-                      alt="磨床1"
-                      title="磨床1">
-                    <img
-                      :src="roll"
-                      alt="轧辊"
-                      class="mo-roll">
-                    <img
-                      :src="slide1"
-                      :style="'left:' + mobed4.left + 'px'"
-                      class="mo-slide1"
-                      alt="滑块1">
-                    <img
-                      :src="slide2"
-                      class="mo-slide2"
-                      alt="滑块2">
-                    <img
-                      :src="part"
-                      alt="零件"
-                      class="mo-part">
-                  </div>
-                </div>
-              </el-col>
-              <el-col :span="12">
-                <div class="mo-item">
-                  <p class="moitem-title">5#磨床  {{ mobed5.roll_no }}</p>
-                  <div class="moitem-main">
-                    <img
-                      :src="baseImg"
-                      class="bed-img"
-                      alt="磨床1"
-                      title="磨床1">
-                    <img
-                      :src="roll"
-                      alt="轧辊"
-                      class="mo-roll">
-                    <img
-                      :src="slide1"
-                      :style="'left:' + mobed5.left + 'px'"
-                      class="mo-slide1"
-                      alt="滑块1">
-                    <img
-                      :src="slide2"
-                      class="mo-slide2"
-                      alt="滑块2">
-                    <img
-                      :src="part"
-                      alt="零件"
-                      class="mo-part">
-                  </div>
-                </div>
-              </el-col>
-              <el-col :span="12">
-                <div class="mo-item">
-                  <p class="moitem-title">6#磨床  {{ mobed6.roll_no }}</p>
-                  <div class="moitem-main">
-                    <img
-                      :src="baseImg"
-                      class="bed-img"
-                      alt="磨床1"
-                      title="磨床1">
-                    <img
-                      :src="roll"
-                      alt="轧辊"
-                      class="mo-roll">
-                    <img
-                      :src="slide1"
-                      :style="'left:' + mobed6.left + 'px'"
-                      class="mo-slide1"
-                      alt="滑块1">
-                    <img
-                      :src="slide2"
-                      class="mo-slide2"
-                      alt="滑块2">
-                    <img
-                      :src="part"
-                      alt="零件"
-                      class="mo-part">
-                  </div>
-                </div>
-              </el-col>
-            </el-row>&ndash;&gt;
-            1
-          </div>
-        </div>-->
         <el-row>
           <el-col :span="14">
             <div class="best-classTitle">
@@ -781,105 +129,20 @@
           </el-col>-->
           <el-col :span="10">
             <div class="best-classTitle">
-              结存
+              吨钢消耗/成本
             </div>
             <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
-              <div
-                id="app1_1"
-                style="height: 380px;width: 100%;float: left"/>
+              <el-col :span="24">
+                <div
+                  id="app2_1"
+                  style="width:100%;height: 380px;"/>
+              </el-col>
             </div>
           </el-col>
 
         </el-row>
         <el-row>
-          <el-col :span="9">
-            <div class="best-classTitle">
-              损耗
-            </div>
-            <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
-              <div
-                class="body_box">
-                <!-- <div style="color: white;margin-left: 20px;padding-bottom: 5px">  班次：{{ group1 }}   班组：{{ group2 }}   </div>-->
-                <div
-                  class="table_box"
-                  style="height: 380px;overflow:hidden">
-                  <table >
-                    <tbody >
-                      <tr class="t1">
-                        <th>序号</th>
-                        <th>开始时间</th>
-                        <th>轧辊类型</th>
-                        <th>轧辊材质</th>
-                        <th>机架范围</th>
-                        <th>单价</th>
-                        <th>工作层</th>
-                        <th>毫米数</th>
-                        <!-- <th>粗糙度</th>-->
-                        <th>重量</th>
-                        <th>金额</th>
-                      </tr>
-                      <tr
-                        v-for="(item,index ) in tableData_1"
-                        :key="index">
-                        <td>{{ index+1 }}</td>
-                        <td>{{ item.usetime }}</td>
-                        <td>{{ item.roll_type }}</td>
-                        <td>{{ item.material }}</td>
-                        <td>{{ item.framerange }}</td>
-                        <td>{{ item.unit_price }}</td>
-                        <td>{{ item.working_layer }}</td>
-                        <td>{{ item.mmnumber }}</td>
-                        <!--<td>{{ item.roughness }}</td>-->
-                        <td>{{ item.weight }}</td>
-                        <td>{{ item.money }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </el-col>
-          <!-- <el-col :span="7">
-            <div class="best-classTitle">
-              异常
-            </div>
-            <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px;margin-left: 5px">
-              <div
-                class="body_box">
-                &lt;!&ndash; <div style="color: white;margin-left: 20px;padding-bottom: 5px">  班次：{{ group1 }}   班组：{{ group2 }}   </div>&ndash;&gt;
-                <div
-                  class="table_box"
-                  style="height: 380px;overflow:hidden">
-                  <table >
-                    <tbody >
-                      <tr class="t1">
-                        <th>序号</th>
-                        <th>轧辊类型</th>
-                        <th>轧辊材质</th>
-                        <th>机架范围</th>
-                        <th>当前直径</th>
-                        <th>结存</th>
-                      </tr>
-                      <div> <p style="text-align: center;color: white">暂无数据</p></div>
-                      <tr
-                        v-for="(item,index ) in tableData_2"
-                        :key="index">
-                        <td>{{ index+1 }}</td>
-                        <td>{{ item.roll_type }}</td>
-                        <td>{{ item.material }}</td>
-                        <td>{{ item.framerange }}</td>
-                        <td>{{ item.currentdiameter }}</td>
-                        <td>{{ item.body_diameter }}</td>
-                      </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
-          </el-col>-->
-          <el-col :span="15">
+          <el-col :span="8">
             <div class="best-classTitle">
               毫米数
             </div>
@@ -923,6 +186,40 @@
               </el-col>-->
             </div>
           </el-col>
+          <el-col :span="8">
+            <div class="best-classTitle">
+              结存
+            </div>
+            <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
+              <div
+                id="app1_1"
+                style="height: 380px;width: 100%;float: left"/>
+            </div>
+          </el-col>
+          <!-- <el-col :span="8">
+            <div class="best-classTitle">
+              吨钢
+            </div>
+            <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
+              <el-col :span="24">
+                <div
+                  id="app2_1"
+                  style="width:100%;height: 380px;"/>
+              </el-col>
+            </div>
+          </el-col>-->
+          <el-col :span="8">
+            <div class="best-classTitle">
+              后期kai使用
+            </div>
+            <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
+              <el-col :span="24">
+                <div
+                  id="app2_2"
+                  style="width:100%;height: 380px;"/>
+              </el-col>
+            </div>
+          </el-col>
         </el-row>
 
       </div>
@@ -945,7 +242,7 @@ export default {
   },
   head() {
     return {
-      title: '广东广青磨辊间',
+      title: '广青压延轧辊车间',
       meta: [
         {
           name: 'keywords',
@@ -1495,7 +792,83 @@ export default {
       tableData_2: [{}],
       tableData_3: [],
       tableData_4: [],
-      tableData_5: []
+      tableData_5: [],
+      mon_need: [
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12'
+      ],
+      find_two_1: [
+        {
+          label: '1月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '2月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '3月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '4月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '5月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '6月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '7月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '8月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '9月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '10月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '11月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '12月',
+          consumption: 0,
+          cost: 0
+        }
+      ]
     }
   },
   created() {
@@ -1565,133 +938,297 @@ export default {
     this.findmo5()
     this.findmo6()
     this.vagetable()
+    this.guang_find_2()
   },
   methods: {
+    //吨钢消耗/成本
+    echart_go_er(datas) {
+      var need_x1 = []
+      var need_y2 = [] //吨钢
+      var need_y3 = [] //毫米轧制量
+      for (var i = 0; datas.length > i; i++) {
+        need_x1.push(datas[i].label)
+        need_y2.push(datas[i].consumption.toFixed(1))
+        need_y3.push(datas[i].cost.toFixed(1))
+      }
+      //吨钢消耗/成本
+      var option_1 = {
+        //backgroundColor: '#031245',
+        textStyle: {
+          color: '#c0c3cd',
+          fontSize: 14
+        },
+        toolbox: {
+          show: false,
+          feature: {
+            saveAsImage: {
+              backgroundColor: '#031245'
+            },
+            restore: {}
+          },
+          iconStyle: {
+            borderColor: '#c0c3cd'
+          }
+        },
+        legend: {
+          top: 10,
+          itemWidth: 8,
+          itemHeight: 8,
+          icon: 'circle',
+          left: 'center',
+          padding: 0,
+          color: ['#208d3a', 'red'],
+          data: ['吨钢消耗', '毫米轧制量'],
+          textStyle: {
+            color: ['#105b8d', '#208d3a'],
+            fontSize: 14,
+            padding: [2, 0, 0, 0]
+          }
+        },
+        color: [
+          '#63caff',
+          '#49beff',
+          '#03387a',
+          '#03387a',
+          '#03387a',
+          '#6c93ee',
+          '#a9abff',
+          '#f7a23f',
+          '#27bae7',
+          '#ff6d9d',
+          '#cb79ff',
+          '#f95b5a',
+          '#ccaf27',
+          '#38b99c',
+          '#93d0ff',
+          '#bd74e0',
+          '#fd77da',
+          '#dea700'
+        ],
+        grid: {
+          containLabel: true,
+          left: 20,
+          right: 20,
+          bottom: 10,
+          top: 40
+        },
+        xAxis: {
+          nameTextStyle: {
+            color: '#c0c3cd',
+            padding: [0, 0, -10, 0],
+            fontSize: 14
+          },
+          axisLabel: {
+            rotate: 0,
+            interval: 0, //横轴信息全部显示,
+            color: '#c0c3cd',
+            fontSize: 14,
+            interval: 0
+          },
+          axisTick: {
+            lineStyle: {
+              color: '#384267',
+              width: 1
+            },
+            show: true
+          },
+          splitLine: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#384267',
+              width: 1,
+              type: 'dashed'
+            },
+            show: true
+          },
+          /*data: [
+            '0点~2点',
+            '3点~5点',
+            '6点~8点',
+            '0点~2点',
+            '3点~5点',
+            '6点~8点',
+            '0点~2点',
+            '3点~5点'
+          ],*/
+          data: need_x1,
+          type: 'category'
+        },
+        yAxis: [
+          {
+            name: '吨钢消耗(kg)',
+            nameTextStyle: {
+              color: '#c0c3cd',
+              padding: [0, 0, -10, 0],
+              fontSize: 14
+            },
+            axisLabel: {
+              color: '#63caff',
+              fontSize: 14
+            },
+            axisTick: {
+              lineStyle: {
+                color: '#384267',
+                width: 1
+              },
+              show: true
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: '#384267',
+                type: 'dashed'
+              }
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#384267',
+                width: 1,
+                type: 'dashed'
+              },
+              show: true
+            }
+          },
+          {
+            type: 'value',
+            name: '吨钢成本(元)',
+            color: '#d3ca1b',
+            splitLine: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              fontSize: 14,
+              color: '#d3ca1b'
+            }
+          }
+        ],
+        series: [
+          {
+            //data: [200, 85, 112, 275, 305, 415, 741, 405],
+            name: '吨钢消耗',
+            data: need_y2,
+            yAxisIndex: 0,
+            type: 'bar',
+            barMaxWidth: 'auto',
+            barWidth: 30,
+            itemStyle: {
+              color: {
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                type: 'linear',
+                global: false,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: '#0b9eff'
+                  },
+                  {
+                    offset: 1,
+                    color: '#63caff'
+                  }
+                ]
+              }
+            },
+            label: {
+              show: true,
+              position: 'top',
+              distance: 0,
+              color: '#63caff'
+            }
+          },
+          {
+            name: '吨钢消耗',
+            yAxisIndex: 0,
+            data: [1, 1, 1, 1, 1, 1, 1, 1],
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbol: 'diamond',
+            symbolOffset: [0, '50%'],
+            symbolSize: [30, 15]
+          },
+          {
+            name: '吨钢消耗',
+            yAxisIndex: 0,
+            // data: [200, 85, 112, 275, 305, 415, 741, 405],
+            data: need_y2,
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbolPosition: 'end',
+            symbol: 'diamond',
+            symbolOffset: [0, '-50%'],
+            symbolSize: [30, 12],
+            zlevel: 2
+          },
+          {
+            name: '吨钢消耗',
+            yAxisIndex: 0,
+            data: [1, 1, 1, 1, 1, 1, 1, 1],
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbol: 'diamond',
+            symbolOffset: [0, '50%'],
+            symbolSize: [30, 15],
+            zlevel: -2
+          },
+          {
+            name: '毫米轧制量',
+            type: 'line',
+            yAxisIndex: 1,
+            data: need_y3,
+            label: {
+              show: true,
+              position: 'top',
+              distance: 20,
+              color: '#d3ca1b'
+            },
+            /* itemStyle: { normal: { label: { show: true } } }*/
+            itemStyle: {
+              normal: {
+                color: '#d3ca1b', //折线点的颜色
+                lineStyle: {
+                  color: '#d3ca1b' //折线的颜色
+                }
+              }
+            }
+          }
+        ],
+        tooltip: {
+          trigger: 'axis',
+          show: false
+        }
+      }
+      var myChart2_1 = Echarts.init(
+        document.getElementById('app2_1'),
+        'default'
+      ) //将配置注入到html中定义的容器
+      myChart2_1.setOption(option_1)
+    },
+    //毫米数
     echart_go_1(datas) {
       console.log(datas, typeof datas)
       var need_x1 = []
-      var need_y1 = []
+      var need_y1 = [] //毫米数
+      var need_y2 = [] //吨钢
+      var need_y3 = [] //毫米轧制量
       for (var i = 0; datas.length > i; i++) {
         need_x1.push(datas[i].x)
         need_y1.push(datas[i].y1.toFixed(1))
+        need_y2.push(datas[i].y2.toFixed(1))
+        need_y3.push(datas[i].y3.toFixed(1))
       }
       console.log(need_x1, need_y1)
-      //debugger
-
+      //毫米数
       var myChart2 = Echarts.init(document.getElementById('app2'), 'default') //将配置注入到html中定义的容器
-      var option2 = {
-        textStyle: {
-          color: '#eae8c5' //字体颜色
-        },
-        // title: {
-        //   textStyle: {
-        //     color: '#eae8c5' //字体颜色
-        //   },
-        //   text: '在线评价各子项评分趋势\n ',
-        //   // subtext: '纯属虚构',
-        //   left: 'center'
-        // },
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
-          }
-        },
-        grid: {
-          top: '20px'
-        },
-        legend: {
-          // orient: 'vertical', //注意
-          // pagemode: true, //注意,自定义的字段，开启图例分页模式，只有orient: 'vertical'时才有效
-          type: 'scroll', //翻页
-          pageIconColor: '#208d3a', //翻页下一页的三角按钮颜色
-          pageIconInactiveColor: '#8d0912', //翻页（即翻页到头时）
-          top: 25,
-          bottom: 30,
-          textStyle: {
-            color: '#eae8c5' //字体颜色
-          },
-          data: [
-            '刚度保持率',
-            '调平值',
-            '两侧刚度偏差',
-            '两侧位置偏差',
-            'OS位置偏差',
-            'DS位置偏差',
-            '轧制力偏差',
-            'OS辊缝偏差',
-            'DS辊缝偏差'
-          ]
-        },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
-        },
-        yAxis: {
-          axisLine: {
-            lineStyle: {
-              color: '#eae8c5' //坐标线颜色
-            }
-          },
-          //设置网格线颜色
-          splitLine: {
-            show: true,
-            lineStyle: {
-              color: '#6b6464',
-              width: 1,
-              type: 'solid'
-            }
-          },
-          type: 'value'
-        },
-        xAxis: {
-          data: need_x1,
-          axisLabel: {
-            rotate: 90,
-            interval: 0, //横轴信息全部显示,
-            textStyle: {
-              color: '#999',
-              fontSize: 12
-            }
-          },
-          axisLine: {
-            lineStyle: {
-              color: '#eae8c5' //坐标线颜色
-            }
-          },
-          //设置网格线颜色
-          splitLine: {
-            show: true,
-            lineStyle: {
-              color: '#6b6464',
-              width: 1,
-              type: 'solid'
-            }
-          },
-          type: 'category'
-          // data: xdaata
-          //data: [1, 2, 3, 4, 5]
-        },
-        series: [
-          {
-            // name: '刚度保持率',
-            type: 'bar',
-            // stack: '总量',
-            showBackground: true,
-            // barWidth: 60,
-            barMaxwidth: 60,
-            label: {
-              show: true,
-              position: 'inside'
-            },
-            // data: ydata1
-            data: need_y1
-          }
-        ]
-      }
       var option = {
         //backgroundColor: '#031245',
         textStyle: {
@@ -1757,7 +1294,7 @@ export default {
             fontSize: 14
           },
           axisLabel: {
-            rotate: 90,
+            rotate: 0,
             interval: 0, //横轴信息全部显示,
             color: '#c0c3cd',
             fontSize: 14,
@@ -1881,7 +1418,7 @@ export default {
             symbolSize: [30, 12],
             zlevel: 2
           },
-          {
+          /* {
             // data: [741, 741, 741, 741, 741, 741, 741, 741],
             data: [300, 300, 300, 300, 300, 300, 300, 300],
             type: 'bar',
@@ -1889,7 +1426,7 @@ export default {
             barWidth: 30,
             barGap: '-100%',
             zlevel: -1
-          },
+          },*/
           {
             data: [1, 1, 1, 1, 1, 1, 1, 1],
             type: 'pictorialBar',
@@ -1898,8 +1435,8 @@ export default {
             symbolOffset: [0, '50%'],
             symbolSize: [30, 15],
             zlevel: -2
-          },
-          {
+          }
+          /* {
             //data: [741, 741, 741, 741, 741, 741, 741, 741],
             data: [300, 300, 300, 300, 300, 300, 300, 300],
             type: 'pictorialBar',
@@ -1909,7 +1446,7 @@ export default {
             symbolOffset: [0, '-50%'],
             symbolSize: [30, 12],
             zlevel: -1
-          }
+          }*/
         ],
         tooltip: {
           trigger: 'axis',
@@ -1917,20 +1454,8 @@ export default {
         }
       }
       myChart2.setOption(option)
-    },
-    echart_go_b(datas) {
-      //结存
-      console.log(datas, typeof datas)
-      var need_x1 = []
-      var need_y1 = []
-      var need_y2 = []
-      for (var i = 0; datas.length > i; i++) {
-        need_x1.push(datas[i].x)
-        need_y1.push(datas[i].y1.toFixed(1))
-        need_y2.push(datas[i].y2.toFixed(1))
-      }
-      var myChart1 = Echarts.init(document.getElementById('app1_1'), 'default') //将配置注入到html中定义的容器
-      var option1 = {
+      //毫米轧制量（后期kpi）
+      var option2_2 = {
         //backgroundColor: '#031245',
         textStyle: {
           color: '#c0c3cd',
@@ -1995,7 +1520,7 @@ export default {
             fontSize: 14
           },
           axisLabel: {
-            rotate: 90,
+            rotate: 0,
             interval: 0, //横轴信息全部显示,
             color: '#c0c3cd',
             fontSize: 14,
@@ -2069,7 +1594,7 @@ export default {
         series: [
           {
             //data: [200, 85, 112, 275, 305, 415, 741, 405],
-            data: need_y2,
+            data: need_y3,
             type: 'bar',
             barMaxWidth: 'auto',
             barWidth: 30,
@@ -2110,7 +1635,7 @@ export default {
           },
           {
             // data: [200, 85, 112, 275, 305, 415, 741, 405],
-            data: need_y2,
+            data: need_y3,
             type: 'pictorialBar',
             barMaxWidth: '20',
             symbolPosition: 'end',
@@ -2121,7 +1646,7 @@ export default {
           },
           {
             // data: [741, 741, 741, 741, 741, 741, 741, 741],
-            data: [300, 300, 300, 300, 300, 300, 300, 1000],
+            data: [300, 300, 300, 300, 300, 300, 300, 300],
             type: 'bar',
             barMaxWidth: 'auto',
             barWidth: 30,
@@ -2139,7 +1664,7 @@ export default {
           },
           {
             //data: [741, 741, 741, 741, 741, 741, 741, 741],
-            data: [300, 300, 300, 300, 300, 300, 300, 1000],
+            data: [300, 300, 300, 300, 300, 300, 300, 300],
             type: 'pictorialBar',
             barMaxWidth: '20',
             symbolPosition: 'end',
@@ -2154,8 +1679,229 @@ export default {
           show: false
         }
       }
-      myChart1.setOption(option1)
+      var myChart2_2 = Echarts.init(
+        document.getElementById('app2_2'),
+        'default'
+      ) //将配置注入到html中定义的容器
+      myChart2_2.setOption(option2_2)
     },
+    //结存
+    echart_go_b(datas) {
+      //结存
+      console.log(datas, typeof datas)
+      var need_x1 = []
+      var need_y1 = []
+      var need_y2 = []
+      for (var i = 0; datas.length > i; i++) {
+        need_x1.push(datas[i].x)
+        need_y1.push(datas[i].y1.toFixed(1))
+        need_y2.push(datas[i].y2.toFixed(1))
+      }
+      var myChart1 = Echarts.init(document.getElementById('app1_1'), 'default') //将配置注入到html中定义的容器
+      var xData = need_x1
+      var line = need_y2
+      var option_1 = {
+        grid: {
+          left: '10%',
+          top: '15%',
+          right: '5%',
+          bottom: '10%'
+        },
+        legend: {
+          x: '100px',
+          align: 'left', //水平方向位置
+          verticalAlign: 'top', //垂直方向位置
+          show: true,
+          icon: 'circle',
+          orient: 'horizontal',
+          top: '1.5%',
+          right: 'center',
+          itemWidth: 16.5,
+          itemHeight: 6,
+          // itemGap: 30,
+          textStyle: {
+            // color: '#FFFFFF'
+            color: '#d3ca1b',
+            fontSize: 14
+          }
+        },
+        xAxis: [
+          {
+            data: xData,
+            /*  axisLabel: {
+              textStyle: {
+                color: '#aaaaaa',
+                fontSize: 14
+              },
+              margin: 30 //刻度标签与轴线之间的距离。
+            },*/
+            axisLabel: {
+              rotate: 0,
+              interval: 0, //横轴信息全部显示,
+              color: '#c0c3cd',
+              fontSize: 14,
+              interval: 0,
+              margin: 15 //刻度标签与轴线之间的距离。
+            },
+
+            axisLine: {
+              show: false //不显示x轴
+            },
+            axisTick: {
+              show: false //不显示刻度
+            },
+            boundaryGap: true,
+            splitLine: {
+              show: false,
+              width: 0.08,
+              lineStyle: {
+                type: 'solid',
+                color: '#03202E'
+              }
+            }
+          }
+        ],
+        yAxis: [
+          {
+            splitLine: {
+              show: false,
+              lineStyle: {
+                color: '#eee',
+                type: 'solid'
+              }
+            },
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisLabel: {
+              textStyle: {
+                color: '#888'
+              }
+            }
+          }
+        ],
+        series: [
+          {
+            //柱底圆片
+            name: '',
+            yAxisIndex: 0,
+            itemStyle: {
+              //上方显示数值
+              normal: {
+                label: {
+                  show: true, //开启显示
+                  position: 'top', //在上方显示
+                  textStyle: {
+                    //数值样式
+                    color: '#d3ca1b',
+                    fontSize: 16
+                  }
+                }
+              }
+            },
+            type: 'pictorialBar',
+            symbolSize: [30, 20], //调整截面形状
+            symbolOffset: [0, 10],
+            z: 12,
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true, //开启显示
+                  position: 'top', //在上方显示
+                  textStyle: {
+                    //数值样式
+                    color: '#d3ca1b',
+                    fontSize: 16
+                  }
+                },
+                color: new Echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: 'rgba(89,211,255,1)'
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgba(23,237,194,1)'
+                  }
+                ])
+              }
+            },
+            data: line
+          },
+          //柱体
+          {
+            name: '',
+            type: 'bar',
+            yAxisIndex: 0,
+            barWidth: 30,
+            barGap: '0%',
+            itemStyle: {
+              normal: {
+                color: {
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  type: 'linear',
+                  global: false,
+                  colorStops: [
+                    {
+                      //第一节下面
+                      offset: 0,
+                      color: 'rgba(0,255,245,0.5)'
+                    },
+                    {
+                      offset: 1,
+                      color: '#43bafe'
+                    }
+                  ]
+                }
+              }
+            },
+
+            data: line
+          },
+          //柱顶圆片
+          {
+            name: '',
+            type: 'pictorialBar',
+            yAxisIndex: 0,
+            symbolSize: [30, 20], //调整截面形状
+            symbolOffset: [0, -10],
+            z: 12,
+            symbolPosition: 'end',
+            itemStyle: {
+              normal: {
+                color: new Echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
+                  [
+                    {
+                      offset: 0,
+                      color: 'rgba(89,211,255,1)'
+                    },
+                    {
+                      offset: 1,
+                      color: 'rgba(23,237,194,1)'
+                    }
+                  ],
+                  false
+                )
+              }
+            },
+            data: line
+          }
+        ]
+      }
+
+      myChart1.setOption(option_1)
+    },
+    //班组绩效
     echart_go_a(datas) {
       var need_x1 = []
       var need_y1 = [] //总数
@@ -2171,7 +1917,7 @@ export default {
         need_y4.push(datas[i].y4)
         need_y5.push(datas[i].y5)
       }
-      var y_name = ['个数', 'h', 'mm', 'mm', 'h']
+      var y_name = ['次数', 'min', 'mm', 'mm', 'min']
       var need_s = [need_y1, need_y2, need_y3, need_y4, need_y5]
       var app = ['app3', 'app4', 'app5', 'app6', 'app7']
       var title_1 = ['总数', '磨削时长', '辊径减少', '砂轮减少', '平均磨削时长']
@@ -2438,7 +2184,7 @@ export default {
       }
     },
     vagetable() {
-      //表
+      //表  损耗
       post('baseCostAccountingMain/findBaseCostAccountingABigScreen', {
         condition: {}
       }).then(res => {
@@ -2446,33 +2192,19 @@ export default {
         this.echart_go_1(res.map)
         this.change()
       })
-      //2
-      post('rollInformation/findRollDiameterABigScreenByPage', {
-        condition: { ifabnormal: 1 } //异常
-      }).then(res => {
-        this.tableData_2 = res.data
-        //this.tableData_2.push({}, {})
-      })
+      //结存
       post('rollInformation/findRollDiameterABigScreenByPage', {
         condition: { ifabnormal: 0 } //正常
       }).then(res => {
         this.tableData_3 = res.data
         this.echart_go_b(res.map)
       })
-      //3
+      //3  班组绩效
       post('rollGrindingBF/findGrindingRateABigScreenByPage', {
         condition: {}
       }).then(res => {
         this.tableData_4 = res.data
         this.echart_go_a(res.map)
-      })
-      //4
-      post('rollOnoffLine/findRollinfoMesByPage', {
-        pageIndex: 1,
-        pageSize: 100,
-        condition: {}
-      }).then(res => {
-        this.tableData_5 = res.data
       })
     },
     change() {
@@ -2501,6 +2233,90 @@ export default {
       this.$once('hook:beforeDestroy', () => {
         clearInterval(timer)
       })
+    },
+
+    //二合一 吨钢消耗和毫米轧制量
+    guang_find_2() {
+      this.repeat_1(0, 12)
+      //this.find_two_1 = []
+      find_two_1: [
+        {
+          label: '1月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '2月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '3月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '4月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '5月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '6月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '7月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '8月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '9月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '10月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '11月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '12月',
+          consumption: 0,
+          cost: 0
+        }
+      ]
+    },
+    repeat_1(num, length) {
+      post('baseCostAccountingMain/findBaseCostAccountingABigScreen', {
+        condition: { dbegin: this.mon_need[num] }
+      }).then(res => {
+        console.log(res.bean.cost)
+        this.find_two_1[num].cost = res.bean.cost
+        this.find_two_1[num].consumption = res.bean.consumption
+        //debugger
+        if (++num < length) {
+          this.repeat_1(num, length)
+        } else {
+          this.echart_go_er(this.find_two_1)
+        }
+      })
+      console.log(this.find_two_1)
     },
     // 工作/支撑辊定时器
     getTime() {
