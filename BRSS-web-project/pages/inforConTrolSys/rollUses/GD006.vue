@@ -2582,7 +2582,7 @@ export default {
 /*// 单独选择框、单独输入框*/
 .layout-one-input1 /deep/.el-select .el-input__inner {
   background-color: #1a367a;
-  width: 140px;
+  width: 150px;
   height: 28px;
   font-size: 14px;
   color: #eae8c5;

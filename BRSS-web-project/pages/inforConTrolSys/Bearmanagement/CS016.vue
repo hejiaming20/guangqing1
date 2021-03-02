@@ -39,22 +39,14 @@
                 :inline="true"
                 label-width="100px">
                 <el-form-item
-                  label="辊号"
-                  prop="roll_no">
-                  <el-input v-model.trim="searchInfo.roll_no" />
+                  label="配件名称"
+                  prop="equipment_name">
+                  <el-input v-model.trim="searchInfo.equipment_name" />
                 </el-form-item>
                 <el-form-item
-                  label="轧辊类型"
-                  prop="roll_typeid">
-                  <el-select
-                    v-model="searchInfo.roll_typeid"
-                    placeholder="请选择">
-                    <el-option
-                      v-for="item in typeoptions"
-                      :key="item.key"
-                      :label="item.value"
-                      :value="item.key"/>
-                  </el-select>
+                  label="组件名称"
+                  prop="equipment_parentname">
+                  <el-input v-model.trim="searchInfo.equipment_parentname" />
                 </el-form-item>
                 <el-form-item
                   label="开始时间"
@@ -94,7 +86,7 @@
                 <el-button
                   size="mini"
                   type="primary"
-                  @click="findAll()">查询</el-button>
+                  @click="find_query()">查询</el-button>
                 <el-button
                   size="mini"
                   type="primary"
@@ -123,6 +115,10 @@
             show-overflow-tooltip
             label="组件名称"/>
           <el-table-column
+            prop="operator_name"
+            show-overflow-tooltip
+            label="操作人"/>
+          <el-table-column
             prop="usetime"
             show-overflow-tooltip
             label="开始时间"/>
@@ -135,9 +131,9 @@
           <el-table-column
             prop="discard_time"
             label="更换时间"/>
-          <el-table-column
+          <!-- <el-table-column
             prop="factory_name"
-            label="厂家名称"/>
+            label="厂家名称"/>-->
           <el-table-column
             prop="sgroup_name"
             label="班组"/>
@@ -146,16 +142,17 @@
             label="班次"/>
           <el-table-column
             label="操作"
+            width="150px"
             align="center">
             <template slot-scope="scope">
               <el-button
                 size="mini"
                 type="warning"
                 @click="handleEdit(scope.row,true)">修改</el-button>
-                <!--<el-button
-              size="mini"
-              type="danger"
-              @click="handleDelect(scope.row)">删除</el-button>-->
+              <el-button
+                size="mini"
+                type="danger"
+                @click="handleDelect(scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </template>
@@ -179,11 +176,6 @@
                   <el-input v-model.trim="formLabelAlign.equipment_name" />
                 </el-form-item>
                 <el-form-item
-                  label="设备名称"
-                  prop="equipment_pparentname">
-                  <el-input v-model.trim="formLabelAlign.equipment_pparentname" />
-                </el-form-item>
-                <el-form-item
                   label="开始时间"
                   prop="usetime">
                   <el-date-picker
@@ -192,7 +184,15 @@
                     type="datetime"
                     placeholder="开始时间"/>
                 </el-form-item>
-
+                <el-form-item
+                  label="更换时间"
+                  prop="discard_time">
+                  <el-date-picker
+                    v-model="formLabelAlign.discard_time"
+                    value-format="yyyy-MM-dd HH:mm:ss"
+                    type="datetime"
+                    placeholder="更换时间"/>
+                </el-form-item>
 
                 <!--  <el-form-item
                   label="产线"
@@ -222,49 +222,20 @@
                       :value="item.value"/>
                   </el-select>
                 </el-form-item>-->
-                <el-form-item
-                  label="车削结束时间"
-                  prop="grind_endtime">
-                  <el-date-picker
-                    v-model="formLabelAlign.grind_endtime"
-                    value-format="yyyy-MM-dd HH:mm:ss"
-                    type="datetime"
-                    placeholder="开始时间"/>
-                </el-form-item>
               </el-col>
               <el-col :span="8">
                 <el-form-item
-                  label="车削量"
-                  prop="grindst">
-                  <el-input v-model="formLabelAlign.grindst" />
+                  label="提醒时间"
+                  prop="interval_times">
+                  <el-input v-model="formLabelAlign.interval_times" />
                 </el-form-item>
                 <el-form-item
-                  label="车床号"
-                  prop="machine_no">
-                  <el-input v-model="formLabelAlign.machine_no" />
-                </el-form-item>
-                <el-form-item
-                  label="车前直径"
-                  prop="before_diameter">
-                  <el-input v-model="formLabelAlign.before_diameter" />
-                </el-form-item>
-                <el-form-item
-                  label="车后直径"
-                  prop="after_diameter">
-                  <el-input v-model="formLabelAlign.after_diameter" />
+                  label="累计时间"
+                  prop="total_times">
+                  <el-input v-model="formLabelAlign.total_times" />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
-                <el-form-item
-                  label="新辊直径"
-                  prop="diametermax">
-                  <el-input v-model="formLabelAlign.diametermax" />
-                </el-form-item>
-                <el-form-item
-                  label="报废直径"
-                  prop="diametermin">
-                  <el-input v-model="formLabelAlign.diametermin" />
-                </el-form-item>
                 <el-form-item
                   label="班组"
                   prop="sgroup">
@@ -512,13 +483,12 @@ export default {
       }
     },
     find_query() {
+      this.searchInfo.equipment_id = this.send_id
+      this.searchInfo.sclass_name = this.send_sname
       post('baseEquipment/findByPage', {
         pageIndex: this.pageIndex,
         pageSize: this.pageSize,
-        condition: {
-          equipment_id: this.send_id,
-          sclass_name: this.send_sname
-        }
+        condition: this.searchInfo
       }).then(res => {
         this.tableData = res.data
         this.total = res.count
@@ -575,18 +545,6 @@ export default {
       this.pageSize = val
       this.find_query()
     },
-    async findAll() {
-      //this.searchInfo.equipment_id = this.send_id
-      // this.searchInfo.sclass_name = this.send_sname
-      let res = await post('/rollGrindingDouble/findByPage', {
-        pageIndex: this.pageIndex,
-        pageSize: this.pageSize,
-        condition: this.searchInfo
-      })
-      this.tableData = res.data
-      this.total = res.count
-    },
-
     /**
      * description: 删除一行数据
      */
@@ -597,7 +555,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          post('rollInformation/deleteOne', { indocno: data.indocno }).then(
+          post('baseEquipment/deleteOne', { indocno: data.indocno }).then(
             res => {
               console.log('删除', res)
               if (res) {
@@ -639,6 +597,10 @@ export default {
     async handleSave(formName) {
       this.formLabelAlign.equipment_id = this.send_id
       this.formLabelAlign.sclass_name = this.send_sname
+      //登录人
+      this.formLabelAlign.operator_id = this.crea_sname_id
+      this.formLabelAlign.operator_name = this.crea_sname
+
       this.$refs[formName].validate(valid => {
         if (valid) {
           if (this.formFlag) {
@@ -687,7 +649,7 @@ export default {
      */
     resetForm(formName) {
       this.searchInfo = {}
-      this.findAll()
+      // this.findAll()
     }
   }
 }

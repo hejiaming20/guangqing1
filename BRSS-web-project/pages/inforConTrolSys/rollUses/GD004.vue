@@ -214,15 +214,15 @@
             prop="grinding_time"
             width="60px"
             label="磨削时长min"/>
-          <!-- <el-table-column
-            prop="crack"
-            width="60px"
-            label="裂纹"/>
           <el-table-column
-            prop="hidden_flaws"
-            width="60px"
-            label="暗伤"/>
+            prop="crackvalue"
+            width="70px"
+            label="裂纹最大值"/>
           <el-table-column
+            prop="sopotvalue"
+            width="70px"
+            label="软点最大值"/>
+          <!--<el-table-column
             prop="qualifiednum"
             label="合格点数"/>-->
           <el-table-column
