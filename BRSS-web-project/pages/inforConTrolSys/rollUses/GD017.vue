@@ -1,3 +1,4 @@
+<!--上下机相识度对比-->
 <template>
   <div>
     <!-- 第一个表aa -->
@@ -8,7 +9,9 @@
       :page-size="pageSize"
       :current-page="pageIndex"
       :table-height="'calc(100vh - 185px)'"
+      :row-class-name="setRowColor"
       index-type="index"
+      @cell-click="cellClick"
       @handle-size-change="handleSizeChange"
       @handle-current-change="handleCurrentChange">
       <template slot="TableHead">
@@ -20,37 +23,94 @@
               :inline="true"
               class="search-info"
               label-width="80px">
-              <el-form-item
-                label="辊号"
-                prop="roll_no">
-                <el-input v-model="searchInfo.roll_no" />
-              </el-form-item>
-              <el-form-item
-                label="机架号"
-                prop="frame_noid">
-                <el-select
-                  v-model="searchInfo.frame_noid"
-                  placeholder="请选择">
-                  <el-option
-                    v-for="item in frameArray"
-                    :key="item.key"
-                    :label="item.value"
-                    :value="Number(item.key)"/>
-                </el-select>
-              </el-form-item>
-              <!--<el-form-item
-                label="制造厂商"
-                prop="factory_id">
-                <el-select
-                  v-model="searchInfo.factory_id"
-                  placeholder="请选择">
-                  <el-option
-                    v-for="item in option_1"
-                    :key="item.key"
-                    :label="item.value"
-                    :value="item.key"/>
-                </el-select>
-              </el-form-item>-->
+
+              <el-row>
+                <el-col :span="6">
+                  <el-form-item
+                    label="辊号"
+                    prop="roll_no">
+                    <el-input v-model="searchInfo.roll_no" />
+                  </el-form-item>
+                  <el-form-item
+                    label="机架号"
+                    prop="frame_noid">
+                    <el-select
+                      v-model="searchInfo.frame_noid"
+                      placeholder="请选择">
+                      <el-option
+                        v-for="item in frameArray"
+                        :key="item.key"
+                        :label="item.value"
+                        :value="Number(item.key)"/>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="6">
+                  <el-form-item
+                    label="制造厂商"
+                    prop="factory_id">
+                    <el-select
+                      v-model="searchInfo.factory_id"
+                      placeholder="请选择">
+                      <el-option
+                        v-for="item in option_1"
+                        :key="item.key"
+                        :label="item.value"
+                        :value="item.key"/>
+                    </el-select>
+                  </el-form-item>
+                  <el-form-item
+                    label="相识度"
+                    prop="absolutely">
+                    <el-select
+                      v-model="searchInfo.absolutely"
+                      placeholder="请选择">
+                      <el-option
+                        v-for="item in option_a"
+                        :key="item.key"
+                        :label="item.value"
+                        :value="item.key"/>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="6">
+                  <el-form-item
+                    label="开始时间"
+                    label-width="97px"
+                    prop="dbeginon">
+                    <el-date-picker
+                      v-model="searchInfo.dbeginon"
+                      value-format="yyyy-MM-dd HH:mm:ss"
+                      type="datetime"
+                      placeholder="开始时间"
+                      @focus="resetKeyboard"/>
+                  </el-form-item>
+                  <el-form-item
+                    label="结束时间"
+                    label-width="97px"
+                    prop="dendoff">
+                    <el-date-picker
+                      v-model="searchInfo.dendoff"
+                      value-format="yyyy-MM-dd HH:mm:ss"
+                      type="datetime"
+                      placeholder="结束时间"
+                      @focus="resetKeyboard"/>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="6">
+                  <div style="color: #208d3a;position: absolute;right: 109px;top: 3px;float: right">
+                    辊号：{{ roll_show }}
+                  </div>
+                  <div style="color: #208d3a;position: absolute;right: 109px;top: 30px;float: right">
+                    块数：{{ kuai_show }}
+                  </div>
+                </el-col>
+
+
+
+
+
+              </el-row>
             </el-form>
           </el-col>
           <el-col :span="4">
@@ -150,25 +210,25 @@
           prop="off_line_reason_value"
           show-overflow-tooltip
           label="下线原因"/>
-      <!--  <el-table-column
-          label="操作"
-          min-width="217px"
-          align="center">
-          <template slot-scope="scope">
-            <el-button
-              size="mini"
-              type="primary"
-              @click="handleCopy(scope.row)">复制</el-button>
-            <el-button
-              size="mini"
-              type="warning"
-              @click="handleEdit(scope.row)">修改</el-button>
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelect(scope.row)">删除</el-button>
-          </template>
-        </el-table-column>-->
+          <!--  <el-table-column
+            label="操作"
+            min-width="217px"
+            align="center">
+            <template slot-scope="scope">
+              <el-button
+                size="mini"
+                type="primary"
+                @click="handleCopy(scope.row)">复制</el-button>
+              <el-button
+                size="mini"
+                type="warning"
+                @click="handleEdit(scope.row)">修改</el-button>
+              <el-button
+                size="mini"
+                type="danger"
+                @click="handleDelect(scope.row)">删除</el-button>
+            </template>
+          </el-table-column>-->
       </template>
     </Table-easy>
 
@@ -350,7 +410,6 @@
     </el-dialog>
   </div>
 </template>
-
 <script>
 import { getDataConfig, post } from '@/lib/Util'
 import TableEasy from '@/components/TasilyTableEasy'
@@ -440,27 +499,27 @@ export default {
           { required: true, message: '请输入下线原因', trigger: 'blur' }
         ]
         /*createname: [
-          { required: true, message: '请输入创建人名称', trigger: 'blur' }
-        ],
-        createid: [
-          { required: true, message: '请输入创建人id', trigger: 'blur' }
-        ],
-        createtime: [
-          { required: true, message: '请输入创建时间', trigger: 'blur' }
-        ],
-        modiname: [
-          { required: true, message: '请输入修改人名称', trigger: 'blur' }
-        ],
-        modiid: [
-          { required: true, message: '请输入修改人id', trigger: 'blur' }
-        ],
-        moditime: [
-          { required: true, message: '请输入修改时间', trigger: 'blur' }
-        ],
-        istate: [
-          { required: true, message: '请输入数据状态', trigger: 'blur' }
-        ],
-        idel: [{ required: true, message: '请输入删除标识', trigger: 'blur' }]*/
+            { required: true, message: '请输入创建人名称', trigger: 'blur' }
+          ],
+          createid: [
+            { required: true, message: '请输入创建人id', trigger: 'blur' }
+          ],
+          createtime: [
+            { required: true, message: '请输入创建时间', trigger: 'blur' }
+          ],
+          modiname: [
+            { required: true, message: '请输入修改人名称', trigger: 'blur' }
+          ],
+          modiid: [
+            { required: true, message: '请输入修改人id', trigger: 'blur' }
+          ],
+          moditime: [
+            { required: true, message: '请输入修改时间', trigger: 'blur' }
+          ],
+          istate: [
+            { required: true, message: '请输入数据状态', trigger: 'blur' }
+          ],
+          idel: [{ required: true, message: '请输入删除标识', trigger: 'blur' }]*/
       },
       formLabelAlign: {},
       tableData: [],
@@ -472,7 +531,16 @@ export default {
       frameArray: [],
       rollPositionArray: [],
       roll_shapeArray: [],
-      option_1: []
+      option_1: [],
+      rowIndex: '',
+      option_a: [
+        { key: '100', value: '100%' },
+        { key: '90', value: '90%' },
+        { key: '80', value: '80%' },
+        { key: '70', value: '70%' }
+      ],
+      roll_show: '',
+      kuai_show: ''
     }
   },
   mounted() {
@@ -500,6 +568,20 @@ export default {
     })
   },
   methods: {
+    async cellClick(val) {
+      this.rowIndex = val.indocno
+      this.searchInfo.state = '1' //如果为1 代表新的查询
+      this.roll_show = val.roll_no
+      this.kuai_show = val.roll_coil_num
+      //this.searchInfo.indocno = val.indocno //点击获得该行组件
+    },
+    // 点击行信息，添加颜色标识
+    setRowColor({ row, rowIndex }) {
+      if (row.indocno == this.rowIndex) {
+        return 'setTable-row-class-name'
+      }
+    },
+
     // 移除移动端软键盘事件（日期时间选择器）
     resetKeyboard() {
       document.activeElement.blur()
@@ -559,9 +641,11 @@ export default {
       let res = await post('rollOnoffLine/findByPage', {
         pageIndex: this.pageIndex,
         pageSize: this.pageSize,
+        indocno: this.rowIndex,
         condition: this.searchInfo
       })
       if (res.status == 2000) {
+        //this.rowIndex = ''
         this.tableData = res.data
         for (let i = 0; this.tableData.length > i; i++) {
           if (this.tableData[i].rollinfo) {
@@ -578,6 +662,7 @@ export default {
         }
         this.total = res.count
       } else {
+        //this.rowIndex = ''
         this.tableData = []
         this.total = 0
       }
@@ -669,6 +754,8 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields()
       this.findAll()
+      this.roll_show = ''
+      this.kuai_show = ''
     },
     /**
      * description: 添加数据函数

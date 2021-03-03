@@ -336,6 +336,22 @@
           </div>-->
         </el-col>
       </el-row>
+      <el-row>
+        <p style="color:#8d0912;text-align: center;width: 40%;background-color: #16848d;padding-left: 20px;height: 25px;margin-bottom: 5px">涡流</p>
+        <div style="height: 600px">
+          <!--  <iframe
+            src="http://169.254.100.101:8080/reportpdf/2020-11-28-04.47.56=RWD1-0011.pdf"
+            width="40%"
+            height="100%"
+            frameborder="0"/>-->
+          <iframe
+            :src="src"
+            width="40%"
+            height="100%"
+            frameborder="0"/>
+        </div>
+
+      </el-row>
     </div>
   </div>
 </template>
@@ -350,6 +366,8 @@ export default {
   components: { TableEasy },
   data() {
     return {
+      src:
+        'http://169.254.100.101:8080/reportpdf/2020-11-28-04.47.56=RWD1-0011.pdf',
       htmlTitle: '页面导出PDF文件名',
       searchFlag: false,
       searchInfo: {
@@ -543,6 +561,7 @@ export default {
       }
     },
     async cellClick(val) {
+      // this.src = 'http://169.254.100.101:8080/reportpdf/公积金打印凭证.pdf'
       this.roll_need = val.roll_no
       this.rowIndex = val.indocno
       //this.searchin.grinder = val.machine_no
