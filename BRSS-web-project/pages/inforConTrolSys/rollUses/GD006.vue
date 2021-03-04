@@ -2589,7 +2589,7 @@ export default {
 }
 .layout-one-input1 /deep/.el-input .el-input__inner {
   background-color: #1a367a;
-  min-width: 290px;
+  min-width: 305px;
   max-width: 310px;
   height: 28px;
   font-size: 14px;

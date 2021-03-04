@@ -367,7 +367,7 @@ export default {
   data() {
     return {
       src:
-        'http://169.254.100.101:8080/reportpdf/2020-11-28-04.47.56=RWD1-0011.pdf',
+        'http://169.254.100.101:8080/reportpdf/ET1/2020_11_28-07.34.40=RWD1-0011.pdf',
       htmlTitle: '页面导出PDF文件名',
       searchFlag: false,
       searchInfo: {

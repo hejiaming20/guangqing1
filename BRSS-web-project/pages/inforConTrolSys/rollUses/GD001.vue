@@ -84,6 +84,9 @@
           prop="frame_no"
           label="机架号"/>
         <el-table-column
+          prop="updiam"
+          label="上机直径"/>
+        <el-table-column
           prop="roll_position"
           label="上机位置"/>
         <!-- <el-table-column
@@ -143,9 +146,6 @@
           prop="rolling_time"
           width="110px"
           label="轧制时长(min)"/>
-        <el-table-column
-          prop="updiam"
-          label="上机直径"/>
         <el-table-column
           prop="off_line_reason_value"
           show-overflow-tooltip
