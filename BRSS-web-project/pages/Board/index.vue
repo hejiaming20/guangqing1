@@ -139,12 +139,11 @@
               </el-col>
             </div>
           </el-col>
-
         </el-row>
         <el-row>
           <el-col :span="8">
             <div class="best-classTitle">
-              毫米数
+              上月消耗毫米数
             </div>
             <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
               <el-col :span="24">
@@ -188,7 +187,7 @@
           </el-col>
           <el-col :span="8">
             <div class="best-classTitle">
-              结存
+              目前结存
             </div>
             <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
               <div
@@ -210,13 +209,34 @@
           </el-col>-->
           <el-col :span="8">
             <div class="best-classTitle">
-              后期kai使用
+              KPI
             </div>
             <div style="height: 400px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
               <el-col :span="24">
                 <div
                   id="app2_2"
                   style="width:100%;height: 380px;"/>
+                <div style="color: #999B9C;position: absolute;right: 407px;top: 240px;float: right">
+                  实际/期望:{{ show_1 }}
+                </div>
+                <div style="color: #999B9C;position: absolute;right: 209px;top: 240px;float: right">
+                  实际/期望:{{ show_2 }}
+                </div>
+                <div style="color: #999B9C;position: absolute;right: 542px;top: 404px;float: right">
+                  c:{{ show_3 }}
+                </div>
+                <div style="color: #999B9C;position: absolute;right: 442px;top: 404px;float: right">
+                  d:{{ show_4 }}
+                </div>
+                <div style="color: #999B9C;position: absolute;right: 314px;top: 404px;float: right">
+                  e:{{ show_5 }}
+                </div>
+                <div style="color: #999B9C;position: absolute;right: 209px;top: 404px;float: right">
+                  f:{{ show_6 }}
+                </div>
+                <div style="color: #999B9C;position: absolute;right: 88px;top: 404px;float: right">
+                  g:{{ show_7 }}
+                </div>
               </el-col>
             </div>
           </el-col>
@@ -230,6 +250,8 @@
 <script>
 import fullScreen from '@/components/Fullscreen'
 import Echarts from 'echarts'
+import 'echarts-liquidfill'
+//import 'echarts-liquidfill/src/liquidFill.js' //在这里引入
 import { vRollStock } from '@/api/pinClipBoard' //查询接口
 import TableEasy from '@/components/TasilyTableEasy'
 import moment from 'moment'
@@ -282,468 +304,11 @@ export default {
         day: '1997年01月01日',
         date: '星期一'
       },
-      Fwork11: {
-        roll_no: '--',
-        bodyDia: '--',
-        bear_no: '--'
-      },
-      Fwork12: {
-        roll_no: '--',
-        bodyDia: '--',
-        bear_no: '--'
-      },
-      Fwork13: {
-        roll_no: '--',
-        bodyDia: '--',
-        bear_no: '--'
-      },
-      Fwork14: {
-        roll_no: '--',
-        bodyDia: '--',
-        bear_no: '--'
-      },
-      F2: {
-        work1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        work2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        }
-      },
-      F3: {
-        work1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        work2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        }
-      },
-      F4: {
-        work1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        work2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        }
-      },
-      F5: {
-        work1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        work2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        }
-      },
-      F6: {
-        work1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        work2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        }
-      },
-      F7: {
-        work1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        work2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        }
-      },
-      R1: {
-        work1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        work2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        }
-      },
-      R2: {
-        work1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        work2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        zhi2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        }
-      },
-      car: {
-        R1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        R2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        F1: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        F2: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        F3: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        F4: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        F5: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        F6: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        },
-        F7: {
-          roll_no: '--',
-          bodyDia: '--',
-          bear_no: '--'
-        }
-      },
       mochuang3: {},
       mochuang4: {},
       mochuang5: {},
       mochuang6: {},
       mochuangDate: '1997年1月',
-      stockOption: {
-        title: {
-          text: '轧辊库存',
-          left: 15,
-          top: 10,
-          textStyle: {
-            color: '#00dcff' //字体颜色
-          }
-        },
-        color: [
-          '#447efd',
-          '#1e83a4',
-          '#a782e1',
-          '#fff065',
-          '#f29b62',
-          '#db6169',
-          '#00ccca'
-        ],
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          }
-        },
-        legend: {
-          top: 10,
-          textStyle: {
-            color: '#eae8c5' //字体颜色
-          },
-          data: [
-            '在途轧辊',
-            '未拆轧辊',
-            '待使用轧辊',
-            '周转轧辊',
-            '修复轧辊',
-            '停用辊'
-            // '库存量'
-          ]
-        },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          top: '23%',
-          containLabel: true
-        },
-        toolbox: {
-          show: true,
-          orient: 'vertical',
-          left: 'right',
-          top: 'center',
-          feature: {
-            mark: { show: true },
-            dataView: { show: true, readOnly: false },
-            magicType: { show: true, type: ['line', 'bar', 'stack', 'tiled'] },
-            restore: { show: true },
-            saveAsImage: { show: true }
-          }
-        },
-        xAxis: [
-          {
-            type: 'category',
-            axisLine: {
-              lineStyle: {
-                color: '#eae8c5' //坐标线颜色
-              }
-            },
-            axisTick: { show: false },
-            data: [
-              'F1-F4工作辊',
-              'F5-F7工作辊',
-              'F1-F7支撑辊',
-              '粗轧工作辊',
-              '粗轧支撑辊',
-              '平整工作辊',
-              '平整支撑辊',
-              '大立辊',
-              '小立辊',
-              '锤头'
-            ]
-          }
-        ],
-        yAxis: [
-          {
-            type: 'value',
-            axisLine: {
-              lineStyle: {
-                color: '#eae8c5' //坐标线颜色
-              }
-            }
-          }
-        ],
-        series: [
-          {
-            name: '在途轧辊',
-            type: 'bar',
-            barGap: 0,
-            // label: {
-            //   show: true,
-            //   rotate: 90,
-            //   align: 'left',
-            //   verticalAlign: 'middle',
-            //   position: 'insideBottom',
-            //   distance: 15
-            // },
-            data: []
-          },
-          {
-            name: '未拆轧辊',
-            type: 'bar',
-            // label: {
-            //   show: true,
-            //   rotate: 90,
-            //   align: 'left',
-            //   verticalAlign: 'middle',
-            //   position: 'insideBottom',
-            //   distance: 15
-            // },
-            data: []
-          },
-          {
-            name: '待使用轧辊',
-            type: 'bar',
-            // label: {
-            //   show: true,
-            //   rotate: 90,
-            //   align: 'left',
-            //   verticalAlign: 'middle',
-            //   position: 'insideBottom',
-            //   distance: 15
-            // },
-            data: []
-          },
-          {
-            name: '周转轧辊',
-            type: 'bar',
-            // label: {
-            //   show: true,
-            //   rotate: 90,
-            //   align: 'left',
-            //   verticalAlign: 'middle',
-            //   position: 'insideBottom',
-            //   distance: 15
-            // },
-            data: []
-          },
-          {
-            name: '修复轧辊',
-            type: 'bar',
-            // label: {
-            //   show: true,
-            //   rotate: 90,
-            //   align: 'left',
-            //   verticalAlign: 'middle',
-            //   position: 'insidebottom',
-            //   distance: 15
-            // },
-            data: []
-          },
-          {
-            name: '停用辊',
-            type: 'bar',
-            // label: {
-            //   show: true,
-            //   rotate: 90,
-            //   align: 'left',
-            //   verticalAlign: 'middle',
-            //   position: 'insideBottom',
-            //   distance: 15
-            // },
-            data: []
-          }
-          // {
-          //   name: '报废辊',
-          //   type: 'bar',
-          //   // label: {
-          //   //   show: true,
-          //   //   rotate: 90,
-          //   //   align: 'left',
-          //   //   verticalAlign: 'middle',
-          //   //   position: 'insidetop',
-          //   //   distance: 15
-          //   // },
-          //   data: [
-          //     560,
-          //     562,
-          //     561,
-          //     564,
-          //     560,
-          //     560,
-          //     560,
-          //     560,
-          //     560,
-          //     560,
-          //     560,
-          //     565,
-          //     563
-          //   ]
-          // },
-          // {
-          //   name: '库存量',
-          //   type: 'bar',
-          //   // label: {
-          //   //   show: true,
-          //   //   rotate: 90,
-          //   //   align: 'left',
-          //   //   verticalAlign: 'middle',
-          //   //   position: 'insideBottom',
-          //   //   distance: 15
-          //   // },
-          //   data: []
-          // }
-        ]
-      },
       mobed1: {
         left: 111,
         roll_no: null,
@@ -868,75 +433,29 @@ export default {
           consumption: 0,
           cost: 0
         }
-      ]
+      ],
+      show_1: '',
+      show_2: '',
+      show_3: '',
+      show_4: '',
+      show_5: '',
+      show_6: '',
+      show_7: ''
     }
   },
   created() {
     //this.findRollStock()
+    this.getNowTime()
     this.play()
   },
   mounted() {
     const timer = setInterval(() => {
       this.getNowTime()
-      if (this.mwidth > 40) {
-        this.flag = !this.flag
-        this.mwidth = 0
-      }
-      if (this.mobed2.mwidth > 40) {
-        this.mobed2.flag = !this.mobed2.flag
-        this.mobed2.mwidth = 0
-      }
-      if (this.mobed3.mwidth > 40) {
-        this.mobed3.flag = !this.mobed3.flag
-        this.mobed3.mwidth = 0
-      }
-      if (this.mobed4.mwidth > 40) {
-        this.mobed4.flag = !this.mobed4.flag
-        this.mobed4.mwidth = 0
-      }
-      if (this.mobed5.mwidth > 40) {
-        this.mobed5.flag = !this.mobed5.flag
-        this.mobed5.mwidth = 0
-      }
-      if (this.mobed6.mwidth > 40) {
-        this.mobed6.flag = !this.mobed6.flag
-        this.mobed6.mwidth = 0
-      }
-      //this.findmo1()
-      this.setmoleft()
+      // this.setmoleft()
     }, 2000)
     this.$once('hook:beforeDestroy', () => {
       clearInterval(timer)
     })
-
-    this.findOnLineRollF1() // F1
-    //this.getTime()
-    this.findOnLineRollF2() // F2
-    this.findOnLineRollF3() // F3
-    this.findOnLineRollF4() // F4
-    this.findOnLineRollF5() // F5
-    this.findOnLineRollF6() // F6
-    this.findOnLineRollF7() // F7
-    this.findOnLineRollR1() // R1
-    this.findOnLineRollR2() // R2
-    this.findRollBei() // 备辊信息
-    this.findCar() // 换辊小车
-    this.findCar2()
-    this.findCar3()
-    this.findCar4()
-    this.findCar5()
-    this.findCar6()
-    this.findCar7()
-    this.findCar8()
-    this.findCar9()
-    // this.echartStockOption() //轧辊库存
-    this.findTearm() // 获得最佳班组信息
-    this.findmo1()
-    this.findmo2()
-    this.findmo3()
-    this.findmo4()
-    this.findmo5()
-    this.findmo6()
     this.vagetable()
     this.guang_find_2()
   },
@@ -1454,236 +973,6 @@ export default {
         }
       }
       myChart2.setOption(option)
-      //毫米轧制量（后期kpi）
-      var option2_2 = {
-        //backgroundColor: '#031245',
-        textStyle: {
-          color: '#c0c3cd',
-          fontSize: 14
-        },
-        toolbox: {
-          show: false,
-          feature: {
-            saveAsImage: {
-              backgroundColor: '#031245'
-            },
-            restore: {}
-          },
-          iconStyle: {
-            borderColor: '#c0c3cd'
-          }
-        },
-        legend: {
-          top: 10,
-          itemWidth: 8,
-          itemHeight: 8,
-          icon: 'circle',
-          left: 'center',
-          padding: 0,
-          textStyle: {
-            color: '#c0c3cd',
-            fontSize: 14,
-            padding: [2, 0, 0, 0]
-          }
-        },
-        color: [
-          '#63caff',
-          '#49beff',
-          '#03387a',
-          '#03387a',
-          '#03387a',
-          '#6c93ee',
-          '#a9abff',
-          '#f7a23f',
-          '#27bae7',
-          '#ff6d9d',
-          '#cb79ff',
-          '#f95b5a',
-          '#ccaf27',
-          '#38b99c',
-          '#93d0ff',
-          '#bd74e0',
-          '#fd77da',
-          '#dea700'
-        ],
-        grid: {
-          containLabel: true,
-          left: 20,
-          right: 20,
-          bottom: 10,
-          top: 40
-        },
-        xAxis: {
-          nameTextStyle: {
-            color: '#c0c3cd',
-            padding: [0, 0, -10, 0],
-            fontSize: 14
-          },
-          axisLabel: {
-            rotate: 0,
-            interval: 0, //横轴信息全部显示,
-            color: '#c0c3cd',
-            fontSize: 14,
-            interval: 0
-          },
-          axisTick: {
-            lineStyle: {
-              color: '#384267',
-              width: 1
-            },
-            show: true
-          },
-          splitLine: {
-            show: false
-          },
-          axisLine: {
-            lineStyle: {
-              color: '#384267',
-              width: 1,
-              type: 'dashed'
-            },
-            show: true
-          },
-          /*data: [
-            '0点~2点',
-            '3点~5点',
-            '6点~8点',
-            '0点~2点',
-            '3点~5点',
-            '6点~8点',
-            '0点~2点',
-            '3点~5点'
-          ],*/
-          data: need_x1,
-          type: 'category'
-        },
-        yAxis: {
-          nameTextStyle: {
-            color: '#c0c3cd',
-            padding: [0, 0, -10, 0],
-            fontSize: 14
-          },
-          axisLabel: {
-            color: '#c0c3cd',
-            fontSize: 14
-          },
-          axisTick: {
-            lineStyle: {
-              color: '#384267',
-              width: 1
-            },
-            show: true
-          },
-          splitLine: {
-            show: true,
-            lineStyle: {
-              color: '#384267',
-              type: 'dashed'
-            }
-          },
-          axisLine: {
-            lineStyle: {
-              color: '#384267',
-              width: 1,
-              type: 'dashed'
-            },
-            show: true
-          },
-          name: ''
-        },
-        series: [
-          {
-            //data: [200, 85, 112, 275, 305, 415, 741, 405],
-            data: need_y3,
-            type: 'bar',
-            barMaxWidth: 'auto',
-            barWidth: 30,
-            itemStyle: {
-              color: {
-                x: 0,
-                y: 0,
-                x2: 0,
-                y2: 1,
-                type: 'linear',
-                global: false,
-                colorStops: [
-                  {
-                    offset: 0,
-                    color: '#0b9eff'
-                  },
-                  {
-                    offset: 1,
-                    color: '#63caff'
-                  }
-                ]
-              }
-            },
-            label: {
-              show: true,
-              position: 'top',
-              distance: 10,
-              color: '#fff'
-            }
-          },
-          {
-            data: [1, 1, 1, 1, 1, 1, 1, 1],
-            type: 'pictorialBar',
-            barMaxWidth: '20',
-            symbol: 'diamond',
-            symbolOffset: [0, '50%'],
-            symbolSize: [30, 15]
-          },
-          {
-            // data: [200, 85, 112, 275, 305, 415, 741, 405],
-            data: need_y3,
-            type: 'pictorialBar',
-            barMaxWidth: '20',
-            symbolPosition: 'end',
-            symbol: 'diamond',
-            symbolOffset: [0, '-50%'],
-            symbolSize: [30, 12],
-            zlevel: 2
-          },
-          {
-            // data: [741, 741, 741, 741, 741, 741, 741, 741],
-            data: [300, 300, 300, 300, 300, 300, 300, 300],
-            type: 'bar',
-            barMaxWidth: 'auto',
-            barWidth: 30,
-            barGap: '-100%',
-            zlevel: -1
-          },
-          {
-            data: [1, 1, 1, 1, 1, 1, 1, 1],
-            type: 'pictorialBar',
-            barMaxWidth: '20',
-            symbol: 'diamond',
-            symbolOffset: [0, '50%'],
-            symbolSize: [30, 15],
-            zlevel: -2
-          },
-          {
-            //data: [741, 741, 741, 741, 741, 741, 741, 741],
-            data: [300, 300, 300, 300, 300, 300, 300, 300],
-            type: 'pictorialBar',
-            barMaxWidth: '20',
-            symbolPosition: 'end',
-            symbol: 'diamond',
-            symbolOffset: [0, '-50%'],
-            symbolSize: [30, 12],
-            zlevel: -1
-          }
-        ],
-        tooltip: {
-          trigger: 'axis',
-          show: false
-        }
-      }
-      var myChart2_2 = Echarts.init(
-        document.getElementById('app2_2'),
-        'default'
-      ) //将配置注入到html中定义的容器
-      myChart2_2.setOption(option2_2)
     },
     //结存
     echart_go_b(datas) {
@@ -2048,7 +1337,7 @@ export default {
 
       for (var n = 0; 5 > n; n++) {
         var myChart = Echarts.init(document.getElementById(app1[n]), 'default') //将配置注入到html中定义的容器
-        //柱状图
+        //
         console.log(need_s[n][0])
         var scaleData = [
           {
@@ -2090,8 +1379,8 @@ export default {
         var color1 = [
           'rgb(255, 153, 153)',
           'rgb(255, 176, 63)',
-          'rgb(61, 186, 45)',
           'rgb(43, 166, 254)',
+          'rgb(61, 186, 45)', // 'rgb(61, 186, 45)',绿色
           'rgb(255,222,0)',
           'rgb(255,0,0)'
         ]
@@ -2183,6 +1472,570 @@ export default {
         myChart.setOption(option)
       }
     },
+    echart_go_kpi(datas) {
+      var kpidata_1 = ''
+      var kpidata_2 = ''
+      var kpidata_3 = ''
+      var kpidata_4 = ''
+      var kpidata_5 = ''
+      var kpidata_6 = ''
+      var kpidata_7 = ''
+      this.show_1 = ''
+      this.show_2 = ''
+      this.show_3 = ''
+      this.show_4 = ''
+      this.show_5 = ''
+      this.show_6 = ''
+      this.show_7 = ''
+
+      for (var i = 0; datas.length > i; i++) {
+        if (datas[i].kpiname == '安全') {
+          kpidata_1 = datas[i].proportion / 100
+          this.show_1 = datas[i].actual_value + '/' + datas[i].expect_value //  期望/实际
+          console.log(this.show_1)
+        }
+        if (datas[i].kpiname == '停机') {
+          kpidata_2 = datas[i].proportion / 100
+          this.show_2 = datas[i].actual_value + '/' + datas[i].expect_value //  期望/实际
+        }
+        if (datas[i].kpiname == '轧辊单耗') {
+          kpidata_3 = datas[i].proportion / 100
+          this.show_3 = datas[i].actual_value + '/' + datas[i].expect_value //  期望/实际
+        }
+        if (datas[i].kpiname == '复合锂基脂') {
+          kpidata_4 = datas[i].proportion / 100
+          this.show_4 = datas[i].actual_value + '/' + datas[i].expect_value //  期望/实际
+        }
+        if (datas[i].kpiname == '磨削液') {
+          kpidata_5 = datas[i].proportion / 100
+          this.show_5 = datas[i].actual_value + '/' + datas[i].expect_value //  期望/实际
+        }
+        if (datas[i].kpiname == '导轨油') {
+          kpidata_6 = datas[i].proportion / 100
+          this.show_6 = datas[i].actual_value + '/' + datas[i].expect_value //  期望/实际
+        }
+        if (datas[i].kpiname == '砂轮') {
+          kpidata_7 = datas[i].proportion / 100
+          this.show_7 = datas[i].actual_value + '/' + datas[i].expect_value //  期望/实际
+        }
+      }
+
+      //（后期kpi）
+      var option2_2 = {
+        //backgroundColor: '#000E1A',
+        title: [
+          {
+            text: '安全',
+            left: '30%',
+            top: '42.5%',
+            textAlign: 'center',
+            textStyle: {
+              color: '#999B9C',
+              fontSize: 16
+            }
+          },
+          {
+            text: '停机',
+            left: '60%',
+            top: '42.5%',
+            textAlign: 'center',
+            textStyle: {
+              color: '#999B9C',
+              fontSize: 16
+            }
+          },
+          {
+            text: '轧辊单耗',
+            left: '16.6%',
+            top: '85.5%',
+            textAlign: 'center',
+            textStyle: {
+              color: '#999B9C',
+              fontSize: 12
+            }
+          },
+          {
+            text: '复合锂基脂',
+            left: '33.3%',
+            top: '85.5%',
+            textAlign: 'center',
+            textStyle: {
+              color: '#999B9C',
+
+              fontSize: 12
+            }
+          },
+          {
+            text: '磨削液',
+            left: '50%',
+            top: '85.5%',
+            textAlign: 'center',
+            textStyle: {
+              color: '#999B9C',
+
+              fontSize: 12
+            }
+          },
+          {
+            text: '导轨油',
+            left: '66.6%',
+            top: '85.5%',
+            textAlign: 'center',
+            textStyle: {
+              color: '#999B9C',
+
+              fontSize: 12
+            }
+          },
+          {
+            text: '砂轮',
+            left: '83.3%',
+            top: '85.5%',
+            textAlign: 'center',
+            textStyle: {
+              color: '#999B9C',
+
+              fontSize: 12
+            }
+          }
+        ],
+
+        series: [
+          {
+            type: 'liquidFill',
+
+            radius: '40%',
+            // 水球颜色
+            color: ['#8d4038'],
+            center: ['30%', '21.8%'],
+            label: {
+              normal: {
+                textStyle: {
+                  color: '#8d4038',
+                  insideColor: '#8d4038',
+                  fontSize: 20
+                }
+              }
+            },
+            backgroundStyle: {
+              color: 'transparent', //图表的背景颜色
+
+              itemStyle: {
+                shadowBlur: 20, //设置无用
+                shadowColor: '#072F3A', //设置无用
+                opacity: 1 //设置无用
+              }
+            },
+            itemStyle: {
+              opacity: 0.5, //波浪的透明度
+              shadowBlur: 10, //波浪的阴影范围
+              shadowColor: '#1C303D' //阴影颜色
+            },
+            outline: {
+              show: true, //是否显示轮廓 布尔值
+              borderDistance: 0, //外部轮廓与图表的距离 数字
+              itemStyle: {
+                borderColor: '#8ab8c3', //边框的颜色
+                borderWidth: 1 //边框的宽度
+              }
+            },
+            emphasis: {
+              itemStyle: {
+                opacity: 1 //鼠标经过波浪颜色的透明度
+              }
+            },
+
+            //data: [0.32, 0.3044, 0.3004, 0.3004, 0.3014],
+            data: [kpidata_1, kpidata_1, kpidata_1, kpidata_1, kpidata_1],
+            amplitude: 4, //振幅 是波浪的震荡幅度 可以取具体的值 也可以是百分比 百分比下是按图标的直径来算
+            waveLength: '50%', //波的长度 可以是百分比也可以是具体的像素值  百分比下是相对于直径的 取得越大波浪的起伏越小
+            backgroundStyle: {
+              borderWidth: 2,
+              borderColor: '#8ab8c3',
+              color: '#000f1c' //9EBB29
+            },
+            direction: 'left', //波移动的速度 两个参数  left 从右往左 right 从左往右
+            waveAnimation: true, //控制波动画的开关  值是布尔值 false 是关闭动画 true 是开启动画 也是默认值
+            animationEasing: 'linear', //初始动画
+            animationEasingUpdate: 'quarticInOut', //数据更新的动画效果
+            animationDuration: 3000, //初始动画的时长，支持回调函数，可以通过每个数据返回不同的 delay 时间实现更绚丽的初始动画效果
+            animationDurationUpdate: 300 //数据更新动画的时长
+          },
+          {
+            type: 'liquidFill',
+
+            radius: '40%',
+            // 水球颜色
+            color: ['#28b2b6'],
+            center: ['60%', '21.8%'],
+            label: {
+              normal: {
+                textStyle: {
+                  color: '#28b2b6',
+                  insideColor: '#28b2b6',
+                  fontSize: 20
+                }
+              }
+            },
+            backgroundStyle: {
+              color: 'transparent', //图表的背景颜色
+
+              itemStyle: {
+                shadowBlur: 20, //设置无用
+                shadowColor: '#072F3A', //设置无用
+                opacity: 1 //设置无用
+              }
+            },
+            itemStyle: {
+              opacity: 0.5, //波浪的透明度
+              shadowBlur: 10, //波浪的阴影范围
+              shadowColor: '#1C303D' //阴影颜色
+            },
+            outline: {
+              show: true, //是否显示轮廓 布尔值
+              borderDistance: 0, //外部轮廓与图表的距离 数字
+              itemStyle: {
+                borderColor: '#28b2b6', //边框的颜色
+                borderWidth: 1 //边框的宽度
+              }
+            },
+            emphasis: {
+              itemStyle: {
+                opacity: 1 //鼠标经过波浪颜色的透明度
+              }
+            },
+
+            // data: [0.32, 0.3044, 0.3004, 0.3004, 0.3014],
+            data: [kpidata_2, kpidata_2, kpidata_2, kpidata_2, kpidata_2],
+            amplitude: 4, //振幅 是波浪的震荡幅度 可以取具体的值 也可以是百分比 百分比下是按图标的直径来算
+            waveLength: '50%', //波的长度 可以是百分比也可以是具体的像素值  百分比下是相对于直径的 取得越大波浪的起伏越小
+            backgroundStyle: {
+              borderWidth: 2,
+              borderColor: '#28b2b6',
+              color: '#000f1c' //9EBB29
+            },
+            direction: 'left', //波移动的速度 两个参数  left 从右往左 right 从左往右
+            waveAnimation: true, //控制波动画的开关  值是布尔值 false 是关闭动画 true 是开启动画 也是默认值
+            animationEasing: 'linear', //初始动画
+            animationEasingUpdate: 'quarticInOut', //数据更新的动画效果
+            animationDuration: 3000, //初始动画的时长，支持回调函数，可以通过每个数据返回不同的 delay 时间实现更绚丽的初始动画效果
+            animationDurationUpdate: 300 //数据更新动画的时长
+          },
+          //后
+
+          {
+            type: 'liquidFill',
+
+            radius: '25%',
+            // 水球颜色
+            color: ['#28b2b6'],
+            center: ['16.6%', '72%'],
+            label: {
+              normal: {
+                textStyle: {
+                  color: '#28b2b6',
+                  insideColor: '#28b2b6',
+                  fontSize: 20
+                }
+              }
+            },
+            backgroundStyle: {
+              color: 'transparent', //图表的背景颜色
+              //borderWidth: '10',//图表的边框宽度
+              //borderColor: '#000',//图表的边框颜色
+              itemStyle: {
+                shadowBlur: 20, //设置无用
+                shadowColor: '#072F3A', //设置无用
+                opacity: 1 //设置无用
+              }
+            },
+            itemStyle: {
+              opacity: 0.5, //波浪的透明度
+              shadowBlur: 10, //波浪的阴影范围
+              shadowColor: '#072F3A' //阴影颜色
+            },
+            outline: {
+              show: true, //是否显示轮廓 布尔值
+              borderDistance: 0, //外部轮廓与图表的距离 数字
+              itemStyle: {
+                borderColor: '#28b2b6', //边框的颜色
+                borderWidth: 1 //边框的宽度
+                //shadowBlur: 5 , //外部轮廓的阴影范围 一旦设置了内外都有阴影
+                //shadowColor: '#000' //外部轮廓的阴影颜色
+              }
+            },
+            emphasis: {
+              itemStyle: {
+                opacity: 1 //鼠标经过波浪颜色的透明度
+              }
+            },
+
+            //data: [0.6, 0.6244, 0.5804, 0.5604, 0.5514],
+            data: [kpidata_3, kpidata_3, kpidata_3, kpidata_3, kpidata_3],
+            amplitude: 4, //振幅 是波浪的震荡幅度 可以取具体的值 也可以是百分比 百分比下是按图标的直径来算
+            waveLength: '50%', //波的长度 可以是百分比也可以是具体的像素值  百分比下是相对于直径的 取得越大波浪的起伏越小
+            backgroundStyle: {
+              borderWidth: 2,
+              borderColor: '#28b2b6',
+              color: '#000f1c' //9EBB29
+            },
+            direction: 'left', //波移动的速度 两个参数  left 从右往左 right 从左往右
+            waveAnimation: true, //控制波动画的开关  值是布尔值 false 是关闭动画 true 是开启动画 也是默认值
+            animationEasing: 'linear', //初始动画
+            animationEasingUpdate: 'quarticInOut', //数据更新的动画效果
+            animationDuration: 3000, //初始动画的时长，支持回调函数，可以通过每个数据返回不同的 delay 时间实现更绚丽的初始动画效果
+            animationDurationUpdate: 300 //数据更新动画的时长
+          },
+
+          {
+            type: 'liquidFill',
+
+            radius: '25%',
+            // 水球颜色
+            color: ['#198bdb'],
+            center: ['33.3%', '72%'],
+            label: {
+              normal: {
+                textStyle: {
+                  color: '#198bdb',
+                  insideColor: '#198bdb',
+                  fontSize: 20
+                }
+              }
+            },
+            backgroundStyle: {
+              color: 'transparent', //图表的背景颜色
+
+              itemStyle: {
+                shadowBlur: 20, //设置无用
+                shadowColor: '#072F3A', //设置无用
+                opacity: 1 //设置无用
+              }
+            },
+            itemStyle: {
+              opacity: 0.5, //波浪的透明度
+              shadowBlur: 10, //波浪的阴影范围
+              shadowColor: '#072F3A' //阴影颜色
+            },
+            outline: {
+              show: true, //是否显示轮廓 布尔值
+              borderDistance: 0, //外部轮廓与图表的距离 数字
+              itemStyle: {
+                borderColor: '#198bdb', //边框的颜色
+                borderWidth: 1 //边框的宽度
+              }
+            },
+            emphasis: {
+              itemStyle: {
+                opacity: 1 //鼠标经过波浪颜色的透明度
+              }
+            },
+
+            //data: [0.3, 0.3444, 0.3404, 0.3904, 0.3014],
+            data: [kpidata_4, kpidata_4, kpidata_4, kpidata_4, kpidata_4],
+            amplitude: 4, //振幅 是波浪的震荡幅度 可以取具体的值 也可以是百分比 百分比下是按图标的直径来算
+            waveLength: '50%', //波的长度 可以是百分比也可以是具体的像素值  百分比下是相对于直径的 取得越大波浪的起伏越小
+            backgroundStyle: {
+              borderWidth: 2,
+              borderColor: '#198bdb',
+              color: '#000f1c' //9EBB29
+            },
+            direction: 'left', //波移动的速度 两个参数  left 从右往左 right 从左往右
+            waveAnimation: true, //控制波动画的开关  值是布尔值 false 是关闭动画 true 是开启动画 也是默认值
+            animationEasing: 'linear', //初始动画
+            animationEasingUpdate: 'quarticInOut', //数据更新的动画效果
+            animationDuration: 3000, //初始动画的时长，支持回调函数，可以通过每个数据返回不同的 delay 时间实现更绚丽的初始动画效果
+            animationDurationUpdate: 300 //数据更新动画的时长
+          },
+
+          {
+            type: 'liquidFill',
+
+            radius: '25%',
+            // 水球颜色
+            color: ['#26d08b'],
+            center: ['50%', '72%'],
+            label: {
+              normal: {
+                textStyle: {
+                  color: '#26d08b',
+                  insideColor: '#26d08b',
+                  fontSize: 20
+                }
+              }
+            },
+            backgroundStyle: {
+              color: 'transparent', //图表的背景颜色
+
+              itemStyle: {
+                shadowBlur: 20, //设置无用
+                shadowColor: '#072F3A', //设置无用
+                opacity: 1 //设置无用
+              }
+            },
+            itemStyle: {
+              opacity: 0.5, //波浪的透明度
+              shadowBlur: 10, //波浪的阴影范围
+              shadowColor: '#072F3A' //阴影颜色
+            },
+            outline: {
+              show: true, //是否显示轮廓 布尔值
+              borderDistance: 0, //外部轮廓与图表的距离 数字
+              itemStyle: {
+                borderColor: '#26d08b', //边框的颜色
+                borderWidth: 1 //边框的宽度
+              }
+            },
+            emphasis: {
+              itemStyle: {
+                opacity: 1 //鼠标经过波浪颜色的透明度
+              }
+            },
+
+            //data: [0.28, 0.2544, 0.2504, 0.2804, 0.3014],
+            data: [kpidata_5, kpidata_5, kpidata_5, kpidata_5, kpidata_5],
+            amplitude: 4, //振幅 是波浪的震荡幅度 可以取具体的值 也可以是百分比 百分比下是按图标的直径来算
+            waveLength: '50%', //波的长度 可以是百分比也可以是具体的像素值  百分比下是相对于直径的 取得越大波浪的起伏越小
+            backgroundStyle: {
+              borderWidth: 2,
+              borderColor: '#26d08b',
+              color: '#000f1c' //9EBB29
+            },
+            direction: 'left', //波移动的速度 两个参数  left 从右往左 right 从左往右
+            waveAnimation: true, //控制波动画的开关  值是布尔值 false 是关闭动画 true 是开启动画 也是默认值
+            animationEasing: 'linear', //初始动画
+            animationEasingUpdate: 'quarticInOut', //数据更新的动画效果
+            animationDuration: 3000, //初始动画的时长，支持回调函数，可以通过每个数据返回不同的 delay 时间实现更绚丽的初始动画效果
+            animationDurationUpdate: 300 //数据更新动画的时长
+          },
+          {
+            type: 'liquidFill',
+            radius: '25%',
+            // 水球颜色
+            color: ['#F9E341'],
+            center: ['66.6%', '72%'],
+            label: {
+              normal: {
+                textStyle: {
+                  color: '#F9E341',
+                  insideColor: '#F9E341',
+                  fontSize: 20
+                }
+              }
+            },
+            backgroundStyle: {
+              color: 'transparent', //图表的背景颜色
+
+              itemStyle: {
+                shadowBlur: 20, //设置无用
+                shadowColor: '#F9E341', //设置无用
+                opacity: 1 //设置无用
+              }
+            },
+            itemStyle: {
+              opacity: 0.5, //波浪的透明度
+              shadowBlur: 10, //波浪的阴影范围
+              shadowColor: '#323923' //阴影颜色
+            },
+            outline: {
+              show: true, //是否显示轮廓 布尔值
+              borderDistance: 0, //外部轮廓与图表的距离 数字
+              itemStyle: {
+                borderColor: '#28b2b6', //边框的颜色
+                borderWidth: 1 //边框的宽度
+              }
+            },
+            emphasis: {
+              itemStyle: {
+                opacity: 1 //鼠标经过波浪颜色的透明度
+              }
+            },
+
+            // data: [0.45, 0.4144, 0.4004, 0.4104, 0.4014],
+            data: [kpidata_6, kpidata_6, kpidata_6, kpidata_6, kpidata_6],
+            amplitude: 4, //振幅 是波浪的震荡幅度 可以取具体的值 也可以是百分比 百分比下是按图标的直径来算
+            waveLength: '50%', //波的长度 可以是百分比也可以是具体的像素值  百分比下是相对于直径的 取得越大波浪的起伏越小
+            backgroundStyle: {
+              borderWidth: 2,
+              borderColor: '#F9E341',
+              color: '#000f1c' //9EBB29
+            },
+            direction: 'left', //波移动的速度 两个参数  left 从右往左 right 从左往右
+            waveAnimation: true, //控制波动画的开关  值是布尔值 false 是关闭动画 true 是开启动画 也是默认值
+            animationEasing: 'linear', //初始动画
+            animationEasingUpdate: 'quarticInOut', //数据更新的动画效果
+            animationDuration: 3000, //初始动画的时长，支持回调函数，可以通过每个数据返回不同的 delay 时间实现更绚丽的初始动画效果
+            animationDurationUpdate: 300 //数据更新动画的时长
+          },
+
+          {
+            type: 'liquidFill',
+            radius: '25%',
+            // 水球颜色
+            color: ['#f3daa9'],
+            center: ['83.3%', '72%'],
+            label: {
+              normal: {
+                textStyle: {
+                  color: '#f3daa9',
+                  insideColor: '#f3daa9',
+                  fontSize: 20
+                }
+              }
+            },
+            backgroundStyle: {
+              color: 'transparent', //图表的背景颜色
+
+              itemStyle: {
+                shadowBlur: 20, //设置无用
+                shadowColor: '#072F3A', //设置无用
+                opacity: 1 //设置无用
+              }
+            },
+            itemStyle: {
+              opacity: 0.5, //波浪的透明度
+              shadowBlur: 10, //波浪的阴影范围
+              shadowColor: '#313737' //阴影颜色
+            },
+            outline: {
+              show: true, //是否显示轮廓 布尔值
+              borderDistance: 0, //外部轮廓与图表的距离 数字
+              itemStyle: {
+                borderColor: '#28b2b6', //边框的颜色
+                borderWidth: 1 //边框的宽度
+              }
+            },
+            emphasis: {
+              itemStyle: {
+                opacity: 1 //鼠标经过波浪颜色的透明度
+              }
+            },
+
+            //data: [0.32, 0.3544, 0.3304, 0.3404, 0.3514],
+            data: [kpidata_7, kpidata_7, kpidata_7, kpidata_7, kpidata_7],
+            amplitude: 4, //振幅 是波浪的震荡幅度 可以取具体的值 也可以是百分比 百分比下是按图标的直径来算
+            waveLength: '50%', //波的长度 可以是百分比也可以是具体的像素值  百分比下是相对于直径的 取得越大波浪的起伏越小
+            backgroundStyle: {
+              borderWidth: 2,
+              borderColor: '#f3daa9',
+              color: '#000f1c' //9EBB29
+            },
+            direction: 'left', //波移动的速度 两个参数  left 从右往左 right 从左往右
+            waveAnimation: true, //控制波动画的开关  值是布尔值 false 是关闭动画 true 是开启动画 也是默认值
+            animationEasing: 'linear', //初始动画
+            animationEasingUpdate: 'quarticInOut', //数据更新的动画效果
+            animationDuration: 3000, //初始动画的时长，支持回调函数，可以通过每个数据返回不同的 delay 时间实现更绚丽的初始动画效果
+            animationDurationUpdate: 300 //数据更新动画的时长
+          }
+        ]
+      }
+
+      var myChart2_2 = Echarts.init(
+        document.getElementById('app2_2'),
+        'default'
+      ) //将配置注入到html中定义的容器
+      myChart2_2.setOption(option2_2)
+    },
     vagetable() {
       //表  损耗
       post('baseCostAccountingMain/findBaseCostAccountingABigScreen', {
@@ -2205,6 +2058,16 @@ export default {
       }).then(res => {
         this.tableData_4 = res.data
         this.echart_go_a(res.map)
+      })
+
+      //4  kpi
+      post('baseKpi/findByPage', {
+        pageIndex: 1,
+        pageSize: 100
+      }).then(res => {
+        debugger
+        this.tableData_4 = res.data
+        this.echart_go_kpi(res.data)
       })
     },
     change() {
@@ -2328,651 +2191,6 @@ export default {
         clearInterval(timer)
       })
     },
-    // 轧辊库存图表
-    async echartStockOption() {
-      var myChart = Echarts.init(
-        document.getElementById('echartBottom'),
-        'light'
-      ) //将配置注入到html中定义的容器
-      myChart.setOption(this.stockOption)
-      window.onresize = function() {
-        myChart.resize()
-      }
-    },
-    findRollStock() {
-      post(vRollStock, {
-        pageIndex: 1,
-        pageSize: 30,
-        condition: ''
-      }).then(res => {
-        var data = []
-        res.data.forEach(item => {
-          data.push(item)
-        })
-        this.stockOption.series[0].data[0] = res.data[9].f1tof4_work_roll
-        this.stockOption.series[0].data[1] = res.data[9].f5tof7_work_roll
-        this.stockOption.series[0].data[2] =
-          res.data[9].f1tof4_backup_roll + res.data[9].f1tof4_backup_roll
-        this.stockOption.series[0].data[3] = res.data[9].r1_r2_work_roll
-        this.stockOption.series[0].data[4] = res.data[9].r1_r2_backup_roll
-        this.stockOption.series[0].data[5] = res.data[9].temper_mill_work_roll
-        this.stockOption.series[0].data[6] = res.data[9].temper_mill_backup_roll
-        this.stockOption.series[0].data[7] = res.data[9].r_vertical_roll
-        this.stockOption.series[0].data[8] = res.data[9].f_vertical_roll
-        this.stockOption.series[0].data[9] = res.data[9].hammer
-
-        this.stockOption.series[1].data[0] = res.data[8].f1tof4_work_roll
-        this.stockOption.series[1].data[1] = res.data[8].f5tof7_work_roll
-        this.stockOption.series[1].data[2] =
-          res.data[8].f1tof4_backup_roll + res.data[8].f1tof4_backup_roll
-        this.stockOption.series[1].data[3] = res.data[8].r1_r2_work_roll
-        this.stockOption.series[1].data[4] = res.data[8].r1_r2_backup_roll
-        this.stockOption.series[1].data[5] = res.data[8].temper_mill_work_roll
-        this.stockOption.series[1].data[6] = res.data[8].temper_mill_backup_roll
-        this.stockOption.series[1].data[7] = res.data[8].r_vertical_roll
-        this.stockOption.series[1].data[8] = res.data[8].f_vertical_roll
-        this.stockOption.series[1].data[9] = res.data[8].hammer
-
-        this.stockOption.series[2].data[0] = res.data[7].f1tof4_work_roll
-        this.stockOption.series[2].data[1] = res.data[7].f5tof7_work_roll
-        this.stockOption.series[2].data[2] =
-          res.data[7].f1tof4_backup_roll + res.data[7].f1tof4_backup_roll
-        this.stockOption.series[2].data[3] = res.data[7].r1_r2_work_roll
-        this.stockOption.series[2].data[4] = res.data[7].r1_r2_backup_roll
-        this.stockOption.series[2].data[5] = res.data[7].temper_mill_work_roll
-        this.stockOption.series[2].data[6] = res.data[7].temper_mill_backup_roll
-        this.stockOption.series[2].data[7] = res.data[7].r_vertical_roll
-        this.stockOption.series[2].data[8] = res.data[7].f_vertical_roll
-        this.stockOption.series[2].data[9] = res.data[7].hammer
-
-        this.stockOption.series[3].data[0] = res.data[6].f1tof4_work_roll
-        this.stockOption.series[3].data[1] = res.data[6].f5tof7_work_roll
-        this.stockOption.series[3].data[2] =
-          res.data[6].f1tof4_backup_roll + res.data[6].f1tof4_backup_roll
-
-        this.stockOption.series[3].data[3] = res.data[6].r1_r2_work_roll
-        this.stockOption.series[3].data[4] = res.data[6].r1_r2_backup_roll
-        this.stockOption.series[3].data[5] = res.data[6].temper_mill_work_roll
-        this.stockOption.series[3].data[6] = res.data[6].temper_mill_backup_roll
-        this.stockOption.series[3].data[7] = res.data[6].r_vertical_roll
-        this.stockOption.series[3].data[8] = res.data[6].f_vertical_roll
-        this.stockOption.series[3].data[9] = res.data[6].hammer
-
-        this.stockOption.series[4].data[0] = res.data[5].f1tof4_work_roll
-        this.stockOption.series[4].data[1] = res.data[5].f5tof7_work_roll
-        this.stockOption.series[4].data[2] =
-          res.data[5].f1tof4_backup_roll + res.data[5].f1tof4_backup_roll
-
-        this.stockOption.series[4].data[3] = res.data[5].r1_r2_work_roll
-        this.stockOption.series[4].data[4] = res.data[5].r1_r2_backup_roll
-        this.stockOption.series[4].data[5] = res.data[5].temper_mill_work_roll
-        this.stockOption.series[4].data[6] = res.data[5].temper_mill_backup_roll
-        this.stockOption.series[4].data[7] = res.data[5].r_vertical_roll
-        this.stockOption.series[4].data[8] = res.data[5].f_vertical_roll
-        this.stockOption.series[4].data[9] = res.data[5].hammer
-
-        this.stockOption.series[5].data[0] = res.data[4].f1tof4_work_roll
-        this.stockOption.series[5].data[1] = res.data[4].f5tof7_work_roll
-        this.stockOption.series[5].data[2] =
-          res.data[4].f1tof4_backup_roll + res.data[4].f1tof4_backup_roll
-        this.stockOption.series[5].data[3] = res.data[4].r1_r2_work_roll
-        this.stockOption.series[5].data[4] = res.data[4].r1_r2_backup_roll
-        this.stockOption.series[5].data[5] = res.data[4].temper_mill_work_roll
-        this.stockOption.series[5].data[6] = res.data[4].temper_mill_backup_roll
-        this.stockOption.series[5].data[7] = res.data[4].r_vertical_roll
-        this.stockOption.series[5].data[8] = res.data[4].f_vertical_roll
-        this.stockOption.series[5].data[9] = res.data[4].hammer
-        // this.stockOption.series[6].data[0] =
-        //   res.data[12].f1tof4_work_roll - res.data[3].f1tof4_work_roll
-        // this.stockOption.series[6].data[1] =
-        //   res.data[12].f5tof7_work_roll - res.data[3].f5tof7_work_roll
-        // this.stockOption.series[6].data[2] =
-        //   res.data[12].f1tof4_backup_roll +
-        //   res.data[12].f1tof4_backup_roll -
-        //   res.data[3].f1tof4_backup_roll -
-        //   res.data[3].f1tof4_backup_roll
-        // this.stockOption.series[6].data[3] =
-        //   res.data[12].r1_r2_work_roll - res.data[3].r1_r2_work_roll
-        // this.stockOption.series[6].data[4] =
-        //   res.data[12].r1_r2_backup_roll - res.data[3].r1_r2_backup_roll
-        // this.stockOption.series[6].data[5] =
-        //   res.data[12].temper_mill_work_roll - res.data[3].temper_mill_work_roll
-        // this.stockOption.series[6].data[6] =
-        //   res.data[12].temper_mill_backup_roll -
-        //   res.data[3].temper_mill_backup_roll
-        // this.stockOption.series[6].data[7] =
-        //   res.data[12].r_vertical_roll - res.data[3].r_vertical_roll
-        // this.stockOption.series[6].data[8] =
-        //   res.data[12].f_vertical_roll - res.data[3].f_vertical_roll
-        // this.stockOption.series[6].data[9] =
-        //   res.data[12].hammer - res.data[3].hammer
-        this.echartStockOption() //轧辊库存
-      })
-    },
-    // 在机棍子
-    // 工作辊1， 支撑辊2
-    // 上辊1， 下辊2
-    async findOnLineRollF1() {
-      let res11 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 1,
-        roll_typeid: 1,
-        roll_positionid: 1
-      })
-      if (res11.status == 2000) {
-        this.Fwork11.roll_no = res11.data[0].roll_no || '--'
-        this.Fwork11.bodyDia = res11.data[0].currentdiameter || '--'
-        this.Fwork11.bear_no = res11.data[0].dbearing_chock || '--'
-      }
-      let res12 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 1,
-        roll_typeid: 1,
-        roll_positionid: 2
-      })
-      if (res12.status == 2000) {
-        this.Fwork12.roll_no = res12.data[0].roll_no || '--'
-        this.Fwork12.bodyDia = res12.data[0].currentdiameter || '--'
-        this.Fwork12.bear_no = res12.data[0].dbearing_chock || '--'
-      }
-      let res13 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 1,
-        roll_typeid: 2,
-        roll_positionid: 1
-      })
-      if (res13.status == 2000) {
-        this.Fwork13.roll_no = res13.data[0].roll_no || '--'
-        this.Fwork13.bodyDia = res13.data[0].currentdiameter || '--'
-        this.Fwork13.bear_no = res13.data[0].dbearing_chock || '--'
-      }
-      let res14 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 1,
-        roll_typeid: 2,
-        roll_positionid: 2
-      })
-      if (res14.status == 2000) {
-        this.Fwork14.roll_no = res14.data[0].roll_no || '--'
-        this.Fwork14.bodyDia = res14.data[0].currentdiameter || '--'
-        this.Fwork14.bear_no = res14.data[0].dbearing_chock || '--'
-      }
-    },
-    async findOnLineRollF2() {
-      let res11 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 2,
-        roll_typeid: 1,
-        roll_positionid: 1
-      })
-      if (res11.status == 2000) {
-        this.F2.work1.roll_no = res11.data[0].roll_no || '--'
-        this.F2.work1.bodyDia = res11.data[0].currentdiameter || '--'
-        this.F2.work1.bear_no = res11.data[0].dbearing_chock || '--'
-      }
-      let res12 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 2,
-        roll_typeid: 1,
-        roll_positionid: 2
-      })
-      if (res12.status == 2000) {
-        this.F2.work2.roll_no = res12.data[0].roll_no || '--'
-        this.F2.work2.bodyDia = res12.data[0].currentdiameter || '--'
-        this.F2.work2.bear_no = res12.data[0].dbearing_chock || '--'
-      }
-      let res13 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 1,
-        roll_typeid: 2,
-        roll_positionid: 1
-      })
-      if (res13.status == 2000) {
-        this.F2.zhi1.roll_no = res13.data[0].roll_no || '--'
-        this.F2.zhi1.bodyDia = res13.data[0].currentdiameter || '--'
-        this.F2.zhi1.bear_no = res13.data[0].dbearing_chock || '--'
-      }
-      let res14 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 1,
-        roll_typeid: 2,
-        roll_positionid: 2
-      })
-      if (res14.status == 2000) {
-        this.F2.zhi2.roll_no = res14.data[0].roll_no || '--'
-        this.F2.zhi2.bodyDia = res14.data[0].currentdiameter || '--'
-        this.F2.zhi2.bear_no = res14.data[0].dbearing_chock || '--'
-      }
-    },
-    async findOnLineRollF3() {
-      let res11 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 3,
-        roll_typeid: 1,
-        roll_positionid: 1
-      })
-      if (res11.status == 2000) {
-        this.F3.work1.roll_no = res11.data[0].roll_no || '--'
-        this.F3.work1.bodyDia = res11.data[0].currentdiameter || '--'
-        this.F3.work1.bear_no = res11.data[0].dbearing_chock || '--'
-      }
-      let res12 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 3,
-        roll_typeid: 1,
-        roll_positionid: 2
-      })
-      if (res12.status == 2000) {
-        this.F3.work2.roll_no = res12.data[0].roll_no || '--'
-        this.F3.work2.bodyDia = res12.data[0].currentdiameter || '--'
-        this.F3.work2.bear_no = res12.data[0].dbearing_chock || '--'
-      }
-      let res13 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 3,
-        roll_typeid: 2,
-        roll_positionid: 1
-      })
-      if (res13.status == 2000) {
-        this.F3.zhi1.roll_no = res13.data[0].roll_no || '--'
-        this.F3.zhi1.bodyDia = res13.data[0].currentdiameter || '--'
-        this.F3.zhi1.bear_no = res13.data[0].dbearing_chock || '--'
-      }
-      let res14 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 3,
-        roll_typeid: 2,
-        roll_positionid: 2
-      })
-      if (res14.status == 2000) {
-        this.F3.zhi2.roll_no = res14.data[0].roll_no || '--'
-        this.F3.zhi2.bodyDia = res14.data[0].currentdiameter || '--'
-        this.F3.zhi2.bear_no = res14.data[0].dbearing_chock || '--'
-      }
-    },
-    async findOnLineRollF4() {
-      let res11 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 4,
-        roll_typeid: 1,
-        roll_positionid: 1
-      })
-      if (res11.status == 2000) {
-        this.F4.work1.roll_no = res11.data[0].roll_no || '--'
-        this.F4.work1.bodyDia = res11.data[0].currentdiameter || '--'
-        this.F4.work1.bear_no = res11.data[0].dbearing_chock || '--'
-      }
-      let res12 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 4,
-        roll_typeid: 1,
-        roll_positionid: 2
-      })
-      if (res12.status == 2000) {
-        this.F4.work2.roll_no = res12.data[0].roll_no || '--'
-        this.F4.work2.bodyDia = res12.data[0].currentdiameter || '--'
-        this.F4.work2.bear_no = res12.data[0].dbearing_chock || '--'
-      }
-      let res13 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 4,
-        roll_typeid: 2,
-        roll_positionid: 1
-      })
-      if (res13.status == 2000) {
-        this.F4.zhi1.roll_no = res13.data[0].roll_no || '--'
-        this.F4.zhi1.bodyDia = res13.data[0].currentdiameter || '--'
-        this.F4.zhi1.bear_no = res13.data[0].dbearing_chock || '--'
-      }
-      let res14 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 4,
-        roll_typeid: 2,
-        roll_positionid: 2
-      })
-      if (res14.status == 2000) {
-        this.F4.zhi2.roll_no = res14.data[0].roll_no || '--'
-        this.F4.zhi2.bodyDia = res14.data[0].currentdiameter || '--'
-        this.F4.zhi2.bear_no = res14.data[0].dbearing_chock || '--'
-      }
-    },
-    async findOnLineRollF5() {
-      let res11 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 5,
-        roll_typeid: 1,
-        roll_positionid: 1
-      })
-      if (res11.status == 2000) {
-        this.F5.work1.roll_no = res11.data[0].roll_no || '--'
-        this.F5.work1.bodyDia = res11.data[0].currentdiameter || '--'
-        this.F5.work1.bear_no = res11.data[0].dbearing_chock || '--'
-      }
-      let res12 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 5,
-        roll_typeid: 1,
-        roll_positionid: 2
-      })
-      if (res12.status == 2000) {
-        this.F5.work2.roll_no = res12.data[0].roll_no || '--'
-        this.F5.work2.bodyDia = res12.data[0].currentdiameter || '--'
-        this.F5.work2.bear_no = res12.data[0].dbearing_chock || '--'
-      }
-      let res13 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 5,
-        roll_typeid: 2,
-        roll_positionid: 1
-      })
-      if (res13.status == 2000) {
-        this.F5.zhi1.roll_no = res13.data[0].roll_no || '--'
-        this.F5.zhi1.bodyDia = res13.data[0].currentdiameter || '--'
-        this.F5.zhi1.bear_no = res13.data[0].dbearing_chock || '--'
-      }
-      let res14 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 5,
-        roll_typeid: 2,
-        roll_positionid: 2
-      })
-      if (res14.status == 2000) {
-        this.F5.zhi2.roll_no = res14.data[0].roll_no || '--'
-        this.F5.zhi2.bodyDia = res14.data[0].currentdiameter || '--'
-        this.F5.zhi2.bear_no = res14.data[0].dbearing_chock || '--'
-      }
-    },
-    async findOnLineRollF6() {
-      let res11 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 6,
-        roll_typeid: 1,
-        roll_positionid: 1
-      })
-      if (res11.status == 2000) {
-        this.F6.work1.roll_no = res11.data[0].roll_no || '--'
-        this.F6.work1.bodyDia = res11.data[0].currentdiameter || '--'
-        this.F6.work1.bear_no = res11.data[0].dbearing_chock || '--'
-      }
-      let res12 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 6,
-        roll_typeid: 1,
-        roll_positionid: 2
-      })
-      if (res12.status == 2000) {
-        this.F6.work2.roll_no = res12.data[0].roll_no || '--'
-        this.F6.work2.bodyDia = res12.data[0].currentdiameter || '--'
-        this.F6.work2.bear_no = res12.data[0].dbearing_chock || '--'
-      }
-      let res13 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 6,
-        roll_typeid: 2,
-        roll_positionid: 1
-      })
-      if (res13.status == 2000) {
-        this.F6.zhi1.roll_no = res13.data[0].roll_no || '--'
-        this.F6.zhi1.bodyDia = res13.data[0].currentdiameter || '--'
-        this.F6.zhi1.bear_no = res13.data[0].dbearing_chock || '--'
-      }
-      let res14 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 6,
-        roll_typeid: 2,
-        roll_positionid: 2
-      })
-      if (res14.status == 2000) {
-        this.F6.zhi2.roll_no = res14.data[0].roll_no || '--'
-        this.F6.zhi2.bodyDia = res14.data[0].currentdiameter || '--'
-        this.F6.zhi2.bear_no = res14.data[0].dbearing_chock || '--'
-      }
-    },
-    async findOnLineRollF7() {
-      let res11 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 7,
-        roll_typeid: 1,
-        roll_positionid: 1
-      })
-      if (res11.status == 2000) {
-        this.F7.work1.roll_no = res11.data[0].roll_no || '--'
-        this.F7.work1.bodyDia = res11.data[0].currentdiameter || '--'
-        this.F7.work1.bear_no = res11.data[0].dbearing_chock || '--'
-      }
-      let res12 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 7,
-        roll_typeid: 1,
-        roll_positionid: 2
-      })
-      if (res12.status == 2000) {
-        this.F7.work2.roll_no = res12.data[0].roll_no || '--'
-        this.F7.work2.bodyDia = res12.data[0].currentdiameter || '--'
-        this.F7.work2.bear_no = res12.data[0].dbearing_chock || '--'
-      }
-      let res13 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 7,
-        roll_typeid: 2,
-        roll_positionid: 1
-      })
-      if (res13.status == 2000) {
-        this.F7.zhi1.roll_no = res13.data[0].roll_no || '--'
-        this.F7.zhi1.bodyDia = res13.data[0].currentdiameter || '--'
-        this.F7.zhi1.bear_no = res13.data[0].dbearing_chock || '--'
-      }
-      let res14 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 7,
-        roll_typeid: 2,
-        roll_positionid: 2
-      })
-      if (res14.status == 2000) {
-        this.F7.zhi2.roll_no = res14.data[0].roll_no || '--'
-        this.F7.zhi2.bodyDia = res14.data[0].currentdiameter || '--'
-        this.F7.zhi2.bear_no = res14.data[0].dbearing_chock || '--'
-      }
-    },
-    async findOnLineRollR1() {
-      let res11 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 8,
-        roll_typeid: 1,
-        roll_positionid: 1
-      })
-      if (res11.status == 2000) {
-        this.R1.work1.roll_no = res11.data[0].roll_no || '--'
-        this.R1.work1.bodyDia = res11.data[0].currentdiameter || '--'
-        this.R1.work1.bear_no = res11.data[0].dbearing_chock || '--'
-      }
-      let res12 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 8,
-        roll_typeid: 1,
-        roll_positionid: 2
-      })
-      if (res12.status == 2000) {
-        this.R1.work2.roll_no = res12.data[0].roll_no || '--'
-        this.R1.work2.bodyDia = res12.data[0].currentdiameter || '--'
-        this.R1.work2.bear_no = res12.data[0].dbearing_chock || '--'
-      }
-      let res13 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 8,
-        roll_typeid: 2,
-        roll_positionid: 1
-      })
-      if (res13.status == 2000) {
-        this.R1.zhi1.roll_no = res13.data[0].roll_no || '--'
-        this.R1.zhi1.bodyDia = res13.data[0].currentdiameter || '--'
-        this.R1.zhi1.bear_no = res13.data[0].dbearing_chock || '--'
-      }
-      let res14 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 8,
-        roll_typeid: 2,
-        roll_positionid: 2
-      })
-      if (res14.status == 2000) {
-        this.R1.zhi2.roll_no = res14.data[0].roll_no || '--'
-        this.R1.zhi2.bodyDia = res14.data[0].currentdiameter || '--'
-        this.R1.zhi2.bear_no = res14.data[0].dbearing_chock || '--'
-      }
-    },
-    async findOnLineRollR2() {
-      let res11 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 9,
-        roll_typeid: 1,
-        roll_positionid: 1
-      })
-      if (res11.status == 2000) {
-        this.R2.work1.roll_no = res11.data[0].roll_no || '--'
-        this.R2.work1.bodyDia = res11.data[0].currentdiameter || '--'
-        this.R2.work1.bear_no = res11.data[0].dbearing_chock || '--'
-      }
-      let res12 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 9,
-        roll_typeid: 1,
-        roll_positionid: 2
-      })
-      if (res12.status == 2000) {
-        this.R2.work2.roll_no = res12.data[0].roll_no || '--'
-        this.R2.work2.bodyDia = res12.data[0].currentdiameter || '--'
-        this.R2.work2.bear_no = res12.data[0].dbearing_chock || '--'
-      }
-      let res13 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 9,
-        roll_typeid: 2,
-        roll_positionid: 1
-      })
-      if (res13.status == 2000) {
-        this.R2.zhi1.roll_no = res13.data[0].roll_no || '--'
-        this.R2.zhi1.bodyDia = res13.data[0].currentdiameter || '--'
-        this.R2.zhi1.bear_no = res13.data[0].dbearing_chock || '--'
-      }
-      let res14 = await post('rollInformation/findRevolve', {
-        roll_revolve: '7',
-        frame_noid: 9,
-        roll_typeid: 2,
-        roll_positionid: 2
-      })
-      if (res14.status == 2000) {
-        this.R2.zhi2.roll_no = res14.data[0].roll_no || '--'
-        this.R2.zhi2.bodyDia = res14.data[0].currentdiameter || '--'
-        this.R2.zhi2.bear_no = res14.data[0].dbearing_chock || '--'
-      }
-    },
-    // 换辊小车接口
-    async findCar2() {
-      let res2 = await post('rollInformation/findRevolve', {
-        roll_revolve: '3',
-        frame_noid: 2
-      })
-      if (res2.status == 2000) {
-        this.car.F2.roll_no = res2.data[0].roll_no || ''
-        this.car.F2.bodyDia = res2.data[0].currentdiameter || ''
-        this.car.F2.bear_no = res2.data[0].dbearing_chock || ''
-      }
-    },
-    async findCar3() {
-      let res3 = await post('rollInformation/findRevolve', {
-        roll_revolve: '3',
-        frame_noid: 3
-      })
-      if (res3.status == 2000) {
-        this.car.F3.roll_no = res3.data[0].roll_no || ''
-        this.car.F3.bodyDia = res3.data[0].currentdiameter || ''
-        this.car.F3.bear_no = res3.data[0].dbearing_chock || ''
-      }
-    },
-    async findCar4() {
-      let res4 = await post('rollInformation/findRevolve', {
-        roll_revolve: '3',
-        frame_noid: 4
-      })
-      if (res4.status == 2000) {
-        this.car.F4.roll_no = res4.data[0].roll_no || ''
-        this.car.F4.bodyDia = res4.data[0].currentdiameter || ''
-        this.car.F4.bear_no = res4.data[0].dbearing_chock || ''
-      }
-    },
-    async findCar5() {
-      let res5 = await post('rollInformation/findRevolve', {
-        roll_revolve: '3',
-        frame_noid: 5
-      })
-      if (res5.status == 2000) {
-        this.car.F5.roll_no = res5.data[0].roll_no || ''
-        this.car.F5.bodyDia = res5.data[0].currentdiameter || ''
-        this.car.F5.bear_no = res5.data[0].dbearing_chock || ''
-      }
-    },
-    async findCar6() {
-      let res6 = await post('rollInformation/findRevolve', {
-        roll_revolve: '3',
-        frame_noid: 6
-      })
-      if (res6.status == 2000) {
-        this.car.F6.roll_no = res6.data[0].roll_no || ''
-        this.car.F6.bodyDia = res6.data[0].currentdiameter || ''
-        this.car.F6.bear_no = res6.data[0].dbearing_chock || ''
-      }
-    },
-    async findCar7() {
-      let res7 = await post('rollInformation/findRevolve', {
-        roll_revolve: '3',
-        frame_no: 7
-      })
-      if (res7.status == 2000) {
-        this.car.F7.roll_no = res7.data[0].roll_no || ''
-        this.car.F7.bodyDia = res7.data[0].currentdiameter || ''
-        this.car.F7.bear_no = res7.data[0].dbearing_chock || ''
-      }
-    },
-    async findCar8() {
-      let res8 = await post('rollInformation/findRevolve', {
-        roll_revolve: '3',
-        frame_noid: 8
-      })
-      if (res8.status == 2000) {
-        this.car.R1.roll_no = res8.data[0].roll_no || ''
-        this.car.R1.bodyDia = res8.data[0].currentdiameter || ''
-        this.car.R1.bear_no = res8.data[0].dbearing_chock || ''
-      }
-    },
-    async findCar9() {
-      let res9 = await post('rollInformation/findRevolve', {
-        roll_revolve: '3',
-        frame_noid: 9
-      })
-      if (res9.status == 2000) {
-        this.car.R2.roll_no = res9.data[0].roll_no || ''
-        this.car.R2.bodyDia = res9.data[0].currentdiameter || ''
-        this.car.R2.bear_no = res9.data[0].dbearing_chock || ''
-      }
-    },
-    async findCar() {
-      let res1 = await post('rollInformation/findRevolve', {
-        roll_revolve: '3',
-        frame_noid: 1
-      })
-      if (res1.status == 2000) {
-        this.car.F1.roll_no = res1.data[0].roll_no || ''
-        this.car.F1.bodyDia = res1.data[0].currentdiameter || ''
-        this.car.F1.bear_no = res1.data[0].dbearing_chock || ''
-      }
-    },
-    // 备辊接口
-    async findRollBei() {
-      let res = await post('rollInformation/findSizeByType', {})
-      if (res.status == 2000) {
-        this.echart_go_3(res.data)
-      }
-    },
     getNowTime() {
       let time = {
         1: '周一',
@@ -2986,227 +2204,6 @@ export default {
       this.nowTime.time = moment().format('HH:mm:ss')
       this.nowTime.day = moment().format('YYYY年MM月DD日')
       this.nowTime.date = time[moment().weekday()]
-    },
-    echart_go_2(val) {
-      var myChart1 = Echarts.init(document.getElementById('app1'), 'light')
-      var myChart2 = Echarts.init(document.getElementById('app2'), 'light')
-      var myChart3 = Echarts.init(document.getElementById('app3'), 'light')
-      var myChart4 = Echarts.init(document.getElementById('app4'), 'light')
-      var myChart5 = Echarts.init(document.getElementById('app5'), 'light')
-      var myChart6 = Echarts.init(document.getElementById('app6'), 'light')
-      var myChart7 = Echarts.init(document.getElementById('app7'), 'light')
-      //将配置注入到html中定义的容器
-      let option0 = this.echartOpents(val[0])
-      let option1 = this.echartOpents(val[1])
-      let option2 = this.echartOpents(val[2])
-      let option3 = this.echartOpents(val[3])
-      let option4 = this.echartOpents(val[4])
-      let option5 = this.echartOpents(val[5])
-      let option6 = this.echartOpents(val[6])
-      myChart1.setOption(option0)
-      myChart2.setOption(option1)
-      myChart3.setOption(option2)
-      myChart4.setOption(option3)
-      myChart5.setOption(option4)
-      myChart6.setOption(option5)
-      myChart7.setOption(option6)
-      window.addEventListener('resize', function() {
-        myChart1.resize()
-      })
-    },
-    echartOpents(data) {
-      var option = {
-        textStyle: {
-          color: '#eae8c5' //字体颜色
-        },
-        tooltip: {
-          trigger: 'axis'
-        }, //联动
-        title: {
-          textStyle: {
-            color: '#eae8c5', //字体颜色
-            fontSize: 10
-          },
-          text: data.roll_type,
-          x: 10,
-          y: 8
-        },
-        legend: {
-          orient: 'vertical',
-          right: 1,
-          bottom: 1,
-          textStyle: {
-            color: '#ffffff',
-            fontSize: 9
-            // rich:
-          },
-          icon: 'circle',
-          itemHeight: 5,
-          data: ['待磨削', '在冷却', '在磨削', '在装配'],
-          formatter: function(name) {
-            let data = option.series[0].data
-            let value = ''
-            for (const item of data) {
-              if (item.name == name) {
-                value = item.value
-              }
-            }
-            return name + ' ' + value
-          }
-        },
-        series: [
-          {
-            type: 'pie',
-            hoverOffset: 1,
-            radius: ['40%', '60%'],
-            center: [40, 60],
-            avoidLabelOverlap: false,
-            label: {
-              show: false,
-              position: 'center'
-            },
-            emphasis: {
-              label: {
-                show: true,
-                fontSize: 10,
-                fontWeight: 'bold'
-              }
-            },
-            labelLine: {
-              show: false
-            },
-            data: [
-              { value: data.dmx, name: '待磨削' },
-              { value: data.zlq, name: '在冷却' },
-              { value: data.zmx, name: '在磨削' },
-              { value: data.zzp, name: '在装配' }
-            ]
-          }
-        ]
-      }
-      return option
-    },
-    // 获得最佳班组
-    async findTearm() {
-      //重写排序方法
-      var compare = function(attribute) {
-        return function(obj1, obj2) {
-          var val1 = obj1[attribute]
-          var val2 = obj2[attribute]
-          if (val1 < val2) {
-            return -1
-          } else if (val1 > val2) {
-            return 1
-          } else {
-            return 0
-          }
-        }
-      }
-      this.mochuangDate = moment().format('YYYY年MM月')
-      let res = await pythonPOST1('/python/RollEvaluateMachineNo/', {
-        grind_starttime: moment()
-          .startOf('month')
-          .format('YYYY-MM-DD HH:mm:ss'),
-        grind_endtime: moment()
-          .startOf()
-          .format('YYYY-MM-DD HH:mm:ss')
-      })
-      let data = []
-      if (res.code == 200) {
-        res.data.forEach(item => {
-          data.push(JSON.parse(item))
-        })
-        this.mochuang3 = data[0].sort(compare('value'))[0]
-        this.mochuang4 = data[1].sort(compare('value'))[0]
-        this.mochuang5 = data[2].sort(compare('value'))[0]
-        this.mochuang6 = data[3].sort(compare('value'))[0]
-      }
-    },
-    setmoleft() {
-      this.mwidth += this.speed
-      this.mobed2.mwidth += this.mobed2.speed
-      this.mobed3.mwidth += this.mobed3.speed
-      this.mobed4.mwidth += this.mobed4.speed
-      this.mobed5.mwidth += this.mobed5.speed
-      this.mobed6.mwidth += this.mobed6.speed
-      if (this.flag) {
-        this.mobed1.left = 111 - this.mwidth
-      } else {
-        this.mobed1.left = 70 + this.mwidth
-      }
-      if (this.mobed2.flag) {
-        this.mobed2.left = 111 - this.mobed2.mwidth
-      } else {
-        this.mobed2.left = 70 + this.mobed2.mwidth
-      }
-      if (this.mobed3.flag) {
-        this.mobed3.left = 111 - this.mobed3.mwidth
-      } else {
-        this.mobed3.left = 70 + this.mobed3.mwidth
-      }
-      if (this.mobed4.flag) {
-        this.mobed4.left = 111 - this.mobed4.mwidth
-      } else {
-        this.mobed4.left = 70 + this.mobed4.mwidth
-      }
-      if (this.mobed5.flag) {
-        this.mobed5.left = 111 - this.mobed5.mwidth
-      } else {
-        this.mobed5.left = 70 + this.mobed5.mwidth
-      }
-      if (this.mobed6.flag) {
-        this.mobed6.left = 111 - this.mobed6.mwidth
-      } else {
-        this.mobed6.left = 70 + this.mobed6.mwidth
-      }
-    },
-    async findmo1() {
-      let res = await post('rollInformation/findByMachine', {
-        machine_id: '1'
-      })
-      if (res.status == 2000) {
-        this.mobed1.roll_no = res.data[0].roll_no
-      }
-    },
-    async findmo2() {
-      let res = await post('rollInformation/findByMachine', {
-        machine_id: '2'
-      })
-      if (res.status == 2000) {
-        this.mobed2.roll_no = res.data[0].roll_no
-      }
-    },
-    async findmo3() {
-      let res = await post('rollInformation/findByMachine', {
-        machine_id: '3'
-      })
-      if (res.status == 2000) {
-        this.mobed3.roll_no = res.data[0].roll_no
-      }
-    },
-    async findmo4() {
-      let res = await post('rollInformation/findByMachine', {
-        machine_id: '4'
-      })
-      if (res.status == 2000) {
-        this.mobed4.roll_no = res.data[0].roll_no
-      }
-    },
-    async findmo5() {
-      let res = await post('rollInformation/findByMachine', {
-        machine_id: '5'
-      })
-      if (res.status == 2000) {
-        this.mobed5.roll_no = res.data[0].roll_no
-      }
-    },
-    async findmo6() {
-      let res = await post('rollInformation/findByMachine', {
-        machine_id: '6'
-      })
-      if (res.status == 2000) {
-        this.mobed6.roll_no = res.data[0].roll_no
-      }
     }
   }
 }

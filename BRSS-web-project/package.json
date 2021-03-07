@@ -21,6 +21,7 @@
     "docxtemplater-image-module-free": "^1.1.1",
     "echarts": "^4.8.0",
     "echarts-gl": "^1.1.1",
+    "echarts-liquidfill": "^2.0.2",
     "el-tree-transfer": "^2.3.0",
     "element-ui": "^2.13.2",
     "event-stream": "^4.0.1",

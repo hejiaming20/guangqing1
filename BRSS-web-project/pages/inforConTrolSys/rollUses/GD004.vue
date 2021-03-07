@@ -366,8 +366,9 @@ export default {
   components: { TableEasy },
   data() {
     return {
-      src:
-        'http://169.254.100.101:8080/reportpdf/ET1/2020_11_28-07.34.40=RWD1-0011.pdf',
+      /* src:
+        'http://169.254.100.101:8080/reportpdf/ET1/2020_11_28-07.34.40=RWD1-0011.pdf',*/
+      src: '',
       htmlTitle: '页面导出PDF文件名',
       searchFlag: false,
       searchInfo: {
@@ -522,6 +523,10 @@ export default {
         this.tableData = res.data
         this.total = res.count
         this.first_ech(res)
+        //显示pdf
+        if (res.data[0].roll_no) {
+          this.show_pdf(res.data[0])
+        }
       })
     },
     async first_ech(data1) {
@@ -561,7 +566,6 @@ export default {
       }
     },
     async cellClick(val) {
-      // this.src = 'http://169.254.100.101:8080/reportpdf/公积金打印凭证.pdf'
       this.roll_need = val.roll_no
       this.rowIndex = val.indocno
       //this.searchin.grinder = val.machine_no
@@ -583,6 +587,46 @@ export default {
       } else {
         this.dr_echart(res1.data)
       }
+      //pdf显示
+      this.show_pdf(val)
+    },
+    show_pdf(val) {
+      // this.src = 'http://169.254.100.101:8080/reportpdf/公积金打印凭证.pdf'
+      var ettime_1 = val.ettime
+      var roll_no_1 = val.roll_no
+      if (val.machineno == 1) {
+        this.src =
+          'http://169.254.100.101:8080/reportpdf/ET1/' +
+          ettime_1 +
+          '=' +
+          roll_no_1 +
+          '.pdf'
+      }
+      if (val.machineno == 2) {
+        this.src =
+          'http://169.254.100.101:8080/reportpdf/ET2/' +
+          ettime_1 +
+          '=' +
+          roll_no_1 +
+          '.pdf'
+      }
+      if (val.machineno == 3) {
+        this.src =
+          'http://169.254.100.101:8080/reportpdf/ET3/' +
+          ettime_1 +
+          '=' +
+          roll_no_1 +
+          '.pdf'
+      }
+      if (val.machineno == 4) {
+        this.src =
+          'http://169.254.100.101:8080/reportpdf/ET4/' +
+          ettime_1 +
+          '=' +
+          roll_no_1 +
+          '.pdf'
+      }
+      console.log(this.src)
     },
 
     /**
