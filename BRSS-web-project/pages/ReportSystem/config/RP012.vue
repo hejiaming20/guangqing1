@@ -1,6 +1,9 @@
 <!--大屏kpi定制-->
 <template>
   <div>
+    <div class="watch" >
+      <div @click="aaaa('/Board')">点我跳转大屏</div>
+    </div>
     <Table-easy
       :table-data="tableData"
       :total="total"
@@ -173,6 +176,9 @@ export default {
     })
   },
   methods: {
+    aaaa(val) {
+      this.$router.push({ path: val })
+    },
     handleTypeChange() {
       this.accidentTypeArray.forEach(item => {
         if (item.value == this.formLabelAlign.frame_no) {
@@ -292,4 +298,20 @@ export default {
 </script>
 
 <style>
+.watch {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 500px;
+  margin-bottom: 10px;
+  color: #3028ff;
+  font-size: 50px;
+  background-color: #fcce1f;
+  width: 500px;
+  max-height: 80px;
+  //text-decoration: underline;
+}
+.watch:hover {
+  color: red;
+  font-weight: bold;
+}
 </style>

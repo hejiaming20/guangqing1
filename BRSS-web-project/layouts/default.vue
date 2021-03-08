@@ -14,15 +14,19 @@
           <!-- <i class="logo"/> -->
 
           <img
-            style="margin-left: 20px"
+            style="margin-left: 50px"
             class="logo"
             src="../assets/img/GQMTv2.1.png">
           <span
             class="iem-title">GQMT</span>
-            <!-- <img
+            <!--<img
             class="logo"
             src="../assets/img/nercar_v2.png">-->
         </div>
+        <div style="height: 55px;margin-right: 10px"> <img
+          style="margin-left: 0px;height: 55px"
+          class="logo"
+          src="../assets/boardImage/NERCAR.gif"></div>
         <div
           class="right-header"
           style="flex: 1">
@@ -46,6 +50,12 @@
                     :list="breadcrumblist"
                     @next-index="handleIndex"/>
                 </el-col>
+                <!--<el-col :span="8">
+                  <div style="width: 200px;height: 55px"> <img
+                    style="margin-left: 20px;height: 55px"
+                    class="logo"
+                    src="../assets/boardImage/logo_b.jpg"></div>
+                </el-col>-->
               </el-row>
             </el-col>
             <el-col
