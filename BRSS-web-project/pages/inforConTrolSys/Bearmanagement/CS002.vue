@@ -81,10 +81,10 @@
                 size="mini"
                 type="primary"
                 @click="resetForm('ruleForm')">重置</el-button>
-              <el-button
+                <!-- <el-button
                 size="mini"
                 type="primary"
-                @click="handleAddClick">添加</el-button>
+                @click="handleAddClick">添加</el-button>-->
             </div>
           </el-col>
         </el-row>

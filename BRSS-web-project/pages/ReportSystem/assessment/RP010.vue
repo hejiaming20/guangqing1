@@ -164,16 +164,14 @@ export default {
       option_fact: [],
       option_2: [],
       searchInfo: {
-        dbegin: '',
-        roll_typeid: '',
-        framerangeid: '',
+        roll_no: '',
         factory_id: '',
-        material_id: ''
+        frame_noid: ''
       },
       searchInfoEchartsLight: {
-        machine_no: '',
-        grind_starttime: '',
-        grind_endtime: ''
+        roll_no: '',
+        factory_id: '',
+        frame_noid: ''
       },
       machineArray: []
     }

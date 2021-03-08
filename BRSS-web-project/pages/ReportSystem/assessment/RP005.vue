@@ -356,15 +356,18 @@ export default {
     // 主表重置
     resetForm() {
       this.searchInfo = {
-        sbz: '',
-        mochuang: '',
-        grind_endtime: '',
-        grind_starttime: ''
+        dbegin: '',
+        dend: '',
+        roll_typeid: '',
+        framerangeid: '',
+        specifications_noid: '',
+        material_id: '',
+        material_noid: ''
       }
-      this.searchInfo.grind_starttime = moment()
+      this.searchInfo.dbegin = moment()
         .subtract(30, 'days')
         .format('YYYY-MM-DD HH:mm:ss')
-      this.searchInfo.grind_endtime = moment().format('YYYY-MM-DD HH:mm:ss')
+      this.searchInfo.dend = moment().format('YYYY-MM-DD HH:mm:ss')
       this.findAll()
     }
   }

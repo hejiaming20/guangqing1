@@ -139,7 +139,7 @@
           prop="discard_time" />
         <el-table-column
           label="操作"
-          min-width="300"
+          min-width="330"
           align="center">
           <template slot-scope="scope">
             <el-button
@@ -158,10 +158,10 @@
               size="mini"
               type="warning"
               @click.stop="kong_left(scope.row)">单次提醒置空</el-button>
-              <!-- <el-button
-            size="mini"
-            type="danger"
-            @click.stop="handleDelete(scope.row)">删除</el-button>-->
+            <el-button
+              size="mini"
+              type="danger"
+              @click.stop="handleDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </template>
@@ -709,15 +709,17 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          post('/baseChock/deleteOne', { indocno: data.indocno }).then(res => {
-            if (res) {
-              this.$message({
-                type: 'success',
-                message: '删除成功!'
-              })
-              this.findAll()
+          post('/baseBearing/deleteOne', { indocno: data.indocno }).then(
+            res => {
+              if (res) {
+                this.$message({
+                  type: 'success',
+                  message: '删除成功!'
+                })
+                this.findAll()
+              }
             }
-          })
+          )
           this.findAll()
         })
         .catch(() => {
