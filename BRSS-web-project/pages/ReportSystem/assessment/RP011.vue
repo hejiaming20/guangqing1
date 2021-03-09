@@ -1,6 +1,9 @@
 <!--安全库存导出-->
 <template>
   <div>
+    <div style="color:greenyellow;margin-top: 5px;margin-bottom: 5px; padding-top: 4px;padding-bottom: 4px ; padding-left: 25px;width: 100%;background-color: #253F80;font-size: 14px;height:40px;overflow-y: auto ">
+      说明：理论值=结存 - 季度消耗 - 安全库存+140
+    </div>
     <Table-easy
       :table-data="tableData"
       :total="total"
