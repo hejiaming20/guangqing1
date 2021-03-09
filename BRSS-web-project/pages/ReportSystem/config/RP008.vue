@@ -109,13 +109,13 @@
           label="机架范围"/>
         <el-table-column
           prop="safe_inventory"
-          label="安全库存"/>
+          label="安全库存(mm)"/>
         <el-table-column
           prop="purchasing_cycle"
-          label="采购周期"/>
+          label="采购周期(月)"/>
         <el-table-column
           prop="d_inventory"
-          label="季度消耗"/>
+          label="季度消耗(mm)"/>
         <el-table-column
           label="操作"
           align="center">
@@ -147,7 +147,7 @@
           <el-row>
             <el-col :span="8">
               <el-form-item
-                label="安全库存"
+                label="安全库存(元)"
                 prop="safe_inventory">
                 <el-input v-model.trim="formLabelAlign.safe_inventory" />
               </el-form-item>
@@ -168,7 +168,7 @@
             </el-col>
             <el-col :span="8">
               <el-form-item
-                label="采购周期"
+                label="采购周期(月)"
                 prop="purchasing_cycle">
                 <el-input v-model.trim="formLabelAlign.purchasing_cycle" />
               </el-form-item>
@@ -190,7 +190,7 @@
             </el-col>
             <el-col :span="8">
               <el-form-item
-                label="季度消耗"
+                label="季度消耗(mm)"
                 prop="d_inventory">
                 <el-input v-model.trim="formLabelAlign.d_inventory" />
               </el-form-item>

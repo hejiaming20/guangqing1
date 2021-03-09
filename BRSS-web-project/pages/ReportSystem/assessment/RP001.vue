@@ -147,10 +147,10 @@
           label="轧辊厂家"/>
         <el-table-column
           prop="currentdiameter"
-          label="当前直径"/>
+          label="当前直径mm"/>
         <el-table-column
           prop="body_diameter"
-          label="结存"/>
+          label="结存mm"/>
       </template>
     </Table-easy>
   </div>
@@ -290,8 +290,8 @@ export default {
         console.log(res.data.length)
         // this.tableData.push({ roll_no: '辊径合计', body_diameter: res.number })
         this.tableData.splice(0, 0, {
-          roll_no: '合计',
-          body_diameter: res.number
+          // roll_no: '合计',
+          body_diameter: '合计:' + res.number
         })
         this.total = res.count
       })

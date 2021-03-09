@@ -124,10 +124,10 @@
           label="轧辊厂家"/>
         <el-table-column
           prop="mmnumber"
-          label="毫米数"/>
+          label="毫米数(mm)"/>
         <el-table-column
           prop="weight"
-          label="重量"/>
+          label="重量(t)"/>
         <el-table-column
           prop="rollkilometer"
           label="轧制公里数"/>

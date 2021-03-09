@@ -120,19 +120,19 @@
           label="机架范围"/>
         <el-table-column
           prop="d_inventory"
-          label="季度消耗"/>
+          label="季度消耗(mm)"/>
         <el-table-column
           prop="safe_inventory"
-          label="安全库存"/>
+          label="安全库存(mm)"/>
         <el-table-column
           prop="s_inventory"
-          label="结存"/>
+          label="结存(mm)"/>
         <el-table-column
           prop="purchasing_cycle"
-          label="采购周期"/>
+          label="采购周期(月)"/>
         <el-table-column
           prop="effective_value"
-          label="理论值"/>
+          label="理论值mm"/>
       </template>
     </Table-easy>
   </div>

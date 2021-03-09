@@ -132,16 +132,17 @@
           label="组"/>
         <el-table-column
           label="操作"
+          width="200"
           align="center">
           <template slot-scope="scope">
             <el-button
               size="mini"
               type="warning"
               @click="handleEdit(scope.row,true)">修改</el-button>
-              <!--<el-button
+            <el-button
               size="mini"
               type="danger"
-              @click="handleDelect(scope.row)">删除</el-button>-->
+              @click="handleDelect(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </template>
@@ -438,7 +439,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          post('rollInformation/deleteOne', { indocno: data.indocno }).then(
+          post('rollGrindingDouble/deleteOne', { indocno: data.indocno }).then(
             res => {
               console.log('删除', res)
               if (res) {

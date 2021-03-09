@@ -104,9 +104,6 @@
           prop="machineno"
           label="磨床号"/>
         <el-table-column
-          prop="sand_article"
-          label="砂轮粒度"/>
-        <el-table-column
           prop="grind_starttime"
           width="160"
           label="磨削开始时间"/>
@@ -120,22 +117,25 @@
           label="辊号"/>
         <el-table-column
           prop="before_diameter"
-          label="磨前中部直径"/>
+          label="磨前中部直径(mm)"/>
         <el-table-column
           prop="after_diameter"
-          label="磨后直径"/>
+          label="磨后直径(mm)"/>
         <el-table-column
           prop="wheel_dia_start"
-          label="砂轮开始直径"/>
+          label="砂轮开始直径(mm)"/>
         <el-table-column
           prop="wheel_dia_end"
-          label="砂轮结束直径"/>
+          label="砂轮结束直径(mm)"/>
         <el-table-column
           prop="grinding_time"
-          label="磨削时长"/>
+          label="磨削时长(min)"/>
         <el-table-column
           prop="body_length"
-          label="辊长"/>
+          label="辊长(mm)"/>
+        <el-table-column
+          prop="sand_article"
+          label="砂轮粒度"/>
         <el-table-column
           prop="sand_thickness"
           label="砂厚"/>
@@ -144,13 +144,13 @@
           label="砂辊径减少比"/>
         <el-table-column
           prop="rolldiameter_reduce"
-          label="辊径减少"/>
+          label="辊径减少(mm)"/>
         <el-table-column
           prop="rollerbody_reduce"
           label="辊体减少（cm3)"/>
         <el-table-column
           prop="sanddiameter_reduce"
-          label="砂径减少"/>
+          label="砂径减少(mm)"/>
         <el-table-column
           prop="sandbody_reduce"
           label="砂体减少(cm3)"/>

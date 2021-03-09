@@ -296,7 +296,7 @@
           label="开始时间"/>
         <el-table-column
           prop="unit_price"
-          label="单价"/>
+          label="单价(元)"/>
         <el-table-column
           prop="working_layer"
           label="工作层"/>
@@ -331,7 +331,7 @@
           <el-row>
             <el-col :span="8">
               <el-form-item
-                label="单价"
+                label="单价(元)"
                 prop="unit_price">
                 <el-input v-model.trim="formLabelAlign1.unit_price" />
               </el-form-item>

@@ -6,7 +6,7 @@
       :total="total"
       :page-size="pageSize"
       :current-page="pageIndex"
-      :table-height="750"
+      :table-height="650"
       :cell-class-name="setCellStyle"
       :is-pagination-show="false"
       :table-foot="true"
@@ -119,6 +119,12 @@
                       placeholder="选择结束时间"/>
                   </el-form-item>
                 </el-col>
+                <p style="color: #d9dce5;right: -70px;top: 49px;float: right;position: absolute;background-color: #16848d">
+                  吨钢消耗(kg):{{ consumption_show }}
+                </p>
+                <p style="color: #d9dce5;right: -229px;top: 49px;float: right;position: absolute;background-color: #8d0912">
+                  吨钢成本(元):{{ cost_show }}
+                </p>
               </el-row>
             </el-form>
           </el-col>
@@ -163,21 +169,38 @@
           label="开始时间"/>
         <el-table-column
           prop="unit_price"
-          label="单价"/>
+          label="单价(元)"/>
         <el-table-column
           prop="working_layer"
           label="工作层"/>
 
         <el-table-column
           prop="mmnumber"
-          label="毫米数"/>
+          label="毫米数(mm)"/>
+
+
         <el-table-column
           prop="weight"
-          label="重量"/>
+          label="重量(t)">
+          <template slot-scope="scope">
+            <span>{{ Number(scope.row.weight).toFixed(2)==NaN? 0:Number(scope.row.weight).toFixed(2) }}</span>
+          </template>
+        </el-table-column>
+
         <el-table-column
           prop="money"
-          label="金额"/>
-          <!-- <el-table-column
+          label="金额(元)">
+          <template slot-scope="scope">
+            <span>{{ Number(scope.row.money).toFixed(2)==NaN? 0:Number(scope.row.money).toFixed(2) }}</span>
+          </template>
+        </el-table-column>
+        <!--   <el-table-column
+          prop="weight"
+          label="重量(t)"/>
+        <el-table-column
+          prop="money"
+          label="金额(元)"/>-->
+        <!-- <el-table-column
           prop="consumption"
           label="吨钢消耗"/>
         <el-table-column
@@ -228,7 +251,9 @@ export default {
         machine_no: '',
         grind_starttime: '',
         grind_endtime: ''
-      }
+      },
+      consumption_show: '',
+      cost_show: ''
     }
   },
   created() {
@@ -326,14 +351,16 @@ export default {
         condition: this.searchInfo
       }).then(res => {
         this.tableData = res.data
-        this.tableData.splice(0, 0, {
+        this.consumption_show = res.bean.consumption.toFixed(2)
+        this.cost_show = res.bean.cost.toFixed(2)
+        /*  this.tableData.splice(0, 0, {
           material_no: '吨钢消耗（kg）',
           specifications_no: res.bean.consumption,
           // specifications_no: 100,
           roll_type: '吨钢成本',
           material: res.bean.cost
           //material: 200
-        })
+        })*/
         this.total = res.count
       })
     },

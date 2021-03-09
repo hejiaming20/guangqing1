@@ -121,6 +121,7 @@
             label="机架范围"/>
           <el-table-column
             label="轧辊材质"
+            width="170px"
             prop="material"/>
           <el-table-column
             prop="roll_position"
@@ -373,12 +374,14 @@
               label="轧辊类型"/>
             <el-table-column
               prop="rollshape"
+              width="170px"
               label="辊形"/>
             <el-table-column
               prop="roll_no"
               label="辊号"/>
             <el-table-column
               label="轧辊材质"
+              width="170px"
               prop="material"/>
             <el-table-column
               prop="roll_position"

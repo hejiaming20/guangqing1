@@ -83,14 +83,14 @@
       </template>
       <template slot="TableBody">
         <el-table-column
-          prop="grinding_timetotalnum"
-          label="磨削时长合计"/>
-        <el-table-column
           prop="machineno"
           label="磨床号"/>
         <el-table-column
+          prop="grinding_timetotalnum"
+          label="磨削时长合计min"/>
+        <el-table-column
           prop="totalnum"
-          label="总数"/>
+          label="次数"/>
 
       </template>
     </Table-easy>

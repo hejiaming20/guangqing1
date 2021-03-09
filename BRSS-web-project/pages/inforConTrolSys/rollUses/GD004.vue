@@ -134,14 +134,14 @@
             label="磨床号"/>
           <el-table-column
             prop="before_diameter"
-            label="磨前直径">
+            label="磨前直径(mm)">
             <template slot-scope="scope">
               <span>{{ scope.row.before_diameter.toFixed(3) }}</span>
             </template>
           </el-table-column>
           <el-table-column
             prop="after_diameter"
-            label="磨后直径">
+            label="磨后直径(mm)">
             <template slot-scope="scope">
               <span>{{ scope.row.after_diameter.toFixed(3) }}</span>
             </template>
@@ -149,7 +149,7 @@
 
           <el-table-column
             prop=""
-            label="磨削量">
+            label="磨削量(mm)">
             <template slot-scope="scope">
               <span>{{ scope.row.before_diameter==0||scope.row.after_diameter==0?0: (scope.row.before_diameter-scope.row.after_diameter).toFixed(3) }}</span>
             </template>
@@ -198,14 +198,14 @@
             label="砂轮编码"/>
           <el-table-column
             prop="wheel_dia_start"
-            label="砂轮开始直径">
+            label="砂轮开始直径(mm)">
             <template slot-scope="scope">
               <span>{{ scope.row.wheel_dia_start.toFixed(3) }}</span>
             </template>
           </el-table-column>
           <el-table-column
             prop="wheel_dia_end"
-            label="砂轮结束直径">
+            label="砂轮结束直径(mm)">
             <template slot-scope="scope">
               <span>{{ scope.row.wheel_dia_end.toFixed(3) }}</span>
             </template>

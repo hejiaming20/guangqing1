@@ -737,6 +737,7 @@
                 prop="uplinecount">
                 <el-input-number
                   v-model="formLabelAlignChange.uplinecount"
+                  style="line-height: 44px"
                   size="medium"
                   controls-position="right" />
               </el-form-item>

@@ -92,19 +92,6 @@
       </template>
       <template slot="TableBody">
         <el-table-column
-          prop="allnum"
-          width="150"
-          label="所有辊"/>
-        <el-table-column
-          prop="newnum"
-          label="新辊"/>
-        <el-table-column
-          prop="scrapnum"
-          label="报废辊"/>
-        <el-table-column
-          prop="oldnum"
-          label="旧辊"/>
-        <el-table-column
           prop="framerange"
           label="机架范围"/>
         <el-table-column
@@ -113,6 +100,19 @@
         <el-table-column
           prop="roll_type"
           label="轧辊类型"/>
+        <el-table-column
+          prop="allnum"
+          width="150"
+          label="所有辊(个)"/>
+        <el-table-column
+          prop="newnum"
+          label="新辊(个)"/>
+        <el-table-column
+          prop="scrapnum"
+          label="报废辊(个)"/>
+        <el-table-column
+          prop="oldnum"
+          label="旧辊(个)"/>
         <el-table-column
           prop="specifications_no"
           label="规格名称"/>

@@ -108,15 +108,18 @@
           label="砂轮规格"
           prop="bearing_name" />
         <el-table-column
-          width="170"
-          label="第一次投用时间"
-          prop="usetime" />
-        <el-table-column
           label="厂家"
           prop="factory_name" />
         <el-table-column
           label="砂轮厚"
           prop="sand_thickness" />
+        <el-table-column
+          prop="sand_article"
+          label="砂轮粒度"/>
+        <el-table-column
+          width="170"
+          label="第一次投用时间"
+          prop="usetime" />
         <el-table-column
           label="操作"
           min-width="300"
@@ -126,7 +129,7 @@
               size="mini"
               type="warning"
               @click.stop="handleEdit_right(scope.row)">修改</el-button>
-              <!-- <el-button
+            <!-- <el-button
               size="mini"
               type="warning"
               @click.stop="baofei_right(scope.row)">报废</el-button>
@@ -134,10 +137,10 @@
               size="mini"
               type="warning"
               @click.stop="kong_right(scope.row)">单次提醒置空</el-button>-->
-              <!-- <el-button
-        size="mini"
-        type="danger"
-        @click.stop="handleDelete(scope.row)">删除</el-button>-->
+            <el-button
+              size="mini"
+              type="danger"
+              @click.stop="handleDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </template>
@@ -195,6 +198,11 @@
                 label="砂厚"
                 prop="sand_thickness">
                 <el-input v-model="formLabelAlign_right.sand_thickness" />
+              </el-form-item>
+              <el-form-item
+                label="砂轮粒度"
+                prop="sand_article">
+                <el-input v-model="formLabelAlign_right.sand_article" />
               </el-form-item>
               <el-form-item
                 label="投用时间"
@@ -634,15 +642,17 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          post('/baseChock/deleteOne', { indocno: data.indocno }).then(res => {
-            if (res) {
-              this.$message({
-                type: 'success',
-                message: '删除成功!'
-              })
-              this.findAll()
+          post('/baseBearing/deleteOne', { indocno: data.indocno }).then(
+            res => {
+              if (res) {
+                this.$message({
+                  type: 'success',
+                  message: '删除成功!'
+                })
+                this.findAll()
+              }
             }
-          })
+          )
           this.findAll()
         })
         .catch(() => {

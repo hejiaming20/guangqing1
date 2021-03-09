@@ -197,16 +197,16 @@
           label="单次累计时间(d)"
           prop="single_times" />
         <el-table-column
-          label="间隔时间"
+          label="间隔时间(d)"
           prop="interval_times" />
         <el-table-column
           label="提醒处理次数"
           prop="reminder_times" />
         <el-table-column
-          label="总累计时间"
+          label="总累计时间(d)"
           prop="total_times" />
         <el-table-column
-          label="报废提醒时间"
+          label="报废提醒时间(d)"
           prop="discard_times" />
         <el-table-column
           label="报废时间"
