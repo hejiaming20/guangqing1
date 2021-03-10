@@ -3122,10 +3122,33 @@ export default {
           post('/rollInformation/findByPre', {
             condition: { roll_no: this.arry_all[num].roll_no }
           }).then(res => {
-            for (let i = 0; res.data.length > i; i++) {
+            /* for (let i = 0; res.data.length > i; i++) {
               res.data[i].frame_no = this.arry_all[num].frame_no
               this.tableData_tan.push(res.data[i])
+            }*/
+
+            if (res.data.length == 2) {
+              if (
+                res.data[1].roll_position == 'TOP' &&
+                res.data[0].roll_position == 'BOT'
+              ) {
+                for (let i = 2; 0 < i; i--) {
+                  res.data[i - 1].frame_no = this.arry_all[num].frame_no
+                  this.tableData_tan.push(res.data[i - 1])
+                }
+              } else {
+                for (let i = 0; res.data.length > i; i++) {
+                  res.data[i].frame_no = this.arry_all[num].frame_no
+                  this.tableData_tan.push(res.data[i])
+                }
+              }
+            } else {
+              for (let i = 0; res.data.length > i; i++) {
+                res.data[i].frame_no = this.arry_all[num].frame_no
+                this.tableData_tan.push(res.data[i])
+              }
             }
+
             if (++num < length) {
               this.repeat(num, length)
             }

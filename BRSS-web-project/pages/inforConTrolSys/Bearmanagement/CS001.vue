@@ -1149,6 +1149,13 @@ export default {
       ) {
         return 'setClassname'
       }
+
+      /* if (
+        row.total_times > row.discard_times &&
+        column.label == '总累计时间(d)'
+      ) {
+        return 'setClassname'
+      }*/
     },
     // 点击行信息，添加颜色标识
     setRowColor({ row, rowIndex }) {

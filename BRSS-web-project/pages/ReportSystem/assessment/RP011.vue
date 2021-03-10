@@ -2,7 +2,13 @@
 <template>
   <div>
     <div style="color:greenyellow;margin-top: 5px;margin-bottom: 5px; padding-top: 4px;padding-bottom: 4px ; padding-left: 25px;width: 100%;background-color: #253F80;font-size: 14px;height:40px;overflow-y: auto ">
-      说明：理论值=结存 - 季度消耗 - 安全库存+140
+      <el-col :span="12">
+        说明1：理论值=结存 - 季度消耗 - 安全库存+140
+      </el-col>
+      <el-col :span="12">
+        说明2：可用月=理论值*3/季度消耗
+      </el-col>
+
     </div>
     <Table-easy
       :table-data="tableData"
@@ -64,7 +70,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item
-                label="开始时间"
+                label="时间"
                 prop="dbegin">
                 <el-date-picker
                   ref="userTime"
@@ -138,6 +144,47 @@
           label="理论值mm"/>
       </template>
     </Table-easy>
+
+    <div style="height: 300px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
+      <el-col :span="24">
+        <div
+          id="app2"
+          style="width:100%;height: 280px;"/>
+      </el-col>
+      <!-- <el-col :span="11">
+        <div
+          class="body_box">
+          &lt;!&ndash; <div style="color: white;margin-left: 20px;padding-bottom: 5px">  班次：{{ group1 }}   班组：{{ group2 }}   </div>&ndash;&gt;
+          <div
+            class="table_box"
+            style="height: 380px;overflow:hidden">
+            <table >
+              <tbody >
+                <tr class="t1">
+                  <th>序号</th>
+                  <th>轧辊类型</th>
+                  <th>轧辊材质</th>
+                  <th>机架范围</th>
+                  <th>当前直径</th>
+                  <th>结存</th>
+                </tr>
+                <tr
+                  v-for="(item,index ) in tableData_3"
+                  :key="index">
+                  <td>{{ index+1 }}</td>
+                  <td>{{ item.roll_type }}</td>
+                  <td>{{ item.material }}</td>
+                  <td>{{ item.framerange }}</td>
+                  <td>{{ item.currentdiameter }}</td>
+                  <td>{{ item.body_diameter }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </el-col>-->
+    </div>
+
   </div>
 </template>
 
@@ -145,6 +192,7 @@
 import { get, post, getDataConfig, exportMethod } from '@/lib/Util'
 import TableEasy from '@/components/TasilyTableEasy'
 import moment from 'moment'
+import Echarts from 'echarts'
 export default {
   components: { TableEasy },
   data() {
@@ -152,7 +200,8 @@ export default {
       searchInfo: {
         framerangeid: '',
         material_id: '',
-        roll_typeid: ''
+        roll_typeid: '',
+        dbegin: ''
       },
       rules: {
         roll_no: [{ required: true, message: '请输入辊号', trigger: 'blur' }],
@@ -199,6 +248,9 @@ export default {
     }
   },
   mounted() {
+    /*this.searchInfo.dbegin = moment()
+      .subtract(30, 'days')
+      .format('YYYY-MM-DD HH:mm:ss')*/
     this.searchInfo.dbegin = moment()
       .subtract(30, 'days')
       .format('YYYY-MM-DD HH:mm:ss')
@@ -305,6 +357,242 @@ export default {
       this.pageSize = val
       this.findAll()
     },
+    echart_go_1(datas) {
+      debugger
+      console.log(datas, typeof datas)
+      var need_x1 = []
+      var need_y1 = [] //
+      for (var i = 0; datas.length > i; i++) {
+        need_x1.push(datas[i].x)
+        need_y1.push(datas[i].y1.toFixed(0))
+      }
+      console.log(need_x1, need_y1)
+      //毫米数
+      var myChart2 = Echarts.init(document.getElementById('app2'), 'default') //将配置注入到html中定义的容器
+      /* var option = {
+        title: {
+          text: '可用月份预测',
+          subtext: '数据来自'
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+        legend: {
+          data: ['2011年', '2012年']
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'value',
+          // boundaryGap: [0, 0.01]
+          min: 0,
+          max: 12
+        },
+        yAxis: {
+          type: 'category',
+          //data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+          data: need_x1
+        },
+        series: [
+          {
+            name: '2012年',
+            type: 'bar',
+            // data: [19325, 23438, 31000, 121594, 134141, 681807]
+            data: need_y1
+          }
+        ]
+      }*/
+
+      /* var salvProName = [
+        '安徽省',
+        '河南省',
+        '浙江省',
+        '湖北省',
+        '贵州省',
+        '江西省',
+        '江苏省',
+        '四川省',
+        '云南省',
+        '湖南省'
+      ]
+      var salvProValue = [239, 181, 154, 144, 135, 117, 74, 72, 67, 55]*/
+      var salvProName = need_x1
+      var salvProValue = need_y1
+      var salvProMax = [] //背景按最大值
+      for (let i = 0; i < salvProValue.length; i++) {
+        salvProMax.push(salvProValue[0])
+      }
+      var option = {
+        backgroundColor: '#003366',
+        grid: {
+          left: '2%',
+          right: '2%',
+          bottom: '2%',
+          top: '2%',
+          containLabel: true
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'none'
+          },
+          formatter: function(params) {
+            return params[0].name + ' : ' + params[0].value + ' 个月 '
+          }
+        },
+        xAxis: {
+          // show: false,
+          name: '单位/月',
+          nameTextStyle: {
+            color: '#c0c3cd',
+            padding: [0, -30, 30, -50],
+            fontSize: 14
+          },
+          label: {
+            show: true,
+            position: 'right',
+            distance: 50,
+            color: '#d3ca1b'
+          },
+          type: 'value',
+          min: 0,
+          max: 12,
+          textStyle: {
+            color: '#fff'
+          },
+          axisLabel: {
+            //坐标值得具体的颜色
+            show: true,
+            textStyle: {
+              color: '#fff'
+            }
+          },
+          splitLine: {
+            show: false
+          },
+          axisTick: {
+            show: true
+          },
+          axisLine: {
+            show: true, //坐标线的颜色
+            lineStyle: {
+              color: '#fff'
+            }
+          }
+        },
+        yAxis: [
+          {
+            type: 'category',
+            inverse: true,
+            axisLabel: {
+              show: true,
+              textStyle: {
+                color: '#fff'
+              }
+            },
+            splitLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            data: salvProName
+          },
+          {
+            type: 'category',
+            inverse: true,
+            axisTick: 'none',
+            axisLine: 'none',
+            show: true,
+            axisLabel: {
+              textStyle: {
+                color: '#ffffff',
+                fontSize: '12'
+              }
+            }
+            // data: salvProValue
+          }
+        ],
+        series: [
+          {
+            name: '值',
+            type: 'bar',
+            zlevel: 1,
+
+            /* itemStyle: {
+              normal: {
+                barBorderRadius: 40,
+                color: new Echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                  {
+                    offset: 0,
+                    color: 'rgb(57,89,255,1)'
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgb(46,200,207,1)'
+                  }
+                ]),
+                label: {
+                  formatter: function(params) {
+                    debugger
+                    return params[0].value + ' 个月 '
+                  }
+                }
+              }
+            },*/
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true, //是否显示
+                  position: 'right', //显示位置
+                  padding: [10, 10, 45, -70],
+                  color: '#d9dce5',
+                  formatter: function(params) {
+                    //核心部分 formatter 可以为字符串也可以是回调
+                    if (params.value) {
+                      //如果当前值存在则拼接
+                      return '可使用:' + params.value + '个月'
+                    } else {
+                      //否则返回个空
+                      return ''
+                    }
+                  }
+                },
+                color: '#ee8b3f' //折线颜色设置
+              }
+            },
+            barWidth: 25,
+            data: salvProValue
+          } /*,
+          {
+            name: '背景',
+            type: 'bar',
+            barWidth: 20,
+            barGap: '-100%',
+            // data: salvProMax,
+            data: 12,
+            itemStyle: {
+              normal: {
+                color: 'rgba(24,31,68,1)',
+                barBorderRadius: 30
+              }
+            }
+          }*/
+        ]
+      }
+
+      myChart2.setOption(option)
+    },
     findAll() {
       post('/baseRollSafetyReminder/findBaseRollSafetyReminder', {
         pageIndex: 1,
@@ -312,6 +600,7 @@ export default {
         condition: this.searchInfo
       }).then(res => {
         this.tableData = res.data
+        this.echart_go_1(res.map)
         this.total = res.count
       })
     },

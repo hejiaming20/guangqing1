@@ -147,7 +147,7 @@
           <el-row>
             <el-col :span="8">
               <el-form-item
-                label="安全库存(元)"
+                label="安全库存(mm)"
                 prop="safe_inventory">
                 <el-input v-model.trim="formLabelAlign.safe_inventory" />
               </el-form-item>
