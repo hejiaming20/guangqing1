@@ -464,6 +464,7 @@ export default {
           type: 'value',
           min: 0,
           max: 12,
+          splitNumber: 11,
           textStyle: {
             color: '#fff'
           },

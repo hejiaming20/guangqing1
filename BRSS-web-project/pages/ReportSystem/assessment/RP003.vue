@@ -308,29 +308,32 @@ export default {
 
         this.tableData.push(
           {
-            machineno: '磨辊合计',
+            machineno: '合计',
             gwnum: res.bean.gwtotalnum, //5-8工作辊合计
             fwnum: res.bean.fwtotalnum, //1-4工作辊合计
             rnum: res.bean.rtotalnum, //支撑辊合计
             rwnum: res.bean.rwtotalnum, //粗轧工作辊合计
-            othernum: res.bean.othertotalnum //其他数合计
+            othernum: res.bean.othertotalnum, //其他数合计
+            grinding_time: res.bean.grinding_timetotalnum //磨削时长合计
           },
           {
-            machineno: '磨辊平均',
+            machineno: '平均',
             gwnum: res.bean.gwavgnum, //5-8工作辊平均
             fwnum: res.bean.fwavgnum, //1-4工作辊平均
             rnum: res.bean.ravgnum, //支撑辊平均
             rwnum: res.bean.rwavgnum, //粗轧工作辊平均
-            othernum: res.bean.otheravgnum //其他数平均
+            othernum: res.bean.otheravgnum, //其他数平均
+            grinding_time: res.bean.grinding_timeavgnum //平均每班磨削时长
           },
           {
-            machineno: '磨削时长合计',
-            grinding_time: res.bean.grinding_timetotalnum //磨削时长合计
-          },
-          {
-            machineno: '平均磨削时长',
-            grinding_time: res.bean.grinding_timeavgnum //磨削时长合计
+            machineno: '平均每辊用时',
+            grinding_time: (
+              res.bean.grinding_timetotalnum / res.bean.totalnum
+            ).toFixed(2) //平均每辊用时==磨削时长合计/磨削总数
           }
+          /*{
+            machineno: '磨削时长合计'
+          },*/
         )
         this.total = res.count
       })
