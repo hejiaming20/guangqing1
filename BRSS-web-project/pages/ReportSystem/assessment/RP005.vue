@@ -6,7 +6,7 @@
       :total="total"
       :page-size="pageSize"
       :current-page="pageIndex"
-      :table-height="650"
+      :table-height="450"
       :cell-class-name="setCellStyle"
       :is-pagination-show="false"
       :table-foot="true"

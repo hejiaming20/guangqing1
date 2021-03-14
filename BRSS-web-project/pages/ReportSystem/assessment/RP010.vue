@@ -77,6 +77,19 @@
                         :value="item.key"/>
                     </el-select>
                   </el-form-item>
+                  <el-form-item
+                    label="轧辊材质"
+                    prop="material_id">
+                    <el-select
+                      v-model="searchInfo.material_id"
+                      placeholder="请选择">
+                      <el-option
+                        v-for="item in option_2"
+                        :key="item.key"
+                        :label="item.value"
+                        :value="item.key"/>
+                    </el-select>
+                  </el-form-item>
                 </el-col>
                 <!--  <el-col :span="6">
                     <el-form-item
@@ -123,8 +136,14 @@
           prop="factory"
           label="轧辊厂家"/>
         <el-table-column
+          prop="material"
+          label="材质"/>
+        <el-table-column
           prop="mmnumber"
           label="毫米数(mm)"/>
+        <el-table-column
+          prop="consumption"
+          label="毫米数轧制量"/>
         <el-table-column
           prop="weight"
           label="重量(t)"/>
@@ -166,7 +185,9 @@ export default {
       searchInfo: {
         roll_no: '',
         factory_id: '',
-        frame_noid: ''
+        frame_noid: '',
+        dbegin: '',
+        dend: ''
       },
       searchInfoEchartsLight: {
         roll_no: '',
@@ -222,6 +243,8 @@ export default {
           this.searchInfo.roll_no +
           '&factory_id=' +
           this.searchInfo.factory_id +
+          '&material_id=' +
+          this.searchInfo.material_id +
           '&frame_noid=' +
           this.searchInfo.frame_noid
       }

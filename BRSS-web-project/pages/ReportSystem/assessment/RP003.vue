@@ -118,7 +118,7 @@
           label="其他辊"/>
         <el-table-column
           prop="rates"
-          label="嫁动率"/>
+          label="稼动率"/>
         <el-table-column
           prop="grinding_time"
           label="磨削时长(min)"/>
@@ -323,7 +323,8 @@ export default {
             rnum: res.bean.ravgnum, //支撑辊平均
             rwnum: res.bean.rwavgnum, //粗轧工作辊平均
             othernum: res.bean.otheravgnum, //其他数平均
-            grinding_time: res.bean.grinding_timeavgnum //平均每班磨削时长
+            grinding_time: res.bean.grinding_timeavgnum, //平均每班磨削时长
+            rates: res.bean.rates //平均稼动率
           },
           {
             machineno: '平均每辊用时',

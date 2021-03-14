@@ -13,7 +13,7 @@
       :table-data="tableDatan_0"
       :page-size="pageSize1"
       :total="total_1"
-      :table-height="400"
+      :table-height="750"
       @handle-current-change="handleCurrentChange1"
       @handle-size-change="handleSizeChange1">
       <template slot="TableHead">
@@ -156,33 +156,35 @@
         <el-table-column
           prop="scrapreason"
           label="报废原因"/>
-        <el-table-column
+        <!-- <el-table-column
           prop="scrapreason"
-          label="处理结果"/>
+          label="处理结果"/>-->
         <el-table-column
-          prop="operateuser"
+          prop="modiname"
+          width="110"
           label="操作人员"/>
         <el-table-column
-          prop="operatetime"
+          prop="operate_time"
+          width="170"
           label="操作时间"/>
-        <el-table-column
-          prop="confirmationperson"
-          label="确认人员"/>
-        <el-table-column
-          prop="confirmationtime"
-          label="确认时间"/>
           <!-- <el-table-column
-          label="操作"
-          min-width="150"
-          align="center">
-          <template slot-scope="scope">
-            <el-button
-              size="mini"
-              type="primary"
-              @click="handleBf2(scope.row)">取消报废
-            </el-button>
-          </template>
-        </el-table-column>-->
+        prop="confirmationperson"
+        label="确认人员"/>
+      <el-table-column
+        prop="confirmationtime"
+        label="确认时间"/>-->
+          <!-- <el-table-column
+        label="操作"
+        min-width="150"
+        align="center">
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            type="primary"
+            @click="handleBf2(scope.row)">取消报废
+          </el-button>
+        </template>
+      </el-table-column>-->
       </template>
     </Table-easy>
 

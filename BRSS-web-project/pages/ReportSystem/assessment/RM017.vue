@@ -129,34 +129,39 @@
             prop="operate_name"
             label="状态"/>
           <el-table-column
+            prop="modiname"
+            width="110"
+            label="操作人员"/>
+          <el-table-column
             prop="operate_time"
+            width="170"
             label="时间"/>
             <!--<el-table-column
-            prop="currentdiameter"
-            label="当前辊径"/>-->
+          prop="currentdiameter"
+          label="当前辊径"/>-->
             <!-- <el-table-column
-            prop="roll_state_value"
-            label="轧辊状态"/>-->
-        <!--  <el-table-column
-            prop="uplinecount"
-            label="上机次数"/>-->
+          prop="roll_state_value"
+          label="轧辊状态"/>-->
+            <!--  <el-table-column
+              prop="uplinecount"
+              label="上机次数"/>-->
             <!-- <el-table-column
-            label="操作"
-            min-width="150"
-            align="center">
-            <template slot-scope="scope">
-              <el-button
-                size="mini"
-                type="primary"
-                @click="goUp(scope.row)">上辊
-              </el-button>
-              <el-button
-                size="mini"
-                type="primary"
-                @click="goDown(scope.row)">下辊
-              </el-button>
-            </template>
-          </el-table-column>-->
+          label="操作"
+          min-width="150"
+          align="center">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              type="primary"
+              @click="goUp(scope.row)">上辊
+            </el-button>
+            <el-button
+              size="mini"
+              type="primary"
+              @click="goDown(scope.row)">下辊
+            </el-button>
+          </template>
+        </el-table-column>-->
         </template>
       </Table-easy>
     </div>
@@ -223,17 +228,17 @@ export default {
     this.findOption()
     this.findKucun()
     /* post('/dictionary/findMapV1', { dicno: 'framefw' }).then(res => {
-      this.option_1 = res.data //机架范围
-    })*/
+        this.option_1 = res.data //机架范围
+      })*/
     post('/dictionary/findMapV1', { dicno: 'roll_material' }).then(res => {
       this.option_2 = res.data //材质
     })
     /*post('/dictionary/finddicno', { dicno: 'rollstate03,rollstate04' }).then(
-        res => {
-          this.option_3 = res.data //轧辊库存状态
-          console.log(res.data)
-        }
-      )*/
+          res => {
+            this.option_3 = res.data //轧辊库存状态
+            console.log(res.data)
+          }
+        )*/
   },
   methods: {
     //分页之对应页

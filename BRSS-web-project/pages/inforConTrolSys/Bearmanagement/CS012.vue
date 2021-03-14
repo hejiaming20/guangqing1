@@ -54,6 +54,20 @@
                 prop="bearing_no">
                 <el-input v-model="searchquery.bearing_no" />
               </el-form-item>
+              <el-form-item
+                label="是否报废"
+                label-width="100"
+                prop="ifdiscard">
+                <el-select
+                  v-model="searchquery.ifdiscard"
+                  placeholder="请选择">
+                  <el-option
+                    v-for="item in option"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.key"/>
+                </el-select>
+              </el-form-item>
               <!--<el-form-item
                 label="轧辊类型"
                 label-width="80"
@@ -196,7 +210,7 @@
               </el-form-item>
               <el-form-item
                 label="厂家"
-                prop="install_location_id">
+                prop="factory_name">
                 <el-select
                   v-model="formLabelAlign_left.factory_name"
                   placeholder="请选择"
@@ -338,8 +352,8 @@ export default {
     }
   },
   mounted() {
-    post('/dictionary/findMapV1', { dicno: 'frameteam' }).then(res => {
-      this.option = res.data //机架（直接使用）
+    post('/dictionary/findMapV1', { dicno: 'if_or' }).then(res => {
+      this.option = res.data //是否报废
     })
     post('/dictionary/findMapV1', { dicno: 'proline' }).then(res => {
       this.option1 = res.data //产线（直接使用）
@@ -583,7 +597,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          post('baseChock/updateDiscardTimeCancel', {
+          post('baseBearing/updateDiscardTimeCancel', {
             indocno: data.indocno
           }).then(res => {
             if (res) {

@@ -98,10 +98,10 @@
           prop="roll_type"
           align="center"
           label="轧辊类型"/>
-        <el-table-column
+        <!-- <el-table-column
           prop="frame_no"
           align="center"
-          label="机架号"/>
+          label="机架号"/>-->
         <!-- <el-table-column
           prop="install_location"
           align="center"

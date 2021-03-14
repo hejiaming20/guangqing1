@@ -49,6 +49,20 @@
                   <el-input v-model.trim="searchInfo.equipment_parentname" />
                 </el-form-item>
                 <el-form-item
+                  label="是否报废"
+                  label-width="100"
+                  prop="ifdiscard">
+                  <el-select
+                    v-model="searchInfo.ifdiscard"
+                    placeholder="请选择">
+                    <el-option
+                      v-for="item in option"
+                      :key="item.key"
+                      :label="item.value"
+                      :value="item.key"/>
+                  </el-select>
+                </el-form-item>
+                <el-form-item
                   label="开始时间"
                   prop="dbegin">
                   <el-date-picker
@@ -115,6 +129,10 @@
             show-overflow-tooltip
             label="组件名称"/>
           <el-table-column
+            prop="specifications"
+            show-overflow-tooltip
+            label="三级"/>
+          <el-table-column
             prop="operator_name"
             show-overflow-tooltip
             label="操作人"/>
@@ -130,6 +148,7 @@
             label="累计时间"/>
           <el-table-column
             prop="discard_time"
+            width="150px"
             label="更换时间"/>
           <!-- <el-table-column
             prop="factory_name"
@@ -141,8 +160,14 @@
             prop="sclass_name"
             label="班次"/>
           <el-table-column
+            prop=" size_start"
+            label="开始尺寸"/>
+          <el-table-column
+            prop=" size_end"
+            label="结束尺寸"/>
+          <el-table-column
             label="操作"
-            width="150px"
+            width="240px"
             align="center">
             <template slot-scope="scope">
               <el-button
@@ -153,6 +178,10 @@
                 size="mini"
                 type="danger"
                 @click="handleDelect(scope.row)">删除</el-button>
+              <el-button
+                size="mini"
+                type="danger"
+                @click="handlehuan(scope.row)">报废</el-button>
             </template>
           </el-table-column>
         </template>
@@ -234,13 +263,23 @@
                   prop="total_times">
                   <el-input v-model="formLabelAlign.total_times" />
                 </el-form-item>
+                <el-form-item
+                  label="开始尺寸"
+                  prop="size_start">
+                  <el-input v-model="formLabelAlign.size_start" />
+                </el-form-item>
+                <el-form-item
+                  label="结束尺寸"
+                  prop="size_end">
+                  <el-input v-model="formLabelAlign.size_end" />
+                </el-form-item>
               </el-col>
               <el-col :span="8">
                 <el-form-item
                   label="班组"
-                  prop="sgroup">
+                  prop="sgroup_name">
                   <el-select
-                    v-model="formLabelAlign.sgroup"
+                    v-model="formLabelAlign.sgroup_name"
                     placeholder="请选择">
                     <el-option
                       v-for="item in option2"
@@ -251,9 +290,9 @@
                 </el-form-item>
                 <el-form-item
                   label="班"
-                  prop="sclass">
+                  prop="sclass_name">
                   <el-select
-                    v-model="formLabelAlign.sclass"
+                    v-model="formLabelAlign.sclass_name"
                     placeholder="请选择">
                     <el-option
                       v-for="item in option3"
@@ -301,7 +340,9 @@ export default {
   data() {
     return {
       light_1: 485,
-      searchInfo: {},
+      searchInfo: {
+        //ifdiscard: 0 //更换时 0为正常1为消失
+      },
       formLabelAlign: {},
       tableData: [{}],
       total: 0,
@@ -384,6 +425,7 @@ export default {
       typeoptions: [],
       kcoptions: [],
       option1: [],
+      option: [],
       option2: [],
       option3: [],
       materialArray: [],
@@ -395,6 +437,9 @@ export default {
     }
   },
   mounted() {
+    post('/dictionary/findMapV1', { dicno: 'if_or' }).then(res => {
+      this.option = res.data //是否报废
+    })
     post('/dictionary/findMapV1', { dicno: 'proline' }).then(res => {
       this.option1 = res.data //产线（直接使用）
     })
@@ -444,7 +489,7 @@ export default {
                     res.data[i].detail[m].detail[n].ilevel == 3
                   ) {
                     this.send_id = res.data[i].detail[m].detail[n].indocno
-                    this.send_sname = res.data[i].detail[m].detail[n].sname
+                    this.send_sname = res.data[i].detail[m].detail[n].sname //名称
                     this.light_1 = res.data[i].detail[m].detail[n].indocno
                     this.find_query()
                     console.log('3')
@@ -484,7 +529,7 @@ export default {
     },
     find_query() {
       this.searchInfo.equipment_id = this.send_id
-      this.searchInfo.sclass_name = this.send_sname
+      // this.searchInfo.specifications = this.send_sname //三级
       post('baseEquipment/findByPage', {
         pageIndex: this.pageIndex,
         pageSize: this.pageSize,
@@ -545,6 +590,35 @@ export default {
       this.pageSize = val
       this.find_query()
     },
+    //更换
+    handlehuan(data) {
+      this.$confirm('此操作将更换该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          post('baseEquipment/updateDiscardTime', {
+            indocno: data.indocno
+          }).then(res => {
+            console.log('删除', res)
+            if (res) {
+              this.$message({
+                type: 'success',
+                message: '更换成功!'
+              })
+              this.find_query()
+            }
+          })
+          this.find_query()
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消'
+          })
+        })
+    },
     /**
      * description: 删除一行数据
      */
@@ -596,7 +670,7 @@ export default {
 
     async handleSave(formName) {
       this.formLabelAlign.equipment_id = this.send_id
-      this.formLabelAlign.sclass_name = this.send_sname
+      this.formLabelAlign.specifications = this.send_sname //三级标题
       //登录人
       this.formLabelAlign.operator_id = this.crea_sname_id
       this.formLabelAlign.operator_name = this.crea_sname

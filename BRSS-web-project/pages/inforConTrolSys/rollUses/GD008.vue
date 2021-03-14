@@ -108,9 +108,15 @@
         <el-table-column
           prop="grindst"
           label="车削量"/>
-        <el-table-column
+        <!--<el-table-column
           prop="machine_no"
-          label="车床号"/>
+          label="车床号"/>-->
+        <el-table-column
+          prop="online_wear"
+          label="在机磨损"/>
+        <el-table-column
+          prop=" lasttime_after_diameter"
+          label="上机前直径"/>
         <el-table-column
           prop="before_diameter"
           label="车前直径"/>
@@ -219,11 +225,11 @@
                 prop="grindst">
                 <el-input v-model="formLabelAlign.grindst" />
               </el-form-item>
-              <el-form-item
+              <!--<el-form-item
                 label="车床号"
                 prop="machine_no">
                 <el-input v-model="formLabelAlign.machine_no" />
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item
                 label="车前直径"
                 prop="before_diameter">

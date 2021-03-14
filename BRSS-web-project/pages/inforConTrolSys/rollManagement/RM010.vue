@@ -85,6 +85,10 @@
                 size="mini"
                 type="primary"
                 @click="resetForm('ruleForm')">重置</el-button>
+              <el-button
+                size="mini"
+                type="primary"
+                @click="hand_exe">导出</el-button>
             </div>
           </el-col>
         </el-row>
@@ -139,7 +143,7 @@
         <el-table-column
           prop="roll_no"
           label="辊号"
-          min-width="85px"
+          min-width="130px"
           align="center"/>
         <el-table-column
           prop="frame_no"
@@ -168,14 +172,6 @@
           label="磨削结束时间"
           min-width="155px"
           align="center"/>
-
-
-
-
-
-
-
-
 
 
         <el-table-column
@@ -307,7 +303,7 @@ import TableEasy from '@/components/TasilyTableEasy'
 import { rollInformation, kucunlist, rolltypelist } from '@/api/pinClipBoard' //查询接口
 import getDataConfig from '../../../lib/Util'
 import Echarts from 'echarts'
-import { get, post } from '@/lib/Util'
+import { get, post, exportMethod } from '@/lib/Util'
 export default {
   components: {
     TableEasy
@@ -373,6 +369,27 @@ export default {
     // this.echartOption()
   },
   methods: {
+    async hand_exe() {
+      let data = {
+        method: 'get',
+        url:
+          // 'http://192.168.43.57:8778/api/rollStiffness/excel?dbegin=' +
+          location.origin +
+          '/api/rollWear/excelFindByPage?roll_no=' +
+          this.rowIndex
+      }
+      await exportMethod(data)
+      // get(
+      //   'rollStiffness/excel?dbegin=' +
+      //     this.searchInfo.dbegin +
+      //     '&dend=' +
+      //     this.searchInfo.dend +
+      //     '&production_line_id=' +
+      //     this.searchInfo.production_line_id
+      // ).then(res => {
+      //   exportMethod(res)
+      // })
+    },
     echartOption() {
       var optionLeft = {
         tooltip: {

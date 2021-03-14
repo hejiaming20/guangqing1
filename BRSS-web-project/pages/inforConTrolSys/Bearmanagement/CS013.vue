@@ -54,6 +54,20 @@
                 prop="bearing_no">
                 <el-input v-model="searchquery.bearing_no" />
               </el-form-item>
+              <el-form-item
+                label="是否报废"
+                label-width="100"
+                prop="ifdiscard">
+                <el-select
+                  v-model="searchquery.ifdiscard"
+                  placeholder="请选择">
+                  <el-option
+                    v-for="item in option"
+                    :key="item.key"
+                    :label="item.value"
+                    :value="item.key"/>
+                </el-select>
+              </el-form-item>
               <!--<el-form-item
                 label="轧辊类型"
                 label-width="80"
@@ -116,6 +130,9 @@
           label="密封件种类"
           prop="seals_name" />
         <el-table-column
+          label="厂家"
+          prop="factory_name" />
+        <el-table-column
           width="170"
           label="开始时间"
           prop="usetime" />
@@ -136,10 +153,11 @@
           prop="discard_times" />
         <el-table-column
           label="报废时间"
+          min-width="150"
           prop="discard_time" />
         <el-table-column
           label="操作"
-          min-width="330"
+          min-width="440"
           align="center">
           <template slot-scope="scope">
             <el-button
@@ -353,8 +371,8 @@ export default {
     }
   },
   mounted() {
-    post('/dictionary/findMapV1', { dicno: 'frameteam' }).then(res => {
-      this.option = res.data //机架（直接使用）
+    post('/dictionary/findMapV1', { dicno: 'if_or' }).then(res => {
+      this.option = res.data //是否报废
     })
     post('/dictionary/findMapV1', { dicno: 'mifeng_all' }).then(res => {
       this.option6 = res.data //密封件种类
@@ -655,7 +673,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          post('baseChock/updateDiscardTimeCancel', {
+          post('baseBearing/updateDiscardTimeCancel', {
             indocno: data.indocno
           }).then(res => {
             if (res) {

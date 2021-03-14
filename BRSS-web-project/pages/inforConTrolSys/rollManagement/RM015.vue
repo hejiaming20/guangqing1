@@ -91,9 +91,13 @@
           label="机架"/>
         <el-table-column
           prop="rollerradius"
-          label="径差(mm)"/>
+          label="最大径差(mm)"/>
+        <el-table-column
+          prop="minrollerradius"
+          label="最小径差(mm)"/>
         <el-table-column
           prop="createtime"
+          min-width="150"
           label="时间"/>
 
         <el-table-column
@@ -150,11 +154,15 @@
               </el-form-item>
 
               <el-form-item
-                label="径差(mm)"
+                label="最大径差(mm)"
                 prop="rollerradius">
                 <el-input v-model="formLabelAlign.rollerradius" />
               </el-form-item>
-
+              <el-form-item
+                label="最小径差(mm)"
+                prop="minrollerradius">
+                <el-input v-model="formLabelAlign.minrollerradius" />
+              </el-form-item>
 
             </el-col>
           </el-row>

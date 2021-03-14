@@ -755,6 +755,9 @@
             <el-table-column
               label="轴承名称"
               prop="bearing_name" />
+            <el-table-column
+              label="厂家"
+              prop="factory_name" />
             <!-- <el-table-column
               label="开始时间"
               width="170"
@@ -826,6 +829,9 @@
             <el-table-column
               label="密封件名称"
               prop="bearing_name" />
+            <el-table-column
+              label="厂家"
+              prop="factory_name" />
             <!--  <el-table-column
               width="170"
               label="开始时间"
@@ -1114,7 +1120,9 @@ export default {
       chioce_left: true,
       title_right: '',
       chioce_right: true,
-      chock_no_1: ''
+      chock_no_1: '',
+      crea_sname_id: '', //操作人id
+      crea_sname: '' //操作人名字
     }
   },
   mounted() {
@@ -1137,6 +1145,8 @@ export default {
     post('/dictionary/findMapV1', { dicno: 'uplocation' }).then(res => {
       this.option5 = res.data //上机位置座状态（直接使用）
     })
+    this.crea_sname_id = JSON.parse(localStorage.getItem('storeID'))
+    this.crea_sname = JSON.parse(localStorage.getItem('storename'))
 
     this.findAll()
   },

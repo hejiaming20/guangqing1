@@ -6,7 +6,7 @@
       :total="total"
       :page-size="pageSize"
       :current-page="pageIndex"
-      :table-height="750"
+      :table-height="200"
       :is-pagination-show="false"
       :table-foot="true"
       index-type="index"
@@ -21,7 +21,7 @@
               class="search-info"
               label-width="80px">
               <el-row>
-                <el-col :span="6">
+                <!--<el-col :span="6">
                   <el-form-item
                     label="磨床号"
                     prop="machine_no">
@@ -35,7 +35,7 @@
                         :value="item.key"/>
                     </el-select>
                   </el-form-item>
-                </el-col>
+                </el-col>-->
                 <el-col :span="6">
                   <el-form-item
                     label="开始时间"
@@ -87,13 +87,238 @@
           label="磨床号"/>
         <el-table-column
           prop="grinding_timetotalnum"
-          label="磨削时长合计min"/>
+          label="磨削时长合计(min)"/>
         <el-table-column
           prop="totalnum"
           label="次数"/>
 
       </template>
     </Table-easy>
+    <el-row :gutter="5">
+      <el-col :span="8">
+        <p style="background-color: #fcce1f;color: black;text-align: center">1号磨床</p>
+        <Table-easy
+          :table-data="tableData_1"
+          :total="total"
+          :page-size="pageSize"
+          :current-page="pageIndex"
+          :table-height="200"
+          :table-head="false"
+          :is-pagination-show="false"
+          :table-foot="true"
+          @handle-current-change="handleCurrentChange"
+          @handle-size-change="handleSizeChange">
+          <template slot="TableBody">
+            <el-table-column
+              prop="machineno"
+              label="磨床号"/>
+            <el-table-column
+              prop="sclass"
+              label="班组"/>
+            <el-table-column
+              prop="operator"
+              label="人员"/>
+            <el-table-column
+              prop="grinding_timetotalnum"
+              label="磨削时长合计(min)"/>
+            <el-table-column
+              prop="totalnum"
+              label="次数"/>
+            <!-- <el-table-column
+              prop="totalnum"
+              label="平均磨削时长"/>-->
+            <el-table-column
+              prop=""
+              label="平均磨削时长(min)">
+              <template slot-scope="scope">
+                <span>{{ (Number(scope.row.grinding_timetotalnum)/Number(scope.row.totalnum)).toFixed((2)) }}</span>
+              </template>
+            </el-table-column>
+
+
+
+          </template>
+      </Table-easy></el-col>
+      <el-col :span="8">
+        <p style="background-color: #fcce1f;color: black;text-align: center">2号磨床</p>
+        <Table-easy
+          :table-data="tableData_2"
+          :total="total"
+          :page-size="pageSize"
+          :current-page="pageIndex"
+          :table-height="200"
+          :table-head="false"
+          :is-pagination-show="false"
+          :table-foot="true"
+          @handle-current-change="handleCurrentChange"
+          @handle-size-change="handleSizeChange">
+          <template slot="TableBody">
+            <el-table-column
+              prop="machineno"
+              label="磨床号"/>
+            <el-table-column
+              prop="sclass"
+              label="班组"/>
+            <el-table-column
+              prop="operator"
+              label="人员"/>
+            <el-table-column
+              prop="grinding_timetotalnum"
+              label="磨削时长合计(min)"/>
+            <el-table-column
+              prop="totalnum"
+              label="次数"/>
+            <!-- <el-table-column
+              prop="totalnum"
+              label="平均磨削时长"/>-->
+            <el-table-column
+              prop=""
+              label="平均磨削时长(min)">
+              <template slot-scope="scope">
+                <span>{{ (Number(scope.row.grinding_timetotalnum)/Number(scope.row.totalnum)).toFixed((2)) }}</span>
+              </template>
+            </el-table-column>
+          </template>
+      </Table-easy></el-col>
+      <el-col :span="8">
+        <p style="background-color: #fcce1f;color: black;text-align: center">3号磨床</p>
+        <Table-easy
+          :table-data="tableData_3"
+          :total="total"
+          :page-size="pageSize"
+          :current-page="pageIndex"
+          :table-height="200"
+          :table-head="false"
+          :is-pagination-show="false"
+          :table-foot="true"
+          @handle-current-change="handleCurrentChange"
+          @handle-size-change="handleSizeChange">
+          <template slot="TableBody">
+            <el-table-column
+              prop="machineno"
+              label="磨床号"/>
+            <el-table-column
+              prop="sclass"
+              label="班组"/>
+            <el-table-column
+              prop="operator"
+              label="人员"/>
+            <el-table-column
+              prop="grinding_timetotalnum"
+              label="磨削时长合计(min)"/>
+            <el-table-column
+              prop="totalnum"
+              label="次数"/>
+            <!-- <el-table-column
+              prop="totalnum"
+              label="平均磨削时长"/>-->
+            <el-table-column
+              prop=""
+              label="平均磨削时长(min)">
+              <template slot-scope="scope">
+                <span>{{ (Number(scope.row.grinding_timetotalnum)/Number(scope.row.totalnum)).toFixed((2)) }}</span>
+              </template>
+            </el-table-column>
+
+
+
+          </template>
+      </Table-easy></el-col>
+
+    </el-row >
+    <el-row
+      :gutter="5"
+      style="margin-top: 10px">
+      <el-col :span="12">
+        <p style="background-color: #fcce1f;color: black;text-align: center">4号磨床</p>
+        <Table-easy
+          :table-data="tableData_4"
+          :total="total"
+          :page-size="pageSize"
+          :current-page="pageIndex"
+          :table-height="250"
+          :table-head="false"
+          :is-pagination-show="false"
+          :table-foot="true"
+          @handle-current-change="handleCurrentChange"
+          @handle-size-change="handleSizeChange">
+          <template slot="TableBody">
+            <el-table-column
+              prop="machineno"
+              label="磨床号"/>
+            <el-table-column
+              prop="sclass"
+              label="班组"/>
+            <el-table-column
+              prop="operator"
+              label="人员"/>
+            <el-table-column
+              prop="grinding_timetotalnum"
+              label="磨削时长合计(min)"/>
+            <el-table-column
+              prop="totalnum"
+              label="次数"/>
+            <!-- <el-table-column
+              prop="totalnum"
+              label="平均磨削时长"/>-->
+            <el-table-column
+              prop=""
+              label="平均磨削时长(min)">
+              <template slot-scope="scope">
+                <span>{{ (Number(scope.row.grinding_timetotalnum)/Number(scope.row.totalnum)).toFixed((2)) }}</span>
+              </template>
+            </el-table-column>
+
+
+
+          </template>
+      </Table-easy></el-col>
+      <el-col :span="12">
+        <p style="background-color: #fcce1f;color: black;text-align: center">5号磨床</p>
+        <Table-easy
+          :table-data="tableData_5"
+          :total="total"
+          :page-size="pageSize"
+          :current-page="pageIndex"
+          :table-height="250"
+          :table-head="false"
+          :is-pagination-show="false"
+          :table-foot="true"
+          @handle-current-change="handleCurrentChange"
+          @handle-size-change="handleSizeChange">
+          <template slot="TableBody">
+            <el-table-column
+              prop="machineno"
+              label="磨床号"/>
+            <el-table-column
+              prop="sclass"
+              label="班组"/>
+            <el-table-column
+              prop="operator"
+              label="人员"/>
+            <el-table-column
+              prop="grinding_timetotalnum"
+              label="磨削时长合计(min)"/>
+            <el-table-column
+              prop="totalnum"
+              label="次数"/>
+            <!-- <el-table-column
+              prop="totalnum"
+              label="平均磨削时长"/>-->
+            <el-table-column
+              prop=""
+              label="平均磨削时长(min)">
+              <template slot-scope="scope">
+                <span>{{ (Number(scope.row.grinding_timetotalnum)/Number(scope.row.totalnum)).toFixed((2)) }}</span>
+              </template>
+            </el-table-column>
+
+
+
+          </template>
+      </Table-easy></el-col>
+
+    </el-row>
   </div>
 </template>
 
@@ -116,6 +341,11 @@ export default {
       pageIndex: 1,
       pageSize: 1000,
       tableData: [],
+      tableData_1: [],
+      tableData_2: [],
+      tableData_3: [],
+      tableData_4: [],
+      tableData_5: [],
       total: 0,
       options: [],
       option_1: [],
@@ -153,6 +383,7 @@ export default {
   },
   methods: {
     async hand_exe() {
+      debugger
       let data = {
         method: 'get',
         url:
@@ -192,13 +423,70 @@ export default {
     // 查询全部
     //查询接口
     findAll() {
+      this.tableData = []
+      this.tableData_1 = []
+      this.tableData_2 = []
+      this.tableData_3 = []
+      this.tableData_4 = []
+      this.tableData_5 = []
+
       post('rollGrindingBF/findGrindingBFForTotalnum', {
         pageIndex: this.pageIndex,
         pageSize: this.pageSize,
-        condition: this.searchInfo
+        condition: {
+          dbegin: this.searchInfo.dbegin,
+          dend: this.searchInfo.dend,
+          machine_no: 1
+        }
       }).then(res => {
         this.tableData = res.data
-        this.total = res.count
+        this.tableData_1 = res.countList
+      })
+
+      post('rollGrindingBF/findGrindingBFForTotalnum', {
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize,
+        condition: {
+          dbegin: this.searchInfo.dbegin,
+          dend: this.searchInfo.dend,
+          machine_no: 2
+        }
+      }).then(res => {
+        this.tableData_2 = res.countList
+      })
+
+      post('rollGrindingBF/findGrindingBFForTotalnum', {
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize,
+        condition: {
+          dbegin: this.searchInfo.dbegin,
+          dend: this.searchInfo.dend,
+          machine_no: 3
+        }
+      }).then(res => {
+        this.tableData_3 = res.countList
+      })
+      post('rollGrindingBF/findGrindingBFForTotalnum', {
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize,
+        condition: {
+          dbegin: this.searchInfo.dbegin,
+          dend: this.searchInfo.dend,
+          machine_no: 4
+        }
+      }).then(res => {
+        this.tableData_4 = res.countList
+      })
+      post('rollGrindingBF/findGrindingBFForTotalnum', {
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize,
+        condition: {
+          dbegin: this.searchInfo.dbegin,
+          dend: this.searchInfo.dend,
+          machine_no: 5
+        }
+      }).then(res => {
+        this.tableData_5 = res.countList
       })
     },
     // 磨削精度评级时间选择

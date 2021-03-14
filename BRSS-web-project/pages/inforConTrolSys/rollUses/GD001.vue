@@ -8,6 +8,7 @@
       :page-size="pageSize"
       :current-page="pageIndex"
       :table-height="'calc(100vh - 185px)'"
+      :span-method="spanMethod"
       index-type="index"
       @handle-size-change="handleSizeChange"
       @handle-current-change="handleCurrentChange">
@@ -150,28 +151,63 @@
           prop="off_line_reason_value"
           show-overflow-tooltip
           label="下线原因"/>
-      <!--  <el-table-column
+        <el-table-column
           label="操作"
-          min-width="217px"
+          min-width="100px"
           align="center">
           <template slot-scope="scope">
             <el-button
               size="mini"
               type="primary"
-              @click="handleCopy(scope.row)">复制</el-button>
-            <el-button
-              size="mini"
-              type="warning"
-              @click="handleEdit(scope.row)">修改</el-button>
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelect(scope.row)">删除</el-button>
+              @click="handle_open(scope.row)">钢种详情</el-button>
           </template>
-        </el-table-column>-->
+        </el-table-column>
       </template>
     </Table-easy>
 
+    <el-dialog
+      :visible.sync="open_a"
+      title="查看"
+      class="layout-dialog"
+      width="60%">
+      <div class="layout-search">
+        <Table-easy
+          :table-data="table_a"
+          :total="total"
+          :page-size="pageSize"
+          :current-page="pageIndex"
+          :table-height="400"
+          :is-pagination-show="false"
+          :table-foot="true"
+          :table-head="false"
+          index-type="index"
+          @handle-current-change="handleCurrentChange"
+          @handle-size-change="handleSizeChange">
+          <template slot="TableBody">
+            <el-table-column
+              prop="gz"
+              width="150"
+              label="钢种"/>
+            <el-table-column
+              prop="roll_type"
+              label="轧辊类型"/>
+            <el-table-column
+              prop="kd"
+              label="宽度"/>
+            <el-table-column
+              prop="ks"
+              label="块数"/>
+            <el-table-column
+              prop="zl"
+              label="重量"/>
+          </template>
+        </Table-easy>
+
+
+
+
+      </div>
+    </el-dialog>
     <!-- 添加/编辑弹窗 -->
     <el-dialog
       :visible.sync="dialogVisible"
@@ -472,7 +508,9 @@ export default {
       frameArray: [],
       rollPositionArray: [],
       roll_shapeArray: [],
-      option_1: []
+      option_1: [],
+      table_a: [],
+      open_a: false
     }
   },
   mounted() {
@@ -500,6 +538,44 @@ export default {
     })
   },
   methods: {
+    spanMethod(row) {
+      //row:当前行
+      //column:当前列
+      //rowIndex:当前行号
+      //columnIndex：当前列号
+      if (row.columnIndex === 0) {
+        // this.tableData  修改
+        /* const _row = this.flitterData(this.table_1).one[row.rowIndex]
+        const _col = _row > 0 ? 1 : 0
+        return {
+          rowspan: _row,
+          colspan: _col
+        }*/
+        if (row.rowIndex % 2 === 0) {
+          return {
+            rowspan: 2,
+            colspan: 1
+          }
+        } else {
+          return {
+            rowspan: 0,
+            colspan: 0
+          }
+        }
+      }
+
+      /* if (row.columnIndex === 5) {
+        if (row.rowIndex % 2 === 0) {
+          return {
+            rowspan: 2,
+            colspan: 1
+          };
+        } else {
+          return {
+            rowspan: 0,
+            colspan: 0
+          };*/
+    },
     // 移除移动端软键盘事件（日期时间选择器）
     resetKeyboard() {
       document.activeElement.blur()
@@ -582,6 +658,16 @@ export default {
         this.total = 0
       }
     },
+
+    handle_open(data) {
+      post('/rollOnoffLine/findRollOnoffLineByIndocno', {
+        indocno: data.indocno
+      }).then(res => {
+        this.table_a = res.data
+        this.open_a = true
+      })
+    },
+
     /**
      * description: 删除一行数据
      */
@@ -592,18 +678,19 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          post('rollOnoffLine/deleteOne', { indocno: data.indocno }).then(
-            res => {
-              console.log('删除', res)
-              if (res) {
-                this.$message({
-                  type: 'success',
-                  message: '删除成功!'
-                })
-                this.findAll()
-              }
+          post('/rollOnoffLine/findRollOnoffLineByIndocno', {
+            indocno: data.indocno
+          }).then(res => {
+            debugger
+            console.log('删除', res)
+            if (res) {
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              })
+              this.findAll()
             }
-          )
+          })
           this.findAll()
         })
         .catch(() => {

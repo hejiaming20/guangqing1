@@ -87,6 +87,9 @@
             prop="roll_type"
             label="轧辊类型"/>
           <el-table-column
+            label="事故原因"
+            prop="scrapreason"/>
+          <el-table-column
             label="机架范围"
             prop="framerange"/>
             <!--  <el-table-column

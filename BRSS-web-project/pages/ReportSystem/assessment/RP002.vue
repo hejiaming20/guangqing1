@@ -23,6 +23,11 @@
               <el-row>
                 <el-col :span="6">
                   <el-form-item
+                    label="砂轮号"
+                    prop="wheelname">
+                    <el-input v-model="searchInfo.wheelname" />
+                  </el-form-item>
+                  <!-- <el-form-item
                     label="砂轮厂商"
                     prop="wheelname">
                     <el-select
@@ -34,7 +39,7 @@
                         :label="item.value"
                         :value="item.value"/>
                     </el-select>
-                  </el-form-item>
+                  </el-form-item>-->
                 </el-col>
                 <el-col :span="6">
                   <el-form-item
@@ -99,7 +104,7 @@
       <template slot="TableBody">
         <el-table-column
           prop="wheelname"
-          label="砂轮厂家"/>
+          label="砂轮号"/>
         <el-table-column
           prop="machineno"
           label="磨床号"/>

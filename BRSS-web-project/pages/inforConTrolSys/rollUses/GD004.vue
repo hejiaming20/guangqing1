@@ -149,6 +149,7 @@
 
           <el-table-column
             prop=""
+            width="70px"
             label="磨削量(mm)">
             <template slot-scope="scope">
               <span>{{ scope.row.before_diameter==0||scope.row.after_diameter==0?0: (scope.row.before_diameter-scope.row.after_diameter).toFixed(3) }}</span>
@@ -213,7 +214,7 @@
           <el-table-column
             prop="grinding_time"
             width="60px"
-            label="磨削时长min"/>
+            label="磨削时长(min)"/>
           <el-table-column
             prop="crackvalue"
             width="70px"
@@ -337,7 +338,7 @@
         </el-col>
       </el-row>
       <el-row>
-        <p style="color:#8d0912;text-align: center;width: 40%;background-color: #16848d;padding-left: 20px;height: 25px;margin-bottom: 5px">涡流</p>
+        <p style="color:#8d0912;text-align: center;width: 49.5%;background-color: #16848d;padding-left: 20px;height: 25px;margin-bottom: 5px">涡流</p>
         <div style="height: 600px">
           <!--  <iframe
             src="http://169.254.100.101:8080/reportpdf/2020-11-28-04.47.56=RWD1-0011.pdf"
@@ -346,7 +347,7 @@
             frameborder="0"/>-->
           <iframe
             :src="src"
-            width="40%"
+            width="50%"
             height="100%"
             frameborder="0"/>
         </div>
