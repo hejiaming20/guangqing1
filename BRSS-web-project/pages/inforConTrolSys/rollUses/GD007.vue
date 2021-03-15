@@ -129,7 +129,7 @@
                               v-model="formatte.roll_1"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange1(formatte.option_1,'F1',1)">
+                              @change="rollTypeChange1(formatte.option_1,'F1',0)">
                               <el-option
                                 v-for="item in option_1"
                                 :key="item.value1"
@@ -146,10 +146,10 @@
                               clearable
                               @change="rollTypeChange1(formatte1.option_1,'F1',1)">
                               <el-option
-                                v-for="item in aoption_1"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
+                                v-for="item in option_1"
+                                :key="item.value1"
+                                :label="item.value1"
+                                :value="item.value1"/>
                             </el-select>
                           </div>
                         </td>
@@ -177,9 +177,9 @@
                               v-model="formatte.roll_2"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange2(formatte.roll_2,'F2',2)">
+                              @change="rollTypeChange2(formatte.roll_2,'F2',0)">
                               <el-option
-                                v-for="item in option_2"
+                                v-for="item in option_1"
                                 :key="item.value1"
                                 :label="item.value1"
                                 :value="item.value1"/>
@@ -192,12 +192,12 @@
                               v-model="formatte1.roll_2"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange2(formatte1.roll_2,'F2',2)">
+                              @change="rollTypeChange2(formatte1.roll_2,'F2',1)">
                               <el-option
-                                v-for="item in aoption_2"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
+                                v-for="item in option_1"
+                                :key="item.value1"
+                                :label="item.value1"
+                                :value="item.value1"/>
                             </el-select>
                           </div>
                         </td>
@@ -225,9 +225,9 @@
                               v-model="formatte.roll_3"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange3(formatte.roll_3,'F3',3)">
+                              @change="rollTypeChange3(formatte.roll_3,'F3',0)">
                               <el-option
-                                v-for="item in option_3"
+                                v-for="item in option_1"
                                 :key="item.value1"
                                 :label="item.value1"
                                 :value="item.value1"/>
@@ -240,12 +240,12 @@
                               v-model="formatte1.roll_3"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange3(formatte1.roll_3,'F3',3)">
+                              @change="rollTypeChange3(formatte1.roll_3,'F3',1)">
                               <el-option
-                                v-for="item in aoption_3"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
+                                v-for="item in option_1"
+                                :key="item.value1"
+                                :label="item.value1"
+                                :value="item.value1"/>
                             </el-select>
                           </div>
                         </td>
@@ -273,9 +273,9 @@
                               v-model="formatte.roll_4"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange4(formatte.roll_4,'F4',4)">
+                              @change="rollTypeChange4(formatte.roll_4,'F4',0)">
                               <el-option
-                                v-for="item in option_4"
+                                v-for="item in option_1"
                                 :key="item.value1"
                                 :label="item.value1"
                                 :value="item.value1"/>
@@ -288,12 +288,12 @@
                               v-model="formatte1.roll_4"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange4(formatte1.roll_4,'F3',3)">
+                              @change="rollTypeChange4(formatte1.roll_4,'F3',1)">
                               <el-option
-                                v-for="item in aoption_4"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
+                                v-for="item in option_1"
+                                :key="item.value1"
+                                :label="item.value1"
+                                :value="item.value1"/>
                             </el-select>
                           </div>
                         </td>
@@ -321,9 +321,9 @@
                               v-model="formatte.roll_5"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange5(formatte.roll_5,'F4',4)">
+                              @change="rollTypeChange5(formatte.roll_5,'F4',0)">
                               <el-option
-                                v-for="item in option_5"
+                                v-for="item in option_1"
                                 :key="item.value1"
                                 :label="item.value1"
                                 :value="item.value1"/>
@@ -336,12 +336,12 @@
                               v-model="formatte1.roll_5"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange5(formatte1.roll_5,'F3',3)">
+                              @change="rollTypeChange5(formatte1.roll_5,'F3',1)">
                               <el-option
-                                v-for="item in aoption_5"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
+                                v-for="item in option_1"
+                                :key="item.value1"
+                                :label="item.value1"
+                                :value="item.value1"/>
                             </el-select>
                           </div>
                         </td>
@@ -369,9 +369,9 @@
                               v-model="formatte.roll_6"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange6(formatte.roll_6,'F4',4)">
+                              @change="rollTypeChange6(formatte.roll_6,'F4',0)">
                               <el-option
-                                v-for="item in option_6"
+                                v-for="item in option_1"
                                 :key="item.value1"
                                 :label="item.value1"
                                 :value="item.value1"/>
@@ -384,12 +384,12 @@
                               v-model="formatte1.roll_6"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange6(formatte1.roll_6,'F3',3)">
+                              @change="rollTypeChange6(formatte1.roll_6,'F3',1)">
                               <el-option
-                                v-for="item in aoption_6"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
+                                v-for="item in option_1"
+                                :key="item.value1"
+                                :label="item.value1"
+                                :value="item.value1"/>
                             </el-select>
                           </div>
                         </td>
@@ -417,9 +417,9 @@
                               v-model="formatte.roll_7"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange7(formatte.roll_7,'F4',4)">
+                              @change="rollTypeChange7(formatte.roll_7,'F4',0)">
                               <el-option
-                                v-for="item in option_7"
+                                v-for="item in option_1"
                                 :key="item.value1"
                                 :label="item.value1"
                                 :value="item.value1"/>
@@ -432,12 +432,12 @@
                               v-model="formatte1.roll_7"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange7(formatte1.roll_7,'F3',3)">
+                              @change="rollTypeChange7(formatte1.roll_7,'F3',1)">
                               <el-option
-                                v-for="item in aoption_7"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
+                                v-for="item in option_1"
+                                :key="item.value1"
+                                :label="item.value1"
+                                :value="item.value1"/>
                             </el-select>
                           </div>
                         </td>
@@ -465,9 +465,9 @@
                               v-model="formatte.roll_8"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange8(formatte.roll_8,'F4',4)">
+                              @change="rollTypeChange8(formatte.roll_8,'F4',0)">
                               <el-option
-                                v-for="item in option_8"
+                                v-for="item in option_1"
                                 :key="item.value1"
                                 :label="item.value1"
                                 :value="item.value1"/>
@@ -480,12 +480,12 @@
                               v-model="formatte1.roll_8"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange8(formatte1.roll_8,'F3',3)">
+                              @change="rollTypeChange8(formatte1.roll_8,'F3',1)">
                               <el-option
-                                v-for="item in aoption_8"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
+                                v-for="item in option_1"
+                                :key="item.value1"
+                                :label="item.value1"
+                                :value="item.value1"/>
                             </el-select>
                           </div>
                         </td>
@@ -513,7 +513,7 @@
                               v-model="formatte.roll_9"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange9(formatte.roll_9,'F4',4)">
+                              @change="rollTypeChange9(formatte.roll_9,'F4',0)">
                               <el-option
                                 v-for="item in option_9"
                                 :key="item.value1"
@@ -528,7 +528,7 @@
                               v-model="formatte1.roll_9"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange9(formatte1.roll_9,'F3',3)">
+                              @change="rollTypeChange9(formatte1.roll_9,'F3',1)">
                               <el-option
                                 v-for="item in aoption_9"
                                 :key="item.value2"
@@ -561,7 +561,7 @@
                               v-model="formatte.roll_10"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange10(formatte.roll_10,'F4',4)">
+                              @change="rollTypeChange10(formatte.roll_10,'F4',0)">
                               <el-option
                                 v-for="item in option_10"
                                 :key="item.value1"
@@ -576,7 +576,7 @@
                               v-model="formatte1.roll_10"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange10(formatte1.roll_10,'F3',3)">
+                              @change="rollTypeChange10(formatte1.roll_10,'F3',1)">
                               <el-option
                                 v-for="item in aoption_10"
                                 :key="item.value2"
@@ -609,7 +609,7 @@
                               v-model="formatte.roll_11"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange11(formatte.roll_11,'F4',4)">
+                              @change="rollTypeChange11(formatte.roll_11,'F4',0)">
                               <el-option
                                 v-for="item in option_11"
                                 :key="item.value1"
@@ -624,7 +624,7 @@
                               v-model="formatte1.roll_11"
                               placeholder="请选择"
                               clearable
-                              @change="rollTypeChange11(formatte1.roll_11,'F3',3)">
+                              @change="rollTypeChange11(formatte1.roll_11,'F3',1)">
                               <el-option
                                 v-for="item in aoption_11"
                                 :key="item.value2"
@@ -656,7 +656,7 @@
                             <el-select
                               v-model="formatte.roll_12"
                               placeholder="请选择"
-                              @change="rollTypeChange12(formatte.roll_12,'F4',4)">
+                              @change="rollTypeChange12(formatte.roll_12,'F4',0)">
                               <el-option
                                 v-for="item in option_12"
                                 :key="item.value1"
@@ -670,7 +670,7 @@
                             <el-select
                               v-model="formatte1.roll_12"
                               placeholder="请选择"
-                              @change="rollTypeChange12(formatte1.roll_12,'F3',3)">
+                              @change="rollTypeChange12(formatte1.roll_12,'F3',1)">
                               <el-option
                                 v-for="item in aoption_12"
                                 :key="item.value2"
@@ -2078,7 +2078,109 @@ export default {
         }
       ],
       hitm_send_roll: '',
-      hitm_send_roll_1: ''
+      hitm_send_roll_1: '',
+      duibi_dian: [
+        {
+          times: 0,
+          value1: ''
+        },
+        {
+          times: 1,
+          value1: ''
+        },
+        {
+          times: 2,
+          value1: ''
+        },
+        {
+          times: 3,
+          value1: ''
+        },
+        {
+          times: 4,
+          value1: ''
+        },
+        {
+          times: 5,
+          value1: ''
+        },
+        {
+          times: 6,
+          value1: ''
+        },
+        {
+          times: 7,
+          value1: ''
+        },
+        {
+          times: 8,
+          value1: ''
+        },
+        {
+          times: 9,
+          value1: ''
+        },
+        {
+          times: 10,
+          value1: ''
+        },
+        {
+          times: 11,
+          value1: ''
+        },
+        {
+          times: 12,
+          value1: ''
+        },
+        {
+          times: 13,
+          value1: ''
+        },
+        {
+          times: 14,
+          value1: ''
+        },
+        {
+          times: 15,
+          value1: ''
+        },
+        {
+          times: 16,
+          value1: ''
+        },
+        {
+          times: 17,
+          value1: ''
+        },
+        {
+          times: 18,
+          value1: ''
+        },
+        {
+          times: 19,
+          value1: ''
+        },
+        {
+          times: 20,
+          value1: ''
+        },
+        {
+          times: 21,
+          value1: ''
+        },
+        {
+          times: 22,
+          value1: ''
+        },
+        {
+          times: 23,
+          value1: ''
+        },
+        {
+          times: 24,
+          value1: ''
+        }
+      ]
     }
   },
   created() {
@@ -2448,54 +2550,6 @@ export default {
             this.option_1.push(res.data[i])
           }
           if (
-            res.data[i].frame_no == 'F2支撑辊' &&
-            res.data[i].value1 != null
-          ) {
-            this.option_2.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F3支撑辊' &&
-            res.data[i].value1 != null
-          ) {
-            this.option_3.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F4支撑辊' &&
-            res.data[i].value1 != null
-          ) {
-            this.option_4.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F5支撑辊' &&
-            res.data[i].value1 != null
-          ) {
-            this.option_5.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F6支撑辊' &&
-            res.data[i].value1 != null
-          ) {
-            this.option_6.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F7支撑辊' &&
-            res.data[i].value1 != null
-          ) {
-            this.option_7.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F8支撑辊' &&
-            res.data[i].value1 != null
-          ) {
-            this.option_8.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'R1工作辊' &&
-            res.data[i].value1 != null
-          ) {
-            this.option_9.push(res.data[i])
-          }
-          if (
             res.data[i].frame_no == 'R1支撑辊' &&
             res.data[i].value1 != null
           ) {
@@ -2579,6 +2633,30 @@ export default {
         console.log(this.option_1, '你', this.option_2)
         // this.option_2 = res.data
       })
+
+      // this.aoption_10 = Object.assign({}, this.aoption_10)
+      console.log(this.aoption_10)
+      this.aoption_10.splice(0, 1)
+      var aa = [
+        {
+          frame_no: 'R1支撑辊',
+          frame_noid: 8,
+          indocno: 10,
+          key: 'R1支撑辊1',
+          value1: 'FBX5-7003',
+          value2: 'FBX5-7003'
+        },
+        {
+          frame_no: 'R1支撑辊',
+          frame_noid: 8,
+          indocno: 12,
+          key: 'R1支撑辊2',
+          value1: '111',
+          value2: '111'
+        }
+      ]
+      aa.splice(0, 1)
+      console.log(aa, this.aoption_10)
     },
     //select选择
     rollTypeChange1(vId, val, num) {
@@ -2601,6 +2679,63 @@ export default {
 
       this.arry_all[0].roll_no = nex
       this.chaxun1()
+
+      //左边点了替换
+      if (this.formatte.roll_1 && this.duibi_dian[0].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[0].value1
+        })
+      }
+
+      //右边点了替换
+      if (this.formatte1.roll_1 && this.duibi_dian[1].value1 && num == 1) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[1].value1
+        })
+      }
+
+      //左边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte.roll_1 == this.option_1[i].value1 && num == 0) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //右边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte1.roll_1 == this.option_1[i].value1 && num == 1) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //左边点了取消添加进去
+      if (this.formatte.roll_1 == '' && this.duibi_dian[0].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[0].value1
+        })
+      }
+      //点了左边的存放到设定的变量里
+      if (num == 0) {
+        this.duibi_dian[0].value1 = this.formatte.roll_1
+      }
+
+      //右边点了取消添加进去
+      if (
+        this.formatte1.roll_1 == '' &&
+        this.duibi_dian[1].value1 &&
+        num == 1
+      ) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[1].value1
+        })
+      }
+      //点了右边的存放到设定的变量里
+      if (num == 1) {
+        this.duibi_dian[1].value1 = this.formatte1.roll_1
+      }
+
       // this.xuyao1 = nex
     },
     rollTypeChange2(vId, val, num) {
@@ -2623,6 +2758,61 @@ export default {
       this.arry_all[1].roll_no = nex
       this.chaxun2()
       // this.xuyao2 = nex
+      //左边点了替换
+      if (this.formatte.roll_2 && this.duibi_dian[2].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[2].value1
+        })
+      }
+
+      //右边点了替换
+      if (this.formatte1.roll_2 && this.duibi_dian[3].value1 && num == 1) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[3].value1
+        })
+      }
+
+      //左边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte.roll_2 == this.option_1[i].value1 && num == 0) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //右边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte1.roll_2 == this.option_1[i].value1 && num == 1) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //左边点了取消添加进去
+      if (this.formatte.roll_2 == '' && this.duibi_dian[2].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[2].value1
+        })
+      }
+      //点了左边的存放到设定的变量里
+      if (num == 0) {
+        this.duibi_dian[2].value1 = this.formatte.roll_2
+      }
+
+      //右边点了取消添加进去
+      if (
+        this.formatte1.roll_2 == '' &&
+        this.duibi_dian[3].value1 &&
+        num == 1
+      ) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[3].value1
+        })
+      }
+      //点了右边的存放到设定的变量里
+      if (num == 1) {
+        this.duibi_dian[3].value1 = this.formatte1.roll_2
+      }
     },
     rollTypeChange3(vId, val, num) {
       var nex = ''
@@ -2644,6 +2834,62 @@ export default {
       this.arry_all[2].roll_no = nex
       this.chaxun3()
       //this.xuyao3 = nex
+
+      //左边点了替换
+      if (this.formatte.roll_3 && this.duibi_dian[4].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[4].value1
+        })
+      }
+
+      //右边点了替换
+      if (this.formatte1.roll_3 && this.duibi_dian[5].value1 && num == 1) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[5].value1
+        })
+      }
+
+      //左边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte.roll_3 == this.option_1[i].value1 && num == 0) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //右边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte1.roll_3 == this.option_1[i].value1 && num == 1) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //左边点了取消添加进去
+      if (this.formatte.roll_3 == '' && this.duibi_dian[4].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[4].value1
+        })
+      }
+      //点了左边的存放到设定的变量里
+      if (num == 0) {
+        this.duibi_dian[4].value1 = this.formatte.roll_3
+      }
+
+      //右边点了取消添加进去
+      if (
+        this.formatte1.roll_3 == '' &&
+        this.duibi_dian[5].value1 &&
+        num == 1
+      ) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[5].value1
+        })
+      }
+      //点了右边的存放到设定的变量里
+      if (num == 1) {
+        this.duibi_dian[5].value1 = this.formatte1.roll_3
+      }
     },
     rollTypeChange4(vId, val, num) {
       var nex = ''
@@ -2665,6 +2911,62 @@ export default {
       this.arry_all[3].roll_no = nex
       this.chaxun4()
       // this.xuyao4 = nex
+
+      //左边点了替换
+      if (this.formatte.roll_4 && this.duibi_dian[6].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[6].value1
+        })
+      }
+
+      //右边点了替换
+      if (this.formatte1.roll_4 && this.duibi_dian[7].value1 && num == 1) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[7].value1
+        })
+      }
+
+      //左边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte.roll_4 == this.option_1[i].value1 && num == 0) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //右边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte1.roll_4 == this.option_1[i].value1 && num == 1) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //左边点了取消添加进去
+      if (this.formatte.roll_4 == '' && this.duibi_dian[6].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[6].value1
+        })
+      }
+      //点了左边的存放到设定的变量里
+      if (num == 0) {
+        this.duibi_dian[6].value1 = this.formatte.roll_4
+      }
+
+      //右边点了取消添加进去
+      if (
+        this.formatte1.roll_4 == '' &&
+        this.duibi_dian[7].value1 &&
+        num == 1
+      ) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[7].value1
+        })
+      }
+      //点了右边的存放到设定的变量里
+      if (num == 1) {
+        this.duibi_dian[7].value1 = this.formatte1.roll_4
+      }
     },
     rollTypeChange5(vId, val, num) {
       var nex = ''
@@ -2686,6 +2988,62 @@ export default {
       this.arry_all[4].roll_no = nex
       this.chaxun5()
       // this.xuyao5 = nex
+
+      //左边点了替换
+      if (this.formatte.roll_5 && this.duibi_dian[8].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[8].value1
+        })
+      }
+
+      //右边点了替换
+      if (this.formatte1.roll_5 && this.duibi_dian[9].value1 && num == 1) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[9].value1
+        })
+      }
+
+      //左边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte.roll_5 == this.option_1[i].value1 && num == 0) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //右边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte1.roll_5 == this.option_1[i].value1 && num == 1) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //左边点了取消添加进去
+      if (this.formatte.roll_5 == '' && this.duibi_dian[8].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[8].value1
+        })
+      }
+      //点了左边的存放到设定的变量里
+      if (num == 0) {
+        this.duibi_dian[8].value1 = this.formatte.roll_5
+      }
+
+      //右边点了取消添加进去
+      if (
+        this.formatte1.roll_5 == '' &&
+        this.duibi_dian[9].value1 &&
+        num == 1
+      ) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[9].value1
+        })
+      }
+      //点了右边的存放到设定的变量里
+      if (num == 1) {
+        this.duibi_dian[9].value1 = this.formatte1.roll_5
+      }
     },
     rollTypeChange6(vId, val, num) {
       var nex = ''
@@ -2707,6 +3065,66 @@ export default {
       this.arry_all[5].roll_no = nex
       this.chaxun6()
       // this.xuyao6 = nex
+
+      //左边点了替换
+      if (this.formatte.roll_6 && this.duibi_dian[10].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[10].value1
+        })
+      }
+
+      //右边点了替换
+      if (this.formatte1.roll_6 && this.duibi_dian[11].value1 && num == 1) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[11].value1
+        })
+      }
+
+      //左边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte.roll_6 == this.option_1[i].value1 && num == 0) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //右边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte1.roll_6 == this.option_1[i].value1 && num == 1) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //左边点了取消添加进去
+      if (
+        this.formatte.roll_6 == '' &&
+        this.duibi_dian[10].value1 &&
+        num == 0
+      ) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[10].value1
+        })
+      }
+      //点了左边的存放到设定的变量里
+      if (num == 0) {
+        this.duibi_dian[10].value1 = this.formatte.roll_6
+      }
+
+      //右边点了取消添加进去
+      if (
+        this.formatte1.roll_6 == '' &&
+        this.duibi_dian[11].value1 &&
+        num == 1
+      ) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[11].value1
+        })
+      }
+      //点了右边的存放到设定的变量里
+      if (num == 1) {
+        this.duibi_dian[11].value1 = this.formatte1.roll_6
+      }
     },
     rollTypeChange7(vId, val, num) {
       var nex = ''
@@ -2728,6 +3146,66 @@ export default {
       this.arry_all[6].roll_no = nex
       this.chaxun7()
       //this.xuyao7 = nex
+
+      //左边点了替换
+      if (this.formatte.roll_7 && this.duibi_dian[12].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[12].value1
+        })
+      }
+
+      //右边点了替换
+      if (this.formatte1.roll_7 && this.duibi_dian[13].value1 && num == 1) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[13].value1
+        })
+      }
+
+      //左边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte.roll_7 == this.option_1[i].value1 && num == 0) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //右边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte1.roll_7 == this.option_1[i].value1 && num == 1) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //左边点了取消添加进去
+      if (
+        this.formatte.roll_7 == '' &&
+        this.duibi_dian[12].value1 &&
+        num == 0
+      ) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[12].value1
+        })
+      }
+      //点了左边的存放到设定的变量里
+      if (num == 0) {
+        this.duibi_dian[12].value1 = this.formatte.roll_7
+      }
+
+      //右边点了取消添加进去
+      if (
+        this.formatte1.roll_7 == '' &&
+        this.duibi_dian[13].value1 &&
+        num == 1
+      ) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[13].value1
+        })
+      }
+      //点了右边的存放到设定的变量里
+      if (num == 1) {
+        this.duibi_dian[13].value1 = this.formatte1.roll_7
+      }
     },
     rollTypeChange8(vId, val, num) {
       var nex = ''

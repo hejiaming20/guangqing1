@@ -197,10 +197,10 @@
               :label="item.label"
               :width="item.width"
               show-overflow-tooltip/>
-            <el-table-column
+            <!--<el-table-column
               prop="lastgrindingtime"
               width="160px"
-              label="最新一次磨削时间"/>
+              label="最新一次磨削时间"/>-->
             <el-table-column
               prop="lastlowlinetime"
               width="160px"

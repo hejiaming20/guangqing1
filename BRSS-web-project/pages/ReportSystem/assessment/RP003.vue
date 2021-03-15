@@ -1,181 +1,187 @@
 <!--设备稼动率报表-->
 <template>
   <div>
-    <Table-easy
-      :table-data="tableData"
-      :total="total"
-      :page-size="pageSize"
-      :current-page="pageIndex"
-      :table-height="650"
-      :cell-class-name="setCellStyle"
-      :is-pagination-show="false"
-      :table-foot="true"
-      index-type="index"
-      @handle-current-change="handleCurrentChange"
-      @handle-size-change="handleSizeChange">
-      <template slot="TableHead">
-        <el-row :gutter="10">
-          <el-col :span="20">
-            <el-form
-              ref="ruleForm"
-              :model="searchInfo"
-              class="search-info"
-              label-width="90px">
-              <el-row>
-                <el-col :span="6">
-                  <el-form-item
-                    label="磨床号"
-                    prop="machine_no">
-                    <el-select
-                      v-model="searchInfo.machine_no"
-                      placeholder="请选择">
-                      <el-option
-                        v-for="item in options"
-                        :key="item.key"
-                        :label="item.value"
-                        :value="Number(item.key)"/>
-                    </el-select>
-                  </el-form-item>
-                </el-col>
+    <div style="color:greenyellow;margin-top: 5px;margin-bottom: 5px; padding-top: 4px;padding-bottom: 4px ; padding-left: 25px;width: 100%;background-color: #253F80;font-size: 14px;height:40px;overflow-y: auto ">
+      说明：稼动率=（磨削时长/720）*100%
+    </div>
+    <div>
+      <Table-easy
+        :table-data="tableData"
+        :total="total"
+        :page-size="pageSize"
+        :current-page="pageIndex"
+        :table-height="650"
+        :cell-class-name="setCellStyle"
+        :is-pagination-show="false"
+        :table-foot="true"
+        index-type="index"
+        @handle-current-change="handleCurrentChange"
+        @handle-size-change="handleSizeChange">
+        <template slot="TableHead">
+          <el-row :gutter="10">
+            <el-col :span="20">
+              <el-form
+                ref="ruleForm"
+                :model="searchInfo"
+                class="search-info"
+                label-width="90px">
+                <el-row>
+                  <el-col :span="6">
+                    <el-form-item
+                      label="磨床号"
+                      prop="machine_no">
+                      <el-select
+                        v-model="searchInfo.machine_no"
+                        placeholder="请选择">
+                        <el-option
+                          v-for="item in options"
+                          :key="item.key"
+                          :label="item.value"
+                          :value="Number(item.key)"/>
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
 
-                <el-col :span="6">
-                  <el-form-item
-                    label="操作人名称"
-                    prop="operator">
-                    <el-input v-model="searchInfo.operator" />
-                  </el-form-item>
-                </el-col>
-                <el-col :span="6">
-                  <el-form-item
-                    label="开始时间"
-                    prop="dbegin">
-                    <el-date-picker
-                      ref="userTime"
-                      v-model="searchInfo.dbegin"
-                      value-format="yyyy-MM-dd HH:mm:ss"
-                      type="datetime"
-                      placeholder="开始时间"/>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="6">
-                  <el-form-item
-                    label="结束时间"
-                    prop="dend">
-                    <el-date-picker
-                      v-model="searchInfo.dend"
-                      value-format="yyyy-MM-dd HH:mm:ss"
-                      type="datetime"
-                      placeholder="选择结束时间"/>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-            </el-form>
-          </el-col>
-          <el-col :span="4">
-            <div class="btn">
-              <el-button
-                size="mini"
-                type="primary"
-                @click="findSearch()">查询</el-button>
-              <el-button
-                size="mini"
-                type="primary"
-                @click="resetForm('ruleForm')">重置</el-button>
-              <el-button
-                type="primary"
-                size="mini"
-                @click="hand_exe">导出全部
-              </el-button>
-            </div>
-          </el-col>
-        </el-row>
-      </template>
-      <template slot="TableBody">
-        <el-table-column
-          prop="machineno"
-          width="150"
-          label="磨床号"/>
-        <el-table-column
-          prop="grind_starttime"
-          label="磨削开始时间"/>
-        <el-table-column
-          prop="operator"
-          label="操作人"/>
-        <el-table-column
-          prop="fwnum"
-          label="1-4工作辊"/>
-        <el-table-column
-          prop="gwnum"
-          label="5-8工作辊"/>
-        <el-table-column
-          prop="rnum"
-          label="支撑辊"/>
-        <el-table-column
-          prop="rwnum"
-          label="粗轧支撑辊"/>
-        <el-table-column
-          prop="othernum"
-          label="其他辊"/>
-        <el-table-column
-          prop="rates"
-          label="稼动率"/>
-        <el-table-column
-          prop="grinding_time"
-          label="磨削时长(min)"/>
-        <el-table-column
-          prop="sclass"
-          label="班"/>
-        <el-table-column
-          prop="sgroup"
-          label="班组"/>
+                  <el-col :span="6">
+                    <el-form-item
+                      label="操作人名称"
+                      prop="operator">
+                      <el-input v-model="searchInfo.operator" />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="6">
+                    <el-form-item
+                      label="开始时间"
+                      prop="dbegin">
+                      <el-date-picker
+                        ref="userTime"
+                        v-model="searchInfo.dbegin"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        type="datetime"
+                        placeholder="开始时间"/>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="6">
+                    <el-form-item
+                      label="结束时间"
+                      prop="dend">
+                      <el-date-picker
+                        v-model="searchInfo.dend"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        type="datetime"
+                        placeholder="选择结束时间"/>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+              </el-form>
+            </el-col>
+            <el-col :span="4">
+              <div class="btn">
+                <el-button
+                  size="mini"
+                  type="primary"
+                  @click="findSearch()">查询</el-button>
+                <el-button
+                  size="mini"
+                  type="primary"
+                  @click="resetForm('ruleForm')">重置</el-button>
+                <el-button
+                  type="primary"
+                  size="mini"
+                  @click="hand_exe">导出全部
+                </el-button>
+              </div>
+            </el-col>
+          </el-row>
+        </template>
+        <template slot="TableBody">
+          <el-table-column
+            prop="machineno"
+            width="150"
+            label="磨床号"/>
+          <el-table-column
+            prop="grind_starttime"
+            label="磨削开始时间"/>
+          <el-table-column
+            prop="operator"
+            label="操作人"/>
+          <el-table-column
+            prop="fwnum"
+            label="1-4工作辊"/>
+          <el-table-column
+            prop="gwnum"
+            label="5-8工作辊"/>
+          <el-table-column
+            prop="rnum"
+            label="支撑辊"/>
+          <el-table-column
+            prop="rwnum"
+            label="粗轧支撑辊"/>
+          <el-table-column
+            prop="othernum"
+            label="其他辊"/>
+          <el-table-column
+            prop="rates"
+            label="稼动率"/>
+          <el-table-column
+            prop="grinding_time"
+            label="磨削时长(min)"/>
+          <el-table-column
+            prop="sclass"
+            label="班"/>
+          <el-table-column
+            prop="sgroup"
+            label="班组"/>
 
-      </template>
-    </Table-easy>
-    <div
-      class="layout-default-margin"
-      style="margin-top: 20px">
-      <table
-        border="1"
-        class="el-table "
-      >
-        <colgroup>
-          <col
-            span="19"
-            class="u-table-span">
-        </colgroup>
-        <thead>
-          <tr class="u-table-head">
-            <th colspan="2">轧辊支数</th>
-            <th colspan="2">磨辊总时间</th>
-            <th colspan="2">设备稼动率</th>
-            <th colspan="2">平均每支辊用时</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="color: red"> 最多 </td>
-            <td> 最少 </td>
-            <td style="color: red"> 最多 </td>
-            <td> 最少 </td>
-            <td style="color: red"> 最高 </td>
-            <td> 最低 </td>
-            <td style="color: red"> 最少 </td>
-            <td> 最多 </td>
-          </tr>
-          <tr>
-            <td> {{ maxtotalnum_1 }} </td>
-            <td> {{ mintotalnum_1 }} </td>
-            <td> {{ maxgrinding_timetotalnum_1 }} </td>
-            <td> {{ mingrinding_timetotalnum_1 }} </td>
-            <td> {{ maxrates_1 }} </td>
-            <td> {{ minrates_1 }} </td>
-            <td> {{ mintotalavgnum_1 }} </td>
-            <td> {{ maxtotalavgnum_1 }} </td>
-          </tr>
-        </tbody>
-      </table>
+        </template>
+      </Table-easy>
+      <div
+        class="layout-default-margin"
+        style="margin-top: 20px">
+        <table
+          border="1"
+          class="el-table "
+        >
+          <colgroup>
+            <col
+              span="19"
+              class="u-table-span">
+          </colgroup>
+          <thead>
+            <tr class="u-table-head">
+              <th colspan="2">轧辊支数</th>
+              <th colspan="2">磨辊总时间</th>
+              <th colspan="2">设备稼动率</th>
+              <th colspan="2">平均每支辊用时</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: red"> 最多 </td>
+              <td> 最少 </td>
+              <td style="color: red"> 最多 </td>
+              <td> 最少 </td>
+              <td style="color: red"> 最高 </td>
+              <td> 最低 </td>
+              <td style="color: red"> 最少 </td>
+              <td> 最多 </td>
+            </tr>
+            <tr>
+              <td> {{ maxtotalnum_1 }} </td>
+              <td> {{ mintotalnum_1 }} </td>
+              <td> {{ maxgrinding_timetotalnum_1 }} </td>
+              <td> {{ mingrinding_timetotalnum_1 }} </td>
+              <td> {{ maxrates_1 }} </td>
+              <td> {{ minrates_1 }} </td>
+              <td> {{ mintotalavgnum_1 }} </td>
+              <td> {{ maxtotalavgnum_1 }} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>

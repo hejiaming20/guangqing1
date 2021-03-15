@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="5">
       <div style="color:greenyellow;margin-top: 5px;margin-bottom: 5px; padding-top: 4px;padding-bottom: 4px ; padding-left: 25px;width: 100%;background-color: #253F80;font-size: 14px;height:40px;overflow-y: auto ">
-        说明：径差=上辊-下辊 （此为轧辊配对辅助页面，为正说明上辊大，配对时配对径差小于该页面设置的径差就可以配对）
+        说明：径差=上辊-下辊 （此为轧辊配对辅助页面，配对时配对径差应该在该页面对应机架设置的最小径差和最大径差区间内）
       </div>
 
       <!--<el-col :span="12">

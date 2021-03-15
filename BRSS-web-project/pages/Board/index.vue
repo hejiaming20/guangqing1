@@ -467,8 +467,8 @@ export default {
       var need_y3 = [] //毫米轧制量
       for (var i = 0; datas.length > i; i++) {
         need_x1.push(datas[i].label)
-        need_y2.push(datas[i].consumption.toFixed(1))
-        need_y3.push(datas[i].cost.toFixed(1))
+        need_y2.push(datas[i].consumption.toFixed(2))
+        need_y3.push(datas[i].cost.toFixed(2))
       }
       //吨钢消耗/成本
       var option_1 = {

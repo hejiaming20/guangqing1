@@ -342,7 +342,7 @@
             border >
             <el-table-column
               label="操作"
-              min-width="100"
+              min-width="120"
               align="center">
               <template slot-scope="scope">
                 <el-button
@@ -758,12 +758,15 @@ export default {
             /*var jingcha = Math.abs(
               this.rollpairU.currentdiameter - this.rollpairD.currentdiameter
             )*/
-            debugger
+
+            var dia_min = res.data.minrollerradius
+            var dia_max = res.data.rollerradius
+
             var jingcha =
               this.rollpairU.currentdiameter - this.rollpairD.currentdiameter
 
-            if (res.data > 0) {
-              if (jingcha <= res.data) {
+            if (dia_min !== null && dia_max !== null) {
+              if (jingcha >= dia_min && jingcha <= dia_max) {
                 /*this.$message({
                   type: 'success',
                   message: '报废成功!'
@@ -822,72 +825,20 @@ export default {
               } else {
                 this.$message({
                   type: 'danger',
-                  message: '辊颈差过大!'
+                  message:
+                    '径差' +
+                    jingcha +
+                    '不在辊径区间' +
+                    dia_min +
+                    '-----' +
+                    dia_max
                 })
               }
-            } else if (res.data < 0) {
-              if (jingcha >= res.data) {
-                /*this.$message({
-                  type: 'success',
-                  message: '报废成功!'
-                })*/
-                //厂家
-                if (this.rollpairU.factory == this.rollpairD.factory) {
-                  if (this.rollpairU.rollshape == this.rollpairD.rollshape) {
-                    post('/rollPaired/insert', {
-                      rollPaired: {
-                        istate: null,
-                        idel: null,
-                        createtime: null,
-                        createname: null,
-                        createid: null,
-                        moditime: null,
-                        modiid: null,
-                        modiname: null,
-                        production_line: this.rollpairU.production_line, //后续添加----
-                        production_line_id: this.rollpairU.production_line_id,
-                        factory: this.rollpairU.factory,
-                        material: this.rollpairU.material,
-                        roll_typeid: this.rollpairU.roll_typeid,
-                        roll_type: this.rollpairU.roll_type, //----后续添加
-
-                        ilinkno_up: this.rollpairU.indocno,
-                        roll_no_up: this.rollpairU.roll_no,
-                        ilinkno_down: this.rollpairD.indocno,
-                        roll_no_down: this.rollpairD.roll_no,
-                        frame_noid: fame_value_ID,
-                        frame_no: this.fame_value
-                      }
-                    }).then(res => {
-                      if (res) {
-                        this.$message({
-                          type: 'success',
-                          message: '配对成功!'
-                        })
-                        this.findAll()
-                        this.find_data()
-                      }
-                    })
-                    this.findAll()
-                    this.find_data()
-                  } else {
-                    this.$message({
-                      type: 'danger',
-                      message: '辊形不一样!'
-                    })
-                  }
-                } else {
-                  this.$message({
-                    type: 'danger',
-                    message: '厂家不同!'
-                  })
-                }
-              } else {
-                this.$message({
-                  type: 'danger',
-                  message: '辊颈差过大2!'
-                })
-              }
+            } else {
+              this.$message({
+                type: 'danger',
+                message: '请输入辊径最大最小区间'
+              })
             }
           })
         })

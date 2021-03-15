@@ -6,7 +6,7 @@
       :total="total"
       :page-size="pageSize"
       :current-page="pageIndex"
-      :table-height="450"
+      :table-height="350"
       :cell-class-name="setCellStyle"
       :is-pagination-show="false"
       :table-foot="true"
@@ -210,6 +210,16 @@
 
       </template>
     </Table-easy>
+    <div class="best-classTitle">
+      吨钢消耗/成本
+    </div>
+    <div style="height: 360px; border: 3px solid #105b8d;margin-top: 10px;padding: 10px">
+      <el-col :span="24">
+        <div
+          id="app2_1"
+          style="width:100%;height: 350px;"/>
+      </el-col>
+    </div>
   </div>
 </template>
 
@@ -253,7 +263,83 @@ export default {
         grind_endtime: ''
       },
       consumption_show: '',
-      cost_show: ''
+      cost_show: '',
+      mon_need: [
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12'
+      ],
+      find_two_1: [
+        {
+          label: '1月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '2月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '3月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '4月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '5月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '6月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '7月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '8月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '9月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '10月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '11月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '12月',
+          consumption: 0,
+          cost: 0
+        }
+      ]
     }
   },
   created() {
@@ -361,8 +447,364 @@ export default {
           material: res.bean.cost
           //material: 200
         })*/
+        //echart图
+        this.guang_find_2()
         this.total = res.count
       })
+    },
+    guang_find_2() {
+      this.repeat_1(0, 12)
+      //this.find_two_1 = []
+      find_two_1: [
+        {
+          label: '1月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '2月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '3月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '4月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '5月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '6月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '7月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '8月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '9月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '10月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '11月',
+          consumption: 0,
+          cost: 0
+        },
+        {
+          label: '12月',
+          consumption: 0,
+          cost: 0
+        }
+      ]
+    },
+    repeat_1(num, length) {
+      post('baseCostAccountingMain/findBaseCostAccountingABigScreen', {
+        condition: { dbegin: this.mon_need[num] }
+      }).then(res => {
+        console.log(res.bean.cost)
+        this.find_two_1[num].cost = res.bean.cost
+        this.find_two_1[num].consumption = res.bean.consumption
+        //debugger
+        if (++num < length) {
+          this.repeat_1(num, length)
+        } else {
+          this.echart_go_er(this.find_two_1)
+        }
+      })
+      console.log(this.find_two_1)
+    },
+    //吨钢消耗/成本
+    echart_go_er(datas) {
+      var need_x1 = []
+      var need_y2 = [] //吨钢
+      var need_y3 = [] //毫米轧制量
+      for (var i = 0; datas.length > i; i++) {
+        need_x1.push(datas[i].label)
+        need_y2.push(datas[i].consumption.toFixed(2))
+        need_y3.push(datas[i].cost.toFixed(2))
+      }
+      //吨钢消耗/成本
+      var option_1 = {
+        //backgroundColor: '#031245',
+        textStyle: {
+          color: '#c0c3cd',
+          fontSize: 14
+        },
+        toolbox: {
+          show: false,
+          feature: {
+            saveAsImage: {
+              backgroundColor: '#031245'
+            },
+            restore: {}
+          },
+          iconStyle: {
+            borderColor: '#c0c3cd'
+          }
+        },
+        legend: {
+          top: 10,
+          itemWidth: 8,
+          itemHeight: 8,
+          icon: 'circle',
+          left: 'center',
+          padding: 0,
+          color: ['#208d3a', 'red'],
+          data: ['吨钢消耗', '毫米轧制量'],
+          textStyle: {
+            color: ['#105b8d', '#208d3a'],
+            fontSize: 14,
+            padding: [2, 0, 0, 0]
+          }
+        },
+        color: [
+          '#63caff',
+          '#49beff',
+          '#03387a',
+          '#03387a',
+          '#03387a',
+          '#6c93ee',
+          '#a9abff',
+          '#f7a23f',
+          '#27bae7',
+          '#ff6d9d',
+          '#cb79ff',
+          '#f95b5a',
+          '#ccaf27',
+          '#38b99c',
+          '#93d0ff',
+          '#bd74e0',
+          '#fd77da',
+          '#dea700'
+        ],
+        grid: {
+          containLabel: true,
+          left: 20,
+          right: 20,
+          bottom: 10,
+          top: 40
+        },
+        xAxis: {
+          nameTextStyle: {
+            color: '#c0c3cd',
+            padding: [0, 0, -10, 0],
+            fontSize: 14
+          },
+          axisLabel: {
+            rotate: 0,
+            interval: 0, //横轴信息全部显示,
+            color: '#c0c3cd',
+            fontSize: 14,
+            interval: 0
+          },
+          axisTick: {
+            lineStyle: {
+              color: '#384267',
+              width: 1
+            },
+            show: true
+          },
+          splitLine: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#384267',
+              width: 1,
+              type: 'dashed'
+            },
+            show: true
+          },
+          /*data: [
+            '0点~2点',
+            '3点~5点',
+            '6点~8点',
+            '0点~2点',
+            '3点~5点',
+            '6点~8点',
+            '0点~2点',
+            '3点~5点'
+          ],*/
+          data: need_x1,
+          type: 'category'
+        },
+        yAxis: [
+          {
+            name: '吨钢消耗(kg)',
+            nameTextStyle: {
+              color: '#c0c3cd',
+              padding: [0, 0, -10, 0],
+              fontSize: 14
+            },
+            axisLabel: {
+              color: '#63caff',
+              fontSize: 14
+            },
+            axisTick: {
+              lineStyle: {
+                color: '#384267',
+                width: 1
+              },
+              show: true
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: '#384267',
+                type: 'dashed'
+              }
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#384267',
+                width: 1,
+                type: 'dashed'
+              },
+              show: true
+            }
+          },
+          {
+            type: 'value',
+            name: '吨钢成本(元)',
+            color: '#d3ca1b',
+            splitLine: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              fontSize: 14,
+              color: '#d3ca1b'
+            }
+          }
+        ],
+        series: [
+          {
+            //data: [200, 85, 112, 275, 305, 415, 741, 405],
+            name: '吨钢消耗',
+            data: need_y2,
+            yAxisIndex: 0,
+            type: 'bar',
+            barMaxWidth: 'auto',
+            barWidth: 30,
+            itemStyle: {
+              color: {
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                type: 'linear',
+                global: false,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: '#0b9eff'
+                  },
+                  {
+                    offset: 1,
+                    color: '#63caff'
+                  }
+                ]
+              }
+            },
+            label: {
+              show: true,
+              position: 'top',
+              distance: 0,
+              color: '#63caff'
+            }
+          },
+          {
+            name: '吨钢消耗',
+            yAxisIndex: 0,
+            data: [1, 1, 1, 1, 1, 1, 1, 1],
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbol: 'diamond',
+            symbolOffset: [0, '50%'],
+            symbolSize: [30, 15]
+          },
+          {
+            name: '吨钢消耗',
+            yAxisIndex: 0,
+            // data: [200, 85, 112, 275, 305, 415, 741, 405],
+            data: need_y2,
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbolPosition: 'end',
+            symbol: 'diamond',
+            symbolOffset: [0, '-50%'],
+            symbolSize: [30, 12],
+            zlevel: 2
+          },
+          {
+            name: '吨钢消耗',
+            yAxisIndex: 0,
+            data: [1, 1, 1, 1, 1, 1, 1, 1],
+            type: 'pictorialBar',
+            barMaxWidth: '20',
+            symbol: 'diamond',
+            symbolOffset: [0, '50%'],
+            symbolSize: [30, 15],
+            zlevel: -2
+          },
+          {
+            name: '毫米轧制量',
+            type: 'line',
+            yAxisIndex: 1,
+            data: need_y3,
+            label: {
+              show: true,
+              position: 'top',
+              distance: 20,
+              color: '#d3ca1b'
+            },
+            /* itemStyle: { normal: { label: { show: true } } }*/
+            itemStyle: {
+              normal: {
+                color: '#d3ca1b', //折线点的颜色
+                lineStyle: {
+                  color: '#d3ca1b' //折线的颜色
+                }
+              }
+            }
+          }
+        ],
+        tooltip: {
+          trigger: 'axis',
+          show: false
+        }
+      }
+      var myChart2_1 = Echarts.init(
+        document.getElementById('app2_1'),
+        'default'
+      ) //将配置注入到html中定义的容器
+      myChart2_1.setOption(option_1)
     },
     // 磨削精度评级时间选择
     // 分页
