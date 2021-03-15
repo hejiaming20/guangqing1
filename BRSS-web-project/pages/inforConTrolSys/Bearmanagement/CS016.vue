@@ -27,6 +27,7 @@
         :total="total"
         :page-size="pageSize"
         :current-page="pageIndex"
+        :cell-class-name="setCellStyle"
         index-type="index"
         @handle-current-change="handleCurrentChange"
         @handle-size-change="handleSizeChange">
@@ -142,10 +143,10 @@
             label="开始时间"/>
           <el-table-column
             prop="interval_times"
-            label="提醒时间"/>
+            label="提醒时间(d)"/>
           <el-table-column
             prop="total_times"
-            label="累计时间"/>
+            label="累计时间(d)"/>
           <el-table-column
             prop="discard_time"
             width="150px"
@@ -254,12 +255,12 @@
               </el-col>
               <el-col :span="8">
                 <el-form-item
-                  label="提醒时间"
+                  label="提醒时间(d)"
                   prop="interval_times">
                   <el-input v-model="formLabelAlign.interval_times" />
                 </el-form-item>
                 <el-form-item
-                  label="累计时间"
+                  label="累计时间(d)"
                   prop="total_times">
                   <el-input v-model="formLabelAlign.total_times" />
                 </el-form-item>
@@ -470,6 +471,15 @@ export default {
     console.log(this.crea_sname_id, this.crea_sname)
   },
   methods: {
+    //单元格变红
+    setCellStyle({ row, column }) {
+      if (
+        row.total_times > row.interval_times &&
+        column.label == '累计时间(d)'
+      ) {
+        return 'setClassname'
+      }
+    },
     findAll_1() {
       this.send_id = ''
       this.send_sname = ''
@@ -735,5 +745,9 @@ export default {
   overflow: auto;
   padding: 20px 10px;
   box-sizing: border-box;
+}
+.setClassname {
+  color: #d3ca1b !important;
+  background-color: #8d0912 !important;
 }
 </style>

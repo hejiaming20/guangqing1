@@ -158,12 +158,15 @@
           label="砂径减少(mm)"/>
         <el-table-column
           prop="sandbody_reduce"
+          width="70"
           label="砂体减少(cm3)"/>
         <el-table-column
           prop="abrasion_than"
+          width="110"
           label="磨耗比(V/V)"/>
         <el-table-column
           prop="efficiency"
+          width="110"
           label="效率(mm/min)"/>
 
 

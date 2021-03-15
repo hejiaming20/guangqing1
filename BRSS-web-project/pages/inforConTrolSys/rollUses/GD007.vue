@@ -530,10 +530,10 @@
                               clearable
                               @change="rollTypeChange9(formatte1.roll_9,'F3',1)">
                               <el-option
-                                v-for="item in aoption_9"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
+                                v-for="item in option_9"
+                                :key="item.value1"
+                                :label="item.value1"
+                                :value="item.value1"/>
                             </el-select>
                           </div>
                         </td>
@@ -578,10 +578,10 @@
                               clearable
                               @change="rollTypeChange10(formatte1.roll_10,'F3',1)">
                               <el-option
-                                v-for="item in aoption_10"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
+                                v-for="item in option_10"
+                                :key="item.value1"
+                                :label="item.value1"
+                                :value="item.value1"/>
                             </el-select>
                           </div>
                         </td>
@@ -626,10 +626,10 @@
                               clearable
                               @change="rollTypeChange11(formatte1.roll_11,'F3',1)">
                               <el-option
-                                v-for="item in aoption_11"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
+                                v-for="item in option_11"
+                                :key="item.value1"
+                                :label="item.value1"
+                                :value="item.value1"/>
                             </el-select>
                           </div>
                         </td>
@@ -672,10 +672,10 @@
                               placeholder="请选择"
                               @change="rollTypeChange12(formatte1.roll_12,'F3',1)">
                               <el-option
-                                v-for="item in aoption_12"
-                                :key="item.value2"
-                                :label="item.value2"
-                                :value="item.value2"/>
+                                v-for="item in option_12"
+                                :key="item.value1"
+                                :label="item.value1"
+                                :value="item.value1"/>
                             </el-select>
                           </div>
                         </td>
@@ -2550,6 +2550,12 @@ export default {
             this.option_1.push(res.data[i])
           }
           if (
+            res.data[i].frame_no == 'R1工作辊' &&
+            res.data[i].value1 != null
+          ) {
+            this.option_9.push(res.data[i])
+          }
+          if (
             res.data[i].frame_no == 'R1支撑辊' &&
             res.data[i].value1 != null
           ) {
@@ -2562,76 +2568,6 @@ export default {
             this.option_12.push(res.data[i])
           }
         }
-        for (let i = 0; res.data.length > i; i++) {
-          if (
-            res.data[i].frame_no == 'F1支撑辊' &&
-            res.data[i].value2 != null
-          ) {
-            this.aoption_1.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F2支撑辊' &&
-            res.data[i].value2 != null
-          ) {
-            this.aoption_2.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F3支撑辊' &&
-            res.data[i].value2 != null
-          ) {
-            this.aoption_3.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F4支撑辊' &&
-            res.data[i].value2 != null
-          ) {
-            this.aoption_4.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F5支撑辊' &&
-            res.data[i].value2 != null
-          ) {
-            this.aoption_5.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F6支撑辊' &&
-            res.data[i].value2 != null
-          ) {
-            this.aoption_6.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F7支撑辊' &&
-            res.data[i].value2 != null
-          ) {
-            this.aoption_7.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'F8支撑辊' &&
-            res.data[i].value2 != null
-          ) {
-            this.aoption_8.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'R1工作辊' &&
-            res.data[i].value2 != null
-          ) {
-            this.aoption_9.push(res.data[i])
-          }
-          if (
-            res.data[i].frame_no == 'R1支撑辊' &&
-            res.data[i].value2 != null
-          ) {
-            this.aoption_10.push(res.data[i])
-          }
-          if (res.data[i].frame_no == 'FE立辊' && res.data[i].value2 != null) {
-            this.aoption_11.push(res.data[i])
-          }
-          if (res.data[i].frame_no == 'E1立辊' && res.data[i].value2 != null) {
-            this.aoption_12.push(res.data[i])
-          }
-        }
-        console.log(this.option_1, '你', this.option_2)
-        // this.option_2 = res.data
       })
 
       // this.aoption_10 = Object.assign({}, this.aoption_10)
@@ -3227,6 +3163,66 @@ export default {
       this.arry_all[7].roll_no = nex
       this.chaxun8()
       // this.xuyao8 = nex
+
+      //左边点了替换
+      if (this.formatte.roll_8 && this.duibi_dian[14].value1 && num == 0) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[14].value1
+        })
+      }
+
+      //右边点了替换
+      if (this.formatte1.roll_8 && this.duibi_dian[15].value1 && num == 1) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[15].value1
+        })
+      }
+
+      //左边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte.roll_8 == this.option_1[i].value1 && num == 0) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //右边发现有重复去除
+      for (let i = 0; this.option_1.length > i; i++) {
+        if (this.formatte1.roll_8 == this.option_1[i].value1 && num == 1) {
+          this.option_1.splice(i, 1)
+        }
+      }
+      //左边点了取消添加进去
+      if (
+        this.formatte.roll_8 == '' &&
+        this.duibi_dian[14].value1 &&
+        num == 0
+      ) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[14].value1
+        })
+      }
+      //点了左边的存放到设定的变量里
+      if (num == 0) {
+        this.duibi_dian[14].value1 = this.formatte.roll_8
+      }
+
+      //右边点了取消添加进去
+      if (
+        this.formatte1.roll_8 == '' &&
+        this.duibi_dian[15].value1 &&
+        num == 1
+      ) {
+        //说明点了取消
+        this.option_1.push({
+          value1: this.duibi_dian[15].value1
+        })
+      }
+      //点了右边的存放到设定的变量里
+      if (num == 1) {
+        this.duibi_dian[15].value1 = this.formatte1.roll_8
+      }
     },
     rollTypeChange9(vId, val, num) {
       var nex = ''
@@ -3248,6 +3244,66 @@ export default {
       this.arry_all[8].roll_no = nex
       this.chaxun9()
       // this.xuyao9 = nex
+
+      //左边点了替换
+      if (this.formatte.roll_9 && this.duibi_dian[16].value1 && num == 0) {
+        //说明点了取消
+        this.option_9.push({
+          value1: this.duibi_dian[16].value1
+        })
+      }
+
+      //右边点了替换
+      if (this.formatte1.roll_9 && this.duibi_dian[17].value1 && num == 1) {
+        //说明点了取消
+        this.option_9.push({
+          value1: this.duibi_dian[17].value1
+        })
+      }
+
+      //左边发现有重复去除
+      for (let i = 0; this.option_9.length > i; i++) {
+        if (this.formatte.roll_9 == this.option_9[i].value1 && num == 0) {
+          this.option_9.splice(i, 1)
+        }
+      }
+      //右边发现有重复去除
+      for (let i = 0; this.option_9.length > i; i++) {
+        if (this.formatte1.roll_9 == this.option_9[i].value1 && num == 1) {
+          this.option_9.splice(i, 1)
+        }
+      }
+      //左边点了取消添加进去
+      if (
+        this.formatte.roll_9 == '' &&
+        this.duibi_dian[16].value1 &&
+        num == 0
+      ) {
+        //说明点了取消
+        this.option_9.push({
+          value1: this.duibi_dian[16].value1
+        })
+      }
+      //点了左边的存放到设定的变量里
+      if (num == 0) {
+        this.duibi_dian[16].value1 = this.formatte.roll_9
+      }
+
+      //右边点了取消添加进去
+      if (
+        this.formatte1.roll_9 == '' &&
+        this.duibi_dian[17].value1 &&
+        num == 1
+      ) {
+        //说明点了取消
+        this.option_9.push({
+          value1: this.duibi_dian[17].value1
+        })
+      }
+      //点了右边的存放到设定的变量里
+      if (num == 1) {
+        this.duibi_dian[17].value1 = this.formatte1.roll_9
+      }
     },
     rollTypeChange10(vId, val, num) {
       var nex = ''
@@ -3269,6 +3325,66 @@ export default {
       this.arry_all[9].roll_no = nex
       this.xuyao10 = nex
       this.chaxun10()
+
+      //左边点了替换
+      if (this.formatte.roll_10 && this.duibi_dian[18].value1 && num == 0) {
+        //说明点了取消
+        this.option_10.push({
+          value1: this.duibi_dian[18].value1
+        })
+      }
+
+      //右边点了替换
+      if (this.formatte1.roll_10 && this.duibi_dian[19].value1 && num == 1) {
+        //说明点了取消
+        this.option_10.push({
+          value1: this.duibi_dian[19].value1
+        })
+      }
+
+      //左边发现有重复去除
+      for (let i = 0; this.option_10.length > i; i++) {
+        if (this.formatte.roll_10 == this.option_10[i].value1 && num == 0) {
+          this.option_10.splice(i, 1)
+        }
+      }
+      //右边发现有重复去除
+      for (let i = 0; this.option_10.length > i; i++) {
+        if (this.formatte1.roll_10 == this.option_10[i].value1 && num == 1) {
+          this.option_10.splice(i, 1)
+        }
+      }
+      //左边点了取消添加进去
+      if (
+        this.formatte.roll_10 == '' &&
+        this.duibi_dian[18].value1 &&
+        num == 0
+      ) {
+        //说明点了取消
+        this.option_10.push({
+          value1: this.duibi_dian[19].value1
+        })
+      }
+      //点了左边的存放到设定的变量里
+      if (num == 0) {
+        this.duibi_dian[18].value1 = this.formatte.roll_10
+      }
+
+      //右边点了取消添加进去
+      if (
+        this.formatte1.roll_10 == '' &&
+        this.duibi_dian[19].value1 &&
+        num == 1
+      ) {
+        //说明点了取消
+        this.option_10.push({
+          value1: this.duibi_dian[19].value1
+        })
+      }
+      //点了右边的存放到设定的变量里
+      if (num == 1) {
+        this.duibi_dian[19].value1 = this.formatte1.roll_10
+      }
     },
     rollTypeChange11(vId, val, num) {
       var nex = ''
@@ -3290,6 +3406,66 @@ export default {
       this.arry_all[10].roll_no = nex
       this.chaxun11()
       // this.xuyao11 = nex
+
+      //左边点了替换
+      if (this.formatte.roll_11 && this.duibi_dian[20].value1 && num == 0) {
+        //说明点了取消
+        this.option_11.push({
+          value1: this.duibi_dian[20].value1
+        })
+      }
+
+      //右边点了替换
+      if (this.formatte1.roll_11 && this.duibi_dian[21].value1 && num == 1) {
+        //说明点了取消
+        this.option_11.push({
+          value1: this.duibi_dian[21].value1
+        })
+      }
+
+      //左边发现有重复去除
+      for (let i = 0; this.option_11.length > i; i++) {
+        if (this.formatte.roll_11 == this.option_11[i].value1 && num == 0) {
+          this.option_11.splice(i, 1)
+        }
+      }
+      //右边发现有重复去除
+      for (let i = 0; this.option_11.length > i; i++) {
+        if (this.formatte1.roll_11 == this.option_11[i].value1 && num == 1) {
+          this.option_11.splice(i, 1)
+        }
+      }
+      //左边点了取消添加进去
+      if (
+        this.formatte.roll_11 == '' &&
+        this.duibi_dian[20].value1 &&
+        num == 0
+      ) {
+        //说明点了取消
+        this.option_11.push({
+          value1: this.duibi_dian[20].value1
+        })
+      }
+      //点了左边的存放到设定的变量里
+      if (num == 0) {
+        this.duibi_dian[20].value1 = this.formatte.roll_11
+      }
+
+      //右边点了取消添加进去
+      if (
+        this.formatte1.roll_11 == '' &&
+        this.duibi_dian[21].value1 &&
+        num == 1
+      ) {
+        //说明点了取消
+        this.option_11.push({
+          value1: this.duibi_dian[21].value1
+        })
+      }
+      //点了右边的存放到设定的变量里
+      if (num == 1) {
+        this.duibi_dian[21].value1 = this.formatte1.roll_11
+      }
     },
     rollTypeChange12(vId, val, num) {
       var nex = ''
@@ -3310,6 +3486,67 @@ export default {
       }
       this.arry_all[11].roll_no = nex
       this.chaxun12()
+
+      //左边点了替换
+      if (this.formatte.roll_12 && this.duibi_dian[22].value1 && num == 0) {
+        //说明点了取消
+        this.option_12.push({
+          value1: this.duibi_dian[22].value1
+        })
+      }
+
+      //右边点了替换
+      if (this.formatte1.roll_12 && this.duibi_dian[23].value1 && num == 1) {
+        //说明点了取消
+        this.option_12.push({
+          value1: this.duibi_dian[23].value1
+        })
+      }
+
+      //左边发现有重复去除
+      for (let i = 0; this.option_12.length > i; i++) {
+        if (this.formatte.roll_12 == this.option_12[i].value1 && num == 0) {
+          this.option_12.splice(i, 1)
+        }
+      }
+      //右边发现有重复去除
+      for (let i = 0; this.option_12.length > i; i++) {
+        if (this.formatte1.roll_12 == this.option_12[i].value1 && num == 1) {
+          this.option_12.splice(i, 1)
+        }
+      }
+      //左边点了取消添加进去
+      if (
+        this.formatte.roll_12 == '' &&
+        this.duibi_dian[22].value1 &&
+        num == 0
+      ) {
+        //说明点了取消
+        this.option_12.push({
+          value1: this.duibi_dian[22].value1
+        })
+      }
+      //点了左边的存放到设定的变量里
+      if (num == 0) {
+        this.duibi_dian[22].value1 = this.formatte.roll_12
+      }
+
+      //右边点了取消添加进去
+      if (
+        this.formatte1.roll_12 == '' &&
+        this.duibi_dian[23].value1 &&
+        num == 1
+      ) {
+        //说明点了取消
+        this.option_12.push({
+          value1: this.duibi_dian[23].value1
+        })
+      }
+      //点了右边的存放到设定的变量里
+      if (num == 1) {
+        this.duibi_dian[23].value1 = this.formatte1.roll_12
+      }
+
       //this.xuyao12 = nex
     },
     rollTypeChange13(vId, val, num) {

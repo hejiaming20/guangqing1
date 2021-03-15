@@ -8,7 +8,6 @@
       :page-size="pageSize"
       :current-page="pageIndex"
       :table-height="'calc(100vh - 185px)'"
-      :span-method="spanMethod"
       index-type="index"
       @handle-size-change="handleSizeChange"
       @handle-current-change="handleCurrentChange">
@@ -538,44 +537,6 @@ export default {
     })
   },
   methods: {
-    spanMethod(row) {
-      //row:当前行
-      //column:当前列
-      //rowIndex:当前行号
-      //columnIndex：当前列号
-      if (row.columnIndex === 0) {
-        // this.tableData  修改
-        /* const _row = this.flitterData(this.table_1).one[row.rowIndex]
-        const _col = _row > 0 ? 1 : 0
-        return {
-          rowspan: _row,
-          colspan: _col
-        }*/
-        if (row.rowIndex % 2 === 0) {
-          return {
-            rowspan: 2,
-            colspan: 1
-          }
-        } else {
-          return {
-            rowspan: 0,
-            colspan: 0
-          }
-        }
-      }
-
-      /* if (row.columnIndex === 5) {
-        if (row.rowIndex % 2 === 0) {
-          return {
-            rowspan: 2,
-            colspan: 1
-          };
-        } else {
-          return {
-            rowspan: 0,
-            colspan: 0
-          };*/
-    },
     // 移除移动端软键盘事件（日期时间选择器）
     resetKeyboard() {
       document.activeElement.blur()
